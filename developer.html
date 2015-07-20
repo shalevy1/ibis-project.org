@@ -94,7 +94,12 @@
 <li class="toctree-l2"><a class="reference internal" href="release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Developing and Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#test-environment-setup">Test environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contribution-ideas">Contribution Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributor-license-agreements">Contributor License Agreements</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
@@ -134,6 +139,42 @@
             
   <div class="section" id="developing-and-contributing-to-ibis">
 <span id="develop"></span><h1>Developing and Contributing to Ibis<a class="headerlink" href="#developing-and-contributing-to-ibis" title="Permalink to this headline">¶</a></h1>
+<p>For a primer on general open source contributions, see the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/contributing.html">pandas contribution
+guide</a>. The
+project will be run much like pandas has been.</p>
+<div class="section" id="test-environment-setup">
+<h2>Test environment setup<a class="headerlink" href="#test-environment-setup" title="Permalink to this headline">¶</a></h2>
+<p>If you do not have access to an Impala cluster, you may wish to set up the test
+virtual machine. We&#8217;ve set up a Quickstart VM to get you up and running faster,
+<a class="reference internal" href="getting-started.html#install-quickstart"><span>see here</span></a>.</p>
+<p>Unit tests and integration tests that use Impala require a test data load. See
+<code class="docutils literal"><span class="pre">scripts/load_test_data.py</span></code> in the source repository for the data loading
+script.</p>
+</div>
+<div class="section" id="contribution-ideas">
+<h2>Contribution Ideas<a class="headerlink" href="#contribution-ideas" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s a few ideas to think about outside of participating in the primary
+development roadmap:</p>
+<ul class="simple">
+<li>Documentation</li>
+<li>Use cases and IPython notebooks</li>
+<li>Other SQL-based backends (Presto, Hive, Spark SQL, PostgreSQL)</li>
+<li>S3 filesytem support</li>
+<li>Integration with MLLib via PySpark</li>
+</ul>
+</div>
+<div class="section" id="contributor-license-agreements">
+<h2>Contributor License Agreements<a class="headerlink" href="#contributor-license-agreements" title="Permalink to this headline">¶</a></h2>
+<p>While Ibis is an Apache-licensed open source project, we require individual and
+corporate contributors to execute a <a class="reference external" href="https://en.wikipedia.org/wiki/Contributor_License_Agreement">contributor license agreement</a> to enable any
+copyright issues to be avoided and to protect the user base from
+disruption. This agreement only needs to be signed once.</p>
+<p>We&#8217;ll use the same CLA&#8217;s that Impala uses:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/cloudera/Impala/wiki/Individual-Contributor-License-Agreement-(ICLA)">Individual CLA</a></li>
+<li><a class="reference external" href="https://github.com/cloudera/Impala/wiki/Corporate-Contributor-License-Agreement-(CCLA)">Corporate CLA</a></li>
+</ul>
+</div>
 </div>
 
 
@@ -200,7 +241,19 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-   
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 
 </body>
 </html>
