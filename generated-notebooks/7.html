@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Frequency tables &mdash; Ibis 0.3.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorial" href="../tutorial.html"/>
+        <link rel="next" title="API Reference" href="../api.html"/>
+        <link rel="prev" title="More filtering mojo for your analytics" href="6.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Ibis</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#interactive-mode">Interactive mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#limits">Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html">Projections: adding/selecting columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins">Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#explicit-join-materialization">Explicit join materialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#writing-down-join-keys">Writing down join keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#join-referential-nuances">Join referential nuances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#sorting">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html">Type casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#set-membership">Set membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#null-ness">Null-ness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#distinct-based-operations">Distinct-based operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#string-operations">String operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#timestamp-operations">Timestamp operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html">Creating new Impala tables from Ibis expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.html">&#8220;Top-K&#8221; Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.html#self-joins">Self joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html">More filtering mojo for your analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#conditional-aggregates">Conditional aggregates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Frequency tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binning-and-histograms">Binning and histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-in-aggregations">Filtering in aggregations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Ibis</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+      
+    <li>Frequency tables</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/generated-notebooks/7.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+
+<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="section" id="frequency-tables">
+<h1>Frequency tables<a class="headerlink" href="#frequency-tables" title="Permalink to this headline">¶</a></h1>
+<p>Ibis provides the <code class="docutils literal"><span class="pre">value_counts</span></code> API, just like pandas, for computing
+a frequency table for a table column or array expression. You might have
+seen it used already earlier in the tutorial.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">lineitem</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_lineitem&#39;</span><span class="p">)</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_orders&#39;</span><span class="p">)</span>
+
+<span class="n">items</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineitem</span><span class="p">,</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_orderkey</span> <span class="o">==</span> <span class="n">lineitem</span><span class="o">.</span><span class="n">l_orderkey</span><span class="p">)</span>
+         <span class="p">[</span><span class="n">lineitem</span><span class="p">,</span> <span class="n">orders</span><span class="p">])</span>
+
+<span class="n">items</span><span class="o">.</span><span class="n">o_orderpriority</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   o_orderpriority    count
+0         3-MEDIUM  1194959
+1  4-NOT SPECIFIED  1199524
+2            5-LOW  1202661
+3         1-URGENT  1201581
+4           2-HIGH  1202490
+</pre></div>
+</div>
+<p>This can be customized, of course:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">o_orderpriority</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">items</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;nrows&#39;</span><span class="p">),</span>
+                    <span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total $&#39;</span><span class="p">)]))</span>
+<span class="n">freq</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   o_orderpriority    nrows         total $
+0         3-MEDIUM  1194959  45698023582.03
+1  4-NOT SPECIFIED  1199524  45820992304.35
+2            5-LOW  1202661  46055868770.97
+3         1-URGENT  1201581  45969422546.87
+4           2-HIGH  1202490  46033003696.98
+</pre></div>
+</div>
+</div>
+<div class="section" id="binning-and-histograms">
+<h1>Binning and histograms<a class="headerlink" href="#binning-and-histograms" title="Permalink to this headline">¶</a></h1>
+<p>Numeric array expressions (columns with numeric type and other array
+expressions) have <code class="docutils literal"><span class="pre">bucket</span></code> and <code class="docutils literal"><span class="pre">histogram</span></code> methods which produce
+different kinds of binning. These produce category values (the computed
+bins) that can be used in grouping and other analytics.</p>
+<p>Let&#8217;s have a look at a few examples</p>
+<p>I&#8217;ll use the <code class="docutils literal"><span class="pre">summary</span></code> function to see the general distribution of
+lineitem prices in the order data joined above:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+     count  nulls     min        max              sum      mean  0  6001215      0  901.00  104949.50  229577310901.20  38255.13
+
+   approx_nunique
+0         1011732
+</pre>
+<p>Alright then, now suppose we want to split the item prices up into some
+buckets of our choosing:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">bucket</span></code> function creates a bucketed category from the prices:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bucketed</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bucket&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s have a look at the value counts:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bucketed</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  bucket    count
+0      3  1893650
+1      1   420695
+2      2  3329905
+3   None     4122
+4      0   352843
+</pre></div>
+</div>
+<p>The buckets we wrote down define 4 buckets numbered 0 through 3. The
+<code class="docutils literal"><span class="pre">NaN</span></code> is a pandas <code class="docutils literal"><span class="pre">NULL</span></code> value (since that&#8217;s how pandas represents
+nulls in numeric arrays), so don&#8217;t worry too much about that. Since the
+bucketing ends at 100000, we see there are 4122 values that are over
+100000. These can be included in the bucketing with <code class="docutils literal"><span class="pre">include_over</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bucketed</span> <span class="o">=</span> <span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span>
+            <span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">,</span> <span class="n">include_over</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bucket&#39;</span><span class="p">))</span>
+<span class="n">bucketed</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   bucket    count
+0       3  1893650
+1       1   420695
+2       2  3329905
+3       0   352843
+4       4     4122
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">bucketed</span></code> object here is a special <strong>*category*</strong> type</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bucketed</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">category</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Category values can either have a known or unknown <strong>*cardinality*</strong>. In
+this case, there&#8217;s either 4 or 5 buckets based on how we used the
+<code class="docutils literal"><span class="pre">bucket</span></code> function.</p>
+<p>Labels can be assigned to the buckets at any time using the <code class="docutils literal"><span class="pre">label</span></code>
+function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bucket_counts</span> <span class="o">=</span> <span class="n">bucketed</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">labeled_bucket</span> <span class="o">=</span> <span class="p">(</span><span class="n">bucket_counts</span><span class="o">.</span><span class="n">bucket</span>
+                  <span class="o">.</span><span class="n">label</span><span class="p">([</span><span class="s">&#39;0 to 5000&#39;</span><span class="p">,</span> <span class="s">&#39;5000 to 10000&#39;</span><span class="p">,</span> <span class="s">&#39;10000 to 50000&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;50000 to 100000&#39;</span><span class="p">,</span> <span class="s">&#39;Over 100000&#39;</span><span class="p">])</span>
+                  <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bucket_name&#39;</span><span class="p">))</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">bucket_counts</span><span class="p">[</span><span class="n">labeled_bucket</span><span class="p">,</span> <span class="n">bucket_counts</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s">&#39;bucket&#39;</span><span class="p">))</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>       bucket_name  bucket    count
+0        0 to 5000       0   352843
+1    5000 to 10000       1   420695
+2   10000 to 50000       2  3329905
+3  50000 to 100000       3  1893650
+4      Over 100000       4     4122
+</pre></div>
+</div>
+<p>Nice, huh?</p>
+<p><code class="docutils literal"><span class="pre">histogram</span></code> is a linear (fixed size bin) equivalent:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">double_col</span>
+
+<span class="n">tier</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;hist_bin&#39;</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">tier</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">t</span><span class="o">.</span><span class="n">count</span><span class="p">()])</span>
+        <span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s">&#39;hist_bin&#39;</span><span class="p">))</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   hist_bin   min   max  count
+0         0   0.0   0.0    730
+1         1  10.1  10.1    730
+2         2  20.2  20.2    730
+3         3  30.3  30.3    730
+4         4  40.4  40.4    730
+5         5  50.5  50.5    730
+6         6  60.6  60.6    730
+7         7  70.7  70.7    730
+8         8  80.8  80.8    730
+9         9  90.9  90.9    730
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering-in-aggregations">
+<h1>Filtering in aggregations<a class="headerlink" href="#filtering-in-aggregations" title="Permalink to this headline">¶</a></h1>
+<p>Suppose that you want to compute an aggregation with a subset of the
+data for <em>only one</em> of the metrics / aggregates in question, and the
+complete data set with the other aggregates. Most aggregation functions
+are thus equipped with a <code class="docutils literal"><span class="pre">where</span></code> argument. Let me show it to you in
+action:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">double_col</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">string_col</span>
+
+<span class="n">cond</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s">&#39;3&#39;</span><span class="p">,</span> <span class="s">&#39;5&#39;</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">])</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;# rows total&#39;</span><span class="p">),</span>
+           <span class="n">cond</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;# selected&#39;</span><span class="p">),</span>
+           <span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">),</span>
+           <span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="n">cond</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;selected total&#39;</span><span class="p">)]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">float_col</span>
+         <span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">)</span>
+         <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;color&#39;</span><span class="p">))</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  color  # rows total  # selected   total  selected total
+0   red          2920        1460  132714           58984
+1  blue          4380         730  199071           51611
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="6.html" class="btn btn-neutral" title="More filtering mojo for your analytics"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

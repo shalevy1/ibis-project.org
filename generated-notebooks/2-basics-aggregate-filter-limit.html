@@ -1,0 +1,883 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Accessing an Impala table &mdash; Ibis 0.3.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Ibis</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Ibis</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Accessing an Impala table</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/generated-notebooks/2-basics-aggregate-filter-limit.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <p>Now that you have ibis installed and connecting to your Impala, let&#8217;s
+get our feet wet.</p>
+<p><strong>If you haven&#8217;t loaded the test data yet used here, have a look at the
+first notebook!</strong></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+
+<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50070</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+TTransportException                       Traceback (most recent call last)
+
+&lt;ipython-input-1-57ccf9c09871&gt; in &lt;module&gt;()
+      1 import ibis
+      2
+----&gt; 3 ic = ibis.impala_connect(host=&#39;quickstart.cloudera&#39;, database=&#39;ibis_testing&#39;)
+      4 hdfs = ibis.hdfs_connect(host=&#39;quickstart.cloudera&#39;, port=50070)
+      5 con = ibis.make_client(ic, hdfs_client=hdfs)
+
+
+/home/wesm/code/cloudera/ibis/ibis/__init__.pyc in impala_connect(host, port, protocol, database, timeout, use_ssl, ca_cert, use_ldap, ldap_user, ldap_password, use_kerberos, kerberos_service_name, pool_size)
+     97     }
+     98
+---&gt; 99     return ImpalaConnection(pool_size=pool_size, **params)
+    100
+    101
+
+
+/home/wesm/code/cloudera/ibis/ibis/client.pyc in __init__(self, pool_size, database, **params)
+    171         self.max_pool_size = pool_size
+    172
+--&gt; 173         self.ping()
+    174
+    175     def set_database(self, name):
+
+
+/home/wesm/code/cloudera/ibis/ibis/client.pyc in ping(self)
+    242
+    243     def ping(self):
+--&gt; 244         self._new_cursor()
+    245
+    246
+
+
+/home/wesm/code/cloudera/ibis/ibis/client.pyc in _new_cursor(self)
+    228     def _new_cursor(self):
+    229         params = self.params.copy()
+--&gt; 230         con = impyla_dbapi.connect(database=self.database, **params)
+    231
+    232         # make sure the connection works
+
+
+/home/wesm/code/cloudera/impyla/impala/dbapi/__init__.pyc in connect(host, port, protocol, database, timeout, use_ssl, ca_cert, use_ldap, ldap_user, ldap_password, use_kerberos, kerberos_service_name)
+     45         service = connect_to_hiveserver2(
+     46             host, port, timeout, use_ssl, ca_cert, use_ldap, ldap_user,
+---&gt; 47             ldap_password, use_kerberos, kerberos_service_name)
+     48         return HiveServer2Connection(service, default_db=database)
+     49     else:
+
+
+/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in connect_to_impala(host, port, timeout, use_ssl, ca_cert, use_ldap, ldap_user, ldap_password, use_kerberos, kerberos_service_name)
+    192     transport = _get_transport(sock, host, use_ldap, ldap_user, ldap_password,
+    193                                use_kerberos, kerberos_service_name)
+--&gt; 194     transport.open()
+    195     protocol = TBinaryProtocol(transport)
+    196     service = ImpalaHiveServer2Service.Client(protocol)
+
+
+/home/wesm/anaconda/lib/python2.7/site-packages/thrift/transport/TTransport.pyc in open(self)
+    147
+    148   def open(self):
+--&gt; 149     return self.__trans.open()
+    150
+    151   def close(self):
+
+
+/home/wesm/anaconda/lib/python2.7/site-packages/thrift/transport/TSocket.pyc in open(self)
+     97         message = &#39;Could not connect to %s:%d&#39; % (self.host, self.port)
+     98       raise TTransportException(type=TTransportException.NOT_OPEN,
+---&gt; 99                                 message=message)
+    100
+    101   def read(self, sz):
+
+
+TTransportException: Could not connect to quickstart.cloudera:21050
+</pre></div>
+</div>
+<div class="section" id="accessing-an-impala-table">
+<h1>Accessing an Impala table<a class="headerlink" href="#accessing-an-impala-table" title="Permalink to this headline">¶</a></h1>
+<p>The optional <code class="docutils literal"><span class="pre">database</span></code> paramter allows to fully qualify the table.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-2-3b18e46dcf08&gt; in &lt;module&gt;()
+----&gt; 1 table = con.table(&#39;functional_alltypes&#39;)
+      2 table = con.table(&#39;functional_alltypes&#39;, database=&#39;ibis_testing&#39;)
+
+
+NameError: name &#39;con&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="column-selection-and-basic-expressions">
+<h1>Column selection and basic expressions<a class="headerlink" href="#column-selection-and-basic-expressions" title="Permalink to this headline">¶</a></h1>
+<p>Selecting columns from a table works just like pandas</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">col</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+
+<span class="c"># alternately</span>
+<span class="n">col2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s">&#39;bigint_col&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-3-d61b4d72fb3f&gt; in &lt;module&gt;()
+----&gt; 1 col = table.double_col
+      2
+      3 # alternately
+      4 col2 = table[&#39;bigint_col&#39;]
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Table columns are equipped with a variety of math operations and other
+methods to assist in writing your analytics. For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">log2</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-4-a1e13cc57220&gt; in &lt;module&gt;()
+----&gt; 1 expr = col.log2() - 1
+
+
+NameError: name &#39;col&#39; is not defined
+</pre></div>
+</div>
+<p>Some operations transform arrays to arrays, while others aggregate, like
+<code class="docutils literal"><span class="pre">sum</span></code> and <code class="docutils literal"><span class="pre">mean</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr2</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-5-3f14971214f1&gt; in &lt;module&gt;()
+----&gt; 1 expr2 = expr.sum()
+
+
+NameError: name &#39;expr&#39; is not defined
+</pre></div>
+</div>
+<p>The methods that are available on columns depend on the time of the
+column. For example, you won&#8217;t see the <code class="docutils literal"><span class="pre">substr</span></code> or <code class="docutils literal"><span class="pre">upper</span></code> methods
+for strings on numeric columns:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">substr_expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-6-4ba979347f8c&gt; in &lt;module&gt;()
+----&gt; 1 substr_expr = table.string_col.upper().substr(0, 2)
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Notice that printing the expressions to the console does not actually do
+anything, and shows a graphical representation of the expression you&#8217;ve
+built.</p>
+<p><strong>Note: don&#8217;t worry too much about the details of the expression tree
+that&#8217;s outputted, it&#8217;s very likely to change over time</strong></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr2</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-7-ad82b92f2ae2&gt; in &lt;module&gt;()
+----&gt; 1 expr2
+
+
+NameError: name &#39;expr2&#39; is not defined
+</pre></div>
+</div>
+<p>We can also execute an expression by calling <code class="docutils literal"><span class="pre">execute</span></code> on the Impala
+connection object</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-8-f78c60b7417c&gt; in &lt;module&gt;()
+----&gt; 1 con.execute(col.sum())
+
+
+NameError: name &#39;con&#39; is not defined
+</pre></div>
+</div>
+<p>There&#8217;s a shortcut to make this a little more convenient in interactive
+use</p>
+</div>
+<div class="section" id="interactive-mode">
+<h1>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h1>
+<p>Many Ibis expressions can be immediately executed against the database,
+and it may improve your productivity to have the executed for you
+whenever you try to print the expression in the console / IPython
+notebook.</p>
+<p>To do this, we have an <em>interactive</em> mode available, which can be turned
+on/off like so:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>Now, any expressions you write will be executed right away</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-10-1c422a5a8f29&gt; in &lt;module&gt;()
+----&gt; 1 table.limit(10)
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>You can select a row range with slicing syntax:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-11-e5a69c79f5a8&gt; in &lt;module&gt;()
+----&gt; 1 table.double_col.sum()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Don&#8217;t worry about the syntax here, but expressions resulting in tabular
+output will come back as a pandas DataFrame by default:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-12-5006c96aaeaa&gt; in &lt;module&gt;()
+----&gt; 1 metrics = [table.double_col.sum().name(&#39;total&#39;)]
+      2 expr = table.group_by(&#39;string_col&#39;).aggregate(metrics)
+      3 expr
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="verbose-mode-and-logging">
+<h1>Verbose mode and logging<a class="headerlink" href="#verbose-mode-and-logging" title="Permalink to this headline">¶</a></h1>
+<p>You may want to see or log all the Impala queries that Ibis executes
+under the hood. To do that, use the <code class="docutils literal"><span class="pre">options.verbose</span></code> option:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-13-c845ee125fbf&gt; in &lt;module&gt;()
+      1 ibis.options.verbose = True
+      2
+----&gt; 3 metrics = [table.double_col.sum().name(&#39;total&#39;)]
+      4 expr = table.group_by(&#39;string_col&#39;).aggregate(metrics)
+      5 expr
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="n">logger</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+<span class="n">queries</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-14-c952d069b6ef&gt; in &lt;module&gt;()
+      5 ibis.options.verbose_log = logger
+      6
+----&gt; 7 expr.execute()
+      8 expr.execute()
+      9
+
+
+NameError: name &#39;expr&#39; is not defined
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aggregation-basics">
+<h1>Aggregation basics<a class="headerlink" href="#aggregation-basics" title="Permalink to this headline">¶</a></h1>
+<p>One of the essential table API functions is <code class="docutils literal"><span class="pre">aggregate</span></code>. Aggregation
+involves the following</p>
+<ul class="simple">
+<li>One or more <em>named</em> aggregate expressions, or <em>reductions</em></li>
+<li>Zero or more grouping expressions or column names</li>
+</ul>
+<p>This ends up working very similarly to pandas&#8217;s <strong>groupby</strong> mechanism.</p>
+<p>Let&#8217;s start with a simple reduction:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-16-cd6e621c22ea&gt; in &lt;module&gt;()
+----&gt; 1 metric = table.double_col.sum()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>As you saw above, you can execute this immediately and obtain a value:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-17-eeb1e9249a73&gt; in &lt;module&gt;()
+----&gt; 1 metric
+
+
+NameError: name &#39;metric&#39; is not defined
+</pre></div>
+</div>
+<p>The reduced column can be more complex; for example, you could count the
+number of null values in a column like so:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-18-30b780b7aff2&gt; in &lt;module&gt;()
+----&gt; 1 table.double_col.isnull().sum()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>To aggregate a table, potentially with grouping keys, we have to give
+the reduction a name and call <code class="docutils literal"><span class="pre">aggregate</span></code></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;double_total&#39;</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-19-78702ec65b73&gt; in &lt;module&gt;()
+----&gt; 1 metric = metric.name(&#39;double_total&#39;)
+      2 expr = table.aggregate([metric])
+      3 result = con.execute(expr)
+      4 result
+
+
+NameError: name &#39;metric&#39; is not defined
+</pre></div>
+</div>
+<p>The result here is actually a pandas DataFrame with 1 row and just the
+one column. We can add another metric and add a grouping key</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric2</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">log10</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;some_metric&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;string_col&#39;</span><span class="p">])</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-20-c0f96d8aee7e&gt; in &lt;module&gt;()
+----&gt; 1 metric2 = (table.bigint_col + 1).log10().max().name(&#39;some_metric&#39;)
+      2
+      3 expr = table.aggregate([metric, metric2], by=[&#39;string_col&#39;])
+      4 expr
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>We provide a convenience <code class="docutils literal"><span class="pre">group_by</span></code>, a la pandas, to make this a
+little more composable:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">]))</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-21-70c03d8f8d30&gt; in &lt;module&gt;()
+----&gt; 1 expr = (table.group_by(&#39;string_col&#39;)
+      2         .aggregate([metric, metric2]))
+      3 expr
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>You can also group by named column expressions</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;hour&#39;</span><span class="p">),</span> <span class="s">&#39;string_col&#39;</span><span class="p">]</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
+
+<span class="c"># Top 10 by double_total, more on this later</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([(</span><span class="s">&#39;double_total&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-22-61b59ea931c8&gt; in &lt;module&gt;()
+----&gt; 1 keys = [table.timestamp_col.hour().name(&#39;hour&#39;), &#39;string_col&#39;]
+      2
+      3 expr = table.group_by(keys).aggregate([metric])
+      4
+      5 # Top 10 by double_total, more on this later
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>In most cases, an aggregation by itself can be evaluated:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-23-493aeb2fb8d9&gt; in &lt;module&gt;()
+----&gt; 1 table.double_col.mean()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>This can also be done in simple cases along with <code class="docutils literal"><span class="pre">group_by</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-24-620c2c5597ee&gt; in &lt;module&gt;()
+----&gt; 1 table.group_by(&#39;string_col&#39;).double_col.mean()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Many reduction functions have a default expression name, unlike many
+other Ibis expressions (for now!), to make some common analyses easier:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+
+<span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">()]))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-25-e16c2c9dd040&gt; in &lt;module&gt;()
+----&gt; 1 d = table.double_col
+      2
+      3 (table.group_by(&#39;string_col&#39;)
+      4  .aggregate([d.sum(), d.mean(), d.min(), d.max()]))
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Of course, for this <em>particular</em> case you can always use <code class="docutils literal"><span class="pre">summary</span></code></p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-26-877e505db6bb&gt; in &lt;module&gt;()
+----&gt; 1 table.group_by(&#39;string_col&#39;).double_col.summary()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering">
+<h1>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h1>
+<p>Filtering tables works similarly to pandas</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bigint_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bigint_min&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;int_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;int_min&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-27-4403a5de9d81&gt; in &lt;module&gt;()
+----&gt; 1 table.aggregate([table.bigint_col.max().name(&#39;bigint_max&#39;),
+      2                  table.bigint_col.min().name(&#39;bigint_min&#39;),
+      3                  table.int_col.max().name(&#39;int_max&#39;),
+      4                  table.int_col.min().name(&#39;int_min&#39;)])
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-28-67c26c7c612a&gt; in &lt;module&gt;()
+----&gt; 1 table.count()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-29-600f973fd084&gt; in &lt;module&gt;()
+----&gt; 1 table[table.bigint_col &gt; 50].count()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Filters can be composed using &amp; (and), | (or), and other logical array
+operators</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cond1</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span>
+<span class="n">cond2</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">|</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-30-12e28bdd9aa5&gt; in &lt;module&gt;()
+----&gt; 1 cond1 = table.bigint_col &gt; 50
+      2 cond2 = table.int_col.between(2, 7)
+      3 table[cond1 | cond2].count()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>There&#8217;s a <code class="docutils literal"><span class="pre">filter</span></code> function that allows you to pass a list of
+conditions (that are all required to hold):</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">cond1</span><span class="p">,</span> <span class="n">cond2</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-31-a56356db32df&gt; in &lt;module&gt;()
+----&gt; 1 table.filter([cond1, cond2]).count()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+<p>Note this is the same as &amp;-ing the boolean conditions yourself:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">&amp;</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-32-68a57d813345&gt; in &lt;module&gt;()
+----&gt; 1 table[cond1 &amp; cond2].count()
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+</div>
+<div class="section" id="limits">
+<h1>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h1>
+<p>Like in SQL, the <code class="docutils literal"><span class="pre">limit</span></code> function selects the indicated numbers of
+rows from the beginning of a table&#8217;s result set</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-33-493676559cc4&gt; in &lt;module&gt;()
+----&gt; 1 table.limit(2)
+
+
+NameError: name &#39;table&#39; is not defined
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

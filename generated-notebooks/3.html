@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Type casting &mdash; Ibis 0.3.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorial" href="../tutorial.html"/>
+        <link rel="next" title="Creating new Impala tables from Ibis expressions" href="4.html"/>
+        <link rel="prev" title="Projections: adding/selecting columns" href="2.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Ibis</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#interactive-mode">Interactive mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#limits">Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html">Projections: adding/selecting columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins">Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#explicit-join-materialization">Explicit join materialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#writing-down-join-keys">Writing down join keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#join-referential-nuances">Join referential nuances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#sorting">Sorting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Type casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-membership">Set membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#null-ness">Null-ness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distinct-based-operations">Distinct-based operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#string-operations">String operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timestamp-operations">Timestamp operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html">Creating new Impala tables from Ibis expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.html">&#8220;Top-K&#8221; Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5.html#self-joins">Self joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html">More filtering mojo for your analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#conditional-aggregates">Conditional aggregates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html">Frequency tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html#binning-and-histograms">Binning and histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Ibis</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+      
+    <li>Type casting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/generated-notebooks/3.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+
+<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="section" id="type-casting">
+<h1>Type casting<a class="headerlink" href="#type-casting" title="Permalink to this headline">¶</a></h1>
+<p>The Ibis type system is pretty basic and will get better (and more
+documented over time). It maps directly onto the current Impala type
+system</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">int8</span></code></li>
+<li><code class="docutils literal"><span class="pre">int16</span></code></li>
+<li><code class="docutils literal"><span class="pre">int32</span></code></li>
+<li><code class="docutils literal"><span class="pre">int64</span></code></li>
+<li><code class="docutils literal"><span class="pre">boolean</span></code></li>
+<li><code class="docutils literal"><span class="pre">float</span></code></li>
+<li><code class="docutils literal"><span class="pre">double</span></code></li>
+<li><code class="docutils literal"><span class="pre">string</span></code></li>
+<li><code class="docutils literal"><span class="pre">timestamp</span></code></li>
+<li><code class="docutils literal"><span class="pre">decimal($precision,</span> <span class="pre">$scale)</span></code></li>
+</ul>
+<p>These type names can be used to cast from one type to another</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">32850.0</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s">&#39;decimal(12,2)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;32850.00&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="case-if-then-else-expressions">
+<h1>Case / if-then-else expressions<a class="headerlink" href="#case-if-then-else-expressions" title="Permalink to this headline">¶</a></h1>
+<p>We support a number of variants of the SQL-equivalent <code class="docutils literal"><span class="pre">CASE</span></code>
+expression, and will add more API functions over time to meet different
+use cases and enhance the expressiveness of any branching-based value
+logic.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">string_col</span>
+        <span class="o">.</span><span class="n">case</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">,</span> <span class="s">&#39;fee&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;7&#39;</span><span class="p">,</span> <span class="s">&#39;fi&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;fo&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;0&#39;</span><span class="p">,</span> <span class="s">&#39;fum&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">else_</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;new_strings&#39;</span><span class="p">))</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  new_strings  count
+0          fi    730
+1           6    730
+2         fee    730
+3          fo    730
+4           8    730
+5           2    730
+6           5    730
+7           9    730
+8         fum    730
+9           3    730
+</pre></div>
+</div>
+<p>If the <code class="docutils literal"><span class="pre">else_</span></code> default condition is not provided, any values not
+matching one of the conditions will be <code class="docutils literal"><span class="pre">NULL</span></code>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">string_col</span>
+        <span class="o">.</span><span class="n">case</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">,</span> <span class="s">&#39;fee&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;7&#39;</span><span class="p">,</span> <span class="s">&#39;fi&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;with_nulls&#39;</span><span class="p">))</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  with_nulls  count
+0       None   5840
+1         fi    730
+2        fee    730
+</pre></div>
+</div>
+<p>To test for an arbitrary series of boolean conditions, use the <code class="docutils literal"><span class="pre">case</span></code>
+API method and pass any boolean expressions potentially involving
+columns of the table:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">int_col</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">int_col</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">else_</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">end</span><span class="p">())</span>
+
+<span class="n">table</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;int_col&#39;</span><span class="p">,</span> <span class="s">&#39;bigint_col&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;case_result&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>     id  int_col  bigint_col  case_result
+0   310        0           0            0
+1   311        1          10            1
+2   312        2          20            2
+3   313        3          30           30
+4   314        4          40           40
+5   315        5          50           50
+6   316        6          60          120
+7   317        7          70          140
+8   318        8          80          160
+9   319        9          90          180
+10  320        0           0            0
+11  321        1          10            1
+12  322        2          20            2
+13  323        3          30           30
+14  324        4          40           40
+15  325        5          50           50
+16  326        6          60          120
+17  327        7          70          140
+18  328        8          80          160
+19  329        9          90          180
+</pre></div>
+</div>
+<p>Simple ternary-cases (like the Python <code class="docutils literal"><span class="pre">X</span> <span class="pre">if</span> <span class="pre">COND</span> <span class="pre">else</span> <span class="pre">Y</span></code>) can be
+written using the <code class="docutils literal"><span class="pre">ifelse</span></code> function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">((</span><span class="n">table</span><span class="o">.</span><span class="n">int_col</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;ifelse_result&#39;</span><span class="p">))</span>
+
+<span class="n">table</span><span class="p">[</span><span class="s">&#39;int_col&#39;</span><span class="p">,</span> <span class="s">&#39;bigint_col&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   int_col  bigint_col  ifelse_result
+0        0           0              0
+1        1          10             20
+2        2          20             40
+3        3          30             60
+4        4          40             80
+5        5          50            100
+6        6          60             30
+7        7          70             35
+8        8          80             40
+9        9          90             45
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-membership">
+<h1>Set membership<a class="headerlink" href="#set-membership" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">isin</span></code> and <code class="docutils literal"><span class="pre">notin</span></code> functions are like their pandas counterparts.
+These can take:</p>
+<ul class="simple">
+<li>A list of value expressions, either literal values or other column
+expressions</li>
+<li>An array/column expression of some kind</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">bool_clause</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">notin</span><span class="p">([</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;4&#39;</span><span class="p">,</span> <span class="s">&#39;7&#39;</span><span class="p">])</span>
+<span class="n">table</span><span class="p">[</span><span class="n">bool_clause</span><span class="p">]</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  string_col  count
+0          6    730
+1          8    730
+2          2    730
+3          5    730
+4          0    730
+5          9    730
+6          3    730
+</pre></div>
+</div>
+<p>You can also check for membership in an array. Here is an example of
+filtering based on the top 3 (ignoring ties) most frequently-occurring
+values in the <code class="docutils literal"><span class="pre">string_col</span></code> column of alltypes:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">top_strings</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">string_col</span>
+<span class="n">top_filter</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_strings</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">top_filter</span><span class="p">]</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2190</span>
+</pre></div>
+</div>
+<p>This is a common enough operation that we provide a special analytical
+filter function <code class="docutils literal"><span class="pre">topk</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">2190</span>
+</pre></div>
+</div>
+<p>Cool, huh? More on <code class="docutils literal"><span class="pre">topk</span></code> later.</p>
+</div>
+<div class="section" id="null-ness">
+<h1>Null-ness<a class="headerlink" href="#null-ness" title="Permalink to this headline">¶</a></h1>
+<p>Like their pandas equivalents, the <code class="docutils literal"><span class="pre">isnull</span></code> and <code class="docutils literal"><span class="pre">notnull</span></code> functions
+return TRue values if the values are null, or non-null, respectively.
+For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">string_col</span>
+        <span class="o">.</span><span class="n">case</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">,</span> <span class="s">&#39;fee&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;7&#39;</span><span class="p">,</span> <span class="s">&#39;fi&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">,</span> <span class="s">&#39;fo&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">end</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;new_strings&#39;</span><span class="p">))</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  unnamed  count
+0   False   2190
+1    True   5110
+</pre></div>
+</div>
+<p>Functions like <code class="docutils literal"><span class="pre">isnull</span></code> can be combined with <code class="docutils literal"><span class="pre">case</span></code> expressions or
+functions like <code class="docutils literal"><span class="pre">ifelse</span></code> to replace null values with some other value.
+<code class="docutils literal"><span class="pre">ifelse</span></code> here will use the first value supplied for any <code class="docutils literal"><span class="pre">True</span></code> value
+and the second value for any <code class="docutils literal"><span class="pre">False</span></code> value. Either value can be a
+scalar or array.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr2</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s">&#39;was null&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;strings&#39;</span><span class="p">)</span>
+<span class="n">expr2</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    strings  count
+0  was null   5110
+1        fo    730
+2        fi    730
+3       fee    730
+</pre></div>
+</div>
+</div>
+<div class="section" id="distinct-based-operations">
+<h1>Distinct-based operations<a class="headerlink" href="#distinct-based-operations" title="Permalink to this headline">¶</a></h1>
+<p>Ibis supports using <code class="docutils literal"><span class="pre">distinct</span></code> to remove duplicate rows or values on
+tables or arrays. For example:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="s">&#39;int_col&#39;</span><span class="p">,</span> <span class="s">&#39;bigint_col&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   int_col  bigint_col
+0        6          60
+1        0           0
+2        8          80
+3        3          30
+4        9          90
+5        7          70
+6        2          20
+7        1          10
+8        4          40
+9        5          50
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>0    6
+1    4
+2    7
+3    1
+4    8
+5    2
+6    9
+7    5
+8    3
+9    0
+Name: string_col, dtype: object
+</pre></div>
+</div>
+<p>This can be combined with <code class="docutils literal"><span class="pre">count</span></code> to form a reduction metric:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span>
+          <span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+          <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;unique_bigints&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This is common enough to have a shortcut <code class="docutils literal"><span class="pre">nunique</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="string-operations">
+<h1>String operations<a class="headerlink" href="#string-operations" title="Permalink to this headline">¶</a></h1>
+<p>What&#8217;s supported is pretty basic right now. We intend to support the
+full gamut of regular expression munging with a nice API, though in some
+cases some work will be required on Impala&#8217;s backend to support
+everything.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nation</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_nation&#39;</span><span class="p">)</span>
+<span class="n">nation</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+   n_nationkey     n_name  n_regionkey  0            0    ALGERIA            0
+1            1  ARGENTINA            1
+2            2     BRAZIL            1
+3            3     CANADA            1
+4            4      EGYPT            4
+
+                                           n_comment
+0   haggle. carefully final deposits detect slyly...
+1  al foxes promise slyly according to the regula...
+2  y alongside of the pending deposits. carefully...
+3  eas hang ironic, silent packages. slyly regula...
+4  y above the carefully unusual theodolites. fin...
+</pre>
+<p>At the moment, basic substring operations (<code class="docutils literal"><span class="pre">substr</span></code>, with conveniences
+<code class="docutils literal"><span class="pre">left</span></code> and <code class="docutils literal"><span class="pre">right</span></code>) and Python-like APIs such as <code class="docutils literal"><span class="pre">lower</span></code> and
+<code class="docutils literal"><span class="pre">upper</span></code> (for case normalization) are supported. So you could count
+first letter occurrences in a string column like so:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;first_letter&#39;</span><span class="p">)</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_by</span><span class="p">((</span><span class="s">&#39;count&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   first_letter  count
+0             i      4
+1             a      2
+2             c      2
+3             j      2
+4             u      2
+5             m      2
+6             r      2
+7             e      2
+8             f      1
+9             v      1
+10            p      1
+11            b      1
+12            k      1
+13            s      1
+14            g      1
+</pre></div>
+</div>
+<p>For fuzzy and regex filtering/searching, you can use one of the
+following</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">like</span></code>, works as the SQL <code class="docutils literal"><span class="pre">LIKE</span></code> keyword</li>
+<li><code class="docutils literal"><span class="pre">rlike</span></code>, like <code class="docutils literal"><span class="pre">re.search</span></code> or SQL <code class="docutils literal"><span class="pre">RLIKE</span></code></li>
+<li><code class="docutils literal"><span class="pre">contains</span></code>, like <code class="docutils literal"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">str_value</span></code> in Python</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nation</span><span class="p">[</span><span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%G</span><span class="s">E%&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+   n_nationkey     n_name  n_regionkey  0            0    ALGERIA            0
+1            1  ARGENTINA            1
+2            7    GERMANY            3
+
+                                           n_comment
+0   haggle. carefully final deposits detect slyly...
+1  al foxes promise slyly according to the regula...
+2  l platelets. regular accounts x-ray: unusual, ...
+</pre>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nation</span><span class="p">[</span><span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">rlike</span><span class="p">(</span><span class="s">&#39;.*ge.*&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+   n_nationkey     n_name  n_regionkey  0            0    ALGERIA            0
+1            1  ARGENTINA            1
+2            7    GERMANY            3
+
+                                           n_comment
+0   haggle. carefully final deposits detect slyly...
+1  al foxes promise slyly according to the regula...
+2  l platelets. regular accounts x-ray: unusual, ...
+</pre>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">nation</span><span class="p">[</span><span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&#39;ge&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+   n_nationkey     n_name  n_regionkey  0            0    ALGERIA            0
+1            1  ARGENTINA            1
+2            7    GERMANY            3
+
+                                           n_comment
+0   haggle. carefully final deposits detect slyly...
+1  al foxes promise slyly according to the regula...
+2  l platelets. regular accounts x-ray: unusual, ...
+</pre>
+</div>
+<div class="section" id="timestamp-operations">
+<h1>Timestamp operations<a class="headerlink" href="#timestamp-operations" title="Permalink to this headline">¶</a></h1>
+<p>Date and time functionality is relatively limited at present compared
+with pandas, but we&#8217;ll get there. The main things we have right now are</p>
+<ul class="simple">
+<li>Field access (year, month, day, ...)</li>
+<li>Timedeltas</li>
+<li>Comparisons with fixed timestamps</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+
+<span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">minute</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;minute&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>            timestamp_col  minute
+0 2009-05-01 00:00:00.000       0
+1 2009-05-01 00:01:00.000       1
+2 2009-05-01 00:02:00.100       2
+3 2009-05-01 00:03:00.300       3
+4 2009-05-01 00:04:00.600       4
+5 2009-05-01 00:05:00.100       5
+6 2009-05-01 00:06:00.150       6
+7 2009-05-01 00:07:00.210       7
+8 2009-05-01 00:08:00.280       8
+9 2009-05-01 00:09:00.360       9
+</pre></div>
+</div>
+<p>Somewhat more comprehensively</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_field</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="p">,</span> <span class="n">f</span><span class="p">)()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;year&#39;</span><span class="p">,</span> <span class="s">&#39;month&#39;</span><span class="p">,</span> <span class="s">&#39;day&#39;</span><span class="p">,</span> <span class="s">&#39;hour&#39;</span><span class="p">,</span> <span class="s">&#39;minute&#39;</span><span class="p">,</span> <span class="s">&#39;second&#39;</span><span class="p">,</span> <span class="s">&#39;millisecond&#39;</span><span class="p">]</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">get_field</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">]</span>
+<span class="n">table</span><span class="p">[</span><span class="n">projection</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>            timestamp_col  year  month  day  hour  minute  second  millisecond
+0 2009-02-01 00:00:00.000  2009      2    1     0       0       0            0
+1 2009-02-01 00:01:00.000  2009      2    1     0       1       0            0
+2 2009-02-01 00:02:00.100  2009      2    1     0       2       0          100
+3 2009-02-01 00:03:00.300  2009      2    1     0       3       0          300
+4 2009-02-01 00:04:00.600  2009      2    1     0       4       0          600
+5 2009-02-01 00:05:00.100  2009      2    1     0       5       0          100
+6 2009-02-01 00:06:00.150  2009      2    1     0       6       0          150
+7 2009-02-01 00:07:00.210  2009      2    1     0       7       0          210
+8 2009-02-01 00:08:00.280  2009      2    1     0       8       0          280
+9 2009-02-01 00:09:00.360  2009      2    1     0       9       0          360
+</pre></div>
+</div>
+<p>For timestamp arithmetic and comparisons, check out functions in the top
+level <code class="docutils literal"><span class="pre">ibis</span></code> namespace. This include things like <code class="docutils literal"><span class="pre">day</span></code> and
+<code class="docutils literal"><span class="pre">second</span></code>, but also the <code class="docutils literal"><span class="pre">ibis.timestamp</span></code> function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;nrows&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>            min                     max  nrows
+0    2009-01-01 2010-12-31 05:09:13.860   7300
+1    2009-01-01 2010-12-31 05:09:13.860   7300
+2    2009-01-01 2010-12-31 05:09:13.860   7300
+3    2009-01-01 2010-12-31 05:09:13.860   7300
+4    2009-01-01 2010-12-31 05:09:13.860   7300
+5    2009-01-01 2010-12-31 05:09:13.860   7300
+6    2009-01-01 2010-12-31 05:09:13.860   7300
+7    2009-01-01 2010-12-31 05:09:13.860   7300
+8    2009-01-01 2010-12-31 05:09:13.860   7300
+9    2009-01-01 2010-12-31 05:09:13.860   7300
+10   2009-01-01 2010-12-31 05:09:13.860   7300
+11   2009-01-01 2010-12-31 05:09:13.860   7300
+12   2009-01-01 2010-12-31 05:09:13.860   7300
+13   2009-01-01 2010-12-31 05:09:13.860   7300
+14   2009-01-01 2010-12-31 05:09:13.860   7300
+15   2009-01-01 2010-12-31 05:09:13.860   7300
+16   2009-01-01 2010-12-31 05:09:13.860   7300
+17   2009-01-01 2010-12-31 05:09:13.860   7300
+18   2009-01-01 2010-12-31 05:09:13.860   7300
+19   2009-01-01 2010-12-31 05:09:13.860   7300
+20   2009-01-01 2010-12-31 05:09:13.860   7300
+21   2009-01-01 2010-12-31 05:09:13.860   7300
+22   2009-01-01 2010-12-31 05:09:13.860   7300
+23   2009-01-01 2010-12-31 05:09:13.860   7300
+24   2009-01-01 2010-12-31 05:09:13.860   7300
+25   2009-01-01 2010-12-31 05:09:13.860   7300
+26   2009-01-01 2010-12-31 05:09:13.860   7300
+27   2009-01-01 2010-12-31 05:09:13.860   7300
+28   2009-01-01 2010-12-31 05:09:13.860   7300
+29   2009-01-01 2010-12-31 05:09:13.860   7300
+...         ...                     ...    ...
+7270 2009-01-01 2010-12-31 05:09:13.860   7300
+7271 2009-01-01 2010-12-31 05:09:13.860   7300
+7272 2009-01-01 2010-12-31 05:09:13.860   7300
+7273 2009-01-01 2010-12-31 05:09:13.860   7300
+7274 2009-01-01 2010-12-31 05:09:13.860   7300
+7275 2009-01-01 2010-12-31 05:09:13.860   7300
+7276 2009-01-01 2010-12-31 05:09:13.860   7300
+7277 2009-01-01 2010-12-31 05:09:13.860   7300
+7278 2009-01-01 2010-12-31 05:09:13.860   7300
+7279 2009-01-01 2010-12-31 05:09:13.860   7300
+7280 2009-01-01 2010-12-31 05:09:13.860   7300
+7281 2009-01-01 2010-12-31 05:09:13.860   7300
+7282 2009-01-01 2010-12-31 05:09:13.860   7300
+7283 2009-01-01 2010-12-31 05:09:13.860   7300
+7284 2009-01-01 2010-12-31 05:09:13.860   7300
+7285 2009-01-01 2010-12-31 05:09:13.860   7300
+7286 2009-01-01 2010-12-31 05:09:13.860   7300
+7287 2009-01-01 2010-12-31 05:09:13.860   7300
+7288 2009-01-01 2010-12-31 05:09:13.860   7300
+7289 2009-01-01 2010-12-31 05:09:13.860   7300
+7290 2009-01-01 2010-12-31 05:09:13.860   7300
+7291 2009-01-01 2010-12-31 05:09:13.860   7300
+7292 2009-01-01 2010-12-31 05:09:13.860   7300
+7293 2009-01-01 2010-12-31 05:09:13.860   7300
+7294 2009-01-01 2010-12-31 05:09:13.860   7300
+7295 2009-01-01 2010-12-31 05:09:13.860   7300
+7296 2009-01-01 2010-12-31 05:09:13.860   7300
+7297 2009-01-01 2010-12-31 05:09:13.860   7300
+7298 2009-01-01 2010-12-31 05:09:13.860   7300
+7299 2009-01-01 2010-12-31 05:09:13.860   7300
+
+[7300 rows x 3 columns]
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">&lt;</span> <span class="s">&#39;2010-01-01&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">3650</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">&lt;</span>
+      <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s">&#39;2010-01-01&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">month</span><span class="p">(</span><span class="mi">3</span><span class="p">))]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mi">4550</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">day</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;offset&#39;</span><span class="p">)</span>
+<span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;current_time&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>            timestamp_col                  offset               current_time
+0 2009-02-01 00:00:00.000 2009-02-02 04:00:00.000 2015-07-20 01:04:21.884864
+1 2009-02-01 00:01:00.000 2009-02-02 04:01:00.000 2015-07-20 01:04:21.884864
+2 2009-02-01 00:02:00.100 2009-02-02 04:02:00.100 2015-07-20 01:04:21.884864
+3 2009-02-01 00:03:00.300 2009-02-02 04:03:00.300 2015-07-20 01:04:21.884864
+4 2009-02-01 00:04:00.600 2009-02-02 04:04:00.600 2015-07-20 01:04:21.884864
+5 2009-02-01 00:05:00.100 2009-02-02 04:05:00.100 2015-07-20 01:04:21.884864
+6 2009-02-01 00:06:00.150 2009-02-02 04:06:00.150 2015-07-20 01:04:21.884864
+7 2009-02-01 00:07:00.210 2009-02-02 04:07:00.210 2015-07-20 01:04:21.884864
+8 2009-02-01 00:08:00.280 2009-02-02 04:08:00.280 2015-07-20 01:04:21.884864
+9 2009-02-01 00:09:00.360 2009-02-02 04:09:00.360 2015-07-20 01:04:21.884864
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="4.html" class="btn btn-neutral float-right" title="Creating new Impala tables from Ibis expressions">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="2.html" class="btn btn-neutral" title="Projections: adding/selecting columns"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

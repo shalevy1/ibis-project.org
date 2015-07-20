@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>“Top-K” Filtering &mdash; Ibis 0.3.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorial" href="../tutorial.html"/>
+        <link rel="next" title="More filtering mojo for your analytics" href="6.html"/>
+        <link rel="prev" title="Creating new Impala tables from Ibis expressions" href="4.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> Ibis</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#interactive-mode">Interactive mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.html#limits">Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html">Projections: adding/selecting columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins">Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#explicit-join-materialization">Explicit join materialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#writing-down-join-keys">Writing down join keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#join-referential-nuances">Join referential nuances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2.html#sorting">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html">Type casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#set-membership">Set membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#null-ness">Null-ness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#distinct-based-operations">Distinct-based operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#string-operations">String operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3.html#timestamp-operations">Timestamp operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html">Creating new Impala tables from Ibis expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">&#8220;Top-K&#8221; Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#self-joins">Self joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html">More filtering mojo for your analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#conditional-aggregates">Conditional aggregates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html">Frequency tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html#binning-and-histograms">Binning and histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Ibis</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+      
+    <li>&#8220;Top-K&#8221; Filtering</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/generated-notebooks/5.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+
+<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<div class="section" id="top-k-filtering">
+<h1>&#8220;Top-K&#8221; Filtering<a class="headerlink" href="#top-k-filtering" title="Permalink to this headline">¶</a></h1>
+<p>A common analytical pattern involves subsetting based on some method of
+ranking. For example, &#8220;the 5 most frequently occurring widgets in a
+dataset&#8221;. By choosing the right metric, you can obtain the most
+important or least important items from some dimension, for some
+definition of important.</p>
+<p>To carry out the pattern by hand involves the following</p>
+<ul class="simple">
+<li>Choose a ranking metric</li>
+<li>Aggregate, computing the ranking metric, by the target dimension</li>
+<li>Order by the ranking metric and take the highest K values</li>
+<li>Use those values as a set filter (either with <code class="docutils literal"><span class="pre">semi_join</span></code> or
+<code class="docutils literal"><span class="pre">isin</span></code>) in your next query</li>
+</ul>
+<p>For example, let&#8217;s look at the TPC-H tables and find the 5 or 10
+customers who placed the most orders over their lifetime:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_orders&#39;</span><span class="p">)</span>
+
+<span class="n">top_orders</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span>
+              <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;o_custkey&#39;</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">size</span><span class="p">()</span>
+              <span class="o">.</span><span class="n">sort_by</span><span class="p">((</span><span class="s">&#39;count&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+              <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">top_orders</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   o_custkey  count
+0       3451     41
+1     102004     41
+2     102022     41
+3      79300     40
+4     122623     40
+</pre></div>
+</div>
+<p>Now, we could use these customer keys as a filter in some other
+analysis:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Among the top 5 most frequent customers, what&#39;s the histogram of their order statuses?</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">)]</span>
+            <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;o_orderstatus&#39;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="n">analysis</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  o_orderstatus  count
+0             O    107
+1             P      8
+2             F     88
+</pre></div>
+</div>
+<p>This is such a common pattern that Ibis supports a high level primitive
+<code class="docutils literal"><span class="pre">topk</span></code> operation, which can be used immediately as a filter:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">top_orders</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">orders</span><span class="p">[</span><span class="n">top_orders</span><span class="p">]</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;o_orderstatus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  o_orderstatus  count
+0             O    107
+1             P      8
+2             F     88
+</pre></div>
+</div>
+<p>This goes a little further. Suppose now we want to rank customers by
+their total spending instead of the number of orders, perhaps a more
+meaningful metric:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">total_spend</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)</span>
+<span class="n">top_spenders</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span>
+                <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;o_custkey&#39;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">total_spend</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">sort_by</span><span class="p">((</span><span class="s">&#39;total&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">top_spenders</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   o_custkey       total
+0     143500  7012696.48
+1      95257  6563511.23
+2      87115  6457526.26
+3     131113  6311428.86
+4     103834  6306524.23
+</pre></div>
+</div>
+<p>To use another metric, just pass it to the <code class="docutils literal"><span class="pre">by</span></code> argument in <code class="docutils literal"><span class="pre">topk</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">top_spenders</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="n">total_spend</span><span class="p">)</span>
+<span class="n">orders</span><span class="p">[</span><span class="n">top_spenders</span><span class="p">]</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;o_orderstatus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  o_orderstatus  count
+0             O     98
+1             P      1
+2             F     78
+</pre></div>
+</div>
+</div>
+<div class="section" id="self-joins">
+<h1>Self joins<a class="headerlink" href="#self-joins" title="Permalink to this headline">¶</a></h1>
+<p>If you&#8217;re a relational data guru, you may have wondered how it&#8217;s
+possible to join tables with themselves, because joins clauses involve
+column references back to the original table.</p>
+<p>Consider the SQL</p>
+<div class="highlight-python"><div class="highlight"><pre>SELECT t1.key, sum(t1.value - t2.value) AS metric
+FROM my_table t1
+  JOIN my_table t2
+    ON t1.key = t2.subkey
+GROUP BY 1
+</pre></div>
+</div>
+<p>Here, we have an unambiguous way to refer to each of the tables through
+aliasing.</p>
+<p>Let&#8217;s consider the TPC-H database, and support we want to compute
+year-over-year change in total order amounts by region using joins.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">region</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_region&#39;</span><span class="p">)</span>
+<span class="n">nation</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_nation&#39;</span><span class="p">)</span>
+<span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_customer&#39;</span><span class="p">)</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;tpch_orders&#39;</span><span class="p">)</span>
+
+<span class="n">orders</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+   o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  0     4726016     133885             F    160843.35  1992-06-22
+1     4726017      36934             O     78307.91  1996-04-19
+2     4726018      41483             F    103237.90  1994-10-12
+3     4726019     148102             O    201463.59  1997-09-12
+4     4726020      19864             O    166098.86  1995-09-12
+
+  o_orderpriority          o_clerk  o_shippriority  0        1-URGENT  Clerk#000000420               0
+1          2-HIGH  Clerk#000000560               0
+2           5-LOW  Clerk#000000517               0
+3           5-LOW  Clerk#000000954               0
+4          2-HIGH  Clerk#000000973               0
+
+                                           o_comment
+0  ing to the unusual, ironic theodolites. furiou...
+1        s among the blithely sly requests boost car
+2                     s sleep above the packages. fu
+3     tegrate stealthily after the final, silent ide
+4                             le quickly blithely ev
+</pre>
+<p>First, let&#8217;s join all the things and select the fields we care about:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">fields_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">r_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;region&#39;</span><span class="p">),</span>
+                      <span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;nation&#39;</span><span class="p">),</span>
+                      <span class="n">orders</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;amount&#39;</span><span class="p">),</span>
+                      <span class="n">orders</span><span class="o">.</span><span class="n">o_orderdate</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;odate&#39;</span><span class="p">)</span> <span class="c"># these are strings</span>
+                      <span class="p">]</span>
+
+<span class="n">joined_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nation</span><span class="p">,</span> <span class="n">region</span><span class="o">.</span><span class="n">r_regionkey</span> <span class="o">==</span> <span class="n">nation</span><span class="o">.</span><span class="n">n_regionkey</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">c_nationkey</span> <span class="o">==</span> <span class="n">nation</span><span class="o">.</span><span class="n">n_nationkey</span><span class="p">)</span>
+              <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span> <span class="o">==</span> <span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span><span class="p">)</span>
+              <span class="p">[</span><span class="n">fields_of_interest</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Okay, great, let&#8217;s have a look:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">joined_all</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>   region      nation     amount      odate
+0  AFRICA  MOZAMBIQUE  275266.73 1996-05-17
+1  AFRICA  MOZAMBIQUE  137016.47 1997-07-04
+2  AFRICA  MOZAMBIQUE  267222.99 1997-10-05
+3  AFRICA  MOZAMBIQUE  222958.49 1994-12-01
+4  AFRICA  MOZAMBIQUE   85184.71 1992-11-25
+</pre></div>
+</div>
+<p>Sweet, now let&#8217;s aggregate by year and region:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">year</span> <span class="o">=</span> <span class="n">joined_all</span><span class="o">.</span><span class="n">odate</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;year&#39;</span><span class="p">)</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="n">joined_all</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)</span>
+
+<span class="n">annual_amounts</span> <span class="o">=</span> <span class="p">(</span><span class="n">joined_all</span>
+                  <span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="s">&#39;region&#39;</span><span class="p">,</span> <span class="n">year</span><span class="p">])</span>
+                  <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+<span class="n">annual_amounts</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>         region  year         total
+0   MIDDLE EAST  1997  6.814699e+09
+1   MIDDLE EAST  1992  6.761499e+09
+2       AMERICA  1996  6.883057e+09
+3   MIDDLE EAST  1998  4.025011e+09
+4        AFRICA  1995  6.908429e+09
+5          ASIA  1995  6.931738e+09
+6        EUROPE  1994  6.979473e+09
+7          ASIA  1996  6.955679e+09
+8        AFRICA  1993  6.859733e+09
+9   MIDDLE EAST  1995  6.830827e+09
+10       EUROPE  1992  6.926705e+09
+11      AMERICA  1993  6.906800e+09
+12         ASIA  1993  6.864540e+09
+13         ASIA  1998  4.058824e+09
+14      AMERICA  1998  3.991377e+09
+15       AFRICA  1998  4.024061e+09
+16      AMERICA  1995  6.905139e+09
+17       AFRICA  1996  6.878112e+09
+18       EUROPE  1997  6.876824e+09
+19  MIDDLE EAST  1993  6.797943e+09
+20      AMERICA  1992  6.834349e+09
+21  MIDDLE EAST  1996  6.877095e+09
+22       EUROPE  1996  7.015421e+09
+23  MIDDLE EAST  1994  6.778384e+09
+24       AFRICA  1997  6.848983e+09
+25         ASIA  1994  6.957170e+09
+26         ASIA  1997  6.910663e+09
+27       EUROPE  1998  4.113448e+09
+28      AMERICA  1997  6.922465e+09
+29         ASIA  1992  6.934801e+09
+30      AMERICA  1994  6.863756e+09
+31       EUROPE  1993  6.911395e+09
+32       AFRICA  1992  6.873319e+09
+33       EUROPE  1995  6.970001e+09
+34       AFRICA  1994  6.837587e+09
+</pre></div>
+</div>
+<p>Looking good so far. Now, we need to join this table on itself, by
+subtracting 1 from one of the year columns.</p>
+<p>We do this by creating a &#8220;joinable&#8221; view of a table that is considered a
+distinct object within Ibis. To do this, use the <code class="docutils literal"><span class="pre">view</span></code> function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">current</span> <span class="o">=</span> <span class="n">annual_amounts</span>
+<span class="n">prior</span> <span class="o">=</span> <span class="n">annual_amounts</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+
+<span class="n">yoy_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">total</span> <span class="o">-</span> <span class="n">prior</span><span class="o">.</span><span class="n">total</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;yoy_change&#39;</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="p">((</span><span class="n">current</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">prior</span><span class="o">.</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="p">(</span><span class="n">prior</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span>
+           <span class="p">[</span><span class="n">current</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="n">current</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">yoy_change</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span><span class="p">[</span><span class="s">&#39;yoy_pretty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">yoy_change</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&#39;$</span><span class="si">%.2f</span><span class="s">mm&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mf">1000000.</span><span class="p">))</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>region</th>
+      <th>year</th>
+      <th>yoy_change</th>
+      <th>yoy_pretty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AMERICA</td>
+      <td>1992</td>
+      <td>-7.245078e+07</td>
+      <td>$-72.45mm</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AFRICA</td>
+      <td>1996</td>
+      <td>2.912979e+07</td>
+      <td>$29.13mm</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>EUROPE</td>
+      <td>1997</td>
+      <td>2.763376e+09</td>
+      <td>$2763.38mm</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AMERICA</td>
+      <td>1997</td>
+      <td>2.931088e+09</td>
+      <td>$2931.09mm</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ASIA</td>
+      <td>1995</td>
+      <td>-2.394126e+07</td>
+      <td>$-23.94mm</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ASIA</td>
+      <td>1996</td>
+      <td>4.501570e+07</td>
+      <td>$45.02mm</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ASIA</td>
+      <td>1993</td>
+      <td>-9.262979e+07</td>
+      <td>$-92.63mm</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>AFRICA</td>
+      <td>1993</td>
+      <td>2.214559e+07</td>
+      <td>$22.15mm</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AMERICA</td>
+      <td>1994</td>
+      <td>-4.138320e+07</td>
+      <td>$-41.38mm</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>EUROPE</td>
+      <td>1992</td>
+      <td>1.531005e+07</td>
+      <td>$15.31mm</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>MIDDLE EAST</td>
+      <td>1996</td>
+      <td>6.239623e+07</td>
+      <td>$62.40mm</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>AFRICA</td>
+      <td>1995</td>
+      <td>3.031631e+07</td>
+      <td>$30.32mm</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>MIDDLE EAST</td>
+      <td>1993</td>
+      <td>1.955937e+07</td>
+      <td>$19.56mm</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>EUROPE</td>
+      <td>1994</td>
+      <td>9.471985e+06</td>
+      <td>$9.47mm</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>MIDDLE EAST</td>
+      <td>1994</td>
+      <td>-5.244317e+07</td>
+      <td>$-52.44mm</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>EUROPE</td>
+      <td>1995</td>
+      <td>-4.542062e+07</td>
+      <td>$-45.42mm</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>AFRICA</td>
+      <td>1994</td>
+      <td>-7.084172e+07</td>
+      <td>$-70.84mm</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>AMERICA</td>
+      <td>1996</td>
+      <td>-3.940791e+07</td>
+      <td>$-39.41mm</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>EUROPE</td>
+      <td>1993</td>
+      <td>-6.807773e+07</td>
+      <td>$-68.08mm</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>AFRICA</td>
+      <td>1992</td>
+      <td>1.358699e+07</td>
+      <td>$13.59mm</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>AMERICA</td>
+      <td>1993</td>
+      <td>4.304359e+07</td>
+      <td>$43.04mm</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>ASIA</td>
+      <td>1994</td>
+      <td>2.543198e+07</td>
+      <td>$25.43mm</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>ASIA</td>
+      <td>1997</td>
+      <td>2.851839e+09</td>
+      <td>$2851.84mm</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>MIDDLE EAST</td>
+      <td>1992</td>
+      <td>-3.644384e+07</td>
+      <td>$-36.44mm</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>ASIA</td>
+      <td>1992</td>
+      <td>7.026156e+07</td>
+      <td>$70.26mm</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>EUROPE</td>
+      <td>1996</td>
+      <td>1.385975e+08</td>
+      <td>$138.60mm</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>MIDDLE EAST</td>
+      <td>1997</td>
+      <td>2.789688e+09</td>
+      <td>$2789.69mm</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>AFRICA</td>
+      <td>1997</td>
+      <td>2.824921e+09</td>
+      <td>$2824.92mm</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>AMERICA</td>
+      <td>1995</td>
+      <td>2.208216e+07</td>
+      <td>$22.08mm</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>MIDDLE EAST</td>
+      <td>1995</td>
+      <td>-4.626817e+07</td>
+      <td>$-46.27mm</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>If you&#8217;re being fastidious and want to consider the first year occurring
+in the dataset for each region to have 0 for the prior year, you will
+instead need to do an outer join and treat nulls in the prior side of
+the join as zero:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">yoy_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">total</span> <span class="o">-</span> <span class="n">prior</span><span class="o">.</span><span class="n">total</span><span class="o">.</span><span class="n">zeroifnull</span><span class="p">())</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;yoy_change&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">outer_join</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="p">((</span><span class="n">current</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">prior</span><span class="o">.</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span>
+                                      <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="p">(</span><span class="n">prior</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span>
+           <span class="p">[</span><span class="n">current</span><span class="o">.</span><span class="n">region</span><span class="p">,</span> <span class="n">current</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">current</span><span class="o">.</span><span class="n">total</span><span class="p">,</span>
+            <span class="n">prior</span><span class="o">.</span><span class="n">total</span><span class="o">.</span><span class="n">zeroifnull</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;prior_total&#39;</span><span class="p">),</span>
+            <span class="n">yoy_change</span><span class="p">])</span>
+
+<span class="n">results</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>    region  year         total   prior_total    yoy_change
+0   AFRICA  1995  6.908429e+09  6.878112e+09  3.031631e+07
+1   EUROPE  1994  6.979473e+09  6.970001e+09  9.471985e+06
+2   AFRICA  1993  6.859733e+09  6.837587e+09  2.214559e+07
+3   EUROPE  1992  6.926705e+09  6.911395e+09  1.531005e+07
+4  AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
+5     ASIA  1996  6.955679e+09  6.910663e+09  4.501570e+07
+6     ASIA  1995  6.931738e+09  6.955679e+09 -2.394126e+07
+7     ASIA  1998  4.058824e+09  0.000000e+00  4.058824e+09
+8   AFRICA  1998  4.024061e+09  0.000000e+00  4.024061e+09
+9  AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="6.html" class="btn btn-neutral float-right" title="More filtering mojo for your analytics">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4.html" class="btn btn-neutral" title="Creating new Impala tables from Ibis expressions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
