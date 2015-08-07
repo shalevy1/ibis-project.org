@@ -47,12 +47,70 @@ customers who placed the most orders over their lifetime:
 
 .. parsed-literal::
 
-       o_custkey  count
-    0       3451     41
-    1     102004     41
-    2     102022     41
-    3      79300     40
-    4     122623     40
+          o_custkey  count
+    0          3451     41
+    1        102004     41
+    2        102022     41
+    3         79300     40
+    4        122623     40
+    5        117082     40
+    6        143500     39
+    7         69682     39
+    8        129637     38
+    9         17059     38
+    10       142450     38
+    11       124048     38
+    12        53302     38
+    13       134380     37
+    14        98587     37
+    15       131113     37
+    16       148750     37
+    17         7954     37
+    18       112753     37
+    19        15004     37
+    20        11632     37
+    21        78634     37
+    22        33796     36
+    23       126850     36
+    24       100960     36
+    25        38821     36
+    26        20194     36
+    27       101359     36
+    28       117067     36
+    29        94600     36
+    ...         ...    ...
+    9970     147547     24
+    9971      26503     24
+    9972       2014     24
+    9973      54271     24
+    9974      66835     24
+    9975     113188     24
+    9976      83104     24
+    9977     113383     24
+    9978     133381     24
+    9979      16333     24
+    9980      56167     24
+    9981      16510     24
+    9982      56692     24
+    9983      34114     24
+    9984      62524     24
+    9985      77719     24
+    9986      42451     24
+    9987      48697     24
+    9988     145891     24
+    9989      94321     24
+    9990      84505     24
+    9991      45478     24
+    9992     120313     24
+    9993     112369     24
+    9994      79864     24
+    9995      19438     24
+    9996     108886     24
+    9997     146215     24
+    9998     125377     24
+    9999      40708     24
+    
+    [10000 rows x 2 columns]
 
 
 
@@ -118,12 +176,70 @@ meaningful metric:
 
 .. parsed-literal::
 
-       o_custkey       total
-    0     143500  7012696.48
-    1      95257  6563511.23
-    2      87115  6457526.26
-    3     131113  6311428.86
-    4     103834  6306524.23
+          o_custkey       total
+    0        143500  7012696.48
+    1         95257  6563511.23
+    2         87115  6457526.26
+    3        131113  6311428.86
+    4        103834  6306524.23
+    5        134380  6291610.15
+    6         69682  6287149.42
+    7        102022  6273788.41
+    8         98587  6265089.35
+    9         85102  6135483.63
+    10        64660  6125248.52
+    11        56317  6117381.16
+    12       127213  6116235.31
+    13       148750  6086055.58
+    14        20194  6079142.09
+    15        79300  6070254.89
+    16        28180  6058487.23
+    17       133069  6056425.50
+    18        42205  6041521.63
+    19        35398  6024207.39
+    20        67987  6007002.94
+    21         3451  6005657.25
+    22        33136  5976463.81
+    23       112753  5973932.11
+    24        35776  5967477.48
+    25        43174  5935907.68
+    26        55489  5933388.33
+    27        31666  5929112.44
+    28       145270  5927743.43
+    29        63619  5921770.51
+    ...         ...         ...
+    9970      28888  3673358.10
+    9971      51148  3673343.83
+    9972      50923  3673333.72
+    9973     125131  3673235.23
+    9974      33178  3673186.49
+    9975      60673  3673033.56
+    9976      63022  3672989.91
+    9977      12931  3672880.65
+    9978      43726  3672873.03
+    9979      68071  3672839.80
+    9980      77407  3672646.35
+    9981      69184  3672627.70
+    9982      67348  3672514.20
+    9983      33202  3672494.96
+    9984     133174  3672341.89
+    9985      13744  3672275.30
+    9986     101698  3672268.82
+    9987      54814  3672206.25
+    9988      67783  3672204.04
+    9989      28027  3672170.38
+    9990      16693  3672090.55
+    9991      55096  3671903.66
+    9992      20881  3671868.01
+    9993     124129  3671862.58
+    9994      92563  3671840.85
+    9995      13966  3671823.81
+    9996      83575  3671821.80
+    9997      16066  3671765.31
+    9998     115690  3671724.76
+    9999      62245  3671678.94
+    
+    [10000 rows x 2 columns]
 
 
 
@@ -183,26 +299,196 @@ year-over-year change in total order amounts by region using joins.
 
 .. parsed-literal::
 
-       o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
-    0     4726016     133885             F    160843.35  1992-06-22   
-    1     4726017      36934             O     78307.91  1996-04-19   
-    2     4726018      41483             F    103237.90  1994-10-12   
-    3     4726019     148102             O    201463.59  1997-09-12   
-    4     4726020      19864             O    166098.86  1995-09-12   
+          o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
+    0        4726016     133885             F    160843.35  1992-06-22   
+    1        4726017      36934             O     78307.91  1996-04-19   
+    2        4726018      41483             F    103237.90  1994-10-12   
+    3        4726019     148102             O    201463.59  1997-09-12   
+    4        4726020      19864             O    166098.86  1995-09-12   
+    5        4726021      72022             F    142310.85  1994-06-18   
+    6        4726022      97990             O     54655.36  1996-05-27   
+    7        4726023      57892             O    306441.92  1996-01-03   
+    8        4726048      86575             F    158056.07  1993-11-27   
+    9        4726049      49127             F    279866.40  1992-09-04   
+    10       4726050      73804             F     68785.22  1992-08-11   
+    11       4726051      63037             O    294134.21  1998-01-27   
+    12       4726052       1952             O    122486.75  1997-01-16   
+    13       4726053      96217             F    228231.98  1992-01-03   
+    14       4726054     110077             O    229979.86  1998-05-03   
+    15       4726055      95935             F    164732.95  1992-10-13   
+    16       4726080     149548             O     12628.36  1997-11-07   
+    17       4726081      38347             F    215157.60  1993-06-23   
+    18       4726082      74767             F     97127.26  1993-12-17   
+    19       4726083      58699             O    165289.72  1995-10-23   
+    20       4726084     142717             F     78159.80  1994-03-06   
+    21       4726085     125194             F    237496.40  1994-12-24   
+    22       4726086      65158             F      6984.09  1994-06-15   
+    23       4726087      93424             F    272125.55  1993-12-01   
+    24       4726112     100867             F    351080.95  1994-01-14   
+    25       4726113     105199             F     84237.04  1992-06-25   
+    26       4726114      16721             F    163299.21  1994-06-20   
+    27       4726115      75307             F     45958.73  1993-08-13   
+    28       4726116     112217             O    136097.02  1997-07-21   
+    29       4726117      71966             F     50996.98  1993-12-02   
+    ...          ...        ...           ...          ...         ...   
+    9970     4753602     123134             F    230838.94  1992-01-24   
+    9971     4753603     109211             F    145967.63  1994-01-02   
+    9972     4753604     106060             F    102733.94  1994-04-24   
+    9973     4753605      83816             P     20416.11  1995-05-09   
+    9974     4753606      38261             F     50799.79  1995-01-13   
+    9975     4753607     149509             F    303080.59  1994-05-02   
+    9976     4753632     144985             O     83652.54  1996-02-15   
+    9977     4753633     146393             O    173259.91  1997-12-04   
+    9978     4753634     114331             F     19028.24  1994-01-29   
+    9979     4753635      56744             O     77071.15  1995-11-07   
+    9980     4753636     140741             F    195115.06  1995-03-17   
+    9981     4753637      67570             F     38337.14  1994-03-03   
+    9982     4753638     121327             F     70629.33  1992-08-11   
+    9983     4753639      18079             F     50166.41  1994-09-12   
+    9984     4753664      85700             O     31023.38  1998-04-16   
+    9985     4753665      44761             F    223019.56  1992-03-02   
+    9986     4753666      36302             F    202229.18  1994-12-04   
+    9987     4753667      76972             F    152720.22  1995-01-11   
+    9988     4753668      55816             F    133528.24  1995-01-08   
+    9989     4753669     140537             F    108488.25  1992-04-12   
+    9990     4753670      95263             F    136865.43  1993-03-09   
+    9991     4753671     115441             O    209433.19  1998-06-30   
+    9992     4753696     116176             F    207899.23  1992-02-20   
+    9993     4753697     137596             O     17581.81  1998-03-15   
+    9994     4753698     146591             P    115246.52  1995-03-18   
+    9995     4753699     143212             O     49626.97  1997-08-04   
+    9996     4753700      56590             O    128007.96  1995-07-29   
+    9997     4753701     105232             F    201769.44  1994-03-13   
+    9998     4753702     121454             F    177828.51  1992-09-19   
+    9999     4753703      67153             F    118060.94  1993-08-20   
     
-      o_orderpriority          o_clerk  o_shippriority  \
-    0        1-URGENT  Clerk#000000420               0   
-    1          2-HIGH  Clerk#000000560               0   
-    2           5-LOW  Clerk#000000517               0   
-    3           5-LOW  Clerk#000000954               0   
-    4          2-HIGH  Clerk#000000973               0   
+          o_orderpriority          o_clerk  o_shippriority  \
+    0            1-URGENT  Clerk#000000420               0   
+    1              2-HIGH  Clerk#000000560               0   
+    2               5-LOW  Clerk#000000517               0   
+    3               5-LOW  Clerk#000000954               0   
+    4              2-HIGH  Clerk#000000973               0   
+    5     4-NOT SPECIFIED  Clerk#000000796               0   
+    6            1-URGENT  Clerk#000000076               0   
+    7     4-NOT SPECIFIED  Clerk#000000366               0   
+    8               5-LOW  Clerk#000000123               0   
+    9               5-LOW  Clerk#000000237               0   
+    10             2-HIGH  Clerk#000000592               0   
+    11           3-MEDIUM  Clerk#000000605               0   
+    12              5-LOW  Clerk#000000199               0   
+    13    4-NOT SPECIFIED  Clerk#000000012               0   
+    14           3-MEDIUM  Clerk#000000358               0   
+    15           3-MEDIUM  Clerk#000000734               0   
+    16    4-NOT SPECIFIED  Clerk#000000045               0   
+    17           1-URGENT  Clerk#000000985               0   
+    18           1-URGENT  Clerk#000000687               0   
+    19           3-MEDIUM  Clerk#000000024               0   
+    20           1-URGENT  Clerk#000000086               0   
+    21           3-MEDIUM  Clerk#000000179               0   
+    22    4-NOT SPECIFIED  Clerk#000000606               0   
+    23           1-URGENT  Clerk#000000081               0   
+    24    4-NOT SPECIFIED  Clerk#000000023               0   
+    25              5-LOW  Clerk#000000529               0   
+    26           1-URGENT  Clerk#000000990               0   
+    27             2-HIGH  Clerk#000000834               0   
+    28              5-LOW  Clerk#000000298               0   
+    29           1-URGENT  Clerk#000000687               0   
+    ...               ...              ...             ...   
+    9970  4-NOT SPECIFIED  Clerk#000000073               0   
+    9971           2-HIGH  Clerk#000000725               0   
+    9972         3-MEDIUM  Clerk#000000537               0   
+    9973            5-LOW  Clerk#000000093               0   
+    9974         1-URGENT  Clerk#000000718               0   
+    9975         1-URGENT  Clerk#000000781               0   
+    9976           2-HIGH  Clerk#000000162               0   
+    9977           2-HIGH  Clerk#000000897               0   
+    9978           2-HIGH  Clerk#000000638               0   
+    9979           2-HIGH  Clerk#000000093               0   
+    9980         3-MEDIUM  Clerk#000000262               0   
+    9981            5-LOW  Clerk#000000831               0   
+    9982         3-MEDIUM  Clerk#000000519               0   
+    9983           2-HIGH  Clerk#000000253               0   
+    9984  4-NOT SPECIFIED  Clerk#000000190               0   
+    9985         1-URGENT  Clerk#000000402               0   
+    9986         3-MEDIUM  Clerk#000000944               0   
+    9987           2-HIGH  Clerk#000000453               0   
+    9988           2-HIGH  Clerk#000000642               0   
+    9989         3-MEDIUM  Clerk#000000781               0   
+    9990  4-NOT SPECIFIED  Clerk#000000941               0   
+    9991  4-NOT SPECIFIED  Clerk#000000511               0   
+    9992         1-URGENT  Clerk#000000373               0   
+    9993            5-LOW  Clerk#000000993               0   
+    9994         1-URGENT  Clerk#000000158               0   
+    9995         1-URGENT  Clerk#000000014               0   
+    9996         3-MEDIUM  Clerk#000000244               0   
+    9997         3-MEDIUM  Clerk#000000212               0   
+    9998         3-MEDIUM  Clerk#000000252               0   
+    9999           2-HIGH  Clerk#000000619               0   
     
-                                               o_comment  
-    0  ing to the unusual, ironic theodolites. furiou...  
-    1        s among the blithely sly requests boost car  
-    2                     s sleep above the packages. fu  
-    3     tegrate stealthily after the final, silent ide  
-    4                             le quickly blithely ev  
+                                                  o_comment  
+    0     ing to the unusual, ironic theodolites. furiou...  
+    1           s among the blithely sly requests boost car  
+    2                        s sleep above the packages. fu  
+    3        tegrate stealthily after the final, silent ide  
+    4                                le quickly blithely ev  
+    5           l packages-- blithely unusual requests hang  
+    6     ongside of the final, unusual ideas! frets acr...  
+    7               ckly silent accounts. furiously even re  
+    8     ess quickly above the fluffily unusual package...  
+    9     ilent, ironic pinto beans are blithely blithel...  
+    10                lly regular deposits. bold excuses sn  
+    11    r theodolites haggle. furiously even foxes caj...  
+    12              ous requests use quickly dolphins. quic  
+    13    egular theodolites are according to the expres...  
+    14     are along the furiously ironic instructions. ...  
+    15               ckey players. fluffily regular asympto  
+    16    express, final instructions cajole unusual hoc...  
+    17    inal, pending theodolites. quickly pending the...  
+    18    ar ideas are blithely. quietly bold asymptotes...  
+    19    xpress deposits. ironic deposits cajole slyly ...  
+    20                 nooze blithely regular excuses. regu  
+    21    ons dazzle carefully bold excuses. furiously e...  
+    22                         ending theodolites engage fl  
+    23                accounts. pending accounts detect fur  
+    24     ully brave ideas according to the ruthless, spec  
+    25     beans during the fluffily pending sheaves sle...  
+    26                                  boost after the dep  
+    27       e regular ideas breach slyly about the pending  
+    28     accounts detect along the slyly silent deposi...  
+    29     slyly regular packages? special, unusual account  
+    ...                                                 ...  
+    9970             to beans cajole quickly bold instructi  
+    9971   silent instructions use fluffily quickly fina...  
+    9972  c accounts. even instructions are silently bli...  
+    9973  r accounts. carefully final excuses along the ...  
+    9974  ly busy platelets are furiously. slyly pending...  
+    9975   ideas after the instructions haggle quickly c...  
+    9976  ous braids nag carefully ironic packages. slyl...  
+    9977           y final ideas cajole express instruction  
+    9978   blithely regular accounts according to the re...  
+    9979  he slyly ironic realms. furiously pending pack...  
+    9980  . final, regular tithes sleep slyly permanentl...  
+    9981  ing, regular packages nod final realms. carefu...  
+    9982  courts. regular accounts around the bold pearl...  
+    9983  sits haggle slyly. blithely unusual packages e...  
+    9984                      d asymptotes. regular request  
+    9985                      could wake about the furiousl  
+    9986         lar deposits cajole sometimes slyly regula  
+    9987   furiously final platelets above the regular p...  
+    9988                egular ideas. slyly special account  
+    9989   even ideas. brave accounts haggle carefully. ...  
+    9990  r asymptotes. furiously regular pinto beans sl...  
+    9991       symptotes after the furiously bold requests   
+    9992  y pending packages. requests hang quickly. clo...  
+    9993  lites are blithely against the doggedly even a...  
+    9994  efully final pinto beans. quickly special inst...  
+    9995                          sits haggle above the fur  
+    9996  nusual packages x-ray furiously after the even...  
+    9997  ully regular requests sleep carefully. furious...  
+    9998  regular deposits detect furiously even depende...  
+    9999  ickly daring requests-- carefully stealthy packag  
+    
+    [10000 rows x 9 columns]
 
 
 
@@ -232,12 +518,70 @@ Okay, great, let's have a look:
 
 .. parsed-literal::
 
-       region      nation     amount      odate
-    0  AFRICA  MOZAMBIQUE  275266.73 1996-05-17
-    1  AFRICA  MOZAMBIQUE  137016.47 1997-07-04
-    2  AFRICA  MOZAMBIQUE  267222.99 1997-10-05
-    3  AFRICA  MOZAMBIQUE  222958.49 1994-12-01
-    4  AFRICA  MOZAMBIQUE   85184.71 1992-11-25
+               region          nation     amount      odate
+    0         AMERICA   UNITED STATES  160843.35 1992-06-22
+    1     MIDDLE EAST            IRAN   78307.91 1996-04-19
+    2          EUROPE          FRANCE  103237.90 1994-10-12
+    3          EUROPE          FRANCE  201463.59 1997-09-12
+    4            ASIA           JAPAN  166098.86 1995-09-12
+    5     MIDDLE EAST    SAUDI ARABIA  142310.85 1994-06-18
+    6         AMERICA          CANADA   54655.36 1996-05-27
+    7     MIDDLE EAST           EGYPT  306441.92 1996-01-03
+    8          AFRICA           KENYA  158056.07 1993-11-27
+    9            ASIA           CHINA  279866.40 1992-09-04
+    10         AFRICA         MOROCCO   68785.22 1992-08-11
+    11        AMERICA       ARGENTINA  294134.21 1998-01-27
+    12           ASIA           CHINA  122486.75 1997-01-16
+    13           ASIA           INDIA  228231.98 1992-01-03
+    14    MIDDLE EAST          JORDAN  229979.86 1998-05-03
+    15    MIDDLE EAST          JORDAN  164732.95 1992-10-13
+    16         EUROPE          FRANCE   12628.36 1997-11-07
+    17    MIDDLE EAST           EGYPT  215157.60 1993-06-23
+    18         AFRICA         ALGERIA   97127.26 1993-12-17
+    19        AMERICA            PERU  165289.72 1995-10-23
+    20        AMERICA            PERU   78159.80 1994-03-06
+    21         EUROPE  UNITED KINGDOM  237496.40 1994-12-24
+    22         AFRICA           KENYA    6984.09 1994-06-15
+    23        AMERICA       ARGENTINA  272125.55 1993-12-01
+    24           ASIA           CHINA  351080.95 1994-01-14
+    25         EUROPE         GERMANY   84237.04 1992-06-25
+    26         EUROPE          RUSSIA  163299.21 1994-06-20
+    27         EUROPE          FRANCE   45958.73 1993-08-13
+    28           ASIA           JAPAN  136097.02 1997-07-21
+    29         EUROPE          FRANCE   50996.98 1993-12-02
+    ...           ...             ...        ...        ...
+    9970         ASIA         VIETNAM  241847.85 1996-02-20
+    9971  MIDDLE EAST           EGYPT  308000.67 1992-01-24
+    9972         ASIA           INDIA  138733.90 1995-04-27
+    9973      AMERICA          CANADA   40157.44 1994-08-04
+    9974      AMERICA       ARGENTINA   41237.02 1993-07-10
+    9975       EUROPE         GERMANY  224544.20 1992-01-26
+    9976         ASIA           INDIA  327828.20 1993-04-24
+    9977       EUROPE          FRANCE  104910.30 1997-04-04
+    9978  MIDDLE EAST          JORDAN  189134.29 1997-10-18
+    9979       EUROPE          RUSSIA  110935.11 1993-08-21
+    9980       AFRICA        ETHIOPIA   14481.21 1998-07-17
+    9981         ASIA           JAPAN   47635.41 1996-12-02
+    9982       EUROPE         ROMANIA   19724.34 1992-11-06
+    9983       AFRICA      MOZAMBIQUE   40813.76 1992-06-03
+    9984      AMERICA   UNITED STATES  310868.85 1995-07-13
+    9985      AMERICA          BRAZIL  272343.79 1992-11-27
+    9986      AMERICA       ARGENTINA  265483.03 1993-12-28
+    9987      AMERICA          CANADA   40280.05 1995-02-09
+    9988         ASIA         VIETNAM  140642.20 1994-04-01
+    9989         ASIA         VIETNAM   42635.74 1995-04-18
+    9990         ASIA           INDIA   44211.07 1995-05-13
+    9991       EUROPE          FRANCE  179389.70 1995-03-18
+    9992  MIDDLE EAST          JORDAN  160504.35 1995-04-29
+    9993  MIDDLE EAST    SAUDI ARABIA  234103.88 1997-01-17
+    9994       AFRICA         MOROCCO  184391.62 1994-05-16
+    9995       EUROPE         GERMANY  113158.71 1996-09-22
+    9996       AFRICA         MOROCCO   77519.18 1994-09-19
+    9997  MIDDLE EAST            IRAN  214234.57 1996-01-02
+    9998      AMERICA            PERU  289225.04 1997-08-23
+    9999  MIDDLE EAST    SAUDI ARABIA  264694.99 1992-12-09
+    
+    [10000 rows x 4 columns]
 
 
 
@@ -261,40 +605,40 @@ Sweet, now let's aggregate by year and region:
 
              region  year         total
     0   MIDDLE EAST  1997  6.814699e+09
-    1   MIDDLE EAST  1992  6.761499e+09
-    2       AMERICA  1996  6.883057e+09
-    3   MIDDLE EAST  1998  4.025011e+09
-    4        AFRICA  1995  6.908429e+09
-    5          ASIA  1995  6.931738e+09
-    6        EUROPE  1994  6.979473e+09
-    7          ASIA  1996  6.955679e+09
-    8        AFRICA  1993  6.859733e+09
-    9   MIDDLE EAST  1995  6.830827e+09
-    10       EUROPE  1992  6.926705e+09
-    11      AMERICA  1993  6.906800e+09
-    12         ASIA  1993  6.864540e+09
-    13         ASIA  1998  4.058824e+09
-    14      AMERICA  1998  3.991377e+09
-    15       AFRICA  1998  4.024061e+09
-    16      AMERICA  1995  6.905139e+09
-    17       AFRICA  1996  6.878112e+09
-    18       EUROPE  1997  6.876824e+09
-    19  MIDDLE EAST  1993  6.797943e+09
-    20      AMERICA  1992  6.834349e+09
-    21  MIDDLE EAST  1996  6.877095e+09
-    22       EUROPE  1996  7.015421e+09
-    23  MIDDLE EAST  1994  6.778384e+09
-    24       AFRICA  1997  6.848983e+09
-    25         ASIA  1994  6.957170e+09
-    26         ASIA  1997  6.910663e+09
-    27       EUROPE  1998  4.113448e+09
-    28      AMERICA  1997  6.922465e+09
-    29         ASIA  1992  6.934801e+09
-    30      AMERICA  1994  6.863756e+09
-    31       EUROPE  1993  6.911395e+09
-    32       AFRICA  1992  6.873319e+09
-    33       EUROPE  1995  6.970001e+09
-    34       AFRICA  1994  6.837587e+09
+    1   MIDDLE EAST  1998  4.025011e+09
+    2        AFRICA  1995  6.908429e+09
+    3          ASIA  1996  6.955679e+09
+    4   MIDDLE EAST  1995  6.830827e+09
+    5   MIDDLE EAST  1992  6.761499e+09
+    6       AMERICA  1996  6.883057e+09
+    7          ASIA  1993  6.864540e+09
+    8          ASIA  1995  6.931738e+09
+    9        EUROPE  1994  6.979473e+09
+    10       AFRICA  1998  4.024061e+09
+    11       AFRICA  1993  6.859733e+09
+    12       EUROPE  1992  6.926705e+09
+    13      AMERICA  1993  6.906800e+09
+    14      AMERICA  1995  6.905139e+09
+    15      AMERICA  1992  6.834349e+09
+    16         ASIA  1998  4.058824e+09
+    17      AMERICA  1998  3.991377e+09
+    18       EUROPE  1996  7.015421e+09
+    19       AFRICA  1997  6.848983e+09
+    20         ASIA  1994  6.957170e+09
+    21       AFRICA  1996  6.878112e+09
+    22       EUROPE  1997  6.876824e+09
+    23       EUROPE  1998  4.113448e+09
+    24      AMERICA  1997  6.922465e+09
+    25       AFRICA  1992  6.873319e+09
+    26  MIDDLE EAST  1993  6.797943e+09
+    27       EUROPE  1995  6.970001e+09
+    28       AFRICA  1994  6.837587e+09
+    29  MIDDLE EAST  1996  6.877095e+09
+    30  MIDDLE EAST  1994  6.778384e+09
+    31         ASIA  1997  6.910663e+09
+    32         ASIA  1992  6.934801e+09
+    33      AMERICA  1994  6.863756e+09
+    34       EUROPE  1993  6.911395e+09
 
 
 
@@ -361,185 +705,185 @@ distinct object within Ibis. To do this, use the ``view`` function:
         </tr>
         <tr>
           <th>3</th>
-          <td>AMERICA</td>
-          <td>1997</td>
-          <td>2.931088e+09</td>
-          <td>$2931.09mm</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>ASIA</td>
-          <td>1995</td>
-          <td>-2.394126e+07</td>
-          <td>$-23.94mm</td>
-        </tr>
-        <tr>
-          <th>5</th>
           <td>ASIA</td>
           <td>1996</td>
           <td>4.501570e+07</td>
           <td>$45.02mm</td>
         </tr>
         <tr>
-          <th>6</th>
+          <th>4</th>
+          <td>AMERICA</td>
+          <td>1997</td>
+          <td>2.931088e+09</td>
+          <td>$2931.09mm</td>
+        </tr>
+        <tr>
+          <th>5</th>
           <td>ASIA</td>
           <td>1993</td>
           <td>-9.262979e+07</td>
           <td>$-92.63mm</td>
         </tr>
         <tr>
-          <th>7</th>
-          <td>AFRICA</td>
-          <td>1993</td>
-          <td>2.214559e+07</td>
-          <td>$22.15mm</td>
-        </tr>
-        <tr>
-          <th>8</th>
+          <th>6</th>
           <td>AMERICA</td>
           <td>1994</td>
           <td>-4.138320e+07</td>
           <td>$-41.38mm</td>
         </tr>
         <tr>
-          <th>9</th>
-          <td>EUROPE</td>
-          <td>1992</td>
-          <td>1.531005e+07</td>
-          <td>$15.31mm</td>
-        </tr>
-        <tr>
-          <th>10</th>
+          <th>7</th>
           <td>MIDDLE EAST</td>
           <td>1996</td>
           <td>6.239623e+07</td>
           <td>$62.40mm</td>
         </tr>
         <tr>
-          <th>11</th>
+          <th>8</th>
           <td>AFRICA</td>
           <td>1995</td>
           <td>3.031631e+07</td>
           <td>$30.32mm</td>
         </tr>
         <tr>
-          <th>12</th>
-          <td>MIDDLE EAST</td>
-          <td>1993</td>
-          <td>1.955937e+07</td>
-          <td>$19.56mm</td>
-        </tr>
-        <tr>
-          <th>13</th>
+          <th>9</th>
           <td>EUROPE</td>
           <td>1994</td>
           <td>9.471985e+06</td>
           <td>$9.47mm</td>
         </tr>
         <tr>
-          <th>14</th>
-          <td>MIDDLE EAST</td>
-          <td>1994</td>
-          <td>-5.244317e+07</td>
-          <td>$-52.44mm</td>
+          <th>10</th>
+          <td>ASIA</td>
+          <td>1995</td>
+          <td>-2.394126e+07</td>
+          <td>$-23.94mm</td>
         </tr>
         <tr>
-          <th>15</th>
+          <th>11</th>
           <td>EUROPE</td>
           <td>1995</td>
           <td>-4.542062e+07</td>
           <td>$-45.42mm</td>
         </tr>
         <tr>
-          <th>16</th>
+          <th>12</th>
           <td>AFRICA</td>
           <td>1994</td>
           <td>-7.084172e+07</td>
           <td>$-70.84mm</td>
         </tr>
         <tr>
-          <th>17</th>
-          <td>AMERICA</td>
-          <td>1996</td>
-          <td>-3.940791e+07</td>
-          <td>$-39.41mm</td>
-        </tr>
-        <tr>
-          <th>18</th>
-          <td>EUROPE</td>
-          <td>1993</td>
-          <td>-6.807773e+07</td>
-          <td>$-68.08mm</td>
-        </tr>
-        <tr>
-          <th>19</th>
-          <td>AFRICA</td>
-          <td>1992</td>
-          <td>1.358699e+07</td>
-          <td>$13.59mm</td>
-        </tr>
-        <tr>
-          <th>20</th>
-          <td>AMERICA</td>
-          <td>1993</td>
-          <td>4.304359e+07</td>
-          <td>$43.04mm</td>
-        </tr>
-        <tr>
-          <th>21</th>
-          <td>ASIA</td>
-          <td>1994</td>
-          <td>2.543198e+07</td>
-          <td>$25.43mm</td>
-        </tr>
-        <tr>
-          <th>22</th>
+          <th>13</th>
           <td>ASIA</td>
           <td>1997</td>
           <td>2.851839e+09</td>
           <td>$2851.84mm</td>
         </tr>
         <tr>
-          <th>23</th>
-          <td>MIDDLE EAST</td>
-          <td>1992</td>
-          <td>-3.644384e+07</td>
-          <td>$-36.44mm</td>
+          <th>14</th>
+          <td>AFRICA</td>
+          <td>1993</td>
+          <td>2.214559e+07</td>
+          <td>$22.15mm</td>
         </tr>
         <tr>
-          <th>24</th>
-          <td>ASIA</td>
+          <th>15</th>
+          <td>EUROPE</td>
           <td>1992</td>
-          <td>7.026156e+07</td>
-          <td>$70.26mm</td>
+          <td>1.531005e+07</td>
+          <td>$15.31mm</td>
         </tr>
         <tr>
-          <th>25</th>
+          <th>16</th>
           <td>EUROPE</td>
           <td>1996</td>
           <td>1.385975e+08</td>
           <td>$138.60mm</td>
         </tr>
         <tr>
-          <th>26</th>
+          <th>17</th>
           <td>MIDDLE EAST</td>
           <td>1997</td>
           <td>2.789688e+09</td>
           <td>$2789.69mm</td>
         </tr>
         <tr>
-          <th>27</th>
+          <th>18</th>
           <td>AFRICA</td>
           <td>1997</td>
           <td>2.824921e+09</td>
           <td>$2824.92mm</td>
         </tr>
         <tr>
-          <th>28</th>
+          <th>19</th>
+          <td>MIDDLE EAST</td>
+          <td>1993</td>
+          <td>1.955937e+07</td>
+          <td>$19.56mm</td>
+        </tr>
+        <tr>
+          <th>20</th>
           <td>AMERICA</td>
           <td>1995</td>
           <td>2.208216e+07</td>
           <td>$22.08mm</td>
+        </tr>
+        <tr>
+          <th>21</th>
+          <td>MIDDLE EAST</td>
+          <td>1994</td>
+          <td>-5.244317e+07</td>
+          <td>$-52.44mm</td>
+        </tr>
+        <tr>
+          <th>22</th>
+          <td>AMERICA</td>
+          <td>1996</td>
+          <td>-3.940791e+07</td>
+          <td>$-39.41mm</td>
+        </tr>
+        <tr>
+          <th>23</th>
+          <td>EUROPE</td>
+          <td>1993</td>
+          <td>-6.807773e+07</td>
+          <td>$-68.08mm</td>
+        </tr>
+        <tr>
+          <th>24</th>
+          <td>AFRICA</td>
+          <td>1992</td>
+          <td>1.358699e+07</td>
+          <td>$13.59mm</td>
+        </tr>
+        <tr>
+          <th>25</th>
+          <td>AMERICA</td>
+          <td>1993</td>
+          <td>4.304359e+07</td>
+          <td>$43.04mm</td>
+        </tr>
+        <tr>
+          <th>26</th>
+          <td>ASIA</td>
+          <td>1994</td>
+          <td>2.543198e+07</td>
+          <td>$25.43mm</td>
+        </tr>
+        <tr>
+          <th>27</th>
+          <td>MIDDLE EAST</td>
+          <td>1992</td>
+          <td>-3.644384e+07</td>
+          <td>$-36.44mm</td>
+        </tr>
+        <tr>
+          <th>28</th>
+          <td>ASIA</td>
+          <td>1992</td>
+          <td>7.026156e+07</td>
+          <td>$70.26mm</td>
         </tr>
         <tr>
           <th>29</th>
@@ -575,16 +919,46 @@ the join as zero:
 
 .. parsed-literal::
 
-        region  year         total   prior_total    yoy_change
-    0   AFRICA  1995  6.908429e+09  6.878112e+09  3.031631e+07
-    1   EUROPE  1994  6.979473e+09  6.970001e+09  9.471985e+06
-    2   AFRICA  1993  6.859733e+09  6.837587e+09  2.214559e+07
-    3   EUROPE  1992  6.926705e+09  6.911395e+09  1.531005e+07
-    4  AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
-    5     ASIA  1996  6.955679e+09  6.910663e+09  4.501570e+07
-    6     ASIA  1995  6.931738e+09  6.955679e+09 -2.394126e+07
-    7     ASIA  1998  4.058824e+09  0.000000e+00  4.058824e+09
-    8   AFRICA  1998  4.024061e+09  0.000000e+00  4.024061e+09
-    9  AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
+             region  year         total   prior_total    yoy_change
+    0       AMERICA  1992  6.834349e+09  6.906800e+09 -7.245078e+07
+    1        AFRICA  1996  6.878112e+09  6.848983e+09  2.912979e+07
+    2        EUROPE  1997  6.876824e+09  4.113448e+09  2.763376e+09
+    3       AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
+    4        AFRICA  1998  4.024061e+09  0.000000e+00  4.024061e+09
+    5          ASIA  1995  6.931738e+09  6.955679e+09 -2.394126e+07
+    6          ASIA  1996  6.955679e+09  6.910663e+09  4.501570e+07
+    7        AFRICA  1993  6.859733e+09  6.837587e+09  2.214559e+07
+    8        EUROPE  1992  6.926705e+09  6.911395e+09  1.531005e+07
+    9          ASIA  1998  4.058824e+09  0.000000e+00  4.058824e+09
+    10  MIDDLE EAST  1993  6.797943e+09  6.778384e+09  1.955937e+07
+    11         ASIA  1993  6.864540e+09  6.957170e+09 -9.262979e+07
+    12      AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
+    13  MIDDLE EAST  1996  6.877095e+09  6.814699e+09  6.239623e+07
+    14  MIDDLE EAST  1994  6.778384e+09  6.830827e+09 -5.244317e+07
+    15       AFRICA  1995  6.908429e+09  6.878112e+09  3.031631e+07
+    16       EUROPE  1994  6.979473e+09  6.970001e+09  9.471985e+06
+    17       EUROPE  1995  6.970001e+09  7.015421e+09 -4.542062e+07
+    18       AFRICA  1994  6.837587e+09  6.908429e+09 -7.084172e+07
+    19         ASIA  1997  6.910663e+09  4.058824e+09  2.851839e+09
+    20       EUROPE  1998  4.113448e+09  0.000000e+00  4.113448e+09
+    21       EUROPE  1996  7.015421e+09  6.876824e+09  1.385975e+08
+    22  MIDDLE EAST  1997  6.814699e+09  4.025011e+09  2.789688e+09
+    23       AFRICA  1997  6.848983e+09  4.024061e+09  2.824921e+09
+    24      AMERICA  1995  6.905139e+09  6.883057e+09  2.208216e+07
+    25      AMERICA  1996  6.883057e+09  6.922465e+09 -3.940791e+07
+    26       EUROPE  1993  6.911395e+09  6.979473e+09 -6.807773e+07
+    27       AFRICA  1992  6.873319e+09  6.859733e+09  1.358699e+07
+    28         None  None           NaN  6.873319e+09           NaN
+    29      AMERICA  1993  6.906800e+09  6.863756e+09  4.304359e+07
+    30         ASIA  1994  6.957170e+09  6.931738e+09  2.543198e+07
+    31         None  None           NaN  6.834349e+09           NaN
+    32  MIDDLE EAST  1992  6.761499e+09  6.797943e+09 -3.644384e+07
+    33         ASIA  1992  6.934801e+09  6.864540e+09  7.026156e+07
+    34      AMERICA  1998  3.991377e+09  0.000000e+00  3.991377e+09
+    35         None  None           NaN  6.934801e+09           NaN
+    36         None  None           NaN  6.926705e+09           NaN
+    37  MIDDLE EAST  1995  6.830827e+09  6.877095e+09 -4.626817e+07
+    38  MIDDLE EAST  1998  4.025011e+09  0.000000e+00  4.025011e+09
+    39         None  None           NaN  6.761499e+09           NaN
 
 

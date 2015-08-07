@@ -20,7 +20,7 @@ cluster:
 
 .. parsed-literal::
 
-    <ibis.client.ImpalaConnection at 0x7f78b064b190>
+    <ibis.client.ImpalaConnection at 0x7f87cfcf98d0>
 
 
 
@@ -51,6 +51,6 @@ Finally, create the Ibis client
 
 .. parsed-literal::
 
-    <ibis.client.ImpalaClient at 0x7f78b064b7d0>
+    <ibis.client.ImpalaClient at 0x7f87cfcf9850>
 
 

@@ -35,8 +35,8 @@ seen it used already earlier in the tutorial.
 
        o_orderpriority    count
     0         3-MEDIUM  1194959
-    1  4-NOT SPECIFIED  1199524
-    2            5-LOW  1202661
+    1            5-LOW  1202661
+    2  4-NOT SPECIFIED  1199524
     3         1-URGENT  1201581
     4           2-HIGH  1202490
 
@@ -57,11 +57,11 @@ This can be customized, of course:
 .. parsed-literal::
 
        o_orderpriority    nrows         total $
-    0         3-MEDIUM  1194959  45698023582.03
-    1  4-NOT SPECIFIED  1199524  45820992304.35
-    2            5-LOW  1202661  46055868770.97
-    3         1-URGENT  1201581  45969422546.87
-    4           2-HIGH  1202490  46033003696.98
+    0         1-URGENT  1201581  45969422546.87
+    1            5-LOW  1202661  46055868770.97
+    2         3-MEDIUM  1194959  45698023582.03
+    3           2-HIGH  1202490  46033003696.98
+    4  4-NOT SPECIFIED  1199524  45820992304.35
 
 
 
@@ -120,11 +120,11 @@ Let's have a look at the value counts:
 .. parsed-literal::
 
       bucket    count
-    0      3  1893650
-    1      1   420695
-    2      2  3329905
-    3   None     4122
-    4      0   352843
+    0      2  3329905
+    1   None     4122
+    2      0   352843
+    3      3  1893650
+    4      1   420695
 
 
 
@@ -147,11 +147,11 @@ bucketing ends at 100000, we see there are 4122 values that are over
 .. parsed-literal::
 
        bucket    count
-    0       3  1893650
-    1       1   420695
-    2       2  3329905
-    3       0   352843
-    4       4     4122
+    0       2  3329905
+    1       0   352843
+    2       4     4122
+    3       1   420695
+    4       3  1893650
 
 
 

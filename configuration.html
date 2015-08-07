@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="Ibis 0.3.0 documentation" href="index.html"/>
-        <link rel="next" title="API Reference" href="api.html"/>
+        <link rel="next" title="Tutorial" href="tutorial.html"/>
         <link rel="prev" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
@@ -71,7 +71,55 @@
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Configuring Ibis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Configuring Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ibis-global-configuration">Ibis global configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#interactive-mode">Interactive mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#filtering">Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#limits">Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html">Projections: adding/selecting columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins">Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#explicit-join-materialization">Explicit join materialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#writing-down-join-keys">Writing down join keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#join-referential-nuances">Join referential nuances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#sorting">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html">Type casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#set-membership">Set membership</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#null-ness">Null-ness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#distinct-based-operations">Distinct-based operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#string-operations">String operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#timestamp-operations">Timestamp operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html">Creating new Impala tables from Ibis expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html">&#8220;Top-K&#8221; Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html#self-joins">Self joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html">More filtering mojo for your analytics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#conditional-aggregates">Conditional aggregates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html">Frequency tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#binning-and-histograms">Binning and histograms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#impala-client">Impala client</a></li>
@@ -86,6 +134,12 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#boolean-methods">Boolean methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#category-methods">Category methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Ibis for Impala users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#table-metadata">Table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#table-partition-management">Table partition management</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
@@ -139,6 +193,75 @@
             
   <div class="section" id="configuring-ibis">
 <span id="configuration"></span><h1>Configuring Ibis<a class="headerlink" href="#configuring-ibis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ibis-global-configuration">
+<h2>Ibis global configuration<a class="headerlink" href="#ibis-global-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Ibis global configuration happens through the <code class="docutils literal"><span class="pre">ibis.options</span></code>
+attribute. Attributes can be get and set like class attributes.</p>
+<div class="section" id="interactive-mode">
+<h3>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h3>
+<p>Ibis out of the box is in <em>developer mode</em>. Expressions display their internal
+details when printed to the console. For a better interactive experience, set
+the <code class="docutils literal"><span class="pre">interactive</span> <span class="pre">option</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>This will cause expressions to be executed immediately when printed to the
+console (or in IPython or the IPython notebook).</p>
+</div>
+<div class="section" id="sql-query-execution">
+<h3>SQL query execution<a class="headerlink" href="#sql-query-execution" title="Permalink to this headline">¶</a></h3>
+<p>If an Ibis table expression has no row limit set using the <code class="docutils literal"><span class="pre">limit</span></code> API, a
+default one is applied to prevent too much data from being retrieved from the
+query engine. The default is currently 10000 rows, but this can be configured
+with the <code class="docutils literal"><span class="pre">sql.default_limit</span></code> option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>Set this to <code class="docutils literal"><span class="pre">None</span></code> to retrieve all rows in all queries (be careful!).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verbose-option-and-logging">
+<h3>Verbose option and Logging<a class="headerlink" href="#verbose-option-and-logging" title="Permalink to this headline">¶</a></h3>
+<p>To see all internal Ibis activity (like queries being executed) set
+<cite>ibis.options.verbose</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>By default this information is sent to <code class="docutils literal"><span class="pre">sys.stdout</span></code>, but you can set some
+other logging function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cowsay</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Cow says: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="n">cowsay</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-secure-clusters-kerberos">
+<h2>Working with secure clusters (Kerberos)<a class="headerlink" href="#working-with-secure-clusters-kerberos" title="Permalink to this headline">¶</a></h2>
+<p>Ibis is compatible with Hadoop clusters that are secured with Kerberos (as well
+as SSL and LDAP).  Just like the Impala shell and ODBC/JDBC connectors, Ibis
+connects to Impala through the HiveServer2 interface (using the impyla client).
+Therefore, the connection semantics are similar to the other access methods for
+working with secure clusters.</p>
+<p>Specifically, after authenticating yourself against Kerberos (e.g., by issuing
+the appropriate <code class="docutils literal"><span class="pre">kinit</span></code> commmand), simply pass <code class="docutils literal"><span class="pre">use_kerberos=True</span></code> (and set
+<code class="docutils literal"><span class="pre">kerberos_service_name</span></code> if necessary) to the <code class="docutils literal"><span class="pre">ibis.impala_connect(...)</span></code>
+method when instantiating an <code class="docutils literal"><span class="pre">ImpalaConnection</span></code>.  This method also takes
+arguments to configure LDAP (<code class="docutils literal"><span class="pre">use_ldap</span></code>, <code class="docutils literal"><span class="pre">ldap_user</span></code>, and
+<code class="docutils literal"><span class="pre">ldap_password</span></code>) and SSL (<code class="docutils literal"><span class="pre">use_ssl</span></code>, <code class="docutils literal"><span class="pre">ca_cert</span></code>).  See the documentation
+for the Impala shell for more details.</p>
+<p>Ibis also includes functionality that communicates directly with HDFS, using
+the WebHDFS REST API.  When calling <code class="docutils literal"><span class="pre">ibis.hdfs_connect(...)</span></code>, also pass
+<code class="docutils literal"><span class="pre">use_kerberos=True</span></code>, and ensure that you are connecting to the correct port,
+which may likely be an SSL-secured WebHDFS port.  Also note that you can pass
+<code class="docutils literal"><span class="pre">verify=False</span></code> to avoid verifying SSL certificates (which may be helpful in
+testing).  Ibis will assume <code class="docutils literal"><span class="pre">https</span></code> when connecting to a Kerberized cluster.
+Because some Ibis commands create HDFS directories as well as new Impala
+databases and/or tables, your user will require the necessary privileges.</p>
+</div>
 </div>
 
 
@@ -147,7 +270,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="API Reference">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="getting-started.html" class="btn btn-neutral" title="Installation and Getting Started"><span class="fa fa-arrow-circle-left"></span> Previous</a>

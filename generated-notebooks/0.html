@@ -72,7 +72,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="">Intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
@@ -131,6 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impala.html">Ibis for Impala users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-metadata">Table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-partition-management">Table partition management</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
@@ -197,7 +207,7 @@ cluster:</p>
 <span class="n">ic</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.client.ImpalaConnection at 0x7f78b064b190&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.client.ImpalaConnection at 0x7f87cfcf98d0&gt;
 </pre></div>
 </div>
 <p>Obviously, substitute the parameters that are appropriate for your
@@ -217,7 +227,7 @@ can use a connection from that library instead of using <code class="docutils li
 <span class="n">con</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.client.ImpalaClient at 0x7f78b064b7d0&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.client.ImpalaClient at 0x7f87cfcf9850&gt;
 </pre></div>
 </div>
 </div>

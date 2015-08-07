@@ -72,7 +72,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
@@ -131,6 +135,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impala.html">Ibis for Impala users</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-metadata">Table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-partition-management">Table partition management</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
@@ -213,11 +223,11 @@
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
 0          6       54       54    39420
-1          8       72       72    52560
-2          5       45       45    32850
-3          9       81       81    59130
-4          4       36       36    26280
-5          7       63       63    45990
+1          4       36       36    26280
+2          7       63       63    45990
+3          8       72       72    52560
+4          5       45       45    32850
+5          9       81       81    59130
 </pre></div>
 </div>
 <p>To create a table in the database from the results of this expression,
@@ -233,12 +243,12 @@ be useful for that would help.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          9       81       81    59130
-1          6       54       54    39420
-2          4       36       36    26280
-3          7       63       63    45990
-4          8       72       72    52560
-5          5       45       45    32850
+0          8       72       72    52560
+1          5       45       45    32850
+2          9       81       81    59130
+3          6       54       54    39420
+4          4       36       36    26280
+5          7       63       63    45990
 </pre></div>
 </div>
 <p>Tables can be similarly dropped with <code class="docutils literal"><span class="pre">drop_table</span></code></p>
@@ -255,12 +265,12 @@ or overwrite the data that is in there.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          6       54       54    39420
-1          4       36       36    26280
-2          7       63       63    45990
-3          9       81       81    59130
-4          8       72       72    52560
-5          5       45       45    32850
+0          9       81       81    59130
+1          8       72       72    52560
+2          5       45       45    32850
+3          6       54       54    39420
+4          4       36       36    26280
+5          7       63       63    45990
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
@@ -268,18 +278,18 @@ or overwrite the data that is in there.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>   string_col  min_foo  max_foo  sum_foo
-0           6       54       54    39420
-1           4       36       36    26280
-2           7       63       63    45990
-3           6       54       54    39420
-4           4       36       36    26280
-5           7       63       63    45990
-6           9       81       81    59130
+0           9       81       81    59130
+1           6       54       54    39420
+2           4       36       36    26280
+3           7       63       63    45990
+4           9       81       81    59130
+5           8       72       72    52560
+6           5       45       45    32850
 7           8       72       72    52560
 8           5       45       45    32850
-9           9       81       81    59130
-10          8       72       72    52560
-11          5       45       45    32850
+9           6       54       54    39420
+10          4       36       36    26280
+11          7       63       63    45990
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">)</span>
@@ -294,444 +304,91 @@ to look through your data and read and write files to and from HDFS:</p>
 <span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-9-b75be482a19d&gt; in &lt;module&gt;()
-      1 hdfs = con.hdfs
-----&gt; 2 hdfs.ls(&#39;/__ibis/ibis-testing-data&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/ibis-testing-data/avro&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/udf&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-10-10c7c48af068&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.ls(&#39;/__ibis/ibis-testing-data/parquet&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_ctas_cancel&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_customer&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_nation&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_orders&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_part&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_partsupp&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_region&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_supplier&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Suppose we wanted to download
 <code class="docutils literal"><span class="pre">/__ibis/ibis-testing-data/parquet/functional_alltypes</span></code>, which is a
 directory. We need only do:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span><span class="p">,</span> <span class="s">&#39;parquet_dir&#39;</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre>!rm -rf parquet_dir/
+hdfs.get(&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;, &#39;parquet_dir&#39;)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-11-83ed3fd47ce9&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.get(&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;, &#39;parquet_dir&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in get(self, hdfs_path, local_path, overwrite, verbose)
-    370                     _scrape_dir(hpath, dst)
-    371
---&gt; 372         status = self.status(hdfs_path)
-    373         if status[&#39;type&#39;] == &#39;FILE&#39;:
-    374             if not overwrite and osp.exists(local_path):
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in status(self, path)
-    239         Retrieve HDFS metadata for path
-    240         &quot;&quot;&quot;
---&gt; 241         return self.client.status(path)
-    242
-    243     @implements(HDFS.exists)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in status(self, hdfs_path)
-    259     &quot;&quot;&quot;
-    260     self._logger.info(&#39;Fetching status for %s.&#39;, hdfs_path)
---&gt; 261     return self._get_file_status(hdfs_path).json()[&#39;FileStatus&#39;]
-    262
-    263   def parts(self, hdfs_path, parts=None):
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;parquet_dir&#39;</span>
 </pre></div>
 </div>
 <p>Now we have that directory locally:</p>
-<div class="code python highlight-python"><div class="highlight"><pre>!ls
+<div class="code python highlight-python"><div class="highlight"><pre>!ls parquet_dir/
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>1-Intro-and-Setup.ipynb                    5-IO-Create-Insert-External-Data.ipynb
-2-Basics-Aggregate-Filter-Limit.ipynb  6-Advanced-Topics-TopK-SelfJoins.ipynb
-3-Projection-Join-Sort.ipynb               7-Advanced-Topics-ComplexFiltering.ipynb
-4-More-Value-Expressions.ipynb             8-More-Analytics-Helpers.ipynb
+<div class="highlight-python"><div class="highlight"><pre>e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
+e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
+e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
 </pre></div>
 </div>
 <p>Files and directories can be written to HDFS just as easily using
 <code class="docutils literal"><span class="pre">put</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">,</span> <span class="s">&#39;parquet_dir&#39;</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;/__ibis/dir-write-example&#39;</span>
+<span class="k">if</span> <span class="n">hdfs</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">hdfs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;parquet_dir&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-HdfsError                                 Traceback (most recent call last)
-
-&lt;ipython-input-13-ca52b68a8a48&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.put(&#39;/__ibis/dir-write-example&#39;, &#39;parquet_dir&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in put(self, hdfs_path, resource, overwrite, verbose, **kwargs)
-    324                                                                     hdfs_path))
-    325                 self.client.upload(hdfs_path, resource,
---&gt; 326                                    overwrite=overwrite, **kwargs)
-    327             else:
-    328                 if verbose:
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in upload(self, hdfs_path, local_path, overwrite, **kwargs)
-    378     self._logger.info(&#39;Uploading %s to %s.&#39;, local_path, hdfs_path)
-    379     if not osp.exists(local_path):
---&gt; 380       raise HdfsError(&#39;No file found at %r.&#39;, local_path)
-    381     elif osp.isdir(local_path):
-    382       raise HdfsError(&#39;%r is a directory, cannot upload.&#39;, local_path)
-
-
-HdfsError: No file found at &#39;parquet_dir&#39;.
+<div class="highlight-python"><div class="highlight"><pre>WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example?user.name=wesm&amp;op=GETFILESTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example&quot;}}
+WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&quot;}}
+WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq does not exist.&quot;}}
+WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&quot;}}
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre>Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
+Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-14-5cbd1301ab22&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.ls(&#39;/__ibis&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre>WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq does not exist.&quot;}}
+WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&quot;}}
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
+{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq does not exist.&quot;}}
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Delete files with <code class="docutils literal"><span class="pre">rm</span></code> or directories with <code class="docutils literal"><span class="pre">rmdir</span></code>:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-15-e878009ca31f&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.rmdir(&#39;/__ibis/dir-write-example&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in rmdir(self, path)
-    202         Delete a directory and all its contents
-    203         &quot;&quot;&quot;
---&gt; 204         self.client.delete(path, recursive=True)
-    205
-    206     def find_any_file(self, hdfs_dir):
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in delete(self, hdfs_path, recursive)
-    547     &quot;&quot;&quot;
-    548     self._logger.info(&#39;Deleting %s%s.&#39;, hdfs_path, &#39; [R]&#39; if recursive else &#39;&#39;)
---&gt; 549     res = self._delete(hdfs_path, recursive=recursive)
-    550     if not res.json()[&#39;boolean&#39;]:
-    551       raise HdfsError(&#39;Remote path %r not found.&#39;, hdfs_path)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in delete(url, **kwargs)
-    145     &quot;&quot;&quot;
-    146
---&gt; 147     return request(&#39;delete&#39;, url, **kwargs)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre>!rm -rf parquet_dir/
@@ -755,112 +412,262 @@ files:</p>
 <span class="n">lineitem</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+<pre class="literal-block">
+      l_orderkey  l_partkey  l_suppkey  l_linenumber l_quantity  0              1     155190       7706             1      17.00
+1              1      67310       7311             2      36.00
+2              1      63700       3701             3       8.00
+3              1       2132       4633             4      28.00
+4              1      24027       1534             5      24.00
+5              1      15635        638             6      32.00
+6              2     106170       1191             1      38.00
+7              3       4297       1798             1      45.00
+8              3      19036       6540             2      49.00
+9              3     128449       3474             3      27.00
+10             3      29380       1883             4       2.00
+11             3     183095        650             5      28.00
+12             3      62143       9662             6      26.00
+13             4      88035       5560             1      30.00
+14             5     108570       8571             1      15.00
+15             5     123927       3928             2      26.00
+16             5      37531         35             3      50.00
+17             6     139636       2150             1      37.00
+18             7     182052       9607             1      12.00
+19             7     145243       7758             2       9.00
+20             7      94780       9799             3      46.00
+21             7     163073       3074             4      28.00
+22             7     151894       9440             5      38.00
+23             7      79251       1759             6      35.00
+24             7     157238       2269             7       5.00
+25            32      82704       7721             1      28.00
+26            32     197921        441             2      32.00
+27            32      44161       6666             3       2.00
+28            32       2743       7744             4       4.00
+29            32      85811       8320             5      44.00
+...          ...        ...        ...           ...        ...
+9970        5858     160181       5214             5      18.00
+9971        5858     153937       8968             6       7.00
+9972        5858      10709       3211             7      50.00
+9973        5859     174988         23             1      50.00
+9974        5859       8773       6274             2      17.00
+9975        5859      45701       8206             3      33.00
+9976        5859      92269       2270             4      40.00
+9977        5859     152689       7720             5      35.00
+9978        5859      43446       3447             6       9.00
+9979        5859     190127       7685             7      27.00
+9980        5860      50168       7684             1      10.00
+9981        5861     190867       8425             1      32.00
+9982        5861      85611        628             2       6.00
+9983        5862     112061       4573             1       4.00
+9984        5862       1334       6335             2      29.00
+9985        5863     160562       3079             1      45.00
+9986        5863     159369       1885             2      21.00
+9987        5888      61291       8810             1      46.00
+9988        5888     111595       1596             2      24.00
+9989        5889      76129       8637             1      17.00
+9990        5890     112221       2222             1      38.00
+9991        5891      84905       4906             1      22.00
+9992        5891     185580       8099             2       9.00
+9993        5891      29674       4679             3      10.00
+9994        5892     147722       7723             1       7.00
+9995        5892     149926       7469             2      37.00
+9996        5892       2064       2065             3      28.00
+9997        5892      74798       4799             4      23.00
+9998        5893     133707       1247             1      43.00
+9999        5893       1868       9369             2       2.00
 
-ConnectionError                           Traceback (most recent call last)
+     l_extendedprice l_discount l_tax l_returnflag l_linestatus  l_shipdate  0           21168.23       0.04  0.02            N            O  1996-03-13
+1           45983.16       0.09  0.06            N            O  1996-04-12
+2           13309.60       0.10  0.02            N            O  1996-01-29
+3           28955.64       0.09  0.06            N            O  1996-04-21
+4           22824.48       0.10  0.04            N            O  1996-03-30
+5           49620.16       0.07  0.02            N            O  1996-01-30
+6           44694.46       0.00  0.05            N            O  1997-01-28
+7           54058.05       0.06  0.00            R            F  1994-02-02
+8           46796.47       0.10  0.00            R            F  1993-11-09
+9           39890.88       0.06  0.07            A            F  1994-01-16
+10           2618.76       0.01  0.06            A            F  1993-12-04
+11          32986.52       0.04  0.00            R            F  1993-12-14
+12          28733.64       0.10  0.02            A            F  1993-10-29
+13          30690.90       0.03  0.08            N            O  1996-01-10
+14          23678.55       0.02  0.04            R            F  1994-10-31
+15          50723.92       0.07  0.08            R            F  1994-10-16
+16          73426.50       0.08  0.03            A            F  1994-08-08
+17          61998.31       0.08  0.03            A            F  1992-04-27
+18          13608.60       0.07  0.03            N            O  1996-05-07
+19          11594.16       0.08  0.08            N            O  1996-02-01
+20          81639.88       0.10  0.07            N            O  1996-01-15
+21          31809.96       0.03  0.04            N            O  1996-03-21
+22          73943.82       0.08  0.01            N            O  1996-02-11
+23          43058.75       0.06  0.03            N            O  1996-01-16
+24           6476.15       0.04  0.02            N            O  1996-02-10
+25          47227.60       0.05  0.08            N            O  1995-10-23
+26          64605.44       0.02  0.00            N            O  1995-08-14
+27           2210.32       0.09  0.02            N            O  1995-08-07
+28           6582.96       0.09  0.03            N            O  1995-08-04
+29          79059.64       0.05  0.06            N            O  1995-08-28
+...              ...        ...   ...          ...          ...         ...
+9970        22341.24       0.00  0.07            A            F  1992-11-05
+9971        13936.51       0.04  0.00            A            F  1992-09-14
+9972        80985.00       0.06  0.00            R            F  1992-07-20
+9973       103149.00       0.07  0.01            N            O  1997-07-08
+9974        28590.09       0.03  0.03            N            O  1997-05-15
+9975        54341.10       0.10  0.04            N            O  1997-07-08
+9976        50450.40       0.09  0.02            N            O  1997-08-05
+9977        60958.80       0.00  0.08            N            O  1997-05-28
+9978        12504.96       0.01  0.02            N            O  1997-06-15
+9979        32862.24       0.05  0.08            N            O  1997-07-30
+9980        11181.60       0.04  0.04            A            F  1992-03-11
+9981        62651.52       0.00  0.03            N            O  1997-05-27
+9982         9579.66       0.10  0.03            N            O  1997-07-28
+9983         4292.24       0.09  0.06            N            O  1997-06-04
+9984        35824.57       0.03  0.05            N            O  1997-04-02
+9985        73015.20       0.07  0.06            A            F  1993-12-19
+9986        29995.56       0.09  0.03            R            F  1994-01-13
+9987        57605.34       0.02  0.00            N            O  1996-11-18
+9988        38558.16       0.03  0.01            N            O  1996-11-07
+9989        18787.04       0.09  0.02            N            O  1995-07-01
+9990        46862.36       0.01  0.08            A            F  1993-02-14
+9991        41577.80       0.00  0.06            R            F  1993-01-01
+9992        14990.22       0.03  0.07            R            F  1993-01-20
+9993        16036.70       0.08  0.01            A            F  1993-04-14
+9994        12388.04       0.02  0.03            N            O  1995-06-26
+9995        73109.04       0.09  0.06            N            O  1995-08-12
+9996        27049.68       0.03  0.06            N            O  1995-08-16
+9997        40774.17       0.08  0.04            R            F  1995-05-18
+9998        74850.10       0.05  0.02            R            F  1992-11-02
+9999         3539.72       0.10  0.04            R            F  1992-07-18
 
-&lt;ipython-input-17-82585b0fad48&gt; in &lt;module&gt;()
-      1 path = &#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;
-      2
-----&gt; 3 lineitem = con.parquet_file(path)
-      4 lineitem.limit(2)
+     l_commitdate l_receiptdate     l_shipinstruct l_shipmode  0      1996-02-12    1996-03-22  DELIVER IN PERSON      TRUCK
+1      1996-02-28    1996-04-20   TAKE BACK RETURN       MAIL
+2      1996-03-05    1996-01-31   TAKE BACK RETURN    REG AIR
+3      1996-03-30    1996-05-16               NONE        AIR
+4      1996-03-14    1996-04-01               NONE        FOB
+5      1996-02-07    1996-02-03  DELIVER IN PERSON       MAIL
+6      1997-01-14    1997-02-02   TAKE BACK RETURN       RAIL
+7      1994-01-04    1994-02-23               NONE        AIR
+8      1993-12-20    1993-11-24   TAKE BACK RETURN       RAIL
+9      1993-11-22    1994-01-23  DELIVER IN PERSON       SHIP
+10     1994-01-07    1994-01-01               NONE      TRUCK
+11     1994-01-10    1994-01-01   TAKE BACK RETURN        FOB
+12     1993-12-18    1993-11-04   TAKE BACK RETURN       RAIL
+13     1995-12-14    1996-01-18  DELIVER IN PERSON    REG AIR
+14     1994-08-31    1994-11-20               NONE        AIR
+15     1994-09-25    1994-10-19               NONE        FOB
+16     1994-10-13    1994-08-26  DELIVER IN PERSON        AIR
+17     1992-05-15    1992-05-02   TAKE BACK RETURN      TRUCK
+18     1996-03-13    1996-06-03   TAKE BACK RETURN        FOB
+19     1996-03-02    1996-02-19   TAKE BACK RETURN       SHIP
+20     1996-03-27    1996-02-03        COLLECT COD       MAIL
+21     1996-04-08    1996-04-20               NONE        FOB
+22     1996-02-24    1996-02-18  DELIVER IN PERSON      TRUCK
+23     1996-02-23    1996-01-22   TAKE BACK RETURN        FOB
+24     1996-03-26    1996-02-13               NONE        FOB
+25     1995-08-27    1995-10-26   TAKE BACK RETURN      TRUCK
+26     1995-10-07    1995-08-27        COLLECT COD        AIR
+27     1995-10-07    1995-08-23  DELIVER IN PERSON        AIR
+28     1995-10-01    1995-09-03               NONE    REG AIR
+29     1995-08-20    1995-09-14  DELIVER IN PERSON        AIR
+...           ...           ...                ...        ...
+9970   1992-10-08    1992-12-03               NONE      TRUCK
+9971   1992-10-01    1992-10-01   TAKE BACK RETURN       RAIL
+9972   1992-10-07    1992-07-25               NONE      TRUCK
+9973   1997-06-20    1997-07-27        COLLECT COD       MAIL
+9974   1997-06-30    1997-05-26  DELIVER IN PERSON        AIR
+9975   1997-06-22    1997-07-18   TAKE BACK RETURN      TRUCK
+9976   1997-06-17    1997-08-20               NONE    REG AIR
+9977   1997-07-14    1997-06-15        COLLECT COD      TRUCK
+9978   1997-06-06    1997-06-20               NONE       RAIL
+9979   1997-07-08    1997-08-08               NONE       MAIL
+9980   1992-03-30    1992-03-31               NONE       MAIL
+9981   1997-05-29    1997-05-28   TAKE BACK RETURN       MAIL
+9982   1997-05-18    1997-08-24   TAKE BACK RETURN      TRUCK
+9983   1997-04-26    1997-06-19               NONE      TRUCK
+9984   1997-04-16    1997-04-04               NONE        FOB
+9985   1994-01-25    1994-01-05               NONE    REG AIR
+9986   1994-01-09    1994-01-28  DELIVER IN PERSON        FOB
+9987   1996-11-05    1996-12-08   TAKE BACK RETURN        FOB
+9988   1996-11-30    1996-11-20        COLLECT COD       SHIP
+9989   1995-08-12    1995-07-25               NONE        AIR
+9990   1992-12-09    1993-02-27        COLLECT COD        FOB
+9991   1993-02-18    1993-01-14  DELIVER IN PERSON      TRUCK
+9992   1993-02-27    1993-02-10        COLLECT COD    REG AIR
+9993   1993-02-07    1993-04-15  DELIVER IN PERSON       RAIL
+9994   1995-07-18    1995-07-25        COLLECT COD        AIR
+9995   1995-06-11    1995-09-05               NONE    REG AIR
+9996   1995-07-06    1995-08-22  DELIVER IN PERSON       MAIL
+9997   1995-07-06    1995-05-29        COLLECT COD       MAIL
+9998   1992-09-27    1992-11-21   TAKE BACK RETURN       RAIL
+9999   1992-09-10    1992-08-12               NONE       RAIL
 
+                                        l_comment
+0                         egular courts above the
+1              ly final dependencies: slyly bold
+2                   riously. regular, express dep
+3                         lites. fluffily even de
+4                         pending foxes. slyly re
+5                               arefully slyly ex
+6                 ven requests. deposits breach a
+7             ongside of the furiously brave acco
+8                           unusual accounts. eve
+9                                nal foxes wake.
+10                          y. fluffily pending d
+11                         ages nag slyly pending
+12                      ges sleep after the caref
+13         - quickly regular packages sleep. idly
+14                             ts wake furiously
+15          sts use slyly quickly special instruc
+16                    eodolites. fluffily unusual
+17                      p furiously special foxes
+18                 ss pinto beans wake against th
+19                               es. instructions
+20                                 unusual reques
+21                 . slyly special requests haggl
+22        ns haggle carefully ironic deposits. bl
+23     jole. excuses wake carefully alongside of
+24                                  ithely regula
+25                             sleep quickly. req
+26            lithely regular deposits. fluffily
+27         express accounts wake according to the
+28                              e slyly final pac
+29     symptotes nag according to the ironic depo
+...                                           ...
+9970                             al excuses. bold
+9971                               dly pending ac
+9972                              r the ironic ex
+9973              ly regular deposits use. ironic
+9974      ly ironic requests. quickly unusual pin
+9975     eposits unwind furiously final pinto bea
+9976                                 l dependenci
+9977                                  egular acco
+9978                ges boost quickly. blithely r
+9979                                    across th
+9980      ual patterns try to eat carefully above
+9981     nt asymptotes. carefully express request
+9982                                olites. slyly
+9983                           yly silent deposit
+9984                        e fluffily. furiously
+9985                              deposits are ab
+9986                    atelets nag blithely furi
+9987                       yly final accounts hag
+9988                               ing to the spe
+9989               blithely pending packages. flu
+9990         accounts. carefully final asymptotes
+9991         iresias cajole deposits. special, ir
+9992                            cajole carefully
+9993                            nding requests. b
+9994        e furiously. quickly even deposits da
+9995                        maintain. bold, expre
+9996   ithely unusual accounts will have to integ
+9997                foxes nag slyly about the qui
+9998  s. regular courts above the carefully silen
+9999                              ckages wake sly
 
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in parquet_file(self, hdfs_dir, schema, name, database, external, like_file, like_table, persist)
-    751         # the HDFS directory
-    752         if like_file is None and like_table is None and schema is None:
---&gt; 753             like_file = self.hdfs.find_any_file(hdfs_dir)
-    754
-    755         qualified_name = self._fully_qualified_name(name, database)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in find_any_file(self, hdfs_dir)
-    205
-    206     def find_any_file(self, hdfs_dir):
---&gt; 207         contents = self.ls(hdfs_dir, status=True)
-    208
-    209         def valid_filename(name):
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
-</pre></div>
-</div>
+[10000 rows x 16 columns]
+</pre>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">lineitem</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-18-1f5dcd20edc4&gt; in &lt;module&gt;()
-----&gt; 1 lineitem.l_extendedprice.sum()
-
-
-NameError: name &#39;lineitem&#39; is not defined
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you want to query a Parquet file and also create a table in Impala
@@ -872,302 +679,16 @@ that remains after your session, you can pass more information to
 <span class="n">table</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-19-921fda43ba34&gt; in &lt;module&gt;()
-      1 table = con.parquet_file(path, name=&#39;my_parquet_table&#39;,
-      2                          database=&#39;ibis_testing&#39;,
-----&gt; 3                          persist=True)
-      4 table.l_extendedprice.sum()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in parquet_file(self, hdfs_dir, schema, name, database, external, like_file, like_table, persist)
-    751         # the HDFS directory
-    752         if like_file is None and like_table is None and schema is None:
---&gt; 753             like_file = self.hdfs.find_any_file(hdfs_dir)
-    754
-    755         qualified_name = self._fully_qualified_name(name, database)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in find_any_file(self, hdfs_dir)
-    205
-    206     def find_any_file(self, hdfs_dir):
---&gt; 207         contents = self.ls(hdfs_dir, status=True)
-    208
-    209         def valid_filename(name):
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;my_parquet_table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-HiveServer2Error                          Traceback (most recent call last)
-
-&lt;ipython-input-20-d5d05faa9233&gt; in &lt;module&gt;()
-----&gt; 1 con.table(&#39;my_parquet_table&#39;).l_extendedprice.sum()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in table(self, name, database)
-     58         &quot;&quot;&quot;
-     59         qualified_name = self._fully_qualified_name(name, database)
----&gt; 60         schema = self._get_table_schema(qualified_name)
-     61         node = ops.DatabaseTable(qualified_name, schema, self)
-     62         return ir.TableExpr(node)
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in _get_table_schema(self, tname)
-    903     def _get_table_schema(self, tname):
-    904         query = &#39;SELECT * FROM {0} LIMIT 0&#39;.format(tname)
---&gt; 905         return self._get_schema_using_query(query)
-    906
-    907     def _get_schema_using_query(self, query):
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in _get_schema_using_query(self, query)
-    906
-    907     def _get_schema_using_query(self, query):
---&gt; 908         cursor = self._execute(query, results=True)
-    909
-    910         # resets the state of the cursor and closes operation
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in _execute(self, query, results)
-     71
-     72     def _execute(self, query, results=False):
----&gt; 73         cur = self.con.execute(query)
-     74         if results:
-     75             return cur
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, query)
-    189
-    190         try:
---&gt; 191             cursor.execute(query)
-    192         except:
-    193             cursor.release()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, stmt)
-    270
-    271     def execute(self, stmt):
---&gt; 272         self.cursor.execute(stmt)
-    273
-    274     def fetchall(self):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in execute(self, operation, parameters, configuration)
-    149                 self.service, self.session_handle, self._last_operation_string)
-    150
---&gt; 151         self._execute_sync(op)
-    152
-    153     def _execute_sync(self, operation_fn):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in _execute_sync(self, operation_fn)
-    155         # self._last_operation_handle
-    156         self._reset_state()
---&gt; 157         operation_fn()
-    158         self._last_operation_active = True
-    159         self._wait_to_finish()  # make execute synchronous
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in op()
-    147                 self._last_operation_string = operation
-    148             self._last_operation_handle = rpc.execute_statement(
---&gt; 149                 self.service, self.session_handle, self._last_operation_string)
-    150
-    151         self._execute_sync(op)
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in wrapper(*args, **kwargs)
-    130                 if not transport.isOpen():
-    131                     transport.open()
---&gt; 132                 return func(*args, **kwargs)
-    133             except socket.error:
-    134                 pass
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in execute_statement(service, session_handle, statement, configuration, async)
-    231                                runAsync=async)
-    232     resp = service.ExecuteStatement(req)
---&gt; 233     err_if_rpc_not_ok(resp)
-    234     return resp.operationHandle
-    235
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in err_if_rpc_not_ok(resp)
-     78             resp.status.statusCode != TStatusCode.SUCCESS_WITH_INFO_STATUS and
-     79             resp.status.statusCode != TStatusCode.STILL_EXECUTING_STATUS):
----&gt; 80         raise HiveServer2Error(resp.status.errorMessage)
-     81
-     82
-
-
-HiveServer2Error: AnalysisException: Table does not exist: ibis_testing.my_parquet_table
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s">&#39;my_parquet_table&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-HiveServer2Error                          Traceback (most recent call last)
-
-&lt;ipython-input-21-5796c8ae87b6&gt; in &lt;module&gt;()
-----&gt; 1 con.drop_table(&#39;my_parquet_table&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in drop_table(self, table_name, database, force)
-    857         statement = ddl.DropTable(table_name, database=database,
-    858                                   must_exist=not force)
---&gt; 859         self._execute(statement)
-    860
-    861     def truncate_table(self, table_name, database=None):
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in _execute(self, query, results)
-     71
-     72     def _execute(self, query, results=False):
----&gt; 73         cur = self.con.execute(query)
-     74         if results:
-     75             return cur
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, query)
-    189
-    190         try:
---&gt; 191             cursor.execute(query)
-    192         except:
-    193             cursor.release()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, stmt)
-    270
-    271     def execute(self, stmt):
---&gt; 272         self.cursor.execute(stmt)
-    273
-    274     def fetchall(self):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in execute(self, operation, parameters, configuration)
-    149                 self.service, self.session_handle, self._last_operation_string)
-    150
---&gt; 151         self._execute_sync(op)
-    152
-    153     def _execute_sync(self, operation_fn):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in _execute_sync(self, operation_fn)
-    155         # self._last_operation_handle
-    156         self._reset_state()
---&gt; 157         operation_fn()
-    158         self._last_operation_active = True
-    159         self._wait_to_finish()  # make execute synchronous
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in op()
-    147                 self._last_operation_string = operation
-    148             self._last_operation_handle = rpc.execute_statement(
---&gt; 149                 self.service, self.session_handle, self._last_operation_string)
-    150
-    151         self._execute_sync(op)
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in wrapper(*args, **kwargs)
-    130                 if not transport.isOpen():
-    131                     transport.open()
---&gt; 132                 return func(*args, **kwargs)
-    133             except socket.error:
-    134                 pass
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in execute_statement(service, session_handle, statement, configuration, async)
-    231                                runAsync=async)
-    232     resp = service.ExecuteStatement(req)
---&gt; 233     err_if_rpc_not_ok(resp)
-    234     return resp.operationHandle
-    235
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in err_if_rpc_not_ok(resp)
-     78             resp.status.statusCode != TStatusCode.SUCCESS_WITH_INFO_STATUS and
-     79             resp.status.statusCode != TStatusCode.STILL_EXECUTING_STATUS):
----&gt; 80         raise HiveServer2Error(resp.status.errorMessage)
-     81
-     82
-
-
-HiveServer2Error: AnalysisException: Table does not exist: ibis_testing.my_parquet_table
 </pre></div>
 </div>
 <p>To query delimited files, you need to write down an Ibis schema. At some
@@ -1177,93 +698,22 @@ for you, all in good time.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span> <span class="s">&#39;csv-files&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-22-4db8eee5bf68&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.get(&#39;/__ibis/ibis-testing-data/csv&#39;, &#39;csv-files&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in get(self, hdfs_path, local_path, overwrite, verbose)
-    370                     _scrape_dir(hpath, dst)
-    371
---&gt; 372         status = self.status(hdfs_path)
-    373         if status[&#39;type&#39;] == &#39;FILE&#39;:
-    374             if not overwrite and osp.exists(local_path):
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in status(self, path)
-    239         Retrieve HDFS metadata for path
-    240         &quot;&quot;&quot;
---&gt; 241         return self.client.status(path)
-    242
-    243     @implements(HDFS.exists)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in status(self, hdfs_path)
-    259     &quot;&quot;&quot;
-    260     self._logger.info(&#39;Fetching status for %s.&#39;, hdfs_path)
---&gt; 261     return self._get_file_status(hdfs_path).json()[&#39;FileStatus&#39;]
-    262
-    263   def parts(self, hdfs_path, parts=None):
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;csv-files&#39;</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre>!cat csv-files/0.csv
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>cat: csv-files/0.csv: No such file or directory
+<div class="highlight-python"><div class="highlight"><pre>dNmzRWWCKJ,0.558914329982219,42
+kpXp9U5Kv4,-0.8221358158299105,28
+7BcTT5B4wp,-1.2180159173981855,18
+W4vOjjJQrT,-1.7791277450782457,45
+tiVZsQWzpN,0.32936255878849235,84
+6ibbcK16f2,-0.36602855877465035,56
+QBsUQwKw0Z,0.1206123669383656,29
+FMp2sWNgaY,-0.015090055989338344,27
+UPXjybUQSj,0.42642200098179384,77
+L2f2ylNoIw,-0.5091003484680737,6
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre>!rm -rf csv-files/
@@ -1279,24 +729,77 @@ ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refu
 <span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>          foo       bar  baz
-0  Rw2uUzXD5q -0.669256   46
-1  Fqy0zVOfkG -1.452423   66
-2  Kbx8SzqBFn -0.409042    8
-3  R876Z9N0hb -1.191028    2
-4  CRfBHbL6Wu  0.297024   70
-5  0hr5TToAYT -1.084084   66
-6  AukbgF0kKJ  0.747442   57
-7  7zCvJvy1qM -0.477290   80
-8  0cJFGBGQOG  1.164071   86
-9  2gkIYbvcCM -1.281811   22
+<div class="highlight-python"><div class="highlight"><pre>           foo       bar  baz
+0   dNmzRWWCKJ  0.558914   42
+1   kpXp9U5Kv4 -0.822136   28
+2   7BcTT5B4wp -1.218016   18
+3   W4vOjjJQrT -1.779128   45
+4   tiVZsQWzpN  0.329363   84
+5   6ibbcK16f2 -0.366029   56
+6   QBsUQwKw0Z  0.120612   29
+7   FMp2sWNgaY -0.015090   27
+8   UPXjybUQSj  0.426422   77
+9   L2f2ylNoIw -0.509100    6
+10  dNmzRWWCKJ  0.558914   42
+11  kpXp9U5Kv4 -0.822136   28
+12  7BcTT5B4wp -1.218016   18
+13  W4vOjjJQrT -1.779128   45
+14  tiVZsQWzpN  0.329363   84
+15  6ibbcK16f2 -0.366029   56
+16  QBsUQwKw0Z  0.120612   29
+17  FMp2sWNgaY -0.015090   27
+18  UPXjybUQSj  0.426422   77
+19  L2f2ylNoIw -0.509100    6
+20  dNmzRWWCKJ  0.558914   42
+21  kpXp9U5Kv4 -0.822136   28
+22  7BcTT5B4wp -1.218016   18
+23  W4vOjjJQrT -1.779128   45
+24  tiVZsQWzpN  0.329363   84
+25  6ibbcK16f2 -0.366029   56
+26  QBsUQwKw0Z  0.120612   29
+27  FMp2sWNgaY -0.015090   27
+28  UPXjybUQSj  0.426422   77
+29  L2f2ylNoIw -0.509100    6
+..         ...       ...  ...
+70  dNmzRWWCKJ  0.558914   42
+71  kpXp9U5Kv4 -0.822136   28
+72  7BcTT5B4wp -1.218016   18
+73  W4vOjjJQrT -1.779128   45
+74  tiVZsQWzpN  0.329363   84
+75  6ibbcK16f2 -0.366029   56
+76  QBsUQwKw0Z  0.120612   29
+77  FMp2sWNgaY -0.015090   27
+78  UPXjybUQSj  0.426422   77
+79  L2f2ylNoIw -0.509100    6
+80  dNmzRWWCKJ  0.558914   42
+81  kpXp9U5Kv4 -0.822136   28
+82  7BcTT5B4wp -1.218016   18
+83  W4vOjjJQrT -1.779128   45
+84  tiVZsQWzpN  0.329363   84
+85  6ibbcK16f2 -0.366029   56
+86  QBsUQwKw0Z  0.120612   29
+87  FMp2sWNgaY -0.015090   27
+88  UPXjybUQSj  0.426422   77
+89  L2f2ylNoIw -0.509100    6
+90  dNmzRWWCKJ  0.558914   42
+91  kpXp9U5Kv4 -0.822136   28
+92  7BcTT5B4wp -1.218016   18
+93  W4vOjjJQrT -1.779128   45
+94  tiVZsQWzpN  0.329363   84
+95  6ibbcK16f2 -0.366029   56
+96  QBsUQwKw0Z  0.120612   29
+97  FMp2sWNgaY -0.015090   27
+98  UPXjybUQSj  0.426422   77
+99  L2f2ylNoIw -0.509100    6
+
+[100 rows x 3 columns]
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   count  nulls       min       max        sum     mean  approx_nunique
-0    100      0 -1.452423  1.164071 -43.563963 -0.43564              10
+<div class="highlight-python"><div class="highlight"><pre>   count  nulls       min       max        sum      mean  approx_nunique
+0    100      0 -1.779128  0.558914 -32.741872 -0.327419              10
 </pre></div>
 </div>
 <p>For functions like <code class="docutils literal"><span class="pre">parquet_file</span></code> and <code class="docutils literal"><span class="pre">delimited_file</span></code>, an HDFS
@@ -1345,7 +848,8 @@ pleasant, please let us know.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="s">&#39;tpch*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;tpch_customer&#39;</span><span class="p">,</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
+ <span class="s">&#39;tpch_customer&#39;</span><span class="p">,</span>
  <span class="s">&#39;tpch_lineitem&#39;</span><span class="p">,</span>
  <span class="s">&#39;tpch_nation&#39;</span><span class="p">,</span>
  <span class="s">&#39;tpch_orders&#39;</span><span class="p">,</span>
@@ -1385,273 +889,16 @@ you want for the data files</p>
                  <span class="n">database</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-31-e9307ccae21d&gt; in &lt;module&gt;()
-      1 db = &#39;ibis_testing2&#39;
-----&gt; 2 con.create_database(db, path=&#39;/__ibis/my-test-database&#39;)
-      3 con.create_table(&#39;example_table&#39;, con.table(&#39;functional_alltypes&#39;),
-      4                  database=db)
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in create_database(self, name, path, fail_if_exists)
-    415             # explicit mkdir ensures the user own the dir rather than impala,
-    416             # which is easier for manual cleanup, if necessary
---&gt; 417             self._hdfs.mkdir(path, create_parent=True)
-    418         statement = ddl.CreateDatabase(name, path=path,
-    419                                        fail_if_exists=fail_if_exists)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in mkdir(self, dir_path, create_parent)
-    263         # create a temporary file, then delete it
-    264         dummy = pjoin(dir_path, util.guid())
---&gt; 265         self.client.write(dummy, &#39;&#39;)
-    266         self.client.delete(dummy)
-    267
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in write(self, hdfs_path, data, overwrite, permission, blocksize, replication, buffersize)
-    341       blocksize=blocksize,
-    342       replication=replication,
---&gt; 343       buffersize=buffersize,
-    344     )
-    345     res_2 = rq.put(res_1.headers[&#39;location&#39;], data=data,
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in put(url, data, **kwargs)
-    120     &quot;&quot;&quot;
-    121
---&gt; 122     return request(&#39;put&#39;, url, data=data, **kwargs)
-    123
-    124
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
-</pre></div>
-</div>
 <p>Hopefully, there will be data files in the indicated spot in HDFS:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-ConnectionError                           Traceback (most recent call last)
-
-&lt;ipython-input-32-379ea1d7c676&gt; in &lt;module&gt;()
-----&gt; 1 hdfs.ls(&#39;/__ibis/my-test-database&#39;)
-
-
-/home/wesm/code/cloudera/ibis/ibis/filesystems.pyc in ls(self, hdfs_path, status)
-    251     @implements(HDFS.ls)
-    252     def ls(self, hdfs_path, status=False):
---&gt; 253         contents = self.client.list(hdfs_path)
-    254         if not status:
-    255             return [path for path, detail in contents]
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in list(self, hdfs_path)
-    582     self._logger.info(&#39;Listing %s.&#39;, hdfs_path)
-    583     hdfs_path = self.resolve(hdfs_path)
---&gt; 584     statuses = self._list_status(hdfs_path).json()[&#39;FileStatuses&#39;][&#39;FileStatus&#39;]
-    585     if len(statuses) == 1 and not statuses[0][&#39;pathSuffix&#39;]:
-    586       # This is a normal file.
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/hdfs-1.1.1-py2.7.egg/hdfs/client.pyc in api_handler(client, path, data, **params)
-     87         params=params,
-     88         timeout=client.timeout,
----&gt; 89         **self.kwargs
-     90       )
-     91       if not response: # non 2XX status code
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in get(url, params, **kwargs)
-     67
-     68     kwargs.setdefault(&#39;allow_redirects&#39;, True)
----&gt; 69     return request(&#39;get&#39;, url, params=params, **kwargs)
-     70
-     71
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/api.pyc in request(method, url, **kwargs)
-     48
-     49     session = sessions.Session()
----&gt; 50     response = session.request(method=method, url=url, **kwargs)
-     51     # By explicitly closing the session, we avoid leaving sockets open which
-     52     # can trigger a ResourceWarning in some cases, and look like a memory leak
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-    463         }
-    464         send_kwargs.update(settings)
---&gt; 465         resp = self.send(prep, **send_kwargs)
-    466
-    467         return resp
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/sessions.pyc in send(self, request, **kwargs)
-    571
-    572         # Send the request
---&gt; 573         r = adapter.send(request, **kwargs)
-    574
-    575         # Total elapsed time of the request (approximately)
-
-
-/home/wesm/anaconda/lib/python2.7/site-packages/requests/adapters.pyc in send(self, request, stream, timeout, verify, cert, proxies)
-    413
-    414         except (ProtocolError, socket.error) as err:
---&gt; 415             raise ConnectionError(err, request=request)
-    416
-    417         except MaxRetryError as e:
-
-
-ConnectionError: (&#39;Connection aborted.&#39;, error(111, &#39;Connection refused&#39;))
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/my-test-database/example_table&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To drop a database, including all tables in it, you can use
 <code class="docutils literal"><span class="pre">drop_database</span></code> with <code class="docutils literal"><span class="pre">force=True</span></code>:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
-
-HiveServer2Error                          Traceback (most recent call last)
-
-&lt;ipython-input-33-6cbf57d2ac50&gt; in &lt;module&gt;()
-----&gt; 1 con.drop_database(db, force=True)
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in drop_database(self, name, force)
-    432           IntegrityError
-    433         &quot;&quot;&quot;
---&gt; 434         tables = self.list_tables(database=name)
-    435         if force:
-    436             for table in tables:
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in list_tables(self, like, database)
-    366             statement += &quot; LIKE &#39;{0}&#39;&quot;.format(like)
-    367
---&gt; 368         cur = self._execute(statement, results=True)
-    369         result = self._get_list(cur)
-    370         cur.release()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in _execute(self, query, results)
-     71
-     72     def _execute(self, query, results=False):
----&gt; 73         cur = self.con.execute(query)
-     74         if results:
-     75             return cur
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, query)
-    189
-    190         try:
---&gt; 191             cursor.execute(query)
-    192         except:
-    193             cursor.release()
-
-
-/home/wesm/code/cloudera/ibis/ibis/client.pyc in execute(self, stmt)
-    270
-    271     def execute(self, stmt):
---&gt; 272         self.cursor.execute(stmt)
-    273
-    274     def fetchall(self):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in execute(self, operation, parameters, configuration)
-    149                 self.service, self.session_handle, self._last_operation_string)
-    150
---&gt; 151         self._execute_sync(op)
-    152
-    153     def _execute_sync(self, operation_fn):
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in _execute_sync(self, operation_fn)
-    155         # self._last_operation_handle
-    156         self._reset_state()
---&gt; 157         operation_fn()
-    158         self._last_operation_active = True
-    159         self._wait_to_finish()  # make execute synchronous
-
-
-/home/wesm/code/cloudera/impyla/impala/dbapi/hiveserver2.pyc in op()
-    147                 self._last_operation_string = operation
-    148             self._last_operation_handle = rpc.execute_statement(
---&gt; 149                 self.service, self.session_handle, self._last_operation_string)
-    150
-    151         self._execute_sync(op)
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in wrapper(*args, **kwargs)
-    130                 if not transport.isOpen():
-    131                     transport.open()
---&gt; 132                 return func(*args, **kwargs)
-    133             except socket.error:
-    134                 pass
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in execute_statement(service, session_handle, statement, configuration, async)
-    231                                runAsync=async)
-    232     resp = service.ExecuteStatement(req)
---&gt; 233     err_if_rpc_not_ok(resp)
-    234     return resp.operationHandle
-    235
-
-
-/home/wesm/code/cloudera/impyla/impala/_rpc/hiveserver2.pyc in err_if_rpc_not_ok(resp)
-     78             resp.status.statusCode != TStatusCode.SUCCESS_WITH_INFO_STATUS and
-     79             resp.status.statusCode != TStatusCode.STILL_EXECUTING_STATUS):
----&gt; 80         raise HiveServer2Error(resp.status.errorMessage)
-     81
-     82
-
-
-HiveServer2Error: AnalysisException: Database does not exist: ibis_testing2
 </pre></div>
 </div>
 </div>
@@ -1678,7 +925,7 @@ may significantly speed up queries on smaller datasets:</p>
 %timeit (t.double_col + rand()).sum().execute()
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>10 loops, best of 3: 119 ms per loop
+<div class="highlight-python"><div class="highlight"><pre>10 loops, best of 3: 139 ms per loop
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Turn codegen back on</span>
@@ -1688,7 +935,7 @@ may significantly speed up queries on smaller datasets:</p>
 <div class="code python highlight-python"><div class="highlight"><pre>%timeit (t.double_col + rand()).sum().execute()
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>1 loops, best of 3: 732 ms per loop
+<div class="highlight-python"><div class="highlight"><pre>1 loops, best of 3: 1.69 s per loop
 </pre></div>
 </div>
 <p>It&#8217;s important to remember that codegen is a fixed overhead and will
