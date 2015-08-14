@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis 0.3.0 documentation</title>
+  <title>API Reference &mdash; Ibis 0.4.0 documentation</title>
   
 
   
@@ -30,9 +30,9 @@
   
 
   
-    <link rel="top" title="Ibis 0.3.0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis 0.4.0 documentation" href="index.html"/>
         <link rel="next" title="ibis.make_client" href="generated/ibis.make_client.html"/>
-        <link rel="prev" title="Frequency tables" href="generated-notebooks/7.html"/> 
+        <link rel="prev" title="Using Impala UDFs in Ibis" href="impala-udf.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -120,6 +120,14 @@
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="impala-udf.html">Using Impala UDFs in Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#impala-client">Impala client</a></li>
@@ -143,6 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
@@ -206,10 +215,7 @@ entry to using Ibis.</p>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.make_client.html#ibis.make_client" title="ibis.make_client"><code class="xref py py-obj docutils literal"><span class="pre">make_client</span></code></a>(db[,&nbsp;hdfs_client])</td>
 <td>Create an Ibis client from a database connection and optional additional</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala_connect.html#ibis.impala_connect" title="ibis.impala_connect"><code class="xref py py-obj docutils literal"><span class="pre">impala_connect</span></code></a>([host,&nbsp;port,&nbsp;protocol,&nbsp;...])</td>
-<td>Create an Impala Client for use with Ibis</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.hdfs_connect.html#ibis.hdfs_connect" title="ibis.hdfs_connect"><code class="xref py py-obj docutils literal"><span class="pre">hdfs_connect</span></code></a>([host,&nbsp;port,&nbsp;protocol,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.hdfs_connect.html#ibis.hdfs_connect" title="ibis.hdfs_connect"><code class="xref py py-obj docutils literal"><span class="pre">hdfs_connect</span></code></a>([host,&nbsp;port,&nbsp;protocol,&nbsp;...])</td>
 <td>Connect to HDFS</td>
 </tr>
 </tbody>
@@ -220,6 +226,68 @@ entry to using Ibis.</p>
 <p>These methods are available on the Impala client object after connecting to
 your Impala cluster, HDFS cluster, and creating the client with
 <code class="docutils literal"><span class="pre">ibis.make_client</span></code>.</p>
+<p>Use <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code> to create an Impala connection to use for
+assembling a client.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.connect.html#ibis.impala.api.connect" title="ibis.impala.api.connect"><code class="xref py py-obj docutils literal"><span class="pre">connect</span></code></a>([host,&nbsp;port,&nbsp;protocol,&nbsp;database,&nbsp;...])</td>
+<td>Create an Impala Client for use with Ibis</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.close.html#ibis.impala.api.ImpalaClient.close" title="ibis.impala.api.ImpalaClient.close"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.close</span></code></a>()</td>
+<td>Close Impala connection and drop any temporary objects</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html#ibis.impala.api.ImpalaClient.database" title="ibis.impala.api.ImpalaClient.database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.database</span></code></a>(name)</td>
+<td>Create a Database object for a given database name that can be used for</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="database-methods">
+<h3>Database methods<a class="headerlink" href="#database-methods" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.set_database.html#ibis.impala.api.ImpalaClient.set_database" title="ibis.impala.api.ImpalaClient.set_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.set_database</span></code></a>(name)</td>
+<td>Set the default database scope for client</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_database.html#ibis.impala.api.ImpalaClient.create_database" title="ibis.impala.api.ImpalaClient.create_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_database</span></code></a>(name[,&nbsp;path,&nbsp;force])</td>
+<td>Create a new Impala database</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_database.html#ibis.impala.api.ImpalaClient.drop_database" title="ibis.impala.api.ImpalaClient.drop_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_database</span></code></a>(name[,&nbsp;force])</td>
+<td>Drop an Impala database</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.list_databases.html#ibis.impala.api.ImpalaClient.list_databases" title="ibis.impala.api.ImpalaClient.list_databases"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.list_databases</span></code></a>([like])</td>
+<td>List databases in the Impala cluster.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.exists_database.html#ibis.impala.api.ImpalaClient.exists_database" title="ibis.impala.api.ImpalaClient.exists_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.exists_database</span></code></a>(name)</td>
+<td>Checks if a given database exists</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.Database.drop.html#ibis.impala.api.Database.drop" title="ibis.impala.api.Database.drop"><code class="xref py py-obj docutils literal"><span class="pre">Database.drop</span></code></a>([force])</td>
+<td>Drop the database</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.Database.namespace.html#ibis.impala.api.Database.namespace" title="ibis.impala.api.Database.namespace"><code class="xref py py-obj docutils literal"><span class="pre">Database.namespace</span></code></a>(ns)</td>
+<td>Creates a derived Database instance for collections of objects having a common prefix.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.Database.table.html#ibis.impala.api.Database.table" title="ibis.impala.api.Database.table"><code class="xref py py-obj docutils literal"><span class="pre">Database.table</span></code></a>(name)</td>
+<td>Return a table expression referencing a table in this database</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="table-methods">
 <h3>Table methods<a class="headerlink" href="#table-methods" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="longtable docutils">
@@ -228,35 +296,55 @@ your Impala cluster, HDFS cluster, and creating the client with
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.table.html#ibis.ImpalaClient.table" title="ibis.ImpalaClient.table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.table</span></code></a>(name[,&nbsp;database])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html#ibis.impala.api.ImpalaClient.database" title="ibis.impala.api.ImpalaClient.database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.database</span></code></a>(name)</td>
+<td>Create a Database object for a given database name that can be used for</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.table.html#ibis.impala.api.ImpalaClient.table" title="ibis.impala.api.ImpalaClient.table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.table</span></code></a>(name[,&nbsp;database])</td>
 <td>Create a table expression that references a particular table in the</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.sql.html#ibis.ImpalaClient.sql" title="ibis.ImpalaClient.sql"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.sql</span></code></a>(query)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.sql.html#ibis.impala.api.ImpalaClient.sql" title="ibis.impala.api.ImpalaClient.sql"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.sql</span></code></a>(query)</td>
 <td>Convert a SQL query to an Ibis table expression</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.list_tables.html#ibis.ImpalaClient.list_tables" title="ibis.ImpalaClient.list_tables"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.list_tables</span></code></a>([like,&nbsp;database])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.raw_sql.html#ibis.impala.api.ImpalaClient.raw_sql" title="ibis.impala.api.ImpalaClient.raw_sql"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.raw_sql</span></code></a>(query[,&nbsp;results])</td>
+<td>Execute a given query string.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.list_tables.html#ibis.impala.api.ImpalaClient.list_tables" title="ibis.impala.api.ImpalaClient.list_tables"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.list_tables</span></code></a>([like,&nbsp;database])</td>
 <td>List tables in the current (or indicated) database.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.exists_table.html#ibis.ImpalaClient.exists_table" title="ibis.ImpalaClient.exists_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.exists_table</span></code></a>(name[,&nbsp;database])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.exists_table.html#ibis.impala.api.ImpalaClient.exists_table" title="ibis.impala.api.ImpalaClient.exists_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.exists_table</span></code></a>(name[,&nbsp;database])</td>
 <td>Determine if the indicated table or view exists</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.drop_table.html#ibis.ImpalaClient.drop_table" title="ibis.ImpalaClient.drop_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_table</span></code></a>(table_name[,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_table.html#ibis.impala.api.ImpalaClient.drop_table" title="ibis.impala.api.ImpalaClient.drop_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_table</span></code></a>(table_name[,&nbsp;...])</td>
 <td>Drop an Impala table</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.create_table.html#ibis.ImpalaClient.create_table" title="ibis.ImpalaClient.create_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_table</span></code></a>(table_name[,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_table.html#ibis.impala.api.ImpalaClient.create_table" title="ibis.impala.api.ImpalaClient.create_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_table</span></code></a>(table_name[,&nbsp;...])</td>
 <td>Create a new table in Impala using an Ibis table expression</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.insert.html#ibis.ImpalaClient.insert" title="ibis.ImpalaClient.insert"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.insert</span></code></a>(table_name,&nbsp;expr[,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.insert.html#ibis.impala.api.ImpalaClient.insert" title="ibis.impala.api.ImpalaClient.insert"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.insert</span></code></a>(table_name,&nbsp;expr[,&nbsp;...])</td>
 <td>Insert into existing table</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.truncate_table.html#ibis.ImpalaClient.truncate_table" title="ibis.ImpalaClient.truncate_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.truncate_table</span></code></a>(table_name[,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.truncate_table.html#ibis.impala.api.ImpalaClient.truncate_table" title="ibis.impala.api.ImpalaClient.truncate_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.truncate_table</span></code></a>(table_name[,&nbsp;...])</td>
 <td>Delete all rows from, but do not drop, an existing table</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.get_schema.html#ibis.ImpalaClient.get_schema" title="ibis.ImpalaClient.get_schema"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.get_schema</span></code></a>(table_name[,&nbsp;database])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.get_schema.html#ibis.impala.api.ImpalaClient.get_schema" title="ibis.impala.api.ImpalaClient.get_schema"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.get_schema</span></code></a>(table_name[,&nbsp;database])</td>
 <td>Return a Schema object for the indicated table and database</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.cache_table.html#ibis.ImpalaClient.cache_table" title="ibis.ImpalaClient.cache_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.cache_table</span></code></a>(table_name[,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.cache_table.html#ibis.impala.api.ImpalaClient.cache_table" title="ibis.impala.api.ImpalaClient.cache_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.cache_table</span></code></a>(table_name[,&nbsp;...])</td>
 <td>Caches a table in cluster memory in the given pool.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.drop.html#ibis.impala.api.ImpalaTable.drop" title="ibis.impala.api.ImpalaTable.drop"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaTable.drop</span></code></a>()</td>
+<td>Drop the table from the database</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html#ibis.impala.api.ImpalaTable.compute_stats" title="ibis.impala.api.ImpalaTable.compute_stats"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaTable.compute_stats</span></code></a>()</td>
+<td>Invoke Impala COMPUTE STATS command to compute column, table, and partition statistics.</td>
 </tr>
 </tbody>
 </table>
@@ -267,13 +355,13 @@ your Impala cluster, HDFS cluster, and creating the client with
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.create_view.html#ibis.ImpalaClient.create_view" title="ibis.ImpalaClient.create_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_view</span></code></a>(name,&nbsp;expr[,&nbsp;database])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_view.html#ibis.impala.api.ImpalaClient.create_view" title="ibis.impala.api.ImpalaClient.create_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_view</span></code></a>(name,&nbsp;expr[,&nbsp;database])</td>
 <td>Create an Impala view from a table expression</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.drop_view.html#ibis.ImpalaClient.drop_view" title="ibis.ImpalaClient.drop_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_view</span></code></a>(name[,&nbsp;database,&nbsp;force])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_view.html#ibis.impala.api.ImpalaClient.drop_view" title="ibis.impala.api.ImpalaClient.drop_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_view</span></code></a>(name[,&nbsp;database,&nbsp;force])</td>
 <td>Drop an Impala view</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.drop_table_or_view.html#ibis.ImpalaClient.drop_table_or_view" title="ibis.ImpalaClient.drop_table_or_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_table_or_view</span></code></a>(name[,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_table_or_view.html#ibis.impala.api.ImpalaClient.drop_table_or_view" title="ibis.impala.api.ImpalaClient.drop_table_or_view"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_table_or_view</span></code></a>(name[,&nbsp;...])</td>
 <td>Attempt to drop a relation that may be a view or table</td>
 </tr>
 </tbody>
@@ -287,40 +375,14 @@ your Impala cluster, HDFS cluster, and creating the client with
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.avro_file.html#ibis.ImpalaClient.avro_file" title="ibis.ImpalaClient.avro_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.avro_file</span></code></a>(hdfs_dir,&nbsp;avro_schema)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.avro_file.html#ibis.impala.api.ImpalaClient.avro_file" title="ibis.impala.api.ImpalaClient.avro_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.avro_file</span></code></a>(hdfs_dir,&nbsp;avro_schema)</td>
 <td>Create a (possibly temporary) table to read a collection of Avro data.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.delimited_file.html#ibis.ImpalaClient.delimited_file" title="ibis.ImpalaClient.delimited_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.delimited_file</span></code></a>(hdfs_dir,&nbsp;schema)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.delimited_file.html#ibis.impala.api.ImpalaClient.delimited_file" title="ibis.impala.api.ImpalaClient.delimited_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.delimited_file</span></code></a>(hdfs_dir,&nbsp;schema)</td>
 <td>Interpret delimited text files (CSV / TSV / etc.) as an Ibis table.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.parquet_file.html#ibis.ImpalaClient.parquet_file" title="ibis.ImpalaClient.parquet_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.parquet_file</span></code></a>(hdfs_dir[,&nbsp;...])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.parquet_file.html#ibis.impala.api.ImpalaClient.parquet_file" title="ibis.impala.api.ImpalaClient.parquet_file"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.parquet_file</span></code></a>(hdfs_dir[,&nbsp;...])</td>
 <td>Make indicated parquet file in HDFS available as an Ibis table.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="database-methods">
-<h3>Database methods<a class="headerlink" href="#database-methods" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.set_database.html#ibis.ImpalaClient.set_database" title="ibis.ImpalaClient.set_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.set_database</span></code></a>(name)</td>
-<td>Set the default database scope for client</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.create_database.html#ibis.ImpalaClient.create_database" title="ibis.ImpalaClient.create_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_database</span></code></a>(name[,&nbsp;path,&nbsp;...])</td>
-<td>Create a new Impala database</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.drop_database.html#ibis.ImpalaClient.drop_database" title="ibis.ImpalaClient.drop_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.drop_database</span></code></a>(name[,&nbsp;force])</td>
-<td>Drop an Impala database</td>
-</tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.list_databases.html#ibis.ImpalaClient.list_databases" title="ibis.ImpalaClient.list_databases"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.list_databases</span></code></a>([like])</td>
-<td>List databases in the Impala cluster.</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.exists_database.html#ibis.ImpalaClient.exists_database" title="ibis.ImpalaClient.exists_database"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.exists_database</span></code></a>(name)</td>
-<td>Checks if a given database exists</td>
 </tr>
 </tbody>
 </table>
@@ -333,10 +395,10 @@ your Impala cluster, HDFS cluster, and creating the client with
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.ImpalaClient.execute.html#ibis.ImpalaClient.execute" title="ibis.ImpalaClient.execute"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.execute</span></code></a>(expr[,&nbsp;params,&nbsp;limit])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.execute.html#ibis.impala.api.ImpalaClient.execute" title="ibis.impala.api.ImpalaClient.execute"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.execute</span></code></a>(expr[,&nbsp;params,&nbsp;limit])</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.ImpalaClient.disable_codegen.html#ibis.ImpalaClient.disable_codegen" title="ibis.ImpalaClient.disable_codegen"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.disable_codegen</span></code></a>([disabled])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.disable_codegen.html#ibis.impala.api.ImpalaClient.disable_codegen" title="ibis.impala.api.ImpalaClient.disable_codegen"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.disable_codegen</span></code></a>([disabled])</td>
 <td>Turn off or on LLVM codegen in Impala query execution</td>
 </tr>
 </tbody>
@@ -355,6 +417,12 @@ HDFS.</p>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.HDFS.ls.html#ibis.HDFS.ls" title="ibis.HDFS.ls"><code class="xref py py-obj docutils literal"><span class="pre">HDFS.ls</span></code></a>(hdfs_path[,&nbsp;status])</td>
 <td>Return contents of directory</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.HDFS.chmod.html#ibis.HDFS.chmod" title="ibis.HDFS.chmod"><code class="xref py py-obj docutils literal"><span class="pre">HDFS.chmod</span></code></a>(hdfs_path,&nbsp;permissions)</td>
+<td>Change permissions of a file of directory</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.HDFS.chown.html#ibis.HDFS.chown" title="ibis.HDFS.chown"><code class="xref py py-obj docutils literal"><span class="pre">HDFS.chown</span></code></a>(hdfs_path[,&nbsp;owner,&nbsp;group])</td>
+<td>Change owner (and/or group) of a file or directory</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.HDFS.get.html#ibis.HDFS.get" title="ibis.HDFS.get"><code class="xref py py-obj docutils literal"><span class="pre">HDFS.get</span></code></a>(hdfs_path[,&nbsp;local_path,&nbsp;overwrite])</td>
 <td>Download remote file or directory to the local filesystem</td>
@@ -475,64 +543,67 @@ HDFS.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.distinct.html#ibis.expr.api.TableExpr.distinct" title="ibis.expr.api.TableExpr.distinct"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.distinct</span></code></a>()</td>
 <td>Compute set of unique rows/tuples occurring in this table</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.filter.html#ibis.expr.api.TableExpr.filter" title="ibis.expr.api.TableExpr.filter"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.filter</span></code></a>(table,&nbsp;predicates)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.info.html#ibis.expr.api.TableExpr.info" title="ibis.expr.api.TableExpr.info"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.info</span></code></a>([buf])</td>
+<td>Similar to pandas DataFrame.info.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.filter.html#ibis.expr.api.TableExpr.filter" title="ibis.expr.api.TableExpr.filter"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.filter</span></code></a>(table,&nbsp;predicates)</td>
 <td>Select rows from table based on boolean expressions</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_column.html#ibis.expr.api.TableExpr.get_column" title="ibis.expr.api.TableExpr.get_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.get_column</span></code></a>(name)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_column.html#ibis.expr.api.TableExpr.get_column" title="ibis.expr.api.TableExpr.get_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.get_column</span></code></a>(name)</td>
 <td>Get a reference to a single column from the table</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_columns.html#ibis.expr.api.TableExpr.get_columns" title="ibis.expr.api.TableExpr.get_columns"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.get_columns</span></code></a>(iterable)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_columns.html#ibis.expr.api.TableExpr.get_columns" title="ibis.expr.api.TableExpr.get_columns"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.get_columns</span></code></a>(iterable)</td>
 <td>Get multiple columns from the table</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html#ibis.expr.api.TableExpr.group_by" title="ibis.expr.api.TableExpr.group_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.group_by</span></code></a>(by)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html#ibis.expr.api.TableExpr.group_by" title="ibis.expr.api.TableExpr.group_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.group_by</span></code></a>(by)</td>
 <td>Create an intermediate grouped table expression, pending some group operation to be applied with it.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html#ibis.expr.api.TableExpr.limit" title="ibis.expr.api.TableExpr.limit"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.limit</span></code></a>(n[,&nbsp;offset])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html#ibis.expr.api.TableExpr.limit" title="ibis.expr.api.TableExpr.limit"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.limit</span></code></a>(n[,&nbsp;offset])</td>
 <td>Select the first n rows at beginning of table (may not be deterministic depending on implementatino and presence of a sorting).</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html#ibis.expr.api.TableExpr.mutate" title="ibis.expr.api.TableExpr.mutate"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.mutate</span></code></a>(table[,&nbsp;exprs])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html#ibis.expr.api.TableExpr.mutate" title="ibis.expr.api.TableExpr.mutate"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.mutate</span></code></a>(table[,&nbsp;exprs])</td>
 <td>Convenience function for table projections involving adding columns</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.pipe.html#ibis.expr.api.TableExpr.pipe" title="ibis.expr.api.TableExpr.pipe"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.pipe</span></code></a>(f,&nbsp;*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.pipe.html#ibis.expr.api.TableExpr.pipe" title="ibis.expr.api.TableExpr.pipe"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.pipe</span></code></a>(f,&nbsp;*args,&nbsp;**kwargs)</td>
 <td>Generic composition function to enable expression pipelining</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html#ibis.expr.api.TableExpr.projection" title="ibis.expr.api.TableExpr.projection"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.projection</span></code></a>(exprs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html#ibis.expr.api.TableExpr.projection" title="ibis.expr.api.TableExpr.projection"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.projection</span></code></a>(exprs)</td>
 <td>Compute new table expression with the indicated column expressions from this table.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.schema.html#ibis.expr.api.TableExpr.schema" title="ibis.expr.api.TableExpr.schema"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.schema</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.schema.html#ibis.expr.api.TableExpr.schema" title="ibis.expr.api.TableExpr.schema"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.schema</span></code></a>()</td>
 <td>Get the schema for this table (if one is known)</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.set_column.html#ibis.expr.api.TableExpr.set_column" title="ibis.expr.api.TableExpr.set_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.set_column</span></code></a>(table,&nbsp;name,&nbsp;expr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.set_column.html#ibis.expr.api.TableExpr.set_column" title="ibis.expr.api.TableExpr.set_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.set_column</span></code></a>(table,&nbsp;name,&nbsp;expr)</td>
 <td>Replace an existing column with a new expression</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.sort_by.html#ibis.expr.api.TableExpr.sort_by" title="ibis.expr.api.TableExpr.sort_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.sort_by</span></code></a>(sort_exprs)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.sort_by.html#ibis.expr.api.TableExpr.sort_by" title="ibis.expr.api.TableExpr.sort_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.sort_by</span></code></a>(sort_exprs)</td>
 <td>Sort table by the indicated column expressions and sort orders</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.union.html#ibis.expr.api.TableExpr.union" title="ibis.expr.api.TableExpr.union"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.union</span></code></a>(other[,&nbsp;distinct])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.union.html#ibis.expr.api.TableExpr.union" title="ibis.expr.api.TableExpr.union"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.union</span></code></a>(other[,&nbsp;distinct])</td>
 <td>Form the table set union of two table expressions having identical schemas.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.view.html#ibis.expr.api.TableExpr.view" title="ibis.expr.api.TableExpr.view"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.view</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.view.html#ibis.expr.api.TableExpr.view" title="ibis.expr.api.TableExpr.view"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.view</span></code></a>()</td>
 <td>Create a new table expression that is semantically equivalent to the current one, but is considered a distinct relation for evaluation purposes (e.g.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.join.html#ibis.expr.api.TableExpr.join" title="ibis.expr.api.TableExpr.join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.join</span></code></a>(left,&nbsp;right[,&nbsp;predicates,&nbsp;how])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.join.html#ibis.expr.api.TableExpr.join" title="ibis.expr.api.TableExpr.join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.join</span></code></a>(left,&nbsp;right[,&nbsp;predicates,&nbsp;how])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.cross_join.html#ibis.expr.api.TableExpr.cross_join" title="ibis.expr.api.TableExpr.cross_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.cross_join</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.cross_join.html#ibis.expr.api.TableExpr.cross_join" title="ibis.expr.api.TableExpr.cross_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.cross_join</span></code></a>(*args,&nbsp;**kwargs)</td>
 <td>Perform a cross join (cartesian product) amongst a list of tables, with</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.inner_join.html#ibis.expr.api.TableExpr.inner_join" title="ibis.expr.api.TableExpr.inner_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.inner_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.inner_join.html#ibis.expr.api.TableExpr.inner_join" title="ibis.expr.api.TableExpr.inner_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.inner_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.left_join.html#ibis.expr.api.TableExpr.left_join" title="ibis.expr.api.TableExpr.left_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.left_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.left_join.html#ibis.expr.api.TableExpr.left_join" title="ibis.expr.api.TableExpr.left_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.left_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.outer_join.html#ibis.expr.api.TableExpr.outer_join" title="ibis.expr.api.TableExpr.outer_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.outer_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.outer_join.html#ibis.expr.api.TableExpr.outer_join" title="ibis.expr.api.TableExpr.outer_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.outer_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.semi_join.html#ibis.expr.api.TableExpr.semi_join" title="ibis.expr.api.TableExpr.semi_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.semi_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.semi_join.html#ibis.expr.api.TableExpr.semi_join" title="ibis.expr.api.TableExpr.semi_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.semi_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join" title="ibis.expr.api.TableExpr.anti_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.anti_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join" title="ibis.expr.api.TableExpr.anti_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.anti_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
 </tbody>
@@ -783,7 +854,10 @@ HDFS.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntegerValue.to_timestamp.html#ibis.expr.api.IntegerValue.to_timestamp" title="ibis.expr.api.IntegerValue.to_timestamp"><code class="xref py py-obj docutils literal"><span class="pre">IntegerValue.to_timestamp</span></code></a>(arg[,&nbsp;unit])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntegerValue.convert_base.html#ibis.expr.api.IntegerValue.convert_base" title="ibis.expr.api.IntegerValue.convert_base"><code class="xref py py-obj docutils literal"><span class="pre">IntegerValue.convert_base</span></code></a>(arg,&nbsp;from_base,&nbsp;...)</td>
+<td>Convert number (as integer or string) from one base to another</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntegerValue.to_timestamp.html#ibis.expr.api.IntegerValue.to_timestamp" title="ibis.expr.api.IntegerValue.to_timestamp"><code class="xref py py-obj docutils literal"><span class="pre">IntegerValue.to_timestamp</span></code></a>(arg[,&nbsp;unit])</td>
 <td>Convert integer UNIX timestamp (at some resolution) to a timestamp type</td>
 </tr>
 </tbody>
@@ -799,82 +873,85 @@ HDFS.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.length.html#ibis.expr.api.StringValue.length" title="ibis.expr.api.StringValue.length"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.length</span></code></a>(arg)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.convert_base.html#ibis.expr.api.StringValue.convert_base" title="ibis.expr.api.StringValue.convert_base"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.convert_base</span></code></a>(arg,&nbsp;from_base,&nbsp;to_base)</td>
+<td>Convert number (as integer or string) from one base to another</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.length.html#ibis.expr.api.StringValue.length" title="ibis.expr.api.StringValue.length"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.length</span></code></a>(arg)</td>
 <td>Compute length of strings</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lower.html#ibis.expr.api.StringValue.lower" title="ibis.expr.api.StringValue.lower"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lower</span></code></a>(arg)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lower.html#ibis.expr.api.StringValue.lower" title="ibis.expr.api.StringValue.lower"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lower</span></code></a>(arg)</td>
 <td>Convert string to all lowercase</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.upper.html#ibis.expr.api.StringValue.upper" title="ibis.expr.api.StringValue.upper"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.upper</span></code></a>(arg)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.upper.html#ibis.expr.api.StringValue.upper" title="ibis.expr.api.StringValue.upper"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.upper</span></code></a>(arg)</td>
 <td>Convert string to all uppercase</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.reverse.html#ibis.expr.api.StringValue.reverse" title="ibis.expr.api.StringValue.reverse"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.reverse</span></code></a>(arg)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.reverse.html#ibis.expr.api.StringValue.reverse" title="ibis.expr.api.StringValue.reverse"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.reverse</span></code></a>(arg)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.ascii_str.html#ibis.expr.api.StringValue.ascii_str" title="ibis.expr.api.StringValue.ascii_str"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.ascii_str</span></code></a>(arg)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.ascii_str.html#ibis.expr.api.StringValue.ascii_str" title="ibis.expr.api.StringValue.ascii_str"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.ascii_str</span></code></a>(arg)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.strip.html#ibis.expr.api.StringValue.strip" title="ibis.expr.api.StringValue.strip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.strip</span></code></a>(arg)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.strip.html#ibis.expr.api.StringValue.strip" title="ibis.expr.api.StringValue.strip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.strip</span></code></a>(arg)</td>
 <td>Remove whitespace from left and right sides of string</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lstrip.html#ibis.expr.api.StringValue.lstrip" title="ibis.expr.api.StringValue.lstrip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lstrip</span></code></a>(arg)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lstrip.html#ibis.expr.api.StringValue.lstrip" title="ibis.expr.api.StringValue.lstrip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lstrip</span></code></a>(arg)</td>
 <td>Remove whitespace from left side of string</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rstrip.html#ibis.expr.api.StringValue.rstrip" title="ibis.expr.api.StringValue.rstrip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rstrip</span></code></a>(arg)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rstrip.html#ibis.expr.api.StringValue.rstrip" title="ibis.expr.api.StringValue.rstrip"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rstrip</span></code></a>(arg)</td>
 <td>Remove whitespace from right side of string</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.capitalize.html#ibis.expr.api.StringValue.capitalize" title="ibis.expr.api.StringValue.capitalize"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.capitalize</span></code></a>(arg)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.capitalize.html#ibis.expr.api.StringValue.capitalize" title="ibis.expr.api.StringValue.capitalize"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.capitalize</span></code></a>(arg)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.contains.html#ibis.expr.api.StringValue.contains" title="ibis.expr.api.StringValue.contains"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.contains</span></code></a>(arg,&nbsp;substr)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.contains.html#ibis.expr.api.StringValue.contains" title="ibis.expr.api.StringValue.contains"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.contains</span></code></a>(arg,&nbsp;substr)</td>
 <td>Determine if indicated string is exactly contained in the calling string.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.like.html#ibis.expr.api.StringValue.like" title="ibis.expr.api.StringValue.like"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.like</span></code></a>(pattern)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.like.html#ibis.expr.api.StringValue.like" title="ibis.expr.api.StringValue.like"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.like</span></code></a>(pattern)</td>
 <td>Wildcard fuzzy matching function equivalent to the SQL LIKE directive.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html#ibis.expr.api.StringValue.parse_url" title="ibis.expr.api.StringValue.parse_url"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.parse_url</span></code></a>(arg,&nbsp;extract[,&nbsp;key])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html#ibis.expr.api.StringValue.parse_url" title="ibis.expr.api.StringValue.parse_url"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.parse_url</span></code></a>(arg,&nbsp;extract[,&nbsp;key])</td>
 <td>Returns the portion of a URL corresponding to a part specified</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html#ibis.expr.api.StringValue.substr" title="ibis.expr.api.StringValue.substr"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.substr</span></code></a>(start[,&nbsp;length])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html#ibis.expr.api.StringValue.substr" title="ibis.expr.api.StringValue.substr"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.substr</span></code></a>(start[,&nbsp;length])</td>
 <td>Pull substrings out of each string value by position and maximum length.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html#ibis.expr.api.StringValue.left" title="ibis.expr.api.StringValue.left"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.left</span></code></a>(nchars)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html#ibis.expr.api.StringValue.left" title="ibis.expr.api.StringValue.left"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.left</span></code></a>(nchars)</td>
 <td>Return left-most up to N characters from each string.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.right.html#ibis.expr.api.StringValue.right" title="ibis.expr.api.StringValue.right"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.right</span></code></a>(nchars)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.right.html#ibis.expr.api.StringValue.right" title="ibis.expr.api.StringValue.right"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.right</span></code></a>(nchars)</td>
 <td>Split up to nchars starting from end of each string.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.repeat.html#ibis.expr.api.StringValue.repeat" title="ibis.expr.api.StringValue.repeat"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.repeat</span></code></a>(n)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.repeat.html#ibis.expr.api.StringValue.repeat" title="ibis.expr.api.StringValue.repeat"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.repeat</span></code></a>(n)</td>
 <td>Returns the argument string repeated n times</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find.html#ibis.expr.api.StringValue.find" title="ibis.expr.api.StringValue.find"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.find</span></code></a>(substr[,&nbsp;start,&nbsp;end])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find.html#ibis.expr.api.StringValue.find" title="ibis.expr.api.StringValue.find"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.find</span></code></a>(substr[,&nbsp;start,&nbsp;end])</td>
 <td>Returns position (0 indexed) of first occurence of substring,</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.translate.html#ibis.expr.api.StringValue.translate" title="ibis.expr.api.StringValue.translate"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.translate</span></code></a>(from_str,&nbsp;to_str)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.translate.html#ibis.expr.api.StringValue.translate" title="ibis.expr.api.StringValue.translate"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.translate</span></code></a>(from_str,&nbsp;to_str)</td>
 <td>Returns string with set of &#8216;from&#8217; characters replaced by set of &#8216;to&#8217; characters.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find_in_set.html#ibis.expr.api.StringValue.find_in_set" title="ibis.expr.api.StringValue.find_in_set"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.find_in_set</span></code></a>(str_list)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find_in_set.html#ibis.expr.api.StringValue.find_in_set" title="ibis.expr.api.StringValue.find_in_set"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.find_in_set</span></code></a>(str_list)</td>
 <td>Returns postion (0 indexed) of first occurence of argument within a list of strings.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.join.html#ibis.expr.api.StringValue.join" title="ibis.expr.api.StringValue.join"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.join</span></code></a>(strings)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.join.html#ibis.expr.api.StringValue.join" title="ibis.expr.api.StringValue.join"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.join</span></code></a>(strings)</td>
 <td>Joins a list of strings together using the calling string as a separator</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lpad.html#ibis.expr.api.StringValue.lpad" title="ibis.expr.api.StringValue.lpad"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lpad</span></code></a>(length[,&nbsp;pad])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lpad.html#ibis.expr.api.StringValue.lpad" title="ibis.expr.api.StringValue.lpad"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.lpad</span></code></a>(length[,&nbsp;pad])</td>
 <td>Returns string of given length by truncating (on right)</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rpad.html#ibis.expr.api.StringValue.rpad" title="ibis.expr.api.StringValue.rpad"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rpad</span></code></a>(length[,&nbsp;pad])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rpad.html#ibis.expr.api.StringValue.rpad" title="ibis.expr.api.StringValue.rpad"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rpad</span></code></a>(length[,&nbsp;pad])</td>
 <td>Returns string of given length by truncating (on right)</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rlike.html#ibis.expr.api.StringValue.rlike" title="ibis.expr.api.StringValue.rlike"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rlike</span></code></a>(arg,&nbsp;pattern)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rlike.html#ibis.expr.api.StringValue.rlike" title="ibis.expr.api.StringValue.rlike"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.rlike</span></code></a>(arg,&nbsp;pattern)</td>
 <td>Search string values using a regular expression.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_search.html#ibis.expr.api.StringValue.re_search" title="ibis.expr.api.StringValue.re_search"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_search</span></code></a>(arg,&nbsp;pattern)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_search.html#ibis.expr.api.StringValue.re_search" title="ibis.expr.api.StringValue.re_search"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_search</span></code></a>(arg,&nbsp;pattern)</td>
 <td>Search string values using a regular expression.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_extract.html#ibis.expr.api.StringValue.re_extract" title="ibis.expr.api.StringValue.re_extract"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_extract</span></code></a>(arg,&nbsp;pattern,&nbsp;index)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_extract.html#ibis.expr.api.StringValue.re_extract" title="ibis.expr.api.StringValue.re_extract"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_extract</span></code></a>(arg,&nbsp;pattern,&nbsp;index)</td>
 <td>Returns specified index, 0 indexed, from string based on regex pattern</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_replace.html#ibis.expr.api.StringValue.re_replace" title="ibis.expr.api.StringValue.re_replace"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_replace</span></code></a>(arg,&nbsp;pattern,&nbsp;replacement)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_replace.html#ibis.expr.api.StringValue.re_replace" title="ibis.expr.api.StringValue.re_replace"><code class="xref py py-obj docutils literal"><span class="pre">StringValue.re_replace</span></code></a>(arg,&nbsp;pattern,&nbsp;replacement)</td>
 <td>Replaces match found by regex with replacement string.</td>
 </tr>
 </tbody>
@@ -938,6 +1015,15 @@ HDFS.</p>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.any.html#ibis.expr.api.BooleanArray.any" title="ibis.expr.api.BooleanArray.any"><code class="xref py py-obj docutils literal"><span class="pre">BooleanArray.any</span></code></a>(arg)</td>
 <td></td>
 </tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.all.html#ibis.expr.api.BooleanArray.all" title="ibis.expr.api.BooleanArray.all"><code class="xref py py-obj docutils literal"><span class="pre">BooleanArray.all</span></code></a>(arg)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.cumany.html#ibis.expr.api.BooleanArray.cumany" title="ibis.expr.api.BooleanArray.cumany"><code class="xref py py-obj docutils literal"><span class="pre">BooleanArray.cumany</span></code></a>(arg)</td>
+<td>Cumulative any</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.cumall.html#ibis.expr.api.BooleanArray.cumall" title="ibis.expr.api.BooleanArray.cumall"><code class="xref py py-obj docutils literal"><span class="pre">BooleanArray.cumall</span></code></a>(arg)</td>
+<td>Cumulative all</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -985,7 +1071,7 @@ are represented semantically as integers starting at 0.</p>
         <a href="generated/ibis.make_client.html" class="btn btn-neutral float-right" title="ibis.make_client">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generated-notebooks/7.html" class="btn btn-neutral" title="Frequency tables"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="impala-udf.html" class="btn btn-neutral" title="Using Impala UDFs in Ibis"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1015,7 +1101,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.0',
+            VERSION:'0.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

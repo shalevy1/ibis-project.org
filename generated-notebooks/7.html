@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Frequency tables &mdash; Ibis 0.3.0 documentation</title>
+  <title>Frequency tables &mdash; Ibis 0.4.0 documentation</title>
   
 
   
@@ -30,9 +30,9 @@
   
 
   
-    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
-        <link rel="next" title="API Reference" href="../api.html"/>
+        <link rel="next" title="Using Impala UDFs in Ibis" href="../impala-udf.html"/>
         <link rel="prev" title="More filtering mojo for your analytics" href="6.html"/> 
 
   
@@ -121,6 +121,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
@@ -144,6 +152,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
@@ -198,7 +207,7 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
 
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 
@@ -297,8 +306,8 @@ bucketing ends at 100000, we see there are 4122 values that are over
 0       2  3329905
 1       0   352843
 2       4     4122
-3       1   420695
-4       3  1893650
+3       3  1893650
+4       1   420695
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">bucketed</span></code> object here is a special <strong>*category*</strong> type</p>
@@ -388,8 +397,8 @@ action:</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  color  # rows total  # selected   total  selected total
-0   red          2920        1460  132714           58984
-1  blue          4380         730  199071           51611
+0  blue          4380         730  199071           51611
+1   red          2920        1460  132714           58984
 </pre></div>
 </div>
 </div>
@@ -400,7 +409,7 @@ action:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../impala-udf.html" class="btn btn-neutral float-right" title="Using Impala UDFs in Ibis">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="6.html" class="btn btn-neutral" title="More filtering mojo for your analytics"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -433,7 +442,7 @@ action:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.0',
+            VERSION:'0.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

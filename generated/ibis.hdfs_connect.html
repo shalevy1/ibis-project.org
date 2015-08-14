@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.hdfs_connect &mdash; Ibis 0.3.0 documentation</title>
+  <title>ibis.hdfs_connect &mdash; Ibis 0.4.0 documentation</title>
   
 
   
@@ -30,10 +30,10 @@
   
 
   
-    <link rel="top" title="Ibis 0.3.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
-        <link rel="next" title="ibis.ImpalaClient.table" href="ibis.ImpalaClient.table.html"/>
-        <link rel="prev" title="ibis.impala_connect" href="ibis.impala_connect.html"/> 
+        <link rel="next" title="ibis.impala.api.connect" href="ibis.impala.api.connect.html"/>
+        <link rel="prev" title="ibis.make_client" href="ibis.make_client.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -121,6 +121,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
@@ -144,6 +152,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1.0 (March 26, 2015)</a></li>
@@ -230,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ibis.ImpalaClient.table.html" class="btn btn-neutral float-right" title="ibis.ImpalaClient.table">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ibis.impala.api.connect.html" class="btn btn-neutral float-right" title="ibis.impala.api.connect">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ibis.impala_connect.html" class="btn btn-neutral" title="ibis.impala_connect"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ibis.make_client.html" class="btn btn-neutral" title="ibis.make_client"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -263,7 +272,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.3.0',
+            VERSION:'0.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

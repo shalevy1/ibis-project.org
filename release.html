@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis 0.3.0 documentation</title>
+  <title>Release Notes &mdash; Ibis 0.4.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.3.0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis 0.4.0 documentation" href="index.html"/>
         <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
         <link rel="prev" title="Ibis for Impala users" href="impala.html"/> 
 
@@ -120,6 +120,14 @@
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="impala-udf.html">Using Impala UDFs in Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#impala-client">Impala client</a></li>
@@ -143,6 +151,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#june-16-2015">0.2.0 (June 16, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#march-26-2015">0.1.0 (March 26, 2015)</a></li>
@@ -193,11 +202,44 @@
             
   <div class="section" id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="august-14-2015">
+<h2>0.4.0 (August 14, 2015)<a class="headerlink" href="#august-14-2015" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="new-features">
+<h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Add tooling to use Impala C++ scalar UDFs within Ibis (#262, #195)</li>
+<li>Support and testing for Kerberos-enabled secure HDFS clusters</li>
+<li>Many table functions can now accept functions as parameters (invoked on the
+calling table) to enhance composability and emulate late-binding semantics of
+languages (like R) that have non-standard evaluation (#460)</li>
+<li>Add <code class="docutils literal"><span class="pre">any</span></code>, <code class="docutils literal"><span class="pre">all</span></code>, <code class="docutils literal"><span class="pre">notany</span></code>, and <code class="docutils literal"><span class="pre">notall</span></code> reductions on boolean
+arrays, as well as <code class="docutils literal"><span class="pre">cumany</span></code> and <code class="docutils literal"><span class="pre">cumall</span></code></li>
+<li>Using <code class="docutils literal"><span class="pre">topk</span></code> now produces an analytic expression that is executable (as an
+aggregation) but can also be used as a filter as before (#392, #91)</li>
+<li>Added experimental database object &#8220;usability layer&#8221;, see
+<code class="docutils literal"><span class="pre">ImpalaClient.database</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">TableExpr.info</span></code></li>
+<li>Add <code class="docutils literal"><span class="pre">compute_stats</span></code> API to table expressions referencing physical Impala
+tables</li>
+<li>Add <code class="docutils literal"><span class="pre">explain</span></code> method to <code class="docutils literal"><span class="pre">ImpalaClient</span></code> to show query plan for an
+expression</li>
+<li>Add <code class="docutils literal"><span class="pre">chmod</span></code> and <code class="docutils literal"><span class="pre">chown</span></code> APIs to <code class="docutils literal"><span class="pre">HDFS</span></code> interface for superusers</li>
+<li>Add <code class="docutils literal"><span class="pre">convert_base</span></code> method to strings and integer types</li>
+<li>Add option to <code class="docutils literal"><span class="pre">ImpalaClient.create_table</span></code> to create empty partitioned
+tables</li>
+<li><code class="docutils literal"><span class="pre">ibis.cross_join</span></code> can now join more than 2 tables at once</li>
+<li>Add <code class="docutils literal"><span class="pre">ImpalaClient.raw_sql</span></code> method for running naked SQL queries</li>
+<li><code class="docutils literal"><span class="pre">ImpalaClient.insert</span></code> now validates schemas locally prior to sending query
+to cluster, for better usability.</li>
+<li>Add conda installation recipes</li>
+</ul>
+</div>
+</div>
 <div class="section" id="july-20-2015">
 <h2>0.3.0 (July 20, 2015)<a class="headerlink" href="#july-20-2015" title="Permalink to this headline">¶</a></h2>
 <p>First public release. See <a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a> for more.</p>
-<div class="section" id="new-features">
-<h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Implement window / analytic function support</li>
 <li>Enable non-equijoins (join clauses with operations other than <code class="docutils literal"><span class="pre">==</span></code>).</li>
@@ -224,8 +266,8 @@ productivity.</li>
 </div>
 <div class="section" id="june-16-2015">
 <h2>0.2.0 (June 16, 2015)<a class="headerlink" href="#june-16-2015" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>New features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">insert</span></code> method on Ibis client for inserting data into existing tables.</li>
 <li><code class="docutils literal"><span class="pre">parquet_file</span></code>, <code class="docutils literal"><span class="pre">delimited_file</span></code>, and <code class="docutils literal"><span class="pre">avro_file</span></code> client methods for
@@ -329,7 +371,7 @@ Impala connection and an optional HDFS connection</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.3.0',
+            VERSION:'0.4.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

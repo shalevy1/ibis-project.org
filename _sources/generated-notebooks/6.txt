@@ -21,7 +21,7 @@ or more of:
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
     
-    ic = ibis.impala_connect(host='quickstart.cloudera', database='ibis_testing')
+    ic = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
     con = ibis.make_client(ic, hdfs_client=hdfs)
     
@@ -40,196 +40,19 @@ Using scalar aggregates in filters
 
 .. parsed-literal::
 
-            id bool_col  tinyint_col  smallint_col  int_col  bigint_col  \
-    0     4550     True            0             0        0           0   
-    1     4551    False            1             1        1          10   
-    2     4552     True            2             2        2          20   
-    3     4553    False            3             3        3          30   
-    4     4554     True            4             4        4          40   
-    5     4555    False            5             5        5          50   
-    6     4556     True            6             6        6          60   
-    7     4557    False            7             7        7          70   
-    8     4558     True            8             8        8          80   
-    9     4559    False            9             9        9          90   
-    10    4560     True            0             0        0           0   
-    11    4561    False            1             1        1          10   
-    12    4562     True            2             2        2          20   
-    13    4563    False            3             3        3          30   
-    14    4564     True            4             4        4          40   
-    15    4565    False            5             5        5          50   
-    16    4566     True            6             6        6          60   
-    17    4567    False            7             7        7          70   
-    18    4568     True            8             8        8          80   
-    19    4569    False            9             9        9          90   
-    20    4570     True            0             0        0           0   
-    21    4571    False            1             1        1          10   
-    22    4572     True            2             2        2          20   
-    23    4573    False            3             3        3          30   
-    24    4574     True            4             4        4          40   
-    25    4575    False            5             5        5          50   
-    26    4576     True            6             6        6          60   
-    27    4577    False            7             7        7          70   
-    28    4578     True            8             8        8          80   
-    29    4579    False            9             9        9          90   
-    ...    ...      ...          ...           ...      ...         ...   
-    7270  3930     True            0             0        0           0   
-    7271  3931    False            1             1        1          10   
-    7272  3932     True            2             2        2          20   
-    7273  3933    False            3             3        3          30   
-    7274  3934     True            4             4        4          40   
-    7275  3935    False            5             5        5          50   
-    7276  3936     True            6             6        6          60   
-    7277  3937    False            7             7        7          70   
-    7278  3938     True            8             8        8          80   
-    7279  3939    False            9             9        9          90   
-    7280  3940     True            0             0        0           0   
-    7281  3941    False            1             1        1          10   
-    7282  3942     True            2             2        2          20   
-    7283  3943    False            3             3        3          30   
-    7284  3944     True            4             4        4          40   
-    7285  3945    False            5             5        5          50   
-    7286  3946     True            6             6        6          60   
-    7287  3947    False            7             7        7          70   
-    7288  3948     True            8             8        8          80   
-    7289  3949    False            9             9        9          90   
-    7290  3950     True            0             0        0           0   
-    7291  3951    False            1             1        1          10   
-    7292  3952     True            2             2        2          20   
-    7293  3953    False            3             3        3          30   
-    7294  3954     True            4             4        4          40   
-    7295  3955    False            5             5        5          50   
-    7296  3956     True            6             6        6          60   
-    7297  3957    False            7             7        7          70   
-    7298  3958     True            8             8        8          80   
-    7299  3959    False            9             9        9          90   
+         id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
+    0  6690     True            0             0        0           0        0.0   
+    1  6691    False            1             1        1          10        1.1   
+    2  6692     True            2             2        2          20        2.2   
+    3  6693    False            3             3        3          30        3.3   
+    4  6694     True            4             4        4          40        4.4   
     
-          float_col  double_col date_string_col string_col  \
-    0           0.0         0.0        04/01/10          0   
-    1           1.1        10.1        04/01/10          1   
-    2           2.2        20.2        04/01/10          2   
-    3           3.3        30.3        04/01/10          3   
-    4           4.4        40.4        04/01/10          4   
-    5           5.5        50.5        04/01/10          5   
-    6           6.6        60.6        04/01/10          6   
-    7           7.7        70.7        04/01/10          7   
-    8           8.8        80.8        04/01/10          8   
-    9           9.9        90.9        04/01/10          9   
-    10          0.0         0.0        04/02/10          0   
-    11          1.1        10.1        04/02/10          1   
-    12          2.2        20.2        04/02/10          2   
-    13          3.3        30.3        04/02/10          3   
-    14          4.4        40.4        04/02/10          4   
-    15          5.5        50.5        04/02/10          5   
-    16          6.6        60.6        04/02/10          6   
-    17          7.7        70.7        04/02/10          7   
-    18          8.8        80.8        04/02/10          8   
-    19          9.9        90.9        04/02/10          9   
-    20          0.0         0.0        04/03/10          0   
-    21          1.1        10.1        04/03/10          1   
-    22          2.2        20.2        04/03/10          2   
-    23          3.3        30.3        04/03/10          3   
-    24          4.4        40.4        04/03/10          4   
-    25          5.5        50.5        04/03/10          5   
-    26          6.6        60.6        04/03/10          6   
-    27          7.7        70.7        04/03/10          7   
-    28          8.8        80.8        04/03/10          8   
-    29          9.9        90.9        04/03/10          9   
-    ...         ...         ...             ...        ...   
-    7270        0.0         0.0        01/29/10          0   
-    7271        1.1        10.1        01/29/10          1   
-    7272        2.2        20.2        01/29/10          2   
-    7273        3.3        30.3        01/29/10          3   
-    7274        4.4        40.4        01/29/10          4   
-    7275        5.5        50.5        01/29/10          5   
-    7276        6.6        60.6        01/29/10          6   
-    7277        7.7        70.7        01/29/10          7   
-    7278        8.8        80.8        01/29/10          8   
-    7279        9.9        90.9        01/29/10          9   
-    7280        0.0         0.0        01/30/10          0   
-    7281        1.1        10.1        01/30/10          1   
-    7282        2.2        20.2        01/30/10          2   
-    7283        3.3        30.3        01/30/10          3   
-    7284        4.4        40.4        01/30/10          4   
-    7285        5.5        50.5        01/30/10          5   
-    7286        6.6        60.6        01/30/10          6   
-    7287        7.7        70.7        01/30/10          7   
-    7288        8.8        80.8        01/30/10          8   
-    7289        9.9        90.9        01/30/10          9   
-    7290        0.0         0.0        01/31/10          0   
-    7291        1.1        10.1        01/31/10          1   
-    7292        2.2        20.2        01/31/10          2   
-    7293        3.3        30.3        01/31/10          3   
-    7294        4.4        40.4        01/31/10          4   
-    7295        5.5        50.5        01/31/10          5   
-    7296        6.6        60.6        01/31/10          6   
-    7297        7.7        70.7        01/31/10          7   
-    7298        8.8        80.8        01/31/10          8   
-    7299        9.9        90.9        01/31/10          9   
-    
-                   timestamp_col  year  month  
-    0    2010-04-01 00:00:00.000  2010      4  
-    1    2010-04-01 00:01:00.000  2010      4  
-    2    2010-04-01 00:02:00.100  2010      4  
-    3    2010-04-01 00:03:00.300  2010      4  
-    4    2010-04-01 00:04:00.600  2010      4  
-    5    2010-04-01 00:05:00.100  2010      4  
-    6    2010-04-01 00:06:00.150  2010      4  
-    7    2010-04-01 00:07:00.210  2010      4  
-    8    2010-04-01 00:08:00.280  2010      4  
-    9    2010-04-01 00:09:00.360  2010      4  
-    10   2010-04-02 00:10:00.450  2010      4  
-    11   2010-04-02 00:11:00.450  2010      4  
-    12   2010-04-02 00:12:00.460  2010      4  
-    13   2010-04-02 00:13:00.480  2010      4  
-    14   2010-04-02 00:14:00.510  2010      4  
-    15   2010-04-02 00:15:00.550  2010      4  
-    16   2010-04-02 00:16:00.600  2010      4  
-    17   2010-04-02 00:17:00.660  2010      4  
-    18   2010-04-02 00:18:00.730  2010      4  
-    19   2010-04-02 00:19:00.810  2010      4  
-    20   2010-04-03 00:20:00.900  2010      4  
-    21   2010-04-03 00:21:00.900  2010      4  
-    22   2010-04-03 00:22:00.910  2010      4  
-    23   2010-04-03 00:23:00.930  2010      4  
-    24   2010-04-03 00:24:00.960  2010      4  
-    25   2010-04-03 00:25:01.000  2010      4  
-    26   2010-04-03 00:26:01.500  2010      4  
-    27   2010-04-03 00:27:01.110  2010      4  
-    28   2010-04-03 00:28:01.180  2010      4  
-    29   2010-04-03 00:29:01.260  2010      4  
-    ...                      ...   ...    ...  
-    7270 2010-01-29 04:40:12.600  2010      1  
-    7271 2010-01-29 04:41:12.600  2010      1  
-    7272 2010-01-29 04:42:12.610  2010      1  
-    7273 2010-01-29 04:43:12.630  2010      1  
-    7274 2010-01-29 04:44:12.660  2010      1  
-    7275 2010-01-29 04:45:12.700  2010      1  
-    7276 2010-01-29 04:46:12.750  2010      1  
-    7277 2010-01-29 04:47:12.810  2010      1  
-    7278 2010-01-29 04:48:12.880  2010      1  
-    7279 2010-01-29 04:49:12.960  2010      1  
-    7280 2010-01-30 04:50:13.500  2010      1  
-    7281 2010-01-30 04:51:13.500  2010      1  
-    7282 2010-01-30 04:52:13.600  2010      1  
-    7283 2010-01-30 04:53:13.800  2010      1  
-    7284 2010-01-30 04:54:13.110  2010      1  
-    7285 2010-01-30 04:55:13.150  2010      1  
-    7286 2010-01-30 04:56:13.200  2010      1  
-    7287 2010-01-30 04:57:13.260  2010      1  
-    7288 2010-01-30 04:58:13.330  2010      1  
-    7289 2010-01-30 04:59:13.410  2010      1  
-    7290 2010-01-31 05:00:13.500  2010      1  
-    7291 2010-01-31 05:01:13.500  2010      1  
-    7292 2010-01-31 05:02:13.510  2010      1  
-    7293 2010-01-31 05:03:13.530  2010      1  
-    7294 2010-01-31 05:04:13.560  2010      1  
-    7295 2010-01-31 05:05:13.600  2010      1  
-    7296 2010-01-31 05:06:13.650  2010      1  
-    7297 2010-01-31 05:07:13.710  2010      1  
-    7298 2010-01-31 05:08:13.780  2010      1  
-    7299 2010-01-31 05:09:13.860  2010      1  
-    
-    [7300 rows x 13 columns]
+       double_col date_string_col string_col           timestamp_col  year  month  
+    0         0.0        11/01/10          0 2010-11-01 00:00:00.000  2010     11  
+    1        10.1        11/01/10          1 2010-11-01 00:01:00.000  2010     11  
+    2        20.2        11/01/10          2 2010-11-01 00:02:00.100  2010     11  
+    3        30.3        11/01/10          3 2010-11-01 00:03:00.300  2010     11  
+    4        40.4        11/01/10          4 2010-11-01 00:04:00.600  2010     11  
 
 
 
@@ -265,196 +88,19 @@ query rather than having to access Impala multiple times:
 
 .. parsed-literal::
 
-            id bool_col  tinyint_col  smallint_col  int_col  bigint_col  \
-    0     6696     True            6             6        6          60   
-    1     6698     True            8             8        8          80   
-    2     6706     True            6             6        6          60   
-    3     6708     True            8             8        8          80   
-    4     6716     True            6             6        6          60   
-    5     6718     True            8             8        8          80   
-    6     6726     True            6             6        6          60   
-    7     6728     True            8             8        8          80   
-    8     6736     True            6             6        6          60   
-    9     6738     True            8             8        8          80   
-    10    6746     True            6             6        6          60   
-    11    6748     True            8             8        8          80   
-    12    6756     True            6             6        6          60   
-    13    6758     True            8             8        8          80   
-    14    6766     True            6             6        6          60   
-    15    6768     True            8             8        8          80   
-    16    6776     True            6             6        6          60   
-    17    6778     True            8             8        8          80   
-    18    6786     True            6             6        6          60   
-    19    6788     True            8             8        8          80   
-    20    6796     True            6             6        6          60   
-    21    6798     True            8             8        8          80   
-    22    6806     True            6             6        6          60   
-    23    6808     True            8             8        8          80   
-    24    6816     True            6             6        6          60   
-    25    6818     True            8             8        8          80   
-    26    6826     True            6             6        6          60   
-    27    6828     True            8             8        8          80   
-    28    6836     True            6             6        6          60   
-    29    6838     True            8             8        8          80   
-    ...    ...      ...          ...           ...      ...         ...   
-    1430  3816     True            6             6        6          60   
-    1431  3818     True            8             8        8          80   
-    1432  3826     True            6             6        6          60   
-    1433  3828     True            8             8        8          80   
-    1434  3836     True            6             6        6          60   
-    1435  3838     True            8             8        8          80   
-    1436  3846     True            6             6        6          60   
-    1437  3848     True            8             8        8          80   
-    1438  3856     True            6             6        6          60   
-    1439  3858     True            8             8        8          80   
-    1440  3866     True            6             6        6          60   
-    1441  3868     True            8             8        8          80   
-    1442  3876     True            6             6        6          60   
-    1443  3878     True            8             8        8          80   
-    1444  3886     True            6             6        6          60   
-    1445  3888     True            8             8        8          80   
-    1446  3896     True            6             6        6          60   
-    1447  3898     True            8             8        8          80   
-    1448  3906     True            6             6        6          60   
-    1449  3908     True            8             8        8          80   
-    1450  3916     True            6             6        6          60   
-    1451  3918     True            8             8        8          80   
-    1452  3926     True            6             6        6          60   
-    1453  3928     True            8             8        8          80   
-    1454  3936     True            6             6        6          60   
-    1455  3938     True            8             8        8          80   
-    1456  3946     True            6             6        6          60   
-    1457  3948     True            8             8        8          80   
-    1458  3956     True            6             6        6          60   
-    1459  3958     True            8             8        8          80   
+         id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
+    0  6696     True            6             6        6          60        6.6   
+    1  6698     True            8             8        8          80        8.8   
+    2  6706     True            6             6        6          60        6.6   
+    3  6708     True            8             8        8          80        8.8   
+    4  6716     True            6             6        6          60        6.6   
     
-          float_col  double_col date_string_col string_col  \
-    0           6.6        60.6        11/01/10          6   
-    1           8.8        80.8        11/01/10          8   
-    2           6.6        60.6        11/02/10          6   
-    3           8.8        80.8        11/02/10          8   
-    4           6.6        60.6        11/03/10          6   
-    5           8.8        80.8        11/03/10          8   
-    6           6.6        60.6        11/04/10          6   
-    7           8.8        80.8        11/04/10          8   
-    8           6.6        60.6        11/05/10          6   
-    9           8.8        80.8        11/05/10          8   
-    10          6.6        60.6        11/06/10          6   
-    11          8.8        80.8        11/06/10          8   
-    12          6.6        60.6        11/07/10          6   
-    13          8.8        80.8        11/07/10          8   
-    14          6.6        60.6        11/08/10          6   
-    15          8.8        80.8        11/08/10          8   
-    16          6.6        60.6        11/09/10          6   
-    17          8.8        80.8        11/09/10          8   
-    18          6.6        60.6        11/10/10          6   
-    19          8.8        80.8        11/10/10          8   
-    20          6.6        60.6        11/11/10          6   
-    21          8.8        80.8        11/11/10          8   
-    22          6.6        60.6        11/12/10          6   
-    23          8.8        80.8        11/12/10          8   
-    24          6.6        60.6        11/13/10          6   
-    25          8.8        80.8        11/13/10          8   
-    26          6.6        60.6        11/14/10          6   
-    27          8.8        80.8        11/14/10          8   
-    28          6.6        60.6        11/15/10          6   
-    29          8.8        80.8        11/15/10          8   
-    ...         ...         ...             ...        ...   
-    1430        6.6        60.6        01/17/10          6   
-    1431        8.8        80.8        01/17/10          8   
-    1432        6.6        60.6        01/18/10          6   
-    1433        8.8        80.8        01/18/10          8   
-    1434        6.6        60.6        01/19/10          6   
-    1435        8.8        80.8        01/19/10          8   
-    1436        6.6        60.6        01/20/10          6   
-    1437        8.8        80.8        01/20/10          8   
-    1438        6.6        60.6        01/21/10          6   
-    1439        8.8        80.8        01/21/10          8   
-    1440        6.6        60.6        01/22/10          6   
-    1441        8.8        80.8        01/22/10          8   
-    1442        6.6        60.6        01/23/10          6   
-    1443        8.8        80.8        01/23/10          8   
-    1444        6.6        60.6        01/24/10          6   
-    1445        8.8        80.8        01/24/10          8   
-    1446        6.6        60.6        01/25/10          6   
-    1447        8.8        80.8        01/25/10          8   
-    1448        6.6        60.6        01/26/10          6   
-    1449        8.8        80.8        01/26/10          8   
-    1450        6.6        60.6        01/27/10          6   
-    1451        8.8        80.8        01/27/10          8   
-    1452        6.6        60.6        01/28/10          6   
-    1453        8.8        80.8        01/28/10          8   
-    1454        6.6        60.6        01/29/10          6   
-    1455        8.8        80.8        01/29/10          8   
-    1456        6.6        60.6        01/30/10          6   
-    1457        8.8        80.8        01/30/10          8   
-    1458        6.6        60.6        01/31/10          6   
-    1459        8.8        80.8        01/31/10          8   
-    
-                   timestamp_col  year  month  
-    0    2010-11-01 00:06:00.150  2010     11  
-    1    2010-11-01 00:08:00.280  2010     11  
-    2    2010-11-02 00:16:00.600  2010     11  
-    3    2010-11-02 00:18:00.730  2010     11  
-    4    2010-11-03 00:26:01.500  2010     11  
-    5    2010-11-03 00:28:01.180  2010     11  
-    6    2010-11-04 00:36:01.500  2010     11  
-    7    2010-11-04 00:38:01.630  2010     11  
-    8    2010-11-05 00:46:01.950  2010     11  
-    9    2010-11-05 00:48:02.800  2010     11  
-    10   2010-11-06 00:56:02.400  2010     11  
-    11   2010-11-06 00:58:02.530  2010     11  
-    12   2010-11-07 01:06:02.850  2010     11  
-    13   2010-11-07 01:08:02.980  2010     11  
-    14   2010-11-08 01:16:03.300  2010     11  
-    15   2010-11-08 01:18:03.430  2010     11  
-    16   2010-11-09 01:26:03.750  2010     11  
-    17   2010-11-09 01:28:03.880  2010     11  
-    18   2010-11-10 01:36:04.200  2010     11  
-    19   2010-11-10 01:38:04.330  2010     11  
-    20   2010-11-11 01:46:04.650  2010     11  
-    21   2010-11-11 01:48:04.780  2010     11  
-    22   2010-11-12 01:56:05.100  2010     11  
-    23   2010-11-12 01:58:05.230  2010     11  
-    24   2010-11-13 02:06:05.550  2010     11  
-    25   2010-11-13 02:08:05.680  2010     11  
-    26   2010-11-14 02:16:06.000  2010     11  
-    27   2010-11-14 02:18:06.130  2010     11  
-    28   2010-11-15 02:26:06.450  2010     11  
-    29   2010-11-15 02:28:06.580  2010     11  
-    ...                      ...   ...    ...  
-    1430 2010-01-17 02:46:07.350  2010      1  
-    1431 2010-01-17 02:48:07.480  2010      1  
-    1432 2010-01-18 02:56:07.800  2010      1  
-    1433 2010-01-18 02:58:07.930  2010      1  
-    1434 2010-01-19 03:06:08.250  2010      1  
-    1435 2010-01-19 03:08:08.380  2010      1  
-    1436 2010-01-20 03:16:08.700  2010      1  
-    1437 2010-01-20 03:18:08.830  2010      1  
-    1438 2010-01-21 03:26:09.150  2010      1  
-    1439 2010-01-21 03:28:09.280  2010      1  
-    1440 2010-01-22 03:36:09.600  2010      1  
-    1441 2010-01-22 03:38:09.730  2010      1  
-    1442 2010-01-23 03:46:10.500  2010      1  
-    1443 2010-01-23 03:48:10.180  2010      1  
-    1444 2010-01-24 03:56:10.500  2010      1  
-    1445 2010-01-24 03:58:10.630  2010      1  
-    1446 2010-01-25 04:06:10.950  2010      1  
-    1447 2010-01-25 04:08:11.800  2010      1  
-    1448 2010-01-26 04:16:11.400  2010      1  
-    1449 2010-01-26 04:18:11.530  2010      1  
-    1450 2010-01-27 04:26:11.850  2010      1  
-    1451 2010-01-27 04:28:11.980  2010      1  
-    1452 2010-01-28 04:36:12.300  2010      1  
-    1453 2010-01-28 04:38:12.430  2010      1  
-    1454 2010-01-29 04:46:12.750  2010      1  
-    1455 2010-01-29 04:48:12.880  2010      1  
-    1456 2010-01-30 04:56:13.200  2010      1  
-    1457 2010-01-30 04:58:13.330  2010      1  
-    1458 2010-01-31 05:06:13.650  2010      1  
-    1459 2010-01-31 05:08:13.780  2010      1  
-    
-    [1460 rows x 13 columns]
+       double_col date_string_col string_col           timestamp_col  year  month  
+    0        60.6        11/01/10          6 2010-11-01 00:06:00.150  2010     11  
+    1        80.8        11/01/10          8 2010-11-01 00:08:00.280  2010     11  
+    2        60.6        11/02/10          6 2010-11-02 00:16:00.600  2010     11  
+    3        80.8        11/02/10          8 2010-11-02 00:18:00.730  2010     11  
+    4        60.6        11/03/10          6 2010-11-03 00:26:01.500  2010     11  
 
 
 
@@ -496,259 +142,33 @@ customer data:
 
 .. parsed-literal::
 
-          c_custkey              c_name                                 c_address  \
-    0        123314  Customer#000123314      nKPmaZi,OKhObOYSL3wc egXR4Vt99CXRclF   
-    1        136777  Customer#000136777  Qy6YjXMy1jjCBkVDvnDThNMMLQG49wXEgIJ6DPLK   
-    2         39136  Customer#000039136           afZJC1mWpwvsfKT0211ZD6NQXVGETfl   
-    3         66958  Customer#000066958               h5jsmOq8nxf8Pz1Knqe GZdK4lh   
-    4        127588  Customer#000127588         DbnvQxsG0,Nobhbj6n5cMUNPjfouzdFzH   
-    5        115252  Customer#000115252        1nYjUUUBmDfSG296gNcw7jtwYae5Jmqf7t   
-    6         81763  Customer#000081763        mZtn4M5r0KIw4aooP BXF3ReR RUlPJcAb   
-    7         28547  Customer#000028547               AeWmD3BLrsSkmRY7O,wbB75i6Ll   
-    8         84487  Customer#000084487   ROq5UJr 3Z39GkrBCjdiVa,q Mc83GUHfu2dGhI   
-    9        104480  Customer#000104480                               ARox,hFy5py   
-    10        88910  Customer#000088910                   Ty8,3IxVsTEtBdMmoKKFPdx   
-    11        29101  Customer#000029101          j4cmvBmWVWv9DTKQaiS,2 p4fyx1lcJY   
-    12        73957  Customer#000073957             GmB5k8saraF7sizHGtm,vJWc TlGo   
-    13        36964  Customer#000036964                                Q5MxajLIyE   
-    14        87760  Customer#000087760               wr71AaU5686WwQSWjZo6uMtj8J7   
-    15          779  Customer#000000779       2cTZiS4ulZ74edT,RmDnh4ZaCrphMMh Ff2   
-    16       107812  Customer#000107812                      0Nzi5gyrNcHJYsfe1Jm,   
-    17        82570  Customer#000082570                                Xh K FGxw7   
-    18        79061  Customer#000079061                     KV2ok9OcBRdI9GEQ,V13V   
-    19       135421  Customer#000135421  4frer0ofiE6R 3QdbU0ZSZHBsBhHJSd10I654Tvj   
-    20        64825  Customer#000064825               Y9M2jEiEVWk1sMA5NpQpLLH5nlU   
-    21       110218  Customer#000110218           sQIWiCKF10xCV,QBRuVzzWhXiB4E8kS   
-    22        52970  Customer#000052970   GbE0zraQZYkP3WZ,IuC7J7XOgewdMSFG7hs,lmT   
-    23         2476  Customer#000002476                  fkrMZlEsXA3hB6AmL3GCwKbC   
-    24        33031  Customer#000033031          YFlDbKd1jeGbXz WgshqgAslqv,T4Rfe   
-    25        44078  Customer#000044078    eoPpukX0aeDZqYC49OSNdrenrMC8dLah0j9TDn   
-    26       111728  Customer#000111728   rmQ1MLIixoY3EUetzbe3Hk7X09F5CFjNVZZwpJ,   
-    27       102535  Customer#000102535    jmQwd0LLpEExchHxIlLngvwln2cG6hIYwSKljG   
-    28       104728  Customer#000104728                      vQIcjG0QoLcX298qY7z,   
-    29        46072  Customer#000046072                            ,43NnABe6oHHO    
-    ...         ...                 ...                                       ...   
-    9970     145330  Customer#000145330       wyfckDCG4rDIMqFOO1Qt,f8Jg65qT1eGI84   
-    9971     108959  Customer#000108959                             ASg,3sqMBq3vi   
-    9972      57145  Customer#000057145       G1srSlJTs6sjaPbIKNYJbHapA86l6Pa3UdF   
-    9973      66271  Customer#000066271                        lumk2YqNpJMx18RCR9   
-    9974      39625  Customer#000039625            4jMIz i7IiUTtlJe98s95QKuZRlsyR   
-    9975      99169  Customer#000099169  KVKO SkDHhyoXhvj2b8xX85aEIlIbmE6tKsmIS3N   
-    9976      71383  Customer#000071383     ZHC0OQKfVCTloYLi6o37RDlI786ldjH,Suh5p   
-    9977      31621  Customer#000031621                   dRJP borVjhmCGkcJ4F9QxW   
-    9978       3910  Customer#000003910                     ,wo14m5Xc7UvtRm1quXSN   
-    9979       6223  Customer#000006223        kOimz7buzOsZP8DPRQfB pa8a7bWyA0Axx   
-    9980      88768  Customer#000088768                         xhkSSrw3IvdgROLtz   
-    9981       5093  Customer#000005093         6JIOCJPwGYinPTIxfb,zmBkxzHtuD3Fe2   
-    9982     108481  Customer#000108481      xX9qcZgKEDAmeWDevaRoV19XSxihCiIShI6A   
-    9983      76690  Customer#000076690          Si20zJFzqu9hBcg7Irls70yu0ED6Ohd8   
-    9984     117268  Customer#000117268                4hWfWICYkjuW12B1eC8vUxeOew   
-    9985      50251  Customer#000050251                 dVYTRXlY9Ftf9ctYYQew0tvZp   
-    9986      31757  Customer#000031757         fy7,zGnJjkA39R73O64rL94ljC0rQ0c0W   
-    9987      34271  Customer#000034271                   49gVaZcZ mUj0bHjRDZJ1Fd   
-    9988      41485  Customer#000041485                  JNElO4P5iWuUDPbX68wHhbjM   
-    9989       5272  Customer#000005272          72lgqyGp3R1mPcShb,57kAzhQUdpnlZo   
-    9990      83719  Customer#000083719         ATONylYbndWIk54Kyz3i53OFzWrH3XTqo   
-    9991     149797  Customer#000149797        ge0AlrMqtDSQAx5z6xoTI1ZsJrHL UipxK   
-    9992      11087  Customer#000011087                 3rkjKAeaoVJ7TAucUKPH,midg   
-    9993      34084  Customer#000034084                        aKKY1HXa3PY87L62w3   
-    9994     129163  Customer#000129163                   BiOdE77loCMcYfBKvwgDEWF   
-    9995      42181  Customer#000042181              jnzTMDxVeVg0iGyjFX4kb64mvqHI   
-    9996      47413  Customer#000047413                       qqSgiJ0P7bg0AGL27y2   
-    9997      97036  Customer#000097036     t1IPsxunrkrfbNu1PWAaK1lZKMXU3p,n3CgSX   
-    9998      54610  Customer#000054610                           CIDjhZXvDWQP3v8   
-    9999     120598  Customer#000120598         uhTxXSiM0AaNehIoRi18vy1YbPc3v6IQn   
+       c_custkey              c_name                    c_address  c_nationkey  \
+    0      36901  Customer#000036901         TBb1yDZcf 8Zepk7apFJ           13   
+    1      78002  Customer#000078002                   v7Jkg5XIqM           10   
+    2      44485  Customer#000044485              hlyA8oJVqUQfBOb           20   
+    3      55624  Customer#000055624           ZnDi05oHDsw0Bt2glb            7   
+    4     130057  Customer#000130057  jQDBlCU2IlHmzkDfcqgIHg2eLsN            9   
     
-          c_nationkey          c_phone c_acctbal c_mktsegment  \
-    0              15  25-884-345-1592   -686.40    MACHINERY   
-    1              10  20-500-807-1549    -65.46    HOUSEHOLD   
-    2               5  15-400-347-1643   5555.41    FURNITURE   
-    3              18  28-393-112-1873   9160.79    MACHINERY   
-    4              14  24-409-883-5840    358.38     BUILDING   
-    5              17  27-781-959-9284   -275.34     BUILDING   
-    6               8  18-425-613-5972   8368.23    MACHINERY   
-    7               1  11-711-951-5798   2095.42    MACHINERY   
-    8              12  22-872-263-3878   -659.55    HOUSEHOLD   
-    9               4  14-114-387-5858   6264.23   AUTOMOBILE   
-    10             21  31-664-330-6275   1661.37   AUTOMOBILE   
-    11              3  13-229-182-3026   2261.04     BUILDING   
-    12             15  25-116-219-7706   1699.94    FURNITURE   
-    13             14  24-753-859-6273   6495.22    HOUSEHOLD   
-    14              3  13-124-384-6455   9206.03     BUILDING   
-    15              5  15-940-483-5702   -902.48    HOUSEHOLD   
-    16             19  29-235-710-7964   8798.57   AUTOMOBILE   
-    17             16  26-271-558-1374   6420.88    HOUSEHOLD   
-    18             18  28-632-433-1841   4407.61    FURNITURE   
-    19              2  12-486-866-5475    675.89    HOUSEHOLD   
-    20             12  22-164-165-9840   6990.93    HOUSEHOLD   
-    21             14  24-520-345-2939   1607.12    MACHINERY   
-    22             23  33-361-100-6033   3564.93    MACHINERY   
-    23             23  33-871-732-1709   1428.88    FURNITURE   
-    24              8  18-788-195-2880   9082.69   AUTOMOBILE   
-    25              1  11-648-549-8419   9962.19    MACHINERY   
-    26             19  29-650-314-5798   9488.57   AUTOMOBILE   
-    27             22  32-961-868-8009   4922.79    MACHINERY   
-    28             18  28-971-119-1082   5101.98    FURNITURE   
-    29             22  32-547-454-9423   5147.65   AUTOMOBILE   
-    ...           ...              ...       ...          ...   
-    9970            0  10-489-796-4068   6930.36    FURNITURE   
-    9971            6  16-729-648-4734   5439.97   AUTOMOBILE   
-    9972           15  25-615-903-1053   -564.42    FURNITURE   
-    9973            4  14-141-664-9834   8823.08    MACHINERY   
-    9974           23  33-249-201-4694   7901.32   AUTOMOBILE   
-    9975            8  18-965-483-4282    851.37    MACHINERY   
-    9976           12  22-202-608-9895   4053.98     BUILDING   
-    9977            6  16-791-175-4360   7980.66     BUILDING   
-    9978           12  22-790-171-6270   -183.86    FURNITURE   
-    9979            7  17-805-445-2530    644.72     BUILDING   
-    9980            6  16-236-994-3682   4219.01   AUTOMOBILE   
-    9981           22  32-932-679-2826   2795.88    HOUSEHOLD   
-    9982            6  16-596-648-1659   6519.74     BUILDING   
-    9983           18  28-756-527-5496   -378.02    FURNITURE   
-    9984           24  34-544-368-3162    638.39    FURNITURE   
-    9985           21  31-792-104-4679   1029.81   AUTOMOBILE   
-    9986            0  10-100-588-9355   7731.01    FURNITURE   
-    9987           16  26-619-819-1017    750.53   AUTOMOBILE   
-    9988            2  12-473-828-1887   1566.27    FURNITURE   
-    9989           11  21-575-549-3017    909.75    HOUSEHOLD   
-    9990            5  15-510-625-7627   4612.60    HOUSEHOLD   
-    9991           13  23-891-241-9382   1394.79    FURNITURE   
-    9992           10  20-563-422-3102   -936.67   AUTOMOBILE   
-    9993            1  11-516-802-9295   7306.74    FURNITURE   
-    9994           13  23-919-418-5387   8931.08    FURNITURE   
-    9995            2  12-782-708-1563    242.09    HOUSEHOLD   
-    9996           12  22-859-425-3338   9177.96    MACHINERY   
-    9997            2  12-161-574-2940   5683.18    MACHINERY   
-    9998           14  24-495-743-4707   -483.67    FURNITURE   
-    9999            8  18-144-778-6502   5511.76   AUTOMOBILE   
+               c_phone c_acctbal c_mktsegment  \
+    0  23-644-998-4944   4809.84   AUTOMOBILE   
+    1  20-715-308-7926   4128.41   AUTOMOBILE   
+    2  30-452-969-2072   4543.02    FURNITURE   
+    3  17-796-839-5728    818.33   AUTOMOBILE   
+    4  19-938-862-4157   5009.55    FURNITURE   
     
-                                                  c_comment       region  \
-    0                ounts serve furiously. carefully expre       AFRICA   
-    1     y regular foxes nag blithely among the careful...  MIDDLE EAST   
-    2     y? express theodolites haggle against the bold...       AFRICA   
-    3     ggle quickly after the carefully stealthy depo...         ASIA   
-    4                     accounts wake slyly along the bli       AFRICA   
-    5     yly about the blithely ironic dependencies. fu...      AMERICA   
-    6     ronic frays. slyly pending pinto beans are fur...         ASIA   
-    7     y regular foxes nag quickly after the express,...      AMERICA   
-    8     fluffily express deposits sleep furiously slyl...         ASIA   
-    9      t the dependencies. slyly final requests above t  MIDDLE EAST   
-    10    he ironic tithes. carefully regular accounts c...         ASIA   
-    11    xpress platelets maintain blithely around the ...      AMERICA   
-    12    s about the carefully silent ideas integrate s...       AFRICA   
-    13    ld courts. even deposits detect after the bold...       AFRICA   
-    14    . pending, pending packages dazzle furiously a...      AMERICA   
-    15     old dependencies. pains haggle fluffily carefull       AFRICA   
-    16    hely pending requests believe carefully along ...       EUROPE   
-    17    ely above the carefully final deposits. quickl...       AFRICA   
-    18    unts. courts wake carefully after the ideas. r...         ASIA   
-    19      esides the fluffily final deposits doubt quickl      AMERICA   
-    20    ges sleep slyly furiously ironic requests. eve...         ASIA   
-    21    ly ironic theodolites cajole slyly even reques...       AFRICA   
-    22    sleep blithely. regular theodolites sleep. car...       EUROPE   
-    23    hins. furiously ironic requests cajole. ironic...       EUROPE   
-    24    e quickly. slyly special pinto beans nag quick...         ASIA   
-    25          uickly: furiously pending ideas wake agains      AMERICA   
-    26     haggle among the express deposits. furiously ...       EUROPE   
-    27    ccounts cajole. carefully quiet foxes cajole f...       EUROPE   
-    28    s against the ideas haggle against the careful...         ASIA   
-    29    nt pinto beans. thin, bold accounts wake caref...       EUROPE   
-    ...                                                 ...          ...   
-    9970  s are carefully across the even deposits. even...       AFRICA   
-    9971  s cajole slyly among the bold packages. carefully       EUROPE   
-    9972  ain blithely. blithely ironic requests sublate...       AFRICA   
-    9973                     osits wake regular ideas. furi  MIDDLE EAST   
-    9974  nusual platelets engage slyly bold foxes. care...       EUROPE   
-    9975   special deposits. carefully even requests boo...         ASIA   
-    9976  carefully final accounts across the slyly even...         ASIA   
-    9977  y. slyly even platelets breach quickly pearls....       EUROPE   
-    9978  s wake final, regular deposits. pending, pendi...         ASIA   
-    9979  each slyly quickly even requests. quickly regu...       EUROPE   
-    9980             hely along the pending, bold platelets       EUROPE   
-    9981              ress notornis. ironic packages up the       EUROPE   
-    9982  theodolites solve carefully across the even fo...       EUROPE   
-    9983  pecial pinto beans along the final packages in...         ASIA   
-    9984   among the special deposits. fluffily pending ...      AMERICA   
-    9985   final, express deposits use final deposits. f...         ASIA   
-    9986  r deposits? pending ideas sleep furiously. req...       AFRICA   
-    9987  fluffily regular deposits cajole after the sly...       AFRICA   
-    9988  ly special requests haggle slyly fluffily regu...      AMERICA   
-    9989  n, even deposits haggle busily quickly express...  MIDDLE EAST   
-    9990             d packages haggle. silent deposits int       AFRICA   
-    9991               ent accounts. quickly careful frays   MIDDLE EAST   
-    9992  e blithely ironic deposits. brave deposits aff...  MIDDLE EAST   
-    9993  beans. blithely bold accounts are alongside of...      AMERICA   
-    9994  carefully ironic requests sleep furiously alon...  MIDDLE EAST   
-    9995  ongside of the pending requests. blithely iron...      AMERICA   
-    9996   accounts. slyly regular requests against the ...         ASIA   
-    9997  e blithely regular warthogs. carefully regular...      AMERICA   
-    9998  e furiously express dependencies. blithely dog...       AFRICA   
-    9999  e furiously according to the instructions. sly...         ASIA   
+                                               c_comment       region  \
+    0  nstructions sleep final, regular deposits. qui...  MIDDLE EAST   
+    1    ly after the special deposits. careful packages  MIDDLE EAST   
+    2                ng excuses cajole along the silent,  MIDDLE EAST   
+    3                     uickly special foxes according       EUROPE   
+    4   blithely regular packages. carefully bold acc...         ASIA   
     
-         o_totalprice      odate  
-    0       193846.25 1993-10-14  
-    1        32151.78 1995-10-11  
-    2       252004.18 1996-01-10  
-    3       163243.98 1993-10-27  
-    4       253724.56 1995-10-23  
-    5        68289.96 1995-11-03  
-    6       341734.47 1996-09-20  
-    7       330793.52 1998-04-18  
-    8       197689.49 1994-06-04  
-    9        69168.33 1994-09-25  
-    10      112126.95 1994-03-13  
-    11      126990.79 1996-06-20  
-    12       66195.16 1992-06-15  
-    13      189484.12 1992-05-08  
-    14      202379.28 1997-09-05  
-    15      301925.76 1992-10-21  
-    16      154451.92 1995-09-12  
-    17      167668.42 1997-11-25  
-    18       88699.17 1993-08-08  
-    19      191542.31 1993-12-28  
-    20       47095.31 1993-03-17  
-    21      176189.31 1998-01-02  
-    22      112986.49 1996-03-07  
-    23      259960.36 1994-06-18  
-    24      220441.09 1995-05-25  
-    25        2749.87 1993-02-25  
-    26      213076.69 1993-12-29  
-    27      171318.37 1993-10-27  
-    28      272353.52 1996-12-10  
-    29      319306.86 1993-06-29  
-    ...           ...        ...  
-    9970     34760.42 1995-10-10  
-    9971    213817.12 1996-01-18  
-    9972    153649.72 1996-10-19  
-    9973    289952.85 1997-03-22  
-    9974    172172.95 1997-08-13  
-    9975     37520.88 1993-12-09  
-    9976    202482.38 1997-03-18  
-    9977    310483.07 1992-09-24  
-    9978      4552.21 1995-08-30  
-    9979    216786.92 1998-02-17  
-    9980     94490.53 1994-04-01  
-    9981    212251.17 1995-12-26  
-    9982    327365.04 1996-05-28  
-    9983    223007.08 1992-01-24  
-    9984    145567.35 1995-04-22  
-    9985     77922.97 1995-12-16  
-    9986    249096.89 1993-07-24  
-    9987    208613.07 1994-04-29  
-    9988     43256.17 1995-08-29  
-    9989    237382.21 1995-07-09  
-    9990    304932.55 1995-05-29  
-    9991     66431.47 1998-05-14  
-    9992    224237.38 1993-01-13  
-    9993    108177.09 1992-04-27  
-    9994    224377.64 1997-02-18  
-    9995    253463.87 1995-02-02  
-    9996     50863.12 1997-03-22  
-    9997    167536.32 1997-04-28  
-    9998    177271.00 1997-09-25  
-    9999    309864.32 1994-01-17  
-    
-    [10000 rows x 11 columns]
+      o_totalprice      odate  
+    0    173665.47 1996-01-02  
+    1     46929.18 1996-12-01  
+    2    144659.20 1994-07-30  
+    3     58749.59 1992-02-21  
+    4    208660.75 1995-07-16  
 
 
 
@@ -777,259 +197,53 @@ expression
 
 .. parsed-literal::
 
-          c_custkey              c_name                                 c_address  \
-    0         36901  Customer#000036901                      TBb1yDZcf 8Zepk7apFJ   
-    1        130057  Customer#000130057               jQDBlCU2IlHmzkDfcqgIHg2eLsN   
-    2         86116  Customer#000086116     63BSp8bODm1dImPJEPTRmsSa4GqNA1SeRqFgx   
-    3         56614  Customer#000056614                       sRgxfCf6gDLmFnrO8UO   
-    4          3373  Customer#000003373                              WUCr1BPpcY7u   
-    5        147004  Customer#000147004   ,5lO7OHiDTFNK6t1HuLmIyQalgXDNgVH tytO9h   
-    6           716  Customer#000000716                  jbXpMEcV9j,6ciftBXEMXDjE   
-    7         71134  Customer#000071134        QrIUhKsAaaU8pLxHNHpG mN1F n0eWQxE2   
-    8          6199  Customer#000006199     3LH72AxUTOqvuazpB6dk5i80YVo3,H2YZiyir   
-    9         60481  Customer#000060481                       C0Epk1ArwpEqkFj2Fun   
-    10        27238  Customer#000027238     XGFjSK7TJdxwQjhlqH8LYsO6WQ9RMSsHe434L   
-    11        61724  Customer#000061724        konflahJ4RK4riiSPR3 duNNLr5n Es7gF   
-    12        32512  Customer#000032512                 aqeDYfORveB27LfTyR8zCxYGE   
-    13       127466  Customer#000127466                              0,cSa,GNNBHU   
-    14        90818  Customer#000090818          6g3Ry3GUf3OFpNDU0RNpssB6vOxSpn0k   
-    15        41861  Customer#000041861                       3 lIPGTHUINWjVbjpP8   
-    16         7093  Customer#000007093                       2rRegW4MQGjQ0GP3REC   
-    17        75986  Customer#000075986                   h3vC,A ibqYy2VagkCNfRiQ   
-    18         1777  Customer#000001777                         54GpDEcWWIDVMRjP3   
-    19        77600  Customer#000077600     KfGpXhTLGVaF5MV4q,4MyJiClu8RB1,VAh0nL   
-    20         3296  Customer#000003296              YfF9i7Z1RBFHs,R8Si9gpL6TTDBd   
-    21       102563  Customer#000102563                     6WSwN09,Ymx7hgLPac,,n   
-    22        73075  Customer#000073075                  exl7DyN5 u8VnHncTvV5awq9   
-    23       149641  Customer#000149641                        pcVj6U2anm1JUerTUv   
-    24        47380  Customer#000047380    92WG94qIrI3CkM7uhorE,Ji3l,6IHjdH1V0v8Y   
-    25        44030  Customer#000044030  TvHDrywAYrvOZ4ahz09y78HKGqU2ITTbMjYCpApi   
-    26        12098  Customer#000012098                    b jNfvuXKzX DN33dVYA8m   
-    27        30352  Customer#000030352                             cjcJM2n2wpXWF   
-    28       125059  Customer#000125059                         YfS0Y3mZHIj8fDYrI   
-    29        54244  Customer#000054244    Wf3t 9j709FKMXX2QnGXqpCZxhY,r2MUIT6pVo   
-    ...         ...                 ...                                       ...   
-    9970     146851  Customer#000146851                 s44B1KhARNoKhSrcVHjhy5zRc   
-    9971       7213  Customer#000007213                         TV7FRZPQ5LRxBVda5   
-    9972      16642  Customer#000016642                      xKfYjLD5MTr6g,yEt3tg   
-    9973      95219  Customer#000095219             2d,JggCQnz2wl096UaeSm1leFKbjN   
-    9974     144046  Customer#000144046                s5HyyE,6C3ODJtjqao2 vTjnHk   
-    9975      71788  Customer#000071788  nBLzG5TDKWlwunrmsTbNMQojeVLdw5mn ZeyFF,g   
-    9976     131116  Customer#000131116                          Tpp3Y6Wp47 HEOl5   
-    9977        692  Customer#000000692          d6XE9sg,  wINvIz8aZS b8n XuhAQU5   
-    9978      34624  Customer#000034624         5Ep8GfQM5GgbixVd86HV23kYhMzBrXfeT   
-    9979      49159  Customer#000049159                          PJmbc4HrZU52gpVz   
-    9980     101827  Customer#000101827                                hPtnI9R7nI   
-    9981      66052  Customer#000066052                     lmIeK6,,B, XfIq82BRw,   
-    9982     132406  Customer#000132406             F3v0j,FQr RdFGayNnrfMnj4tdY4W   
-    9983      92672  Customer#000092672                            PWxfHSDvoyt3ws   
-    9984      99323  Customer#000099323                      JIrOx6d2O9aLT7UH0H86   
-    9985      35150  Customer#000035150    ONa7mZ0 z59OW6G7hO1BIOkZKiaoal3VRe,qZ6   
-    9986       9319  Customer#000009319         LTnDf1yRoOLquo3BOZrgirra  nmDJ083   
-    9987     149863  Customer#000149863     WXlXCjQJDnNYHy9sygeT7n3pDRZD1bWBbMrD5   
-    9988     140228  Customer#000140228                   ,YbNXwx0AvHkqHK4aHPSnc4   
-    9989      52945  Customer#000052945          fMTCuni6IXhf,dCe3,paAz XIx VzYPd   
-    9990      52751  Customer#000052751                   NtYOVyClizxjYF L3d9dC6g   
-    9991     121870  Customer#000121870     Xr4P7jR2UVOEZqq,2hWyLNAUUsbLO2yD9M zY   
-    9992     111682  Customer#000111682                      zOB7JF7FvfN,XI2LAfIM   
-    9993     140494  Customer#000140494             ACWPauTkkihIQSnKQZT8AofZGuOZU   
-    9994      37003  Customer#000037003                            1dDRNmzKSCCMCD   
-    9995     127483  Customer#000127483                                6aoAN9i2GQ   
-    9996     127096  Customer#000127096      TiSVY DWeI9smeHCjQBH,ZKT9oz31mwtYbKI   
-    9997        238  Customer#000000238           tE0lVKK3tz5AG2 Hal2XHwE485g5MX7   
-    9998      91822  Customer#000091822    5KnbDcpb621s,p IejyAQhSCidoEAyB1ilcSPs   
-    9999      29500  Customer#000029500                 BfX7j6DxtaQhBEfOeg3QDstrE   
+       c_custkey              c_name                                c_address  \
+    0     123314  Customer#000123314     nKPmaZi,OKhObOYSL3wc egXR4Vt99CXRclF   
+    1      39136  Customer#000039136          afZJC1mWpwvsfKT0211ZD6NQXVGETfl   
+    2      66958  Customer#000066958              h5jsmOq8nxf8Pz1Knqe GZdK4lh   
+    3     127588  Customer#000127588        DbnvQxsG0,Nobhbj6n5cMUNPjfouzdFzH   
+    4      81763  Customer#000081763       mZtn4M5r0KIw4aooP BXF3ReR RUlPJcAb   
+    5      28547  Customer#000028547              AeWmD3BLrsSkmRY7O,wbB75i6Ll   
+    6      84487  Customer#000084487  ROq5UJr 3Z39GkrBCjdiVa,q Mc83GUHfu2dGhI   
+    7      36964  Customer#000036964                               Q5MxajLIyE   
+    8      87760  Customer#000087760              wr71AaU5686WwQSWjZo6uMtj8J7   
+    9        779  Customer#000000779      2cTZiS4ulZ74edT,RmDnh4ZaCrphMMh Ff2   
     
-          c_nationkey          c_phone c_acctbal c_mktsegment  \
-    0              13  23-644-998-4944   4809.84   AUTOMOBILE   
-    1               9  19-938-862-4157   5009.55    FURNITURE   
-    2               0  10-356-493-3518   3205.60   AUTOMOBILE   
-    3              11  21-657-845-6087   7623.48     BUILDING   
-    4              24  34-132-612-5205   -546.88     BUILDING   
-    5               6  16-416-345-9278   9658.21    FURNITURE   
-    6              12  22-501-849-6084   8364.99   AUTOMOBILE   
-    7               8  18-653-277-3457    398.12   AUTOMOBILE   
-    8              22  32-514-462-3884   6178.78    MACHINERY   
-    9               3  13-325-988-7103   2071.77   AUTOMOBILE   
-    10             10  20-676-957-9747   5970.47     BUILDING   
-    11              8  18-589-800-1574   8454.00    HOUSEHOLD   
-    12              9  19-582-285-8143   6453.91   AUTOMOBILE   
-    13             17  27-234-753-8110   6644.29    FURNITURE   
-    14             20  30-286-324-9120   7516.04   AUTOMOBILE   
-    15              3  13-564-504-4826   1367.63     BUILDING   
-    16             15  25-243-637-7888   -457.24    HOUSEHOLD   
-    17             21  31-447-476-6129   8218.61    HOUSEHOLD   
-    18             24  34-469-776-4539   -535.08    MACHINERY   
-    19             15  25-811-979-5390   4241.45   AUTOMOBILE   
-    20             12  22-696-642-4449   4088.54    FURNITURE   
-    21              7  17-755-894-8863   3722.21   AUTOMOBILE   
-    22              2  12-715-946-8671   1094.03    FURNITURE   
-    23             23  33-319-944-5810   2443.40   AUTOMOBILE   
-    24             24  34-177-621-5631   -985.57    HOUSEHOLD   
-    25              9  19-125-435-6446   7668.90   AUTOMOBILE   
-    26             11  21-662-853-3988   7099.66    FURNITURE   
-    27             16  26-867-182-6167   7038.34     BUILDING   
-    28              6  16-883-178-1349   8376.02    FURNITURE   
-    29             11  21-919-477-7710   1123.82    HOUSEHOLD   
-    ...           ...              ...       ...          ...   
-    9970           14  24-697-747-5633   9275.08    MACHINERY   
-    9971           17  27-780-526-4277   9186.42   AUTOMOBILE   
-    9972           18  28-461-508-4733    334.96    HOUSEHOLD   
-    9973           17  27-602-824-8504   9785.74     BUILDING   
-    9974           19  29-756-493-7269   8618.45     BUILDING   
-    9975           18  28-294-423-8422    413.49     BUILDING   
-    9976           22  32-170-140-4849    496.22    HOUSEHOLD   
-    9977           19  29-804-421-1703    276.71   AUTOMOBILE   
-    9978           22  32-489-909-5358    -89.43   AUTOMOBILE   
-    9979            3  13-391-149-3756   6856.64    MACHINERY   
-    9980            1  11-892-482-4129   2098.35     BUILDING   
-    9981           13  23-623-276-5968   8424.99    MACHINERY   
-    9982           16  26-451-451-3382    866.94    HOUSEHOLD   
-    9983            9  19-269-358-8797   -394.48    HOUSEHOLD   
-    9984            5  15-904-560-1871   6250.52     BUILDING   
-    9985           10  20-107-909-6032   6167.17     BUILDING   
-    9986           14  24-146-898-7894   9277.26    MACHINERY   
-    9987            2  12-843-885-3568   8486.63   AUTOMOBILE   
-    9988           21  31-458-160-5380    206.81     BUILDING   
-    9989           23  33-407-798-1191   7581.61    MACHINERY   
-    9990           21  31-768-137-6718   1601.22    MACHINERY   
-    9991            2  12-739-614-9389    464.58   AUTOMOBILE   
-    9992           11  21-893-223-5817   1676.62   AUTOMOBILE   
-    9993           10  20-126-160-4627   4233.90     BUILDING   
-    9994            3  13-312-274-5453   6801.86    FURNITURE   
-    9995            4  14-995-921-6700   9189.35    MACHINERY   
-    9996            5  15-560-329-4383   3215.47    MACHINERY   
-    9997           16  26-307-925-1236   3482.32    HOUSEHOLD   
-    9998            3  13-551-786-8465   9842.81    HOUSEHOLD   
-    9999            0  10-381-681-7664   1108.66    HOUSEHOLD   
+       c_nationkey          c_phone c_acctbal c_mktsegment  \
+    0           15  25-884-345-1592   -686.40    MACHINERY   
+    1            5  15-400-347-1643   5555.41    FURNITURE   
+    2           18  28-393-112-1873   9160.79    MACHINERY   
+    3           14  24-409-883-5840    358.38     BUILDING   
+    4            8  18-425-613-5972   8368.23    MACHINERY   
+    5            1  11-711-951-5798   2095.42    MACHINERY   
+    6           12  22-872-263-3878   -659.55    HOUSEHOLD   
+    7           14  24-753-859-6273   6495.22    HOUSEHOLD   
+    8            3  13-124-384-6455   9206.03     BUILDING   
+    9            5  15-940-483-5702   -902.48    HOUSEHOLD   
     
-                                                  c_comment       region  \
-    0     nstructions sleep final, regular deposits. qui...  MIDDLE EAST   
-    1      blithely regular packages. carefully bold acc...         ASIA   
-    2       ironic ideas. quickly pending ideas sleep blith       AFRICA   
-    3     sts. slyly ironic sheaves cajole dogged packag...  MIDDLE EAST   
-    4     counts are blithely. requests wake silent, bol...      AMERICA   
-    5     blithely unusual instructions. blithely expres...       EUROPE   
-    6     as. even accounts about the slyly pending excu...         ASIA   
-    7      ideas. furiously pending packages dazzle blit...         ASIA   
-    8               ideas wake fluffily. pending, pending p       EUROPE   
-    9     lithely quick accounts. regular packages nag. ...      AMERICA   
-    10    all boost with the furiously regular deposits....  MIDDLE EAST   
-    11         regular accounts. carefully ironic requests          ASIA   
-    12    kages. slyly ironic asymptotes mold blithely furi         ASIA   
-    13        tes haggle furiously during the unusual, even      AMERICA   
-    14      ndencies are? dependencies above the closely fi  MIDDLE EAST   
-    15    egular excuses. fluffily slow platelets are sl...      AMERICA   
-    16    es impress carefully. fluffily regular package...       AFRICA   
-    17    y after the carefully bold instructions. speci...         ASIA   
-    18    ar packages? blithely regular instructions alo...      AMERICA   
-    19     furiously even asymptotes sleep carefully. bl...       AFRICA   
-    20    dolphins. final excuses about the slyly specia...         ASIA   
-    21                   s are blithely around the slyly ex       EUROPE   
-    22    uctions are blithely ironic instructions-- iro...      AMERICA   
-    23                  xpress asymptotes cajole carefully        EUROPE   
-    24     accounts. ironic, regular requests nag-- blit...      AMERICA   
-    25    ld cajole blithely around the final, regular e...         ASIA   
-    26    ully foxes. blithely silent requests sleep aft...  MIDDLE EAST   
-    27                   sometimes even accounts. carefully       AFRICA   
-    28            quickly along the express epitaphs. perma       EUROPE   
-    29                 e fluffily along the fluffily final   MIDDLE EAST   
-    ...                                                 ...          ...   
-    9970  ly ironic, ironic requests. even requests afte...       AFRICA   
-    9971   about the instructions doubt furiously quickl...      AMERICA   
-    9972   idle, final excuses. final theodolites haggle...         ASIA   
-    9973           ng to the thinly even ideas. carefully r      AMERICA   
-    9974  express requests boost carefully above the car...       EUROPE   
-    9975  d asymptotes. packages detect carefully unusua...         ASIA   
-    9976  affix slyly ruthlessly quiet foxes: pending fo...       EUROPE   
-    9977  cuses. slyly even asymptotes doubt quickly. fl...       EUROPE   
-    9978  s integrate about the carefully even pinto bea...       EUROPE   
-    9979   requests. fluffily pending deposits need to a...      AMERICA   
-    9980  uctions cajole slyly idle requests. carefully ...      AMERICA   
-    9981  sual courts. furiously express accounts integr...  MIDDLE EAST   
-    9982  slyly even requests. silent, final requests ar...       AFRICA   
-    9983   among the unusual accounts. regular ideas han...         ASIA   
-    9984  he fluffily ironic packages. carefully regular...       AFRICA   
-    9985  ar the slyly final asymptotes. slyly even depo...  MIDDLE EAST   
-    9986  ickly pending deposits. furiously regular acco...       AFRICA   
-    9987  lly quickly express deposits. fluffily ironic ...      AMERICA   
-    9988  ans cajole blithely across the quickly final p...         ASIA   
-    9989  onic, quick requests. even, bold theodolites h...       EUROPE   
-    9990  e across the silent deposits. blithely final a...         ASIA   
-    9991   the furiously final asymptotes. furiously pen...      AMERICA   
-    9992       alongside of the ironically final requests.   MIDDLE EAST   
-    9993  the ironic dependencies. slyly unusual platele...  MIDDLE EAST   
-    9994  ut the regular instructions. slyly regular dol...      AMERICA   
-    9995  ructions cajole furiously. regular packages pr...  MIDDLE EAST   
-    9996     y. carefully ironic requests nod slyly. slyly        AFRICA   
-    9997  uffily ironic theodolites are. regular, regula...       AFRICA   
-    9998                   efully along the ironic platelet      AMERICA   
-    9999  ns about the blithely regular deposits sleep s...       AFRICA   
+                                               c_comment   region o_totalprice  \
+    0             ounts serve furiously. carefully expre   AFRICA    193846.25   
+    1  y? express theodolites haggle against the bold...   AFRICA    252004.18   
+    2  ggle quickly after the carefully stealthy depo...     ASIA    163243.98   
+    3                  accounts wake slyly along the bli   AFRICA    253724.56   
+    4  ronic frays. slyly pending pinto beans are fur...     ASIA    341734.47   
+    5  y regular foxes nag quickly after the express,...  AMERICA    330793.52   
+    6  fluffily express deposits sleep furiously slyl...     ASIA    197689.49   
+    7  ld courts. even deposits detect after the bold...   AFRICA    189484.12   
+    8  . pending, pending packages dazzle furiously a...  AMERICA    202379.28   
+    9   old dependencies. pains haggle fluffily carefull   AFRICA    301925.76   
     
-         o_totalprice      odate  
-    0       173665.47 1996-01-02  
-    1       208660.75 1995-07-16  
-    2       206680.66 1992-06-03  
-    3       169405.01 1996-12-19  
-    4       276992.74 1998-01-24  
-    5       187782.63 1998-02-28  
-    6       164529.10 1997-05-09  
-    7       261013.14 1992-11-19  
-    8       200354.30 1992-05-01  
-    9       213713.99 1995-10-21  
-    10      188023.67 1993-01-30  
-    11      176707.84 1992-04-05  
-    12      163700.57 1995-04-07  
-    13      313134.62 1993-03-10  
-    14      191808.17 1994-09-29  
-    15      294182.42 1993-12-29  
-    16      266047.60 1997-02-21  
-    17      327413.14 1995-06-04  
-    18      249710.43 1993-12-31  
-    19      239998.53 1994-12-19  
-    20      204546.39 1997-01-26  
-    21      269761.09 1998-04-07  
-    22      188124.81 1997-05-31  
-    23      165954.35 1995-08-21  
-    24      228518.02 1995-03-05  
-    25      329149.33 1997-05-26  
-    26      183606.42 1996-12-04  
-    27      201254.08 1992-10-08  
-    28      182312.78 1996-03-26  
-    29      327889.57 1997-01-03  
-    ...           ...        ...  
-    9970    269275.47 1992-11-08  
-    9971    251533.78 1997-02-12  
-    9972    238544.75 1995-02-08  
-    9973    215426.43 1992-01-07  
-    9974    405732.69 1992-11-11  
-    9975    203837.57 1996-04-10  
-    9976    226245.69 1994-10-16  
-    9977    250182.65 1992-04-12  
-    9978    184389.64 1994-06-20  
-    9979    233597.16 1998-02-08  
-    9980    189915.42 1995-09-01  
-    9981    193525.22 1994-07-03  
-    9982    276927.47 1998-05-27  
-    9983    321186.02 1995-10-31  
-    9984    382066.65 1996-12-24  
-    9985    203189.73 1998-05-14  
-    9986    218196.84 1996-05-08  
-    9987    244272.82 1995-12-31  
-    9988    265532.99 1993-10-30  
-    9989    268077.98 1995-11-26  
-    9990    235918.54 1995-03-07  
-    9991    272462.27 1992-04-25  
-    9992    228474.30 1995-01-05  
-    9993    301170.51 1997-05-06  
-    9994    232037.11 1992-02-02  
-    9995    293548.64 1997-09-06  
-    9996    217273.33 1994-12-17  
-    9997    288212.63 1997-04-02  
-    9998    227175.73 1992-10-08  
-    9999    257334.89 1998-07-14  
-    
-    [10000 rows x 11 columns]
+           odate  
+    0 1993-10-14  
+    1 1996-01-10  
+    2 1993-10-27  
+    3 1995-10-23  
+    4 1996-09-20  
+    5 1998-04-18  
+    6 1994-06-04  
+    7 1992-05-08  
+    8 1997-09-05  
+    9 1992-10-21  
 
 
 
@@ -1090,8 +304,8 @@ Or even group by year and compare before and after:
     0  1994     227597      108087  0.474905
     1  1996     228626      108757  0.475698
     2  1992     227089      107815  0.474770
-    3  1993     226645      107703  0.475206
-    4  1998     133623       63551  0.475599
+    3  1998     133623       63551  0.475599
+    4  1993     226645      107703  0.475206
     5  1995     228637      108315  0.473742
     6  1997     227783      107741  0.472998
 
@@ -1131,196 +345,26 @@ TPC-H tables to illustrate the API:
 
 .. parsed-literal::
 
-          o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
-    0              1      36901             O    173665.47  1996-01-02   
-    1              2      78002             O     46929.18  1996-12-01   
-    2              3     123314             F    193846.25  1993-10-14   
-    3              4     136777             O     32151.78  1995-10-11   
-    4              5      44485             F    144659.20  1994-07-30   
-    5              6      55624             F     58749.59  1992-02-21   
-    6              7      39136             O    252004.18  1996-01-10   
-    7             32     130057             O    208660.75  1995-07-16   
-    8             33      66958             F    163243.98  1993-10-27   
-    9             34      61001             O     58949.67  1998-07-21   
-    10            35     127588             O    253724.56  1995-10-23   
-    11            36     115252             O     68289.96  1995-11-03   
-    12            37      86116             F    206680.66  1992-06-03   
-    13            38     124828             O     82500.05  1996-08-21   
-    14            39      81763             O    341734.47  1996-09-20   
-    15            64      32113             F     39414.99  1994-07-16   
-    16            65      16252             P    110643.60  1995-03-18   
-    17            66     129200             F    103740.67  1994-01-20   
-    18            67      56614             O    169405.01  1996-12-19   
-    19            68      28547             O    330793.52  1998-04-18   
-    20            69      84487             F    197689.49  1994-06-04   
-    21            70      64340             F    113534.42  1993-12-18   
-    22            71       3373             O    276992.74  1998-01-24   
-    23            96     107779             F     68989.90  1994-04-17   
-    24            97      21061             F    110512.84  1993-01-29   
-    25            98     104480             F     69168.33  1994-09-25   
-    26            99      88910             F    112126.95  1994-03-13   
-    27           100     147004             O    187782.63  1998-02-28   
-    28           101      27998             O    124906.11  1996-03-17   
-    29           102        716             O    164529.10  1997-05-09   
-    ...          ...        ...           ...          ...         ...   
-    9970     4745410     102247             F    194728.44  1992-04-10   
-    9971     4745411      32222             P    157225.05  1995-05-14   
-    9972     4745412      46144             F     84172.49  1994-09-13   
-    9973     4745413      10984             F    217863.14  1994-03-15   
-    9974     4745414      92600             F     74781.81  1993-01-30   
-    9975     4745415      74542             F    196690.90  1992-10-24   
-    9976     4745440      25034             F    189327.36  1993-08-20   
-    9977     4745441     130655             F     44330.25  1993-07-02   
-    9978     4745442      52133             O    124923.73  1995-11-29   
-    9979     4745443      46094             O    142727.75  1997-11-11   
-    9980     4745444      93007             F    184707.90  1992-02-26   
-    9981     4745445     135173             F    168487.48  1992-08-08   
-    9982     4745446      93151             O     46808.16  1997-03-09   
-    9983     4745447       8374             F    184215.32  1993-06-30   
-    9984     4745472      16538             F    218624.45  1993-10-22   
-    9985     4745473     140452             F    225618.41  1992-11-18   
-    9986     4745474     147451             O     80977.22  1997-11-17   
-    9987     4745475      55861             F     10303.71  1994-03-20   
-    9988     4745476     129775             F    249224.85  1992-12-14   
-    9989     4745477     107581             F     23490.38  1993-08-22   
-    9990     4745478     139468             O    280555.34  1996-11-07   
-    9991     4745479     126790             F    238199.32  1992-08-24   
-    9992     4745504      57175             O     95208.63  1996-04-23   
-    9993     4745505      20848             O    286021.64  1997-06-01   
-    9994     4745506     128323             O    283172.73  1996-02-27   
-    9995     4745507      19763             F    307923.96  1994-04-21   
-    9996     4745508      43456             O    265090.11  1997-09-30   
-    9997     4745509       8533             F     95670.07  1992-12-16   
-    9998     4745510     140833             O    117967.19  1998-06-06   
-    9999     4745511      97273             F    346555.85  1993-06-17   
+       o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
+    0           1      36901             O    173665.47  1996-01-02   
+    1           2      78002             O     46929.18  1996-12-01   
+    2           3     123314             F    193846.25  1993-10-14   
+    3           4     136777             O     32151.78  1995-10-11   
+    4           5      44485             F    144659.20  1994-07-30   
     
-          o_orderpriority          o_clerk  o_shippriority  \
-    0               5-LOW  Clerk#000000951               0   
-    1            1-URGENT  Clerk#000000880               0   
-    2               5-LOW  Clerk#000000955               0   
-    3               5-LOW  Clerk#000000124               0   
-    4               5-LOW  Clerk#000000925               0   
-    5     4-NOT SPECIFIED  Clerk#000000058               0   
-    6              2-HIGH  Clerk#000000470               0   
-    7              2-HIGH  Clerk#000000616               0   
-    8            3-MEDIUM  Clerk#000000409               0   
-    9            3-MEDIUM  Clerk#000000223               0   
-    10    4-NOT SPECIFIED  Clerk#000000259               0   
-    11           1-URGENT  Clerk#000000358               0   
-    12           3-MEDIUM  Clerk#000000456               0   
-    13    4-NOT SPECIFIED  Clerk#000000604               0   
-    14           3-MEDIUM  Clerk#000000659               0   
-    15           3-MEDIUM  Clerk#000000661               0   
-    16           1-URGENT  Clerk#000000632               0   
-    17              5-LOW  Clerk#000000743               0   
-    18    4-NOT SPECIFIED  Clerk#000000547               0   
-    19           3-MEDIUM  Clerk#000000440               0   
-    20    4-NOT SPECIFIED  Clerk#000000330               0   
-    21              5-LOW  Clerk#000000322               0   
-    22    4-NOT SPECIFIED  Clerk#000000271               0   
-    23             2-HIGH  Clerk#000000395               0   
-    24           3-MEDIUM  Clerk#000000547               0   
-    25           1-URGENT  Clerk#000000448               0   
-    26    4-NOT SPECIFIED  Clerk#000000973               0   
-    27    4-NOT SPECIFIED  Clerk#000000577               0   
-    28           3-MEDIUM  Clerk#000000419               0   
-    29             2-HIGH  Clerk#000000596               0   
-    ...               ...              ...             ...   
-    9970           2-HIGH  Clerk#000000415               0   
-    9971            5-LOW  Clerk#000000998               0   
-    9972         3-MEDIUM  Clerk#000000116               0   
-    9973  4-NOT SPECIFIED  Clerk#000000275               0   
-    9974           2-HIGH  Clerk#000000617               0   
-    9975         1-URGENT  Clerk#000000901               0   
-    9976           2-HIGH  Clerk#000000348               0   
-    9977         3-MEDIUM  Clerk#000000234               0   
-    9978  4-NOT SPECIFIED  Clerk#000000129               0   
-    9979         3-MEDIUM  Clerk#000000532               0   
-    9980           2-HIGH  Clerk#000000233               0   
-    9981         3-MEDIUM  Clerk#000000470               0   
-    9982            5-LOW  Clerk#000000854               0   
-    9983         3-MEDIUM  Clerk#000000082               0   
-    9984         3-MEDIUM  Clerk#000000252               0   
-    9985            5-LOW  Clerk#000000086               0   
-    9986         1-URGENT  Clerk#000000733               0   
-    9987         3-MEDIUM  Clerk#000000456               0   
-    9988           2-HIGH  Clerk#000000204               0   
-    9989         3-MEDIUM  Clerk#000000094               0   
-    9990  4-NOT SPECIFIED  Clerk#000000390               0   
-    9991            5-LOW  Clerk#000000853               0   
-    9992            5-LOW  Clerk#000000922               0   
-    9993  4-NOT SPECIFIED  Clerk#000000775               0   
-    9994           2-HIGH  Clerk#000000651               0   
-    9995  4-NOT SPECIFIED  Clerk#000000742               0   
-    9996  4-NOT SPECIFIED  Clerk#000000113               0   
-    9997           2-HIGH  Clerk#000000430               0   
-    9998           2-HIGH  Clerk#000000241               0   
-    9999         1-URGENT  Clerk#000000423               0   
+      o_orderpriority          o_clerk  o_shippriority  \
+    0           5-LOW  Clerk#000000951               0   
+    1        1-URGENT  Clerk#000000880               0   
+    2           5-LOW  Clerk#000000955               0   
+    3           5-LOW  Clerk#000000124               0   
+    4           5-LOW  Clerk#000000925               0   
     
-                                                  o_comment  
-    0                    nstructions sleep furiously among   
-    1      foxes. pending accounts at the pending, silen...  
-    2     sly final accounts boost. carefully regular id...  
-    3     sits. slyly regular warthogs cajole. regular, ...  
-    4     quickly. bold deposits sleep slyly. packages u...  
-    5     ggle. special, final requests are against the ...  
-    6                                  ly special requests   
-    7     ise blithely bold, regular requests. quickly u...  
-    8                     uriously. furiously final request  
-    9     ly final packages. fluffily final deposits wak...  
-    10          zzle. carefully enticing deposits nag furio  
-    11     quick packages are blithely. slyly silent acc...  
-    12    kly regular pinto beans. carefully unusual wat...  
-    13    haggle blithely. furiously express ideas haggl...  
-    14                     ole express, ironic requests: ir  
-    15    wake fluffily. sometimes ironic pinto beans ab...  
-    16    ular requests are blithely pending orbits-- ev...  
-    17                         y pending requests integrate  
-    18     symptotes haggle slyly around the furiously iron  
-    19     pinto beans sleep carefully. blithely ironic ...  
-    20     depths atop the slyly thin deposits detect am...  
-    21                             carefully ironic request  
-    22            express deposits along the blithely regul  
-    23                                oost furiously. pinto  
-    24    hang blithely along the regular accounts. furi...  
-    25    c asymptotes. quickly regular packages should ...  
-    26                 e carefully ironic packages. pending  
-    27         heodolites detect slyly alongside of the ent  
-    28        ding accounts above the slyly final asymptote  
-    29     slyly according to the asymptotes. carefully ...  
-    ...                                                 ...  
-    9970                        deposits? furiously ironic   
-    9971  iously ironic dependencies are blithely above ...  
-    9972  sual theodolites print carefully after the fur...  
-    9973      hinly even instructions affix among the caref  
-    9974  nto beans. blithely dogged dolphins along the ...  
-    9975               ments. theodolites sleep alongside o  
-    9976             s are ironic foxes. even dependencies   
-    9977         ong the special, regular excuses. blithely  
-    9978         deposits grow carefully toward the foxes.   
-    9979                  uriously unusual foxes cajole sly  
-    9980  e regular deposits! blithely final accounts ac...  
-    9981            elets. furiously thin accounts cajole b  
-    9982  se fluffily pending platelets. furiously final...  
-    9983  counts cajole around the regular patterns. ironic  
-    9984  uickly furious pinto beans are carefully about...  
-    9985  s alongside of the final, sly platelets nag bl...  
-    9986  ular, regular theodolites. blithely unusual as...  
-    9987  ests. pending, final deposits detect slyly bli...  
-    9988  sly even deposits. final dependencies about th...  
-    9989   above the regular ideas. final, ironic instru...  
-    9990  al gifts are furiously carefully final instruc...  
-    9991                      . unusual pinto beans accordi  
-    9992  gular platelets. express accounts nag quickly ...  
-    9993            eodolites boost according to the furiou  
-    9994  aggle furiously final courts. carefully pendin...  
-    9995  unts. foxes nag quickly along the furiously bo...  
-    9996  o the slyly express escapades are packages. ex...  
-    9997  l, ironic deposits nag furiously quickly even ...  
-    9998   even requests integrate about the carefully b...  
-    9999                              slyly ironic packages  
-    
-    [10000 rows x 9 columns]
+                                               o_comment  
+    0                 nstructions sleep furiously among   
+    1   foxes. pending accounts at the pending, silen...  
+    2  sly final accounts boost. carefully regular id...  
+    3  sits. slyly regular warthogs cajole. regular, ...  
+    4  quickly. bold deposits sleep slyly. packages u...  
 
 
 
@@ -1342,196 +386,41 @@ This is now a valid filter:
 
 .. parsed-literal::
 
-          c_custkey              c_name                                c_address  \
-    0             1  Customer#000000001                        IVhzIApeRb ot,c,E   
-    1             2  Customer#000000002           XSTf4,NCwDVaWNe6tEgvwfmRchLXak   
-    2             4  Customer#000000004                              XxVSJsLAGtn   
-    3             5  Customer#000000005             KvpyuHCplrB84WgAiGV6sYpZq7Tj   
-    4             7  Customer#000000007           TcGe5gaZNgVePxU5kRrvXBfkasDTea   
-    5             8  Customer#000000008    I0B10bB0AymmC, 0PrRYBCP1yGJ8xcBPmWhl5   
-    6            10  Customer#000000010       6LrEaV6KR6PLVcgl2ArL Q3rqzLzcT1 v2   
-    7            11  Customer#000000011                  PkWS 3HlXqwTuzrKg633BEi   
-    8            13  Customer#000000013                  nsXQu0oVjD7PM659uC3SRSp   
-    9            14  Customer#000000014                          KXkletMlL2JQEA    
-    10           16  Customer#000000016                      cYiaeMLZSMAOQ2 d0W,   
-    11           17  Customer#000000017   izrh 6jdqtp2eqdtbkswDD8SG4SzXruMfIXyR7   
-    12           19  Customer#000000019            uc,3bHIx84H,wdrmLOjVsiqXCq2tr   
-    13           20  Customer#000000020                            JrPk8Pqplj4Ne   
-    14           22  Customer#000000022             QI6p41,FNs5k7RZoCCVPUTkUdYpB   
-    15           23  Customer#000000023          OdY W13N7Be3OC5MpgfmcYss0Wn6TKT   
-    16           25  Customer#000000025                    Hp8GyFQgGHFYSilH5tBfe   
-    17           26  Customer#000000026                          8ljrc5ZeMl7UciP   
-    18           28  Customer#000000028               iVyg0daQ,Tha8x2WPWA9m2529m   
-    19           29  Customer#000000029        sJ5adtfyAkCK63df2,vF25zyQMVYE34uh   
-    20           31  Customer#000000031            LUACbO0viaAv6eXOAebryDB xjVst   
-    21           32  Customer#000000032    jD2xZzi UmId,DCtNBLXKj9q0Tlp2iQ6ZcO3J   
-    22           34  Customer#000000034               Q6G9wZ6dnczmtOx509xgE,M2KV   
-    23           35  Customer#000000035                            TEjWGE4nBzJL2   
-    24           37  Customer#000000037                        7EV4Pwh,3SboctTWt   
-    25           38  Customer#000000038                     a5Ee5e9568R8RLP 2ap7   
-    26           40  Customer#000000040                           gOnGWAyhSV1ofv   
-    27           41  Customer#000000041          IM9mzmyoxeBmvNw8lA7G3Ydska2nkZF   
-    28           43  Customer#000000043        ouSbjHk8lh5fKX3zGso3ZSIj9Aa3PoaFd   
-    29           44  Customer#000000044        Oi,dOSPwDu4jo4x,,P85E0dmhZGvNtBwi   
-    ...         ...                 ...                                      ...   
-    9970      15004  Customer#000015004                      Lam3wqZtNeUTItC6bPY   
-    9971      15005  Customer#000015005                           qxtw tVJD8OwPS   
-    9972      15007  Customer#000015007                    zB0Xs6B72jqlzohe,8C6w   
-    9973      15008  Customer#000015008                 1ho19QHqb9yuJglKngtrGH7R   
-    9974      15010  Customer#000015010      W0vwK8 FLWT NUDLZLgwRFGJiKFXdxcqSRl   
-    9975      15011  Customer#000015011                        LMqVo4 YdlGZ7y5hm   
-    9976      15013  Customer#000015013                        tJYfVTQMqRuMVmNjx   
-    9977      15014  Customer#000015014              0vP9D58TQFEIgBF5Z0KAbtICtTE   
-    9978      15016  Customer#000015016                    Sj8E4sjj5dCQjgGVBw98M   
-    9979      15017  Customer#000015017                              37l88eNGv36   
-    9980      15019  Customer#000015019      BoIvWDmj74e mGpC6ZN7uTSiqDYahi QWlr   
-    9981      15020  Customer#000015020         jt13SViNOVIN2tQvJe8uq9gj3kekQPif   
-    9982      15022  Customer#000015022         XDtSJ7ZB8ChI,M5Dg4hcXaBQl4X0WInp   
-    9983      15023  Customer#000015023                             cJ0ZmQUtKRkV   
-    9984      15025  Customer#000015025                             ,c5quvKjcjGm   
-    9985      15026  Customer#000015026                        i0q Pyv,D4EsIUDjw   
-    9986      15028  Customer#000015028                          mLqX8tLbmNGOwEv   
-    9987      15029  Customer#000015029    qCYkdAMO0XozwsTQwCD6C8swkzwnXiBCw1GQY   
-    9988      15031  Customer#000015031                        5hYAueLcX1VE6UCUc   
-    9989      15032  Customer#000015032                               OKi2brd497   
-    9990      15034  Customer#000015034          6Q3 i9qDEWhABNMVN1NvgruQaHp49xd   
-    9991      15035  Customer#000015035  E7J6VBgmUVptt4FXvekUSS GJHA6wQ,Hgy1Xghg   
-    9992      15037  Customer#000015037        vGRYf3PhyXrQTOdvujiQW8FTptH92JPeT   
-    9993      15038  Customer#000015038                2J XEGuMey9MHzl7op1iXS8KH   
-    9994      15040  Customer#000015040      EWm xga52jwj5p7o420cEc7vs8q7rJQ6tRi   
-    9995      15041  Customer#000015041          VJxs9rhzuyUcO05JjX5l1YswbCynjSW   
-    9996      15043  Customer#000015043                6UDi xqBLqq0VSgbb,x9F2blX   
-    9997      15044  Customer#000015044           n6,M14,qMI3eBAdqeMncWzX,Qs6YTG   
-    9998      15046  Customer#000015046                           2eqiNOfoz0CkoP   
-    9999      15047  Customer#000015047              XSCUpqvhmGbSbbBKP4o3ZyLqC3i   
+       c_custkey              c_name                              c_address  \
+    0          1  Customer#000000001                      IVhzIApeRb ot,c,E   
+    1          2  Customer#000000002         XSTf4,NCwDVaWNe6tEgvwfmRchLXak   
+    2          4  Customer#000000004                            XxVSJsLAGtn   
+    3          5  Customer#000000005           KvpyuHCplrB84WgAiGV6sYpZq7Tj   
+    4          7  Customer#000000007         TcGe5gaZNgVePxU5kRrvXBfkasDTea   
+    5          8  Customer#000000008  I0B10bB0AymmC, 0PrRYBCP1yGJ8xcBPmWhl5   
+    6         10  Customer#000000010     6LrEaV6KR6PLVcgl2ArL Q3rqzLzcT1 v2   
+    7         11  Customer#000000011                PkWS 3HlXqwTuzrKg633BEi   
+    8         13  Customer#000000013                nsXQu0oVjD7PM659uC3SRSp   
+    9         14  Customer#000000014                        KXkletMlL2JQEA    
     
-          c_nationkey          c_phone c_acctbal c_mktsegment  \
-    0              15  25-989-741-2988    711.56     BUILDING   
-    1              13  23-768-687-3665    121.65   AUTOMOBILE   
-    2               4  14-128-190-5944   2866.83    MACHINERY   
-    3               3  13-750-942-6364    794.47    HOUSEHOLD   
-    4              18  28-190-982-9759   9561.95   AUTOMOBILE   
-    5              17  27-147-574-9335   6819.74     BUILDING   
-    6               5  15-741-346-9870   2753.54    HOUSEHOLD   
-    7              23  33-464-151-3439   -272.60     BUILDING   
-    8               3  13-761-547-5974   3857.34     BUILDING   
-    9               1  11-845-129-3851   5266.30    FURNITURE   
-    10             10  20-781-609-3107   4681.03    FURNITURE   
-    11              2  12-970-682-3487      6.34   AUTOMOBILE   
-    12             18  28-396-526-5053   8914.71    HOUSEHOLD   
-    13             22  32-957-234-8742   7603.40    FURNITURE   
-    14              3  13-806-545-9701    591.98    MACHINERY   
-    15              3  13-312-472-8245   3332.02    HOUSEHOLD   
-    16             12  22-603-468-3533   7133.70    FURNITURE   
-    17             22  32-363-455-4837   5182.05   AUTOMOBILE   
-    18              8  18-774-241-1462   1007.18    FURNITURE   
-    19              0  10-773-203-7342   7618.27    FURNITURE   
-    20             23  33-197-837-7094   5236.89    HOUSEHOLD   
-    21             15  25-430-914-2194   3471.53     BUILDING   
-    22             15  25-344-968-5422   8589.70    HOUSEHOLD   
-    23             17  27-566-888-7431   1228.24    HOUSEHOLD   
-    24              8  18-385-235-7162   -917.75    FURNITURE   
-    25             12  22-306-880-7212   6345.11    HOUSEHOLD   
-    26              3  13-652-915-8939   1335.30     BUILDING   
-    27             10  20-917-711-4011    270.95    HOUSEHOLD   
-    28             19  29-316-665-2897   9904.28    MACHINERY   
-    29             16  26-190-260-5375   7315.94   AUTOMOBILE   
-    ...           ...              ...       ...          ...   
-    9970           20  30-681-514-7819   3549.58    FURNITURE   
-    9971           14  24-801-587-1765   2767.14    HOUSEHOLD   
-    9972            6  16-802-847-2814   9446.75    MACHINERY   
-    9973            8  18-468-312-7027   6599.40    HOUSEHOLD   
-    9974            5  15-487-827-7658   2569.22    HOUSEHOLD   
-    9975           23  33-855-234-3339   3829.38    FURNITURE   
-    9976           20  30-709-924-2145   8504.61    FURNITURE   
-    9977           14  24-860-916-6204   1019.38    HOUSEHOLD   
-    9978           21  31-548-382-5049   6011.19    HOUSEHOLD   
-    9979           18  28-776-873-3056   4086.41   AUTOMOBILE   
-    9980            7  17-786-498-7687   8078.30    MACHINERY   
-    9981            7  17-563-456-9345   8054.48    HOUSEHOLD   
-    9982           17  27-221-808-6641   9092.63     BUILDING   
-    9983            2  12-811-756-8159   5893.58   AUTOMOBILE   
-    9984           20  30-704-595-5404   5905.74   AUTOMOBILE   
-    9985           11  21-854-310-9170   2748.33    MACHINERY   
-    9986            5  15-785-613-4629   6461.84    FURNITURE   
-    9987           13  23-383-540-2029   -908.98    HOUSEHOLD   
-    9988            8  18-415-960-1349    237.66   AUTOMOBILE   
-    9989            6  16-507-465-9987   -662.79    HOUSEHOLD   
-    9990           14  24-126-716-8610   8867.20    FURNITURE   
-    9991           20  30-423-324-3377   1134.96    FURNITURE   
-    9992            1  11-795-687-6322   8680.10    FURNITURE   
-    9993           12  22-282-547-1336   2472.22    HOUSEHOLD   
-    9994            5  15-994-164-3706   1224.59    MACHINERY   
-    9995           20  30-286-776-6711   9640.95   AUTOMOBILE   
-    9996           17  27-263-202-4846    764.75     BUILDING   
-    9997           16  26-957-314-2336   3107.80    FURNITURE   
-    9998            6  16-453-428-6615   4738.36    MACHINERY   
-    9999            4  14-584-157-5284   6595.70   AUTOMOBILE   
+       c_nationkey          c_phone c_acctbal c_mktsegment  \
+    0           15  25-989-741-2988    711.56     BUILDING   
+    1           13  23-768-687-3665    121.65   AUTOMOBILE   
+    2            4  14-128-190-5944   2866.83    MACHINERY   
+    3            3  13-750-942-6364    794.47    HOUSEHOLD   
+    4           18  28-190-982-9759   9561.95   AUTOMOBILE   
+    5           17  27-147-574-9335   6819.74     BUILDING   
+    6            5  15-741-346-9870   2753.54    HOUSEHOLD   
+    7           23  33-464-151-3439   -272.60     BUILDING   
+    8            3  13-761-547-5974   3857.34     BUILDING   
+    9            1  11-845-129-3851   5266.30    FURNITURE   
     
-                                                  c_comment  
-    0     to the even, regular platelets. regular, ironi...  
-    1     l accounts. blithely ironic theodolites integr...  
-    2      requests. final, regular ideas sleep final accou  
-    3     n accounts will have to unwind. foxes cajole a...  
-    4     ainst the ironic, express theodolites. express...  
-    5     among the slyly regular theodolites kindle bli...  
-    6                       es regular deposits haggle. fur  
-    7     ckages. requests sleep slyly. quickly even pin...  
-    8     ounts sleep carefully after the close frays. c...  
-    9                     , ironic packages across the unus  
-    10    kly silent courts. thinly regular theodolites ...  
-    11                    packages wake! blithely even pint  
-    12     nag. furiously careful packages are slyly at ...  
-    13    g alongside of the special excuses-- fluffily ...  
-    14    s nod furiously above the furiously ironic ide...  
-    15    deposits. special deposits cajole slyly. fluff...  
-    16    y. accounts sleep ruthlessly according to the ...  
-    17    c requests use furiously ironic requests. slyl...  
-    18      along the regular deposits. furiously final pac  
-    19    its after the carefully final platelets x-ray ...  
-    20                s use among the blithely pending depo  
-    21     cial ideas. final, furious requests across the e  
-    22        nder against the even, pending accounts. even  
-    23    requests. special, express requests nag slyly ...  
-    24    ilent packages are carefully among the deposit...  
-    25    lar excuses. closely even asymptotes cajole bl...  
-    26    rges impress after the slyly ironic courts. fo...  
-    27    ly regular accounts hang bold, silent packages...  
-    28    ial requests: carefully pending foxes detect q...  
-    29                r requests around the unusual, bold a  
-    ...                                                 ...  
-    9970  ar platelets sleep slowly furiously regular re...  
-    9971         ly. fluffily even accounts wake. ideas sle  
-    9972            nt asymptotes wake blithely regular, ex  
-    9973       s boost furiously ironic sheaves. blithely r  
-    9974  ial pinto beans are along the ironic dolphins....  
-    9975  y ironic accounts. blithely ironic dependencie...  
-    9976  fix carefully bold, ironic packages. carefully...  
-    9977  l asymptotes cajole across the express instruc...  
-    9978  iers sleep blithely furiously unusual realms. ...  
-    9979  ns. pains haggle slyly furiously regular reque...  
-    9980      ckages are boldly furiously final pinto beans  
-    9981  carefully. blithely unusual accounts are furio...  
-    9982  use carefully. slyly regular asymptotes wake n...  
-    9983  ke among the slyly ironic accounts; never spec...  
-    9984  ing multipliers integrate always sometimes unu...  
-    9985  s dazzle. ironic deposits x-ray fluffily quick...  
-    9986         ts cajole furiously requests. pinto beans   
-    9987  ix blithely above the ironic theodolites. sly ...  
-    9988  equests. regular dependencies haggle carefully...  
-    9989  furiously bold theodolites. accounts wake busi...  
-    9990   ironic instructions are against the carefully...  
-    9991  furiously among the carefully regular requests...  
-    9992  e unusual, ironic pinto beans nag carefully re...  
-    9993  e the pinto beans. slyly ironic platelets eat ...  
-    9994  ronic deposits use alongside of the furiously ...  
-    9995   slyly special accounts are carefully. slyly i...  
-    9996   boost against the carefully bold foxes. caref...  
-    9997  e express packages. furiously regular requests...  
-    9998  frays above the busy, regular requests doze am...  
-    9999        ies. regular, bold packages cajole quickly   
-    
-    [10000 rows x 8 columns]
+                                               c_comment  
+    0  to the even, regular platelets. regular, ironi...  
+    1  l accounts. blithely ironic theodolites integr...  
+    2   requests. final, regular ideas sleep final accou  
+    3  n accounts will have to unwind. foxes cajole a...  
+    4  ainst the ironic, express theodolites. express...  
+    5  among the slyly regular theodolites kindle bli...  
+    6                    es regular deposits haggle. fur  
+    7  ckages. requests sleep slyly. quickly even pin...  
+    8  ounts sleep carefully after the close frays. c...  
+    9                  , ironic packages across the unus  
 
 
 

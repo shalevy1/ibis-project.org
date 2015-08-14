@@ -12,7 +12,7 @@ cluster:
 
     import ibis
     import os
-    ic = ibis.impala_connect(host='quickstart.cloudera')
+    ic = ibis.impala.connect(host='quickstart.cloudera')
     ic
 
 
@@ -20,13 +20,13 @@ cluster:
 
 .. parsed-literal::
 
-    <ibis.client.ImpalaConnection at 0x7f87cfcf98d0>
+    <ibis.impala.client.ImpalaConnection at 0x7f23aa4e1490>
 
 
 
 Obviously, substitute the parameters that are appropriate for your
-environment (see docstring for ``ibis.impala_connect``).
-``impala_connect`` uses the same parameters as Impyla's
+environment (see docstring for ``ibis.impala.connect``).
+``impala.connect`` uses the same parameters as Impyla's
 (https://pypi.python.org/pypi/impyla) DBAPI interface
 
 If you have WebHDFS available, connect to HDFS with according to your
@@ -51,6 +51,6 @@ Finally, create the Ibis client
 
 .. parsed-literal::
 
-    <ibis.client.ImpalaClient at 0x7f87cfcf9850>
+    <ibis.impala.client.ImpalaClient at 0x7f23aa4e17d0>
 
 
