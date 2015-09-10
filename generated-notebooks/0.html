@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Intro and Setup &mdash; Ibis 0.4.0 documentation</title>
+  <title>Impala/HDFS intro and Setup &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
         <link rel="next" title="Basics: Aggregation, filtering, limits" href="1.html"/>
         <link rel="prev" title="Tutorial" href="../tutorial.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Intro and Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -192,7 +196,7 @@
       
           <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
       
-    <li>Intro and Setup</li>
+    <li>Impala/HDFS intro and Setup</li>
       <li class="wy-breadcrumbs-aside">
         
           <a href="../_sources/generated-notebooks/0.txt" rel="nofollow"> View page source</a>
@@ -203,26 +207,16 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="intro-and-setup">
-<h1>Intro and Setup<a class="headerlink" href="#intro-and-setup" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="impala-hdfs-intro-and-setup">
+<h1>Impala/HDFS intro and Setup<a class="headerlink" href="#impala-hdfs-intro-and-setup" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>You&#8217;re going to want to make sure you can connect to your Impala
-cluster:</p>
+<p>You&#8217;re going to want to make sure you can import <code class="docutils literal"><span class="pre">ibis</span></code></p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">)</span>
-<span class="n">ic</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.impala.client.ImpalaConnection at 0x7f23aa4e1490&gt;
-</pre></div>
-</div>
-<p>Obviously, substitute the parameters that are appropriate for your
-environment (see docstring for <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>).
-<code class="docutils literal"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla&#8217;s
-(<a class="reference external" href="https://pypi.python.org/pypi/impyla">https://pypi.python.org/pypi/impyla</a>) DBAPI interface</p>
 <p>If you have WebHDFS available, connect to HDFS with according to your
 WebHDFS config. For kerberized or more complex HDFS clusters please look
 at <a class="reference external" href="http://hdfscli.readthedocs.org/en/latest/">http://hdfscli.readthedocs.org/en/latest/</a> for info on connecting. You
@@ -232,13 +226,17 @@ can use a connection from that library instead of using <code class="docutils li
 </pre></div>
 </div>
 <p>Finally, create the Ibis client</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">con</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.impala.client.ImpalaClient at 0x7f23aa4e17d0&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;ibis.impala.client.ImpalaClient at 0x7f6c3e919a50&gt;
 </pre></div>
 </div>
+<p>Obviously, substitute the parameters that are appropriate for your
+environment (see docstring for <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>).
+<code class="docutils literal"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla&#8217;s
+(<a class="reference external" href="https://pypi.python.org/pypi/impyla">https://pypi.python.org/pypi/impyla</a>) DBAPI interface</p>
 </div>
 
 
@@ -280,7 +278,7 @@ can use a connection from that library instead of using <code class="docutils li
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

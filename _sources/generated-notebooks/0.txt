@@ -1,33 +1,16 @@
 
-Intro and Setup
-===============
+Impala/HDFS intro and Setup
+===========================
 
 Getting started
 ===============
 
-You're going to want to make sure you can connect to your Impala
-cluster:
+You're going to want to make sure you can import ``ibis``
 
 .. code:: python
 
     import ibis
     import os
-    ic = ibis.impala.connect(host='quickstart.cloudera')
-    ic
-
-
-
-
-.. parsed-literal::
-
-    <ibis.impala.client.ImpalaConnection at 0x7f23aa4e1490>
-
-
-
-Obviously, substitute the parameters that are appropriate for your
-environment (see docstring for ``ibis.impala.connect``).
-``impala.connect`` uses the same parameters as Impyla's
-(https://pypi.python.org/pypi/impyla) DBAPI interface
 
 If you have WebHDFS available, connect to HDFS with according to your
 WebHDFS config. For kerberized or more complex HDFS clusters please look
@@ -43,7 +26,7 @@ Finally, create the Ibis client
 
 .. code:: python
 
-    con = ibis.make_client(ic, hdfs_client=hdfs)
+    con = ibis.impala.connect('quickstart.cloudera', hdfs_client=hdfs)
     con
 
 
@@ -51,6 +34,11 @@ Finally, create the Ibis client
 
 .. parsed-literal::
 
-    <ibis.impala.client.ImpalaClient at 0x7f23aa4e17d0>
+    <ibis.impala.client.ImpalaClient at 0x7f6c3e919a50>
 
 
+
+Obviously, substitute the parameters that are appropriate for your
+environment (see docstring for ``ibis.impala.connect``).
+``impala.connect`` uses the same parameters as Impyla's
+(https://pypi.python.org/pypi/impyla) DBAPI interface

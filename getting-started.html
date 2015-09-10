@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis 0.4.0 documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,9 +30,9 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="index.html"/>
         <link rel="next" title="Configuring Ibis" href="configuration.html"/>
-        <link rel="prev" title="Ibis Documentation" href="index.html"/> 
+        <link rel="prev" title="Ibis: Python Data Analysis Framework" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -77,7 +77,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -131,8 +132,10 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#general-numeric-methods">General numeric methods</a></li>
@@ -151,6 +154,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -234,19 +238,18 @@ in a future release). We recommend <a class="reference external" href="http://co
 <div class="section" id="creating-a-client">
 <h2>Creating a client<a class="headerlink" href="#creating-a-client" title="Permalink to this headline">¶</a></h2>
 <p>To create an Ibis &#8220;client&#8221;, you must first connect your services and assemble
-the client using <code class="docutils literal"><span class="pre">ibis.make_client</span></code>:</p>
+the client using <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">impala_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">impala_port</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">webhdfs_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">webhdfs_port</span><span class="p">)</span>
-
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">impala_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">impala_port</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span>
 </pre></div>
 </div>
-<p>Both method calls can take <code class="docutils literal"><span class="pre">use_kerberos=True</span></code> to connect to Kerberos
-clusters.  Depending on your cluster setup, this may also include LDAP or SSL.
-See the <a class="reference internal" href="api.html#api-client"><span>API reference</span></a> for more, along with the Impala shell
-reference, as the connection semantics are identical.</p>
+<p>Both method calls can take <code class="docutils literal"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
+<code class="docutils literal"><span class="pre">auth_mechanism='LDAP'</span></code> to connect to Kerberos clusters.  Depending on your
+cluster setup, this may also include SSL. See the <a class="reference internal" href="api.html#api-client"><span>API reference</span></a> for more, along with the Impala shell reference, as the
+connection semantics are identical.</p>
 </div>
 <div class="section" id="learning-resources">
 <h2>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
@@ -259,6 +262,10 @@ reproduced as part of the documentation.</p>
 <p>Since Ibis requires a running Impala cluster, we have provided a lean
 VirtualBox image to simplify the process for those looking to try out Ibis
 (without setting up a cluster) or start contributing code to the project.</p>
+<p>What follows are streamlined setup instructions for the VM. If you wish to
+download it directly and setup from the <code class="docutils literal"><span class="pre">ova</span></code> file, use this <a class="reference external" href="http://archive.cloudera.com/cloudera-ibis/ibis-demo.ova">download link</a>.</p>
+<p>The VM was built with Oracle VirtualBox 4.3.28. We recommend using the latest
+version of the software for the best compatibility.</p>
 <div class="section" id="tl-dr">
 <h3>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>curl -s https://raw.githubusercontent.com/cloudera/ibis-notebooks/master/setup/bootstrap.sh | bash
@@ -271,7 +278,6 @@ VirtualBox image to simplify the process for those looking to try out Ibis
 instructions:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Install Oracle VirtualBox</li>
 <li>Make sure Anaconda is installed. You can get it from
 <a class="reference external" href="http://continuum.io/downloads">http://continuum.io/downloads</a>. Now prepend the Anaconda Python
 to your path like this <code class="docutils literal"><span class="pre">export</span> <span class="pre">PATH=$ANACONDA_HOME/bin:$PATH</span></code></li>
@@ -307,7 +313,7 @@ steps make sure to check the individual steps in the file
         <a href="configuration.html" class="btn btn-neutral float-right" title="Configuring Ibis">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Ibis Documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Ibis: Python Data Analysis Framework"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -337,7 +343,7 @@ steps make sure to check the individual steps in the file
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

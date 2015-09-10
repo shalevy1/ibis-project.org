@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.connect &mdash; Ibis 0.4.0 documentation</title>
+  <title>ibis.impala.api.connect &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.close" href="ibis.impala.api.ImpalaClient.close.html"/>
         <link rel="prev" title="ibis.hdfs_connect" href="ibis.hdfs_connect.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -207,31 +211,49 @@
 <h1>ibis.impala.api.connect<a class="headerlink" href="#ibis-impala-api-connect" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="ibis.impala.api.connect">
-<code class="descclassname">ibis.impala.api.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=21050</em>, <em>protocol='hiveserver2'</em>, <em>database='default'</em>, <em>timeout=45</em>, <em>use_ssl=False</em>, <em>ca_cert=None</em>, <em>use_ldap=False</em>, <em>ldap_user=None</em>, <em>ldap_password=None</em>, <em>use_kerberos=False</em>, <em>kerberos_service_name='impala'</em>, <em>pool_size=8</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an Impala Client for use with Ibis</p>
+<code class="descclassname">ibis.impala.api.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=21050</em>, <em>database='default'</em>, <em>timeout=45</em>, <em>use_ssl=False</em>, <em>ca_cert=None</em>, <em>user=None</em>, <em>password=None</em>, <em>auth_mechanism='NOSASL'</em>, <em>kerberos_service_name='impala'</em>, <em>pool_size=8</em>, <em>hdfs_client=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an ImpalaClient for use with Ibis.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : host name</p>
-<p><strong>port</strong> : int, default 21050 (HiveServer 2)</p>
-<p><strong>protocol</strong> : {&#8216;hiveserver2&#8217;, &#8216;beeswax&#8217;}</p>
-<p><strong>database :</strong></p>
-<p><strong>timeout :</strong></p>
-<p><strong>use_ssl :</strong></p>
-<p><strong>ca_cert :</strong></p>
-<p><strong>use_ldap</strong> : boolean, default False</p>
-<p><strong>ldap_user :</strong></p>
-<p><strong>ldap_password :</strong></p>
-<p><strong>use_kerberos</strong> : boolean, default False</p>
-<p><strong>kerberos_service_name</strong> : string, default &#8216;impala&#8217;</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : string, Host name of the impalad or HiveServer2 in Hive</p>
+<p><strong>port</strong> : int, Defaults to 21050 (Impala&#8217;s HiveServer2)</p>
+<p><strong>database</strong> : string, Default database when obtaining new cursors</p>
+<p><strong>timeout</strong> : int, Connection timeout (seconds) when communicating with</p>
+<blockquote>
+<div><p>HiveServer2</p>
+</div></blockquote>
+<p><strong>use_ssl</strong> : boolean, Use SSL when connecting to HiveServer2</p>
+<p><strong>ca_cert</strong> : string, Local path to 3rd party CA certificate or copy of server</p>
+<blockquote>
+<div><p>certificate for self-signed certificates. If SSL is enabled, but this
+argument is None, then certificate validation is skipped.</p>
+</div></blockquote>
+<p><strong>user</strong> : string, LDAP user to authenticate</p>
+<p><strong>password</strong> : string, LDAP password to authenticate</p>
+<p><strong>auth_mechanism</strong> : string, {&#8216;NOSASL&#8217; &lt;- default, &#8216;PLAIN&#8217;, &#8216;GSSAPI&#8217;, &#8216;LDAP&#8217;}.</p>
+<blockquote>
+<div><p>Use NOSASL for non-secured Impala connections.  Use PLAIN for
+non-secured Hive clusters.  Use LDAP for LDAP authenticated
+connections.  Use GSSAPI for Kerberos-secured clusters.</p>
+</div></blockquote>
+<p><strong>kerberos_service_name</strong> : string, Specify particular impalad service</p>
+<blockquote>
+<div><p>principal.</p>
+</div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>con</strong> : ImpalaConnection</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>con</strong> : ImpalaClient</p>
 </td>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="o">**</span><span class="n">hdfs_params</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">,</span> <span class="o">**</span><span class="n">impala_params</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -275,7 +297,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

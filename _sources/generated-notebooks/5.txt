@@ -4,11 +4,9 @@
     import ibis
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
-    
-    ic = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
-    con = ibis.make_client(ic, hdfs_client=hdfs)
-    
+    con = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing',
+                              hdfs_client=hdfs)
     ibis.options.interactive = True
 
 "Top-K" Filtering
@@ -184,25 +182,25 @@ year-over-year change in total order amounts by region using joins.
 .. parsed-literal::
 
        o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
-    0           1      36901             O    173665.47  1996-01-02   
-    1           2      78002             O     46929.18  1996-12-01   
-    2           3     123314             F    193846.25  1993-10-14   
-    3           4     136777             O     32151.78  1995-10-11   
-    4           5      44485             F    144659.20  1994-07-30   
+    0     4726016     133885             F    160843.35  1992-06-22   
+    1     4726017      36934             O     78307.91  1996-04-19   
+    2     4726018      41483             F    103237.90  1994-10-12   
+    3     4726019     148102             O    201463.59  1997-09-12   
+    4     4726020      19864             O    166098.86  1995-09-12   
     
       o_orderpriority          o_clerk  o_shippriority  \
-    0           5-LOW  Clerk#000000951               0   
-    1        1-URGENT  Clerk#000000880               0   
-    2           5-LOW  Clerk#000000955               0   
-    3           5-LOW  Clerk#000000124               0   
-    4           5-LOW  Clerk#000000925               0   
+    0        1-URGENT  Clerk#000000420               0   
+    1          2-HIGH  Clerk#000000560               0   
+    2           5-LOW  Clerk#000000517               0   
+    3           5-LOW  Clerk#000000954               0   
+    4          2-HIGH  Clerk#000000973               0   
     
                                                o_comment  
-    0                 nstructions sleep furiously among   
-    1   foxes. pending accounts at the pending, silen...  
-    2  sly final accounts boost. carefully regular id...  
-    3  sits. slyly regular warthogs cajole. regular, ...  
-    4  quickly. bold deposits sleep slyly. packages u...  
+    0  ing to the unusual, ironic theodolites. furiou...  
+    1        s among the blithely sly requests boost car  
+    2                     s sleep above the packages. fu  
+    3     tegrate stealthily after the final, silent ide  
+    4                             le quickly blithely ev  
 
 
 
@@ -264,36 +262,36 @@ Sweet, now let's aggregate by year and region:
     1   MIDDLE EAST  1998  4.025011e+09
     2        AFRICA  1995  6.908429e+09
     3          ASIA  1996  6.955679e+09
-    4   MIDDLE EAST  1992  6.761499e+09
-    5       AMERICA  1996  6.883057e+09
-    6   MIDDLE EAST  1995  6.830827e+09
-    7          ASIA  1995  6.931738e+09
-    8        EUROPE  1994  6.979473e+09
-    9          ASIA  1993  6.864540e+09
-    10       AFRICA  1993  6.859733e+09
-    11       EUROPE  1992  6.926705e+09
-    12      AMERICA  1993  6.906800e+09
-    13       AFRICA  1998  4.024061e+09
-    14         ASIA  1998  4.058824e+09
-    15      AMERICA  1998  3.991377e+09
-    16      AMERICA  1995  6.905139e+09
-    17       AFRICA  1996  6.878112e+09
-    18       EUROPE  1997  6.876824e+09
-    19      AMERICA  1992  6.834349e+09
-    20  MIDDLE EAST  1993  6.797943e+09
-    21       EUROPE  1996  7.015421e+09
-    22       AFRICA  1997  6.848983e+09
-    23         ASIA  1994  6.957170e+09
-    24  MIDDLE EAST  1996  6.877095e+09
-    25       EUROPE  1998  4.113448e+09
-    26      AMERICA  1997  6.922465e+09
-    27  MIDDLE EAST  1994  6.778384e+09
-    28         ASIA  1997  6.910663e+09
-    29       AFRICA  1992  6.873319e+09
-    30         ASIA  1992  6.934801e+09
-    31      AMERICA  1994  6.863756e+09
-    32       EUROPE  1995  6.970001e+09
-    33       AFRICA  1994  6.837587e+09
+    4   MIDDLE EAST  1995  6.830827e+09
+    5          ASIA  1993  6.864540e+09
+    6   MIDDLE EAST  1992  6.761499e+09
+    7       AMERICA  1996  6.883057e+09
+    8        AFRICA  1998  4.024061e+09
+    9       AMERICA  1995  6.905139e+09
+    10         ASIA  1995  6.931738e+09
+    11       EUROPE  1994  6.979473e+09
+    12      AMERICA  1992  6.834349e+09
+    13       EUROPE  1996  7.015421e+09
+    14       AFRICA  1997  6.848983e+09
+    15         ASIA  1994  6.957170e+09
+    16       AFRICA  1993  6.859733e+09
+    17       EUROPE  1992  6.926705e+09
+    18      AMERICA  1993  6.906800e+09
+    19       EUROPE  1998  4.113448e+09
+    20      AMERICA  1997  6.922465e+09
+    21         ASIA  1998  4.058824e+09
+    22      AMERICA  1998  3.991377e+09
+    23       AFRICA  1992  6.873319e+09
+    24       EUROPE  1995  6.970001e+09
+    25       AFRICA  1994  6.837587e+09
+    26       AFRICA  1996  6.878112e+09
+    27       EUROPE  1997  6.876824e+09
+    28  MIDDLE EAST  1993  6.797943e+09
+    29  MIDDLE EAST  1996  6.877095e+09
+    30  MIDDLE EAST  1994  6.778384e+09
+    31         ASIA  1997  6.910663e+09
+    32         ASIA  1992  6.934801e+09
+    33      AMERICA  1994  6.863756e+09
     34       EUROPE  1993  6.911395e+09
 
 
@@ -389,115 +387,115 @@ distinct object within Ibis. To do this, use the ``view`` function:
         </tr>
         <tr>
           <th>7</th>
-          <td>AFRICA</td>
-          <td>1995</td>
-          <td>3.031631e+07</td>
-          <td>$30.32mm</td>
-        </tr>
-        <tr>
-          <th>8</th>
-          <td>EUROPE</td>
-          <td>1994</td>
-          <td>9.471985e+06</td>
-          <td>$9.47mm</td>
-        </tr>
-        <tr>
-          <th>9</th>
           <td>AMERICA</td>
           <td>1997</td>
           <td>2.931088e+09</td>
           <td>$2931.09mm</td>
         </tr>
         <tr>
-          <th>10</th>
-          <td>EUROPE</td>
-          <td>1995</td>
-          <td>-4.542062e+07</td>
-          <td>$-45.42mm</td>
-        </tr>
-        <tr>
-          <th>11</th>
-          <td>AFRICA</td>
-          <td>1994</td>
-          <td>-7.084172e+07</td>
-          <td>$-70.84mm</td>
-        </tr>
-        <tr>
-          <th>12</th>
+          <th>8</th>
           <td>ASIA</td>
           <td>1995</td>
           <td>-2.394126e+07</td>
           <td>$-23.94mm</td>
         </tr>
         <tr>
-          <th>13</th>
-          <td>ASIA</td>
-          <td>1997</td>
-          <td>2.851839e+09</td>
-          <td>$2851.84mm</td>
-        </tr>
-        <tr>
-          <th>14</th>
-          <td>EUROPE</td>
-          <td>1996</td>
-          <td>1.385975e+08</td>
-          <td>$138.60mm</td>
-        </tr>
-        <tr>
-          <th>15</th>
-          <td>MIDDLE EAST</td>
-          <td>1997</td>
-          <td>2.789688e+09</td>
-          <td>$2789.69mm</td>
-        </tr>
-        <tr>
-          <th>16</th>
+          <th>9</th>
           <td>AFRICA</td>
-          <td>1997</td>
-          <td>2.824921e+09</td>
-          <td>$2824.92mm</td>
+          <td>1995</td>
+          <td>3.031631e+07</td>
+          <td>$30.32mm</td>
         </tr>
         <tr>
-          <th>17</th>
+          <th>10</th>
+          <td>EUROPE</td>
+          <td>1994</td>
+          <td>9.471985e+06</td>
+          <td>$9.47mm</td>
+        </tr>
+        <tr>
+          <th>11</th>
           <td>AFRICA</td>
           <td>1993</td>
           <td>2.214559e+07</td>
           <td>$22.15mm</td>
         </tr>
         <tr>
-          <th>18</th>
+          <th>12</th>
           <td>EUROPE</td>
           <td>1992</td>
           <td>1.531005e+07</td>
           <td>$15.31mm</td>
         </tr>
         <tr>
-          <th>19</th>
+          <th>13</th>
+          <td>EUROPE</td>
+          <td>1995</td>
+          <td>-4.542062e+07</td>
+          <td>$-45.42mm</td>
+        </tr>
+        <tr>
+          <th>14</th>
+          <td>AFRICA</td>
+          <td>1994</td>
+          <td>-7.084172e+07</td>
+          <td>$-70.84mm</td>
+        </tr>
+        <tr>
+          <th>15</th>
           <td>MIDDLE EAST</td>
           <td>1993</td>
           <td>1.955937e+07</td>
           <td>$19.56mm</td>
         </tr>
         <tr>
-          <th>20</th>
-          <td>AMERICA</td>
-          <td>1995</td>
-          <td>2.208216e+07</td>
-          <td>$22.08mm</td>
+          <th>16</th>
+          <td>ASIA</td>
+          <td>1997</td>
+          <td>2.851839e+09</td>
+          <td>$2851.84mm</td>
         </tr>
         <tr>
-          <th>21</th>
+          <th>17</th>
           <td>MIDDLE EAST</td>
           <td>1994</td>
           <td>-5.244317e+07</td>
           <td>$-52.44mm</td>
         </tr>
         <tr>
-          <th>22</th>
+          <th>18</th>
+          <td>EUROPE</td>
+          <td>1996</td>
+          <td>1.385975e+08</td>
+          <td>$138.60mm</td>
+        </tr>
+        <tr>
+          <th>19</th>
+          <td>MIDDLE EAST</td>
+          <td>1997</td>
+          <td>2.789688e+09</td>
+          <td>$2789.69mm</td>
+        </tr>
+        <tr>
+          <th>20</th>
+          <td>AFRICA</td>
+          <td>1997</td>
+          <td>2.824921e+09</td>
+          <td>$2824.92mm</td>
+        </tr>
+        <tr>
+          <th>21</th>
           <td>AMERICA</td>
           <td>1996</td>
           <td>-3.940791e+07</td>
           <td>$-39.41mm</td>
+        </tr>
+        <tr>
+          <th>22</th>
+          <td>AMERICA</td>
+          <td>1995</td>
+          <td>2.208216e+07</td>
+          <td>$22.08mm</td>
         </tr>
         <tr>
           <th>23</th>
@@ -581,10 +579,10 @@ the join as zero:
     2       EUROPE  1997  6.876824e+09  4.113448e+09  2.763376e+09
     3       AFRICA  1998  4.024061e+09  0.000000e+00  4.024061e+09
     4         ASIA  1996  6.955679e+09  6.910663e+09  4.501570e+07
-    5      AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
-    6         ASIA  1993  6.864540e+09  6.957170e+09 -9.262979e+07
-    7      AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
-    8  MIDDLE EAST  1996  6.877095e+09  6.814699e+09  6.239623e+07
+    5         ASIA  1993  6.864540e+09  6.957170e+09 -9.262979e+07
+    6      AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
+    7  MIDDLE EAST  1996  6.877095e+09  6.814699e+09  6.239623e+07
+    8      AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
     9       AFRICA  1995  6.908429e+09  6.878112e+09  3.031631e+07
 
 

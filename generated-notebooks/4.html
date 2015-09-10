@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating new Impala tables from Ibis expressions &mdash; Ibis 0.4.0 documentation</title>
+  <title>Creating new Impala tables from Ibis expressions &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
         <link rel="next" title="“Top-K” Filtering" href="5.html"/>
         <link rel="prev" title="Type casting" href="3.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -206,15 +210,10 @@
   <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
-
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>impala_connect is deprecated, use ibis.impala.connect instead
 </pre></div>
 </div>
 <div class="section" id="creating-new-impala-tables-from-ibis-expressions">
@@ -235,11 +234,11 @@
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
 0          6       54       54    39420
-1          8       72       72    52560
-2          9       81       81    59130
-3          4       36       36    26280
-4          5       45       45    32850
-5          7       63       63    45990
+1          4       36       36    26280
+2          8       72       72    52560
+3          7       63       63    45990
+4          9       81       81    59130
+5          5       45       45    32850
 </pre></div>
 </div>
 <p>To create a table in the database from the results of this expression,
@@ -255,12 +254,12 @@ be useful for that would help.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          6       54       54    39420
-1          4       36       36    26280
-2          7       63       63    45990
-3          8       72       72    52560
-4          5       45       45    32850
-5          9       81       81    59130
+0          9       81       81    59130
+1          6       54       54    39420
+2          4       36       36    26280
+3          7       63       63    45990
+4          8       72       72    52560
+5          5       45       45    32850
 </pre></div>
 </div>
 <p>Tables can be similarly dropped with <code class="docutils literal"><span class="pre">drop_table</span></code></p>
@@ -277,12 +276,12 @@ or overwrite the data that is in there.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          6       54       54    39420
-1          4       36       36    26280
-2          7       63       63    45990
-3          9       81       81    59130
-4          8       72       72    52560
-5          5       45       45    32850
+0          8       72       72    52560
+1          5       45       45    32850
+2          9       81       81    59130
+3          6       54       54    39420
+4          4       36       36    26280
+5          7       63       63    45990
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
@@ -290,16 +289,16 @@ or overwrite the data that is in there.</p>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>   string_col  min_foo  max_foo  sum_foo
-0           9       81       81    59130
-1           8       72       72    52560
-2           5       45       45    32850
+0           8       72       72    52560
+1           5       45       45    32850
+2           9       81       81    59130
 3           6       54       54    39420
 4           4       36       36    26280
 5           7       63       63    45990
-6           6       54       54    39420
-7           4       36       36    26280
-8           7       63       63    45990
-9           9       81       81    59130
+6           9       81       81    59130
+7           6       54       54    39420
+8           4       36       36    26280
+9           7       63       63    45990
 10          8       72       72    52560
 11          5       45       45    32850
 </pre></div>
@@ -316,25 +315,22 @@ to look through your data and read and write files to and from HDFS:</p>
 <span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/ibis-testing-data/avro&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/udf&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;avro&#39;</span><span class="p">,</span> <span class="s">u&#39;csv&#39;</span><span class="p">,</span> <span class="s">u&#39;parquet&#39;</span><span class="p">,</span> <span class="s">u&#39;udf&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_ctas_cancel&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_customer&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_nation&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_orders&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_part&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_partsupp&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_region&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/ibis-testing-data/parquet/tpch_supplier&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;functional_alltypes&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_customer&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_lineitem&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_nation&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_orders&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_part&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_partsupp&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_region&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;tpch_supplier&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Suppose we wanted to download
@@ -344,7 +340,7 @@ directory. We need only do:</p>
 hdfs.get(&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;, &#39;parquet_dir&#39;)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;parquet_dir&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/parquet_dir&#39;</span>
 </pre></div>
 </div>
 <p>Now we have that directory locally:</p>
@@ -364,37 +360,20 @@ e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
 <span class="n">hdfs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;parquet_dir&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example?user.name=wesm&amp;op=GETFILESTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example&quot;}}
-WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&quot;}}
-WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq does not exist.&quot;}}
-WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&quot;}}
+<div class="highlight-python"><div class="highlight"><pre>WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
-Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq does not exist.&quot;}}
-WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&amp;op=GETFILESTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&quot;}}
-WARNING:hdfs.client:&lt;InsecureClient(url=http://quickstart.cloudera:5070, root=None)&gt; :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&amp;op=LISTSTATUS:
-{&quot;RemoteException&quot;:{&quot;exception&quot;:&quot;FileNotFoundException&quot;,&quot;javaClassName&quot;:&quot;java.io.FileNotFoundException&quot;,&quot;message&quot;:&quot;File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq does not exist.&quot;}}
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre>Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/__ibis/dir-write-example&#39;</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&#39;</span><span class="p">,</span>
- <span class="s">u&#39;/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Delete files with <code class="docutils literal"><span class="pre">rm</span></code> or directories with <code class="docutils literal"><span class="pre">rmdir</span></code>:</p>
@@ -423,18 +402,18 @@ files:</p>
 </pre></div>
 </div>
 <pre class="literal-block">
-   l_orderkey  l_partkey  l_suppkey  l_linenumber l_quantity l_extendedprice  0     2142211     194258       1816             3      50.00        67612.50
-1     2142211      83646       3647             4      44.00        71704.16
+   l_orderkey  l_partkey  l_suppkey  l_linenumber l_quantity l_extendedprice  0           1     155190       7706             1      17.00        21168.23
+1           1      67310       7311             2      36.00        45983.16
 
-  l_discount l_tax l_returnflag l_linestatus  l_shipdate l_commitdate  0       0.07  0.06            N            O  1998-06-14   1998-06-09
-1       0.05  0.01            N            O  1998-06-30   1998-05-21
+  l_discount l_tax l_returnflag l_linestatus  l_shipdate l_commitdate  0       0.04  0.02            N            O  1996-03-13   1996-02-12
+1       0.09  0.06            N            O  1996-04-12   1996-02-28
 
-  l_receiptdate     l_shipinstruct l_shipmode  0    1998-07-03  DELIVER IN PERSON        FOB
-1    1998-07-11               NONE       RAIL
+  l_receiptdate     l_shipinstruct l_shipmode  0    1996-03-22  DELIVER IN PERSON      TRUCK
+1    1996-04-20   TAKE BACK RETURN       MAIL
 
-                                 l_comment
-0            e. slyly ironic accounts acco
-1  ould have to x-ray after the regular, e
+                            l_comment
+0             egular courts above the
+1  ly final dependencies: slyly bold
 </pre>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">lineitem</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
@@ -470,7 +449,7 @@ for you, all in good time.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span> <span class="s">&#39;csv-files&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;csv-files&#39;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/csv-files&#39;</span>
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre>!cat csv-files/0.csv
@@ -612,7 +591,7 @@ you want for the data files</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;/__ibis/my-test-database/example_table&#39;</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;example_table&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To drop a database, including all tables in it, you can use
@@ -644,7 +623,7 @@ may significantly speed up queries on smaller datasets:</p>
 %timeit (t.double_col + rand()).sum().execute()
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>10 loops, best of 3: 136 ms per loop
+<div class="highlight-python"><div class="highlight"><pre>10 loops, best of 3: 63 ms per loop
 </pre></div>
 </div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Turn codegen back on</span>
@@ -654,7 +633,7 @@ may significantly speed up queries on smaller datasets:</p>
 <div class="code python highlight-python"><div class="highlight"><pre>%timeit (t.double_col + rand()).sum().execute()
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>1 loops, best of 3: 1.57 s per loop
+<div class="highlight-python"><div class="highlight"><pre>1 loops, best of 3: 1.32 s per loop
 </pre></div>
 </div>
 <p>It&#8217;s important to remember that codegen is a fixed overhead and will
@@ -700,7 +679,7 @@ significantly speed up queries on big data</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

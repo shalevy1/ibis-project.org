@@ -4,18 +4,10 @@
     import ibis
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
-    
-    ic = ibis.impala_connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
-    con = ibis.make_client(ic, hdfs_client=hdfs)
-    
+    con = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing',
+                              hdfs_client=hdfs)
     ibis.options.interactive = True
-
-
-.. parsed-literal::
-
-    impala_connect is deprecated, use ibis.impala.connect instead
-
 
 Creating new Impala tables from Ibis expressions
 ================================================
@@ -43,11 +35,11 @@ Suppose you have an Ibis expression that produces a table:
 
       string_col  min_foo  max_foo  sum_foo
     0          6       54       54    39420
-    1          8       72       72    52560
-    2          9       81       81    59130
-    3          4       36       36    26280
-    4          5       45       45    32850
-    5          7       63       63    45990
+    1          4       36       36    26280
+    2          8       72       72    52560
+    3          7       63       63    45990
+    4          9       81       81    59130
+    5          5       45       45    32850
 
 
 
@@ -73,12 +65,12 @@ be useful for that would help.
 .. parsed-literal::
 
       string_col  min_foo  max_foo  sum_foo
-    0          6       54       54    39420
-    1          4       36       36    26280
-    2          7       63       63    45990
-    3          8       72       72    52560
-    4          5       45       45    32850
-    5          9       81       81    59130
+    0          9       81       81    59130
+    1          6       54       54    39420
+    2          4       36       36    26280
+    3          7       63       63    45990
+    4          8       72       72    52560
+    5          5       45       45    32850
 
 
 
@@ -105,12 +97,12 @@ or overwrite the data that is in there.
 .. parsed-literal::
 
       string_col  min_foo  max_foo  sum_foo
-    0          6       54       54    39420
-    1          4       36       36    26280
-    2          7       63       63    45990
-    3          9       81       81    59130
-    4          8       72       72    52560
-    5          5       45       45    32850
+    0          8       72       72    52560
+    1          5       45       45    32850
+    2          9       81       81    59130
+    3          6       54       54    39420
+    4          4       36       36    26280
+    5          7       63       63    45990
 
 
 
@@ -125,16 +117,16 @@ or overwrite the data that is in there.
 .. parsed-literal::
 
        string_col  min_foo  max_foo  sum_foo
-    0           9       81       81    59130
-    1           8       72       72    52560
-    2           5       45       45    32850
+    0           8       72       72    52560
+    1           5       45       45    32850
+    2           9       81       81    59130
     3           6       54       54    39420
     4           4       36       36    26280
     5           7       63       63    45990
-    6           6       54       54    39420
-    7           4       36       36    26280
-    8           7       63       63    45990
-    9           9       81       81    59130
+    6           9       81       81    59130
+    7           6       54       54    39420
+    8           4       36       36    26280
+    9           7       63       63    45990
     10          8       72       72    52560
     11          5       45       45    32850
 
@@ -160,10 +152,7 @@ to look through your data and read and write files to and from HDFS:
 
 .. parsed-literal::
 
-    [u'/__ibis/ibis-testing-data/avro',
-     u'/__ibis/ibis-testing-data/csv',
-     u'/__ibis/ibis-testing-data/parquet',
-     u'/__ibis/ibis-testing-data/udf']
+    [u'avro', u'csv', u'parquet', u'udf']
 
 
 
@@ -176,16 +165,16 @@ to look through your data and read and write files to and from HDFS:
 
 .. parsed-literal::
 
-    [u'/__ibis/ibis-testing-data/parquet/functional_alltypes',
-     u'/__ibis/ibis-testing-data/parquet/tpch_ctas_cancel',
-     u'/__ibis/ibis-testing-data/parquet/tpch_customer',
-     u'/__ibis/ibis-testing-data/parquet/tpch_lineitem',
-     u'/__ibis/ibis-testing-data/parquet/tpch_nation',
-     u'/__ibis/ibis-testing-data/parquet/tpch_orders',
-     u'/__ibis/ibis-testing-data/parquet/tpch_part',
-     u'/__ibis/ibis-testing-data/parquet/tpch_partsupp',
-     u'/__ibis/ibis-testing-data/parquet/tpch_region',
-     u'/__ibis/ibis-testing-data/parquet/tpch_supplier']
+    [u'functional_alltypes',
+     u'tpch_ctas_cancel',
+     u'tpch_customer',
+     u'tpch_lineitem',
+     u'tpch_nation',
+     u'tpch_orders',
+     u'tpch_part',
+     u'tpch_partsupp',
+     u'tpch_region',
+     u'tpch_supplier']
 
 
 
@@ -203,7 +192,7 @@ directory. We need only do:
 
 .. parsed-literal::
 
-    'parquet_dir'
+    '/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/parquet_dir'
 
 
 
@@ -234,35 +223,17 @@ Files and directories can be written to HDFS just as easily using
 
 .. parsed-literal::
 
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example?user.name=wesm&op=GETFILESTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File does not exist: /__ibis/dir-write-example"}}
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&op=GETFILESTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq"}}
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq?user.name=wesm&op=LISTSTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq does not exist."}}
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&op=GETFILESTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq"}}
+    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+
+
 
 
 .. parsed-literal::
 
-    Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
-    Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
+    '/__ibis/dir-write-example'
 
-.. parsed-literal::
-
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq?user.name=wesm&op=LISTSTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq does not exist."}}
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&op=GETFILESTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File does not exist: /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq"}}
-    WARNING:hdfs.client:<InsecureClient(url=http://quickstart.cloudera:5070, root=None)> :: [404] /webhdfs/v1/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq?user.name=wesm&op=LISTSTATUS:
-    {"RemoteException":{"exception":"FileNotFoundException","javaClassName":"java.io.FileNotFoundException","message":"File /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq does not exist."}}
-
-
-.. parsed-literal::
-
-    
-    Writing local parquet_dir/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq to HDFS /__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
 
 
 .. code:: python
@@ -274,9 +245,9 @@ Files and directories can be written to HDFS just as easily using
 
 .. parsed-literal::
 
-    [u'/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq',
-     u'/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq',
-     u'/__ibis/dir-write-example/e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq']
+    [u'e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq',
+     u'e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq',
+     u'e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq']
 
 
 
@@ -316,20 +287,20 @@ files:
 .. parsed-literal::
 
        l_orderkey  l_partkey  l_suppkey  l_linenumber l_quantity l_extendedprice  \
-    0     2142211     194258       1816             3      50.00        67612.50   
-    1     2142211      83646       3647             4      44.00        71704.16   
+    0           1     155190       7706             1      17.00        21168.23   
+    1           1      67310       7311             2      36.00        45983.16   
     
       l_discount l_tax l_returnflag l_linestatus  l_shipdate l_commitdate  \
-    0       0.07  0.06            N            O  1998-06-14   1998-06-09   
-    1       0.05  0.01            N            O  1998-06-30   1998-05-21   
+    0       0.04  0.02            N            O  1996-03-13   1996-02-12   
+    1       0.09  0.06            N            O  1996-04-12   1996-02-28   
     
       l_receiptdate     l_shipinstruct l_shipmode  \
-    0    1998-07-03  DELIVER IN PERSON        FOB   
-    1    1998-07-11               NONE       RAIL   
+    0    1996-03-22  DELIVER IN PERSON      TRUCK   
+    1    1996-04-20   TAKE BACK RETURN       MAIL   
     
-                                     l_comment  
-    0            e. slyly ironic accounts acco  
-    1  ould have to x-ray after the regular, e  
+                                l_comment  
+    0             egular courts above the  
+    1  ly final dependencies: slyly bold   
 
 
 
@@ -398,7 +369,7 @@ There's some CSV files in the test folder, so let's use those:
 
 .. parsed-literal::
 
-    'csv-files'
+    '/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/csv-files'
 
 
 
@@ -601,7 +572,7 @@ Hopefully, there will be data files in the indicated spot in HDFS:
 
 .. parsed-literal::
 
-    [u'/__ibis/my-test-database/example_table']
+    [u'example_table']
 
 
 
@@ -644,7 +615,7 @@ may significantly speed up queries on smaller datasets:
 
 .. parsed-literal::
 
-    10 loops, best of 3: 136 ms per loop
+    10 loops, best of 3: 63 ms per loop
 
 
 .. code:: python
@@ -659,7 +630,7 @@ may significantly speed up queries on smaller datasets:
 
 .. parsed-literal::
 
-    1 loops, best of 3: 1.57 s per loop
+    1 loops, best of 3: 1.32 s per loop
 
 
 It's important to remember that codegen is a fixed overhead and will

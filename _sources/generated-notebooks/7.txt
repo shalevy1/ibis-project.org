@@ -4,11 +4,9 @@
     import ibis
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
-    
-    ic = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
-    con = ibis.make_client(ic, hdfs_client=hdfs)
-    
+    con = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing',
+                              hdfs_client=hdfs)
     ibis.options.interactive = True
 
 Frequency tables
@@ -149,8 +147,8 @@ bucketing ends at 100000, we see there are 4122 values that are over
        bucket    count
     0       2  3329905
     1       0   352843
-    2       4     4122
-    3       3  1893650
+    2       3  1893650
+    3       4     4122
     4       1   420695
 
 
@@ -275,7 +273,7 @@ action:
 .. parsed-literal::
 
       color  # rows total  # selected   total  selected total
-    0  blue          4380         730  199071           51611
-    1   red          2920        1460  132714           58984
+    0   red          2920        1460  132714           58984
+    1  blue          4380         730  199071           51611
 
 

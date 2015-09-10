@@ -4,12 +4,9 @@
     import ibis
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
-    
-    ic = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
-    con = ibis.make_client(ic, hdfs_client=hdfs)
-    
-    ibis.options.interactive = True
+    con = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing',
+                              hdfs_client=hdfs)
 
 Projections: adding/selecting columns
 =====================================
@@ -27,19 +24,30 @@ selecting or removing existing ones.
 
 .. parsed-literal::
 
-         id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
-    0  5460     True            0             0        0           0        0.0   
-    1  5461    False            1             1        1          10        1.1   
-    2  5462     True            2             2        2          20        2.2   
-    3  5463    False            3             3        3          30        3.3   
-    4  5464     True            4             4        4          40        4.4   
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
     
-       double_col date_string_col string_col           timestamp_col  year  month  
-    0         0.0        07/01/10          0 2010-07-01 00:00:00.000  2010      7  
-    1        10.1        07/01/10          1 2010-07-01 00:01:00.000  2010      7  
-    2        20.2        07/01/10          2 2010-07-01 00:02:00.100  2010      7  
-    3        30.3        07/01/10          3 2010-07-01 00:03:00.300  2010      7  
-    4        40.4        07/01/10          4 2010-07-01 00:04:00.600  2010      7  
+    Limit[table]
+      Table: ref_0
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -56,12 +64,39 @@ First, the basics: selecting columns:
 
 .. parsed-literal::
 
-      bool_col  int_col  double_col
-    0     True        0         0.0
-    1    False        1        10.1
-    2     True        2        20.2
-    3    False        3        30.3
-    4     True        4        40.4
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        bool_col = Column[array(boolean)] 'bool_col' from table ref_0
+        int_col = Column[array(int32)] 'int_col' from table ref_0
+        double_col = Column[array(double)] 'double_col' from table ref_0
+    
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -77,12 +112,38 @@ You can make a list of columns you want, too, and pass that:
 
 .. parsed-literal::
 
-      bool_col  int_col
-    0     True        0
-    1    False        1
-    2     True        2
-    3    False        3
-    4     True        4
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        bool_col = Column[array(boolean)] 'bool_col' from table ref_0
+        int_col = Column[array(int32)] 'int_col' from table ref_0
+    
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -97,12 +158,38 @@ You can also use the explicit ``projection`` or ``select`` functions
 
 .. parsed-literal::
 
-       int_col  double_col
-    0        0         0.0
-    1        1        10.1
-    2        2        20.2
-    3        3        30.3
-    4        4        40.4
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        int_col = Column[array(int32)] 'int_col' from table ref_0
+        double_col = Column[array(double)] 'double_col' from table ref_0
+    
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -119,12 +206,41 @@ We can add new columns by using named column expressions
 
 .. parsed-literal::
 
-       int_col  bigger_ints
-    0        0            0
-    1        1            2
-    2        2            4
-    3        3            6
-    4        4            8
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        int_col = Column[array(int32)] 'int_col' from table ref_0
+        bigger_ints = Multiply[array(int64)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            2
+    
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -141,31 +257,46 @@ always produces a new table reference
 
 .. parsed-literal::
 
-         id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
-    0  5460     True            0             0        0           0        0.0   
-    1  5461    False            1             1        1          10        1.1   
-    2  5462     True            2             2        2          20        2.2   
-    3  5463    False            3             3        3          30        3.3   
-    4  5464     True            4             4        4          40        4.4   
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
     
-       double_col date_string_col string_col           timestamp_col  year  month  \
-    0         0.0        07/01/10          0 2010-07-01 00:00:00.000  2010      7   
-    1        10.1        07/01/10          1 2010-07-01 00:01:00.000  2010      7   
-    2        20.2        07/01/10          2 2010-07-01 00:02:00.100  2010      7   
-    3        30.3        07/01/10          3 2010-07-01 00:03:00.300  2010      7   
-    4        40.4        07/01/10          4 2010-07-01 00:04:00.600  2010      7   
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        Table: ref_0
+        bigger_ints = Multiply[array(int64)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            2
     
-       bigger_ints  
-    0            0  
-    1            2  
-    2            4  
-    3            6  
-    4            8  
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
 In more complicated projections involving joins, we may need to refer to
-all of the columns in a same at once. This is how ``add_column`` works.
+all of the columns in a table at once. This is how ``add_column`` works.
 We just pass the whole table in the projection:
 
 .. code:: python
@@ -177,26 +308,41 @@ We just pass the whole table in the projection:
 
 .. parsed-literal::
 
-         id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
-    0  4550     True            0             0        0           0        0.0   
-    1  4551    False            1             1        1          10        1.1   
-    2  4552     True            2             2        2          20        2.2   
-    3  4553    False            3             3        3          30        3.3   
-    4  4554     True            4             4        4          40        4.4   
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
     
-       double_col date_string_col string_col           timestamp_col  year  month  \
-    0         0.0        04/01/10          0 2010-04-01 00:00:00.000  2010      4   
-    1        10.1        04/01/10          1 2010-04-01 00:01:00.000  2010      4   
-    2        20.2        04/01/10          2 2010-04-01 00:02:00.100  2010      4   
-    3        30.3        04/01/10          3 2010-04-01 00:03:00.300  2010      4   
-    4        40.4        04/01/10          4 2010-04-01 00:04:00.600  2010      4   
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        Table: ref_0
+        bigger_ints = Multiply[array(int64)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            2
     
-       bigger_ints  
-    0            0  
-    1            2  
-    2            4  
-    3            6  
-    4            8  
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -213,12 +359,39 @@ To use constants in projections, we have to use a special
 
 .. parsed-literal::
 
-       bigint_col  foo
-    0           0    5
-    1          10    5
-    2          20    5
-    3          30    5
-    4          40    5
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Projection[table]
+      table:
+        Table: ref_0
+      selections:
+        bigint_col = Column[array(int64)] 'bigint_col' from table ref_0
+        foo = Literal[int8]
+          5
+    
+    Limit[table]
+      Table: ref_1
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -302,19 +475,42 @@ reference:
 
 .. parsed-literal::
 
-       n_nationkey     n_name  n_regionkey  \
-    0            0    ALGERIA            0   
-    1            1  ARGENTINA            1   
-    2            2     BRAZIL            1   
-    3            3     CANADA            1   
-    4            4      EGYPT            4   
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_region`
+      schema:
+        r_regionkey : int16
+        r_name : string
+        r_comment : string
     
-                                               n_comment       region  
-    0   haggle. carefully final deposits detect slyly...       AFRICA  
-    1  al foxes promise slyly according to the regula...      AMERICA  
-    2  y alongside of the pending deposits. carefully...      AMERICA  
-    3  eas hang ironic, silent packages. slyly regula...      AMERICA  
-    4  y above the carefully unusual theodolites. fin...  MIDDLE EAST  
+    ref_1
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_nation`
+      schema:
+        n_nationkey : int32
+        n_name : string
+        n_regionkey : int32
+        n_comment : string
+    
+    ref_2
+    Projection[table]
+      table:
+        InnerJoin[table]
+          Table: ref_0
+          Table: ref_1
+          Equals[array(boolean)]
+            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+      selections:
+        Table: ref_1
+        region = Column[array(string)] 'r_name' from table ref_0
+    
+    Limit[table]
+      Table: ref_2
+      n:
+        5
+      offset:
+        0
 
 
 
@@ -328,12 +524,45 @@ reference:
 
 .. parsed-literal::
 
-            region  nrows
-    0       EUROPE      5
-    1      AMERICA      5
-    2  MIDDLE EAST      5
-    3         ASIA      5
-    4       AFRICA      5
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_region`
+      schema:
+        r_regionkey : int16
+        r_name : string
+        r_comment : string
+    
+    ref_1
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_nation`
+      schema:
+        n_nationkey : int32
+        n_name : string
+        n_regionkey : int32
+        n_comment : string
+    
+    ref_2
+    Projection[table]
+      table:
+        InnerJoin[table]
+          Table: ref_0
+          Table: ref_1
+          Equals[array(boolean)]
+            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+      selections:
+        Table: ref_1
+        region = Column[array(string)] 'r_name' from table ref_0
+    
+    Aggregation[table]
+      table:
+        Table: ref_2
+      metrics:
+        nrows = Count[int64]
+          n_name = Column[array(string)] 'n_name' from table ref_2
+          None
+      by:
+        region = Column[array(string)] 'region' from table ref_2
 
 
 
@@ -349,12 +578,42 @@ would hope.
 
 .. parsed-literal::
 
-            r_name  count
-    0       AFRICA      5
-    1  MIDDLE EAST      5
-    2      AMERICA      5
-    3         ASIA      5
-    4       EUROPE      5
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_region`
+      schema:
+        r_regionkey : int16
+        r_name : string
+        r_comment : string
+    
+    ref_1
+    DatabaseTable[table]
+      name: ibis_testing.`tpch_nation`
+      schema:
+        n_nationkey : int32
+        n_name : string
+        n_regionkey : int32
+        n_comment : string
+    
+    Aggregation[table]
+      table:
+        InnerJoin[table]
+          Table: ref_0
+          Table: ref_1
+          Equals[array(boolean)]
+            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+      metrics:
+        count = Count[int64]
+          InnerJoin[table]
+            Table: ref_0
+            Table: ref_1
+            Equals[array(boolean)]
+              r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+              n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+          None
+      by:
+        r_name = Column[array(string)] 'r_name' from table ref_0
 
 
 
@@ -373,7 +632,7 @@ Note that this is equivalent to doing
 
 ::
 
-    joined = a.join(b)[a, b]
+    joined = a.join(b, join_expr)[a, b]
 
 i.e., joining and then selecting all columns from both joined tables. If
 there is a name overlap, just like with the equivalent projection, there
@@ -450,13 +709,34 @@ First, the hourly mean:
 
 .. parsed-literal::
 
-       hour  avg_double
-    0     4       45.45
-    1     2       45.45
-    2     0       45.45
-    3     1       45.45
-    4     3       45.45
-    5     5       45.45
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    Aggregation[table]
+      table:
+        Table: ref_0
+      metrics:
+        avg_double = Mean[double]
+          double_col = Column[array(double)] 'double_col' from table ref_0
+          None
+      by:
+        hour = ExtractHour[array(int32)]
+          timestamp_col = Column[array(timestamp)] 'timestamp_col' from table ref_0
 
 
 
@@ -471,7 +751,7 @@ automatically for us.
 
 This metric is only valid if used in the context of ``table`` joined
 with ``hourly_mean``, so let's do that. Writing down the join condition
-is seriously a matter of writing:
+is simply a matter of writing:
 
 .. code:: python
 
@@ -491,17 +771,54 @@ Now let's compute the MAD grouped by ``string_col``
 
 .. parsed-literal::
 
-      string_col    mad
-    0          7  25.25
-    1          6  15.15
-    2          2  25.25
-    3          4   5.05
-    4          8  35.35
-    5          0  45.45
-    6          5   5.05
-    7          1  35.35
-    8          3  15.15
-    9          9  45.45
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Aggregation[table]
+      table:
+        Table: ref_0
+      metrics:
+        avg_double = Mean[double]
+          double_col = Column[array(double)] 'double_col' from table ref_0
+          None
+      by:
+        hour = ExtractHour[array(int32)]
+          timestamp_col = Column[array(timestamp)] 'timestamp_col' from table ref_0
+    
+    Aggregation[table]
+      table:
+        InnerJoin[table]
+          Table: ref_0
+          Table: ref_1
+          Equals[array(boolean)]
+            hour = ExtractHour[array(int32)]
+              timestamp_col = Column[array(timestamp)] 'timestamp_col' from table ref_0
+            hour = Column[array(int32)] 'hour' from table ref_1
+      metrics:
+        MAD = Mean[double]
+          Abs[array(double)]
+            Subtract[array(double)]
+              double_col = Column[array(double)] 'double_col' from table ref_0
+              avg_double = Column[array(double)] 'avg_double' from table ref_1
+          None
+      by:
+        string_col = Column[array(string)] 'string_col' from table ref_0
 
 
 
@@ -559,15 +876,73 @@ and sorting
 
 .. parsed-literal::
 
-      string_col bigint_tier  total
-    0          7        high  51611
-    1          6        high  44238
-    2          5        high  36865
-    3          4         low  29492
-    4          3         low  22119
-    5          2         low  14746
-    6          1         low   7373
-    7          0         low      0
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Filter[table]
+      table:
+        Table: ref_0
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            8
+    
+    ref_2
+    Aggregation[table]
+      table:
+        Filter[table]
+          table:
+            Table: ref_0
+          predicates:
+            Less[array(boolean)]
+              int_col = Column[array(int32)] 'int_col' from table ref_0
+              Literal[int8]
+                8
+      metrics:
+        total = Sum[double]
+          double_col = Column[array(double)] 'double_col' from table ref_0
+          None
+      by:
+        string_col = Column[array(string)] 'string_col' from table ref_0
+        bigint_tier = SearchedCase[array(string)]
+          Greater[array(boolean)]
+            bigint_col = Column[array(int64)] 'bigint_col' from table ref_0
+            Literal[int8]
+              40
+          Literal[string]
+            high
+          Literal[string]
+            low
+    
+    SortBy[table]
+      Table: ref_2
+      SortKey[array-sort]
+        by:
+          bigint_tier = Column[array(string)] 'bigint_tier' from table ref_2
+        ascending:
+          True
+      SortKey[array-sort]
+        by:
+          total = Column[array(double)] 'total' from table ref_2
+        ascending:
+          False
 
 
 
@@ -583,14 +958,67 @@ function:
 
 .. parsed-literal::
 
-      string_col bigint_tier  total
-    0          7        high  51611
-    1          6        high  44238
-    2          5        high  36865
-    3          4         low  29492
-    4          3         low  22119
-    5          2         low  14746
-    6          1         low   7373
-    7          0         low      0
+    ref_0
+    DatabaseTable[table]
+      name: ibis_testing.`functional_alltypes`
+      schema:
+        id : int32
+        bool_col : boolean
+        tinyint_col : int8
+        smallint_col : int16
+        int_col : int32
+        bigint_col : int64
+        float_col : float
+        double_col : double
+        date_string_col : string
+        string_col : string
+        timestamp_col : timestamp
+        year : int32
+        month : int32
+    
+    ref_1
+    Filter[table]
+      table:
+        Table: ref_0
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            8
+    
+    ref_2
+    Aggregation[table]
+      table:
+        Filter[table]
+          table:
+            Table: ref_0
+          predicates:
+            Less[array(boolean)]
+              int_col = Column[array(int32)] 'int_col' from table ref_0
+              Literal[int8]
+                8
+      metrics:
+        total = Sum[double]
+          double_col = Column[array(double)] 'double_col' from table ref_0
+          None
+      by:
+        string_col = Column[array(string)] 'string_col' from table ref_0
+        bigint_tier = SearchedCase[array(string)]
+          Greater[array(boolean)]
+            bigint_col = Column[array(int64)] 'bigint_col' from table ref_0
+            Literal[int8]
+              40
+          Literal[string]
+            high
+          Literal[string]
+            low
+    
+    SortBy[table]
+      Table: ref_2
+      SortKey[array-sort]
+        by:
+          total = Column[array(double)] 'total' from table ref_2
+        ascending:
+          False
 
 

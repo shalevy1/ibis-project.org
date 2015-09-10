@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More filtering mojo for your analytics &mdash; Ibis 0.4.0 documentation</title>
+  <title>More filtering mojo for your analytics &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
         <link rel="next" title="Frequency tables" href="7.html"/>
         <link rel="prev" title="“Top-K” Filtering" href="5.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -220,11 +224,9 @@ subqueries&#8221;)</li>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
-
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
@@ -236,18 +238,18 @@ subqueries&#8221;)</li>
 </pre></div>
 </div>
 <pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  6690     True            0             0        0           0        0.0
-1  6691    False            1             1        1          10        1.1
-2  6692     True            2             2        2          20        2.2
-3  6693    False            3             3        3          30        3.3
-4  6694     True            4             4        4          40        4.4
+     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  4550     True            0             0        0           0        0.0
+1  4551    False            1             1        1          10        1.1
+2  4552     True            2             2        2          20        2.2
+3  4553    False            3             3        3          30        3.3
+4  4554     True            4             4        4          40        4.4
 
    double_col date_string_col string_col           timestamp_col  year  month
-0         0.0        11/01/10          0 2010-11-01 00:00:00.000  2010     11
-1        10.1        11/01/10          1 2010-11-01 00:01:00.000  2010     11
-2        20.2        11/01/10          2 2010-11-01 00:02:00.100  2010     11
-3        30.3        11/01/10          3 2010-11-01 00:03:00.300  2010     11
-4        40.4        11/01/10          4 2010-11-01 00:04:00.600  2010     11
+0         0.0        04/01/10          0 2010-04-01 00:00:00.000  2010      4
+1        10.1        04/01/10          1 2010-04-01 00:01:00.000  2010      4
+2        20.2        04/01/10          2 2010-04-01 00:02:00.100  2010      4
+3        30.3        04/01/10          3 2010-04-01 00:03:00.300  2010      4
+4        40.4        04/01/10          4 2010-04-01 00:04:00.600  2010      4
 </pre>
 <p>We could always compute some aggregate value from the table and use that
 in another expression, or we can use a data-derived aggregate in the
@@ -267,18 +269,18 @@ query rather than having to access Impala multiple times:</p>
 </pre></div>
 </div>
 <pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  6696     True            6             6        6          60        6.6
-1  6698     True            8             8        8          80        8.8
-2  6706     True            6             6        6          60        6.6
-3  6708     True            8             8        8          80        8.8
-4  6716     True            6             6        6          60        6.6
+     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  5466     True            6             6        6          60        6.6
+1  5468     True            8             8        8          80        8.8
+2  5476     True            6             6        6          60        6.6
+3  5478     True            8             8        8          80        8.8
+4  5486     True            6             6        6          60        6.6
 
    double_col date_string_col string_col           timestamp_col  year  month
-0        60.6        11/01/10          6 2010-11-01 00:06:00.150  2010     11
-1        80.8        11/01/10          8 2010-11-01 00:08:00.280  2010     11
-2        60.6        11/02/10          6 2010-11-02 00:16:00.600  2010     11
-3        80.8        11/02/10          8 2010-11-02 00:18:00.730  2010     11
-4        60.6        11/03/10          6 2010-11-03 00:26:01.500  2010     11
+0        60.6        07/01/10          6 2010-07-01 00:06:00.150  2010      7
+1        80.8        07/01/10          8 2010-07-01 00:08:00.280  2010      7
+2        60.6        07/02/10          6 2010-07-02 00:16:00.600  2010      7
+3        80.8        07/02/10          8 2010-07-02 00:18:00.730  2010      7
+4        60.6        07/03/10          6 2010-07-03 00:26:01.500  2010      7
 </pre>
 </div>
 <div class="section" id="conditional-aggregates">
@@ -433,8 +435,8 @@ can see the relative size of the subset taken.</p>
 0  1994     227597      108087  0.474905
 1  1996     228626      108757  0.475698
 2  1992     227089      107815  0.474770
-3  1998     133623       63551  0.475599
-4  1993     226645      107703  0.475206
+3  1993     226645      107703  0.475206
+4  1998     133623       63551  0.475599
 5  1995     228637      108315  0.473742
 6  1997     227783      107741  0.472998
 </pre></div>
@@ -465,24 +467,24 @@ TPC-H tables to illustrate the API:</p>
 </pre></div>
 </div>
 <pre class="literal-block">
-   o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  0           1      36901             O    173665.47  1996-01-02
-1           2      78002             O     46929.18  1996-12-01
-2           3     123314             F    193846.25  1993-10-14
-3           4     136777             O     32151.78  1995-10-11
-4           5      44485             F    144659.20  1994-07-30
+   o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  0     4726016     133885             F    160843.35  1992-06-22
+1     4726017      36934             O     78307.91  1996-04-19
+2     4726018      41483             F    103237.90  1994-10-12
+3     4726019     148102             O    201463.59  1997-09-12
+4     4726020      19864             O    166098.86  1995-09-12
 
-  o_orderpriority          o_clerk  o_shippriority  0           5-LOW  Clerk#000000951               0
-1        1-URGENT  Clerk#000000880               0
-2           5-LOW  Clerk#000000955               0
-3           5-LOW  Clerk#000000124               0
-4           5-LOW  Clerk#000000925               0
+  o_orderpriority          o_clerk  o_shippriority  0        1-URGENT  Clerk#000000420               0
+1          2-HIGH  Clerk#000000560               0
+2           5-LOW  Clerk#000000517               0
+3           5-LOW  Clerk#000000954               0
+4          2-HIGH  Clerk#000000973               0
 
                                            o_comment
-0                 nstructions sleep furiously among
-1   foxes. pending accounts at the pending, silen...
-2  sly final accounts boost. carefully regular id...
-3  sits. slyly regular warthogs cajole. regular, ...
-4  quickly. bold deposits sleep slyly. packages u...
+0  ing to the unusual, ironic theodolites. furiou...
+1        s among the blithely sly requests boost car
+2                     s sleep above the packages. fu
+3     tegrate stealthily after the final, silent ide
+4                             le quickly blithely ev
 </pre>
 <p>We introduce the <code class="docutils literal"><span class="pre">any</span></code> reduction:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">has_open_orders</span> <span class="o">=</span> <span class="p">((</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderstatus</span> <span class="o">==</span> <span class="s">&#39;O&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
@@ -588,7 +590,7 @@ will be the same (existence or non-existence is verified).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

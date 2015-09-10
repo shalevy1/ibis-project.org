@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.aggregate &mdash; Ibis 0.4.0 documentation</title>
+  <title>ibis.expr.api.TableExpr.aggregate &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.count" href="ibis.expr.api.TableExpr.count.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.add_column" href="ibis.expr.api.TableExpr.add_column.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -207,14 +211,15 @@
 <h1>ibis.expr.api.TableExpr.aggregate<a class="headerlink" href="#ibis-expr-api-tableexpr-aggregate" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.aggregate">
-<code class="descclassname">TableExpr.</code><code class="descname">aggregate</code><span class="sig-paren">(</span><em>agg_exprs</em>, <em>by=None</em>, <em>having=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.aggregate" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">aggregate</code><span class="sig-paren">(</span><em>table</em>, <em>metrics=None</em>, <em>by=None</em>, <em>having=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.aggregate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate a table with a given set of reductions, with grouping
 expressions, and post-aggregation filters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>agg_exprs</strong> : expression or expression list</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>table</strong> : table expression</p>
+<p><strong>metrics</strong> : expression or expression list</p>
 <p><strong>by</strong> : optional, default None</p>
 <blockquote>
 <div><p>Grouping expressions</p>
@@ -273,7 +278,7 @@ expressions, and post-aggregation filters.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

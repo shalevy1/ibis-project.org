@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projections: adding/selecting columns &mdash; Ibis 0.4.0 documentation</title>
+  <title>Projections: adding/selecting columns &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
         <link rel="next" title="Type casting" href="3.html"/>
         <link rel="prev" title="Basics: Aggregation, filtering, limits" href="1.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -206,12 +210,9 @@
   <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
-
-<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="projections-adding-selecting-columns">
@@ -222,32 +223,71 @@ selecting or removing existing ones.</p>
 <span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  5460     True            0             0        0           0        0.0
-1  5461    False            1             1        1          10        1.1
-2  5462     True            2             2        2          20        2.2
-3  5463    False            3             3        3          30        3.3
-4  5464     True            4             4        4          40        4.4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
 
-   double_col date_string_col string_col           timestamp_col  year  month
-0         0.0        07/01/10          0 2010-07-01 00:00:00.000  2010      7
-1        10.1        07/01/10          1 2010-07-01 00:01:00.000  2010      7
-2        20.2        07/01/10          2 2010-07-01 00:02:00.100  2010      7
-3        30.3        07/01/10          3 2010-07-01 00:03:00.300  2010      7
-4        40.4        07/01/10          4 2010-07-01 00:04:00.600  2010      7
-</pre>
+Limit[table]
+  Table: ref_0
+  n:
+    5
+  offset:
+    0
+</pre></div>
+</div>
 <p>First, the basics: selecting columns:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">proj</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s">&#39;bool_col&#39;</span><span class="p">,</span> <span class="s">&#39;int_col&#39;</span><span class="p">,</span> <span class="s">&#39;double_col&#39;</span><span class="p">]</span>
 
 <span class="n">proj</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  bool_col  int_col  double_col
-0     True        0         0.0
-1    False        1        10.1
-2     True        2        20.2
-3    False        3        30.3
-4     True        4        40.4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    bool_col = Column[array(boolean)] &#39;bool_col&#39; from table ref_0
+    int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+    double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
 </pre></div>
 </div>
 <p>You can make a list of columns you want, too, and pass that:</p>
@@ -255,24 +295,76 @@ selecting or removing existing ones.</p>
 <span class="n">table</span><span class="p">[</span><span class="n">to_select</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  bool_col  int_col
-0     True        0
-1    False        1
-2     True        2
-3    False        3
-4     True        4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    bool_col = Column[array(boolean)] &#39;bool_col&#39; from table ref_0
+    int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
 </pre></div>
 </div>
 <p>You can also use the explicit <code class="docutils literal"><span class="pre">projection</span></code> or <code class="docutils literal"><span class="pre">select</span></code> functions</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s">&#39;int_col&#39;</span><span class="p">,</span> <span class="s">&#39;double_col&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   int_col  double_col
-0        0         0.0
-1        1        10.1
-2        2        20.2
-3        3        30.3
-4        4        40.4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+    double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
 </pre></div>
 </div>
 <p>We can add new columns by using named column expressions</p>
@@ -281,12 +373,41 @@ selecting or removing existing ones.</p>
 <span class="n">proj2</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   int_col  bigger_ints
-0        0            0
-1        1            2
-2        2            4
-3        3            6
-4        4            8
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+    bigger_ints = Multiply[array(int64)]
+      int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+      Literal[int8]
+        2
+
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
 </pre></div>
 </div>
 <p>Adding columns is a shortcut for projection. In Ibis, adding columns
@@ -295,64 +416,125 @@ always produces a new table reference</p>
 <span class="n">table2</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  5460     True            0             0        0           0        0.0
-1  5461    False            1             1        1          10        1.1
-2  5462     True            2             2        2          20        2.2
-3  5463    False            3             3        3          30        3.3
-4  5464     True            4             4        4          40        4.4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
 
-   double_col date_string_col string_col           timestamp_col  year  month  0         0.0        07/01/10          0 2010-07-01 00:00:00.000  2010      7
-1        10.1        07/01/10          1 2010-07-01 00:01:00.000  2010      7
-2        20.2        07/01/10          2 2010-07-01 00:02:00.100  2010      7
-3        30.3        07/01/10          3 2010-07-01 00:03:00.300  2010      7
-4        40.4        07/01/10          4 2010-07-01 00:04:00.600  2010      7
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    Table: ref_0
+    bigger_ints = Multiply[array(int64)]
+      int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+      Literal[int8]
+        2
 
-   bigger_ints
-0            0
-1            2
-2            4
-3            6
-4            8
-</pre>
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
+</pre></div>
+</div>
 <p>In more complicated projections involving joins, we may need to refer to
-all of the columns in a same at once. This is how <code class="docutils literal"><span class="pre">add_column</span></code> works.
+all of the columns in a table at once. This is how <code class="docutils literal"><span class="pre">add_column</span></code> works.
 We just pass the whole table in the projection:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">table</span><span class="p">,</span> <span class="n">bigger_expr</span><span class="p">])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  4550     True            0             0        0           0        0.0
-1  4551    False            1             1        1          10        1.1
-2  4552     True            2             2        2          20        2.2
-3  4553    False            3             3        3          30        3.3
-4  4554     True            4             4        4          40        4.4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
 
-   double_col date_string_col string_col           timestamp_col  year  month  0         0.0        04/01/10          0 2010-04-01 00:00:00.000  2010      4
-1        10.1        04/01/10          1 2010-04-01 00:01:00.000  2010      4
-2        20.2        04/01/10          2 2010-04-01 00:02:00.100  2010      4
-3        30.3        04/01/10          3 2010-04-01 00:03:00.300  2010      4
-4        40.4        04/01/10          4 2010-04-01 00:04:00.600  2010      4
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    Table: ref_0
+    bigger_ints = Multiply[array(int64)]
+      int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+      Literal[int8]
+        2
 
-   bigger_ints
-0            0
-1            2
-2            4
-3            6
-4            8
-</pre>
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
+</pre></div>
+</div>
 <p>To use constants in projections, we have to use a special
 <code class="docutils literal"><span class="pre">ibis.literal</span></code> function</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">foo_constant</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)</span>
 <span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="p">,</span> <span class="n">foo_constant</span><span class="p">])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   bigint_col  foo
-0           0    5
-1          10    5
-2          20    5
-3          30    5
-4          40    5
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Projection[table]
+  table:
+    Table: ref_0
+  selections:
+    bigint_col = Column[array(int64)] &#39;bigint_col&#39; from table ref_0
+    foo = Literal[int8]
+      5
+
+Limit[table]
+  Table: ref_1
+  n:
+    5
+  offset:
+    0
 </pre></div>
 </div>
 </div>
@@ -413,30 +595,87 @@ reference:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">table_ref</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">
-   n_nationkey     n_name  n_regionkey  0            0    ALGERIA            0
-1            1  ARGENTINA            1
-2            2     BRAZIL            1
-3            3     CANADA            1
-4            4      EGYPT            4
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`tpch_region`
+  schema:
+    r_regionkey : int16
+    r_name : string
+    r_comment : string
 
-                                           n_comment       region
-0   haggle. carefully final deposits detect slyly...       AFRICA
-1  al foxes promise slyly according to the regula...      AMERICA
-2  y alongside of the pending deposits. carefully...      AMERICA
-3  eas hang ironic, silent packages. slyly regula...      AMERICA
-4  y above the carefully unusual theodolites. fin...  MIDDLE EAST
-</pre>
+ref_1
+DatabaseTable[table]
+  name: ibis_testing.`tpch_nation`
+  schema:
+    n_nationkey : int32
+    n_name : string
+    n_regionkey : int32
+    n_comment : string
+
+ref_2
+Projection[table]
+  table:
+    InnerJoin[table]
+      Table: ref_0
+      Table: ref_1
+      Equals[array(boolean)]
+        r_regionkey = Column[array(int16)] &#39;r_regionkey&#39; from table ref_0
+        n_regionkey = Column[array(int32)] &#39;n_regionkey&#39; from table ref_1
+  selections:
+    Table: ref_1
+    region = Column[array(string)] &#39;r_name&#39; from table ref_0
+
+Limit[table]
+  Table: ref_2
+  n:
+    5
+  offset:
+    0
+</pre></div>
+</div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">agged</span> <span class="o">=</span> <span class="n">table_ref</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">table_ref</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;nrows&#39;</span><span class="p">)],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;region&#39;</span><span class="p">])</span>
 <span class="n">agged</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>        region  nrows
-0       EUROPE      5
-1      AMERICA      5
-2  MIDDLE EAST      5
-3         ASIA      5
-4       AFRICA      5
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`tpch_region`
+  schema:
+    r_regionkey : int16
+    r_name : string
+    r_comment : string
+
+ref_1
+DatabaseTable[table]
+  name: ibis_testing.`tpch_nation`
+  schema:
+    n_nationkey : int32
+    n_name : string
+    n_regionkey : int32
+    n_comment : string
+
+ref_2
+Projection[table]
+  table:
+    InnerJoin[table]
+      Table: ref_0
+      Table: ref_1
+      Equals[array(boolean)]
+        r_regionkey = Column[array(int16)] &#39;r_regionkey&#39; from table ref_0
+        n_regionkey = Column[array(int32)] &#39;n_regionkey&#39; from table ref_1
+  selections:
+    Table: ref_1
+    region = Column[array(string)] &#39;r_name&#39; from table ref_0
+
+Aggregation[table]
+  table:
+    Table: ref_2
+  metrics:
+    nrows = Count[int64]
+      n_name = Column[array(string)] &#39;n_name&#39; from table ref_2
+      None
+  by:
+    region = Column[array(string)] &#39;region&#39; from table ref_2
 </pre></div>
 </div>
 <p>Things like <code class="docutils literal"><span class="pre">group_by</span></code> work with unmaterialized joins, too, as you
@@ -444,12 +683,42 @@ would hope.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">joined</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">r_name</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>        r_name  count
-0       AFRICA      5
-1  MIDDLE EAST      5
-2      AMERICA      5
-3         ASIA      5
-4       EUROPE      5
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`tpch_region`
+  schema:
+    r_regionkey : int16
+    r_name : string
+    r_comment : string
+
+ref_1
+DatabaseTable[table]
+  name: ibis_testing.`tpch_nation`
+  schema:
+    n_nationkey : int32
+    n_name : string
+    n_regionkey : int32
+    n_comment : string
+
+Aggregation[table]
+  table:
+    InnerJoin[table]
+      Table: ref_0
+      Table: ref_1
+      Equals[array(boolean)]
+        r_regionkey = Column[array(int16)] &#39;r_regionkey&#39; from table ref_0
+        n_regionkey = Column[array(int32)] &#39;n_regionkey&#39; from table ref_1
+  metrics:
+    count = Count[int64]
+      InnerJoin[table]
+        Table: ref_0
+        Table: ref_1
+        Equals[array(boolean)]
+          r_regionkey = Column[array(int16)] &#39;r_regionkey&#39; from table ref_0
+          n_regionkey = Column[array(int32)] &#39;n_regionkey&#39; from table ref_1
+      None
+  by:
+    r_name = Column[array(string)] &#39;r_name&#39; from table ref_0
 </pre></div>
 </div>
 </div>
@@ -462,7 +731,7 @@ to perform some other relational algebra operation:</p>
 </pre></div>
 </div>
 <p>Note that this is equivalent to doing</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">joined</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">)[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">joined</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">join_expr</span><span class="p">)[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>i.e., joining and then selecting all columns from both joined tables. If
@@ -523,13 +792,34 @@ the hourly mean of the double_col</strong>. Silly, I know, but bear with me.</p>
 <span class="n">hourly_mean</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   hour  avg_double
-0     4       45.45
-1     2       45.45
-2     0       45.45
-3     1       45.45
-4     3       45.45
-5     5       45.45
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+Aggregation[table]
+  table:
+    Table: ref_0
+  metrics:
+    avg_double = Mean[double]
+      double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+      None
+  by:
+    hour = ExtractHour[array(int32)]
+      timestamp_col = Column[array(timestamp)] &#39;timestamp_col&#39; from table ref_0
 </pre></div>
 </div>
 <p>Okay, great, now how about the MAD? The only trick here is that we can
@@ -541,7 +831,7 @@ automatically for us.</p>
 </div>
 <p>This metric is only valid if used in the context of <code class="docutils literal"><span class="pre">table</span></code> joined
 with <code class="docutils literal"><span class="pre">hourly_mean</span></code>, so let&#8217;s do that. Writing down the join condition
-is seriously a matter of writing:</p>
+is simply a matter of writing:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">join_expr</span> <span class="o">=</span> <span class="n">hour_dim</span> <span class="o">==</span> <span class="n">hourly_mean</span><span class="o">.</span><span class="n">hour</span>
 </pre></div>
 </div>
@@ -552,17 +842,54 @@ is seriously a matter of writing:</p>
 <span class="n">result</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col    mad
-0          7  25.25
-1          6  15.15
-2          2  25.25
-3          4   5.05
-4          8  35.35
-5          0  45.45
-6          5   5.05
-7          1  35.35
-8          3  15.15
-9          9  45.45
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Aggregation[table]
+  table:
+    Table: ref_0
+  metrics:
+    avg_double = Mean[double]
+      double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+      None
+  by:
+    hour = ExtractHour[array(int32)]
+      timestamp_col = Column[array(timestamp)] &#39;timestamp_col&#39; from table ref_0
+
+Aggregation[table]
+  table:
+    InnerJoin[table]
+      Table: ref_0
+      Table: ref_1
+      Equals[array(boolean)]
+        hour = ExtractHour[array(int32)]
+          timestamp_col = Column[array(timestamp)] &#39;timestamp_col&#39; from table ref_0
+        hour = Column[array(int32)] &#39;hour&#39; from table ref_1
+  metrics:
+    MAD = Mean[double]
+      Abs[array(double)]
+        Subtract[array(double)]
+          double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+          avg_double = Column[array(double)] &#39;avg_double&#39; from table ref_1
+      None
+  by:
+    string_col = Column[array(string)] &#39;string_col&#39; from table ref_0
 </pre></div>
 </div>
 </div>
@@ -606,15 +933,73 @@ and sorting</p>
 <span class="n">sorted_agged</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col bigint_tier  total
-0          7        high  51611
-1          6        high  44238
-2          5        high  36865
-3          4         low  29492
-4          3         low  22119
-5          2         low  14746
-6          1         low   7373
-7          0         low      0
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Filter[table]
+  table:
+    Table: ref_0
+  predicates:
+    Less[array(boolean)]
+      int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+      Literal[int8]
+        8
+
+ref_2
+Aggregation[table]
+  table:
+    Filter[table]
+      table:
+        Table: ref_0
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+          Literal[int8]
+            8
+  metrics:
+    total = Sum[double]
+      double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+      None
+  by:
+    string_col = Column[array(string)] &#39;string_col&#39; from table ref_0
+    bigint_tier = SearchedCase[array(string)]
+      Greater[array(boolean)]
+        bigint_col = Column[array(int64)] &#39;bigint_col&#39; from table ref_0
+        Literal[int8]
+          40
+      Literal[string]
+        high
+      Literal[string]
+        low
+
+SortBy[table]
+  Table: ref_2
+  SortKey[array-sort]
+    by:
+      bigint_tier = Column[array(string)] &#39;bigint_tier&#39; from table ref_2
+    ascending:
+      True
+  SortKey[array-sort]
+    by:
+      total = Column[array(double)] &#39;total&#39; from table ref_2
+    ascending:
+      False
 </pre></div>
 </div>
 <p>For sorting in descending order, you can use the special <code class="docutils literal"><span class="pre">ibis.desc</span></code>
@@ -622,15 +1007,68 @@ function:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">agged</span><span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col bigint_tier  total
-0          7        high  51611
-1          6        high  44238
-2          5        high  36865
-3          4         low  29492
-4          3         low  22119
-5          2         low  14746
-6          1         low   7373
-7          0         low      0
+<div class="highlight-python"><div class="highlight"><pre>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Filter[table]
+  table:
+    Table: ref_0
+  predicates:
+    Less[array(boolean)]
+      int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+      Literal[int8]
+        8
+
+ref_2
+Aggregation[table]
+  table:
+    Filter[table]
+      table:
+        Table: ref_0
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] &#39;int_col&#39; from table ref_0
+          Literal[int8]
+            8
+  metrics:
+    total = Sum[double]
+      double_col = Column[array(double)] &#39;double_col&#39; from table ref_0
+      None
+  by:
+    string_col = Column[array(string)] &#39;string_col&#39; from table ref_0
+    bigint_tier = SearchedCase[array(string)]
+      Greater[array(boolean)]
+        bigint_col = Column[array(int64)] &#39;bigint_col&#39; from table ref_0
+        Literal[int8]
+          40
+      Literal[string]
+        high
+      Literal[string]
+        low
+
+SortBy[table]
+  Table: ref_2
+  SortKey[array-sort]
+    by:
+      total = Column[array(double)] &#39;total&#39; from table ref_2
+    ascending:
+      False
 </pre></div>
 </div>
 </div>
@@ -674,7 +1112,7 @@ function:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

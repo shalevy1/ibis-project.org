@@ -18,7 +18,6 @@ entry to using Ibis.
 .. autosummary::
    :toctree: generated/
 
-   make_client
    hdfs_connect
 
 Impala client
@@ -26,11 +25,8 @@ Impala client
 .. currentmodule:: ibis.impala.api
 
 These methods are available on the Impala client object after connecting to
-your Impala cluster, HDFS cluster, and creating the client with
-``ibis.make_client``.
-
-Use ``ibis.impala.connect`` to create an Impala connection to use for
-assembling a client.
+your HDFS cluster (``ibis.hdfs_connect``) and connecting to Impala with
+``ibis.impala.connect``.
 
 .. autosummary::
    :toctree: generated/
@@ -79,8 +75,10 @@ Table methods
 .. autosummary::
    :toctree: generated/
 
-   ImpalaTable.drop
    ImpalaTable.compute_stats
+   ImpalaTable.drop
+   ImpalaTable.insert
+   ImpalaTable.rename
 
 Creating views is also possible:
 
@@ -109,6 +107,25 @@ Executing expressions
 
    ImpalaClient.execute
    ImpalaClient.disable_codegen
+
+.. _api.sqlite:
+
+SQLite client
+-------------
+.. currentmodule:: ibis.sql.sqlite.api
+
+The SQLite client is accessible through the ``ibis.sqlite`` namespace.
+
+Use ``ibis.sqlite.connect`` to create a SQLite client.
+
+.. autosummary::
+   :toctree: generated/
+
+   connect
+   SQLiteClient.attach
+   SQLiteClient.database
+   SQLiteClient.list_tables
+   SQLiteClient.table
 
 .. _api.hdfs:
 
@@ -164,6 +181,22 @@ These methods are available directly in the ``ibis`` module namespace.
    trailing_window
    cumulative_window
 
+.. _api.expr:
+
+General expression methods
+--------------------------
+
+.. currentmodule:: ibis.expr.api
+
+.. autosummary::
+   :toctree: generated/
+
+   Expr.compile
+   Expr.equals
+   Expr.execute
+   Expr.pipe
+   Expr.verify
+
 .. _api.table:
 
 Table methods
@@ -185,8 +218,8 @@ Table methods
    TableExpr.group_by
    TableExpr.limit
    TableExpr.mutate
-   TableExpr.pipe
    TableExpr.projection
+   TableExpr.relabel
    TableExpr.schema
    TableExpr.set_column
    TableExpr.sort_by
@@ -238,6 +271,7 @@ Scalar or array methods
    ValueExpr.isnull
    ValueExpr.notnull
    ValueExpr.over
+   ValueExpr.typeof
 
    ValueExpr.add
    ValueExpr.sub
@@ -291,6 +325,14 @@ Scalar or array methods
    NumericValue.floor
    NumericValue.sign
    NumericValue.exp
+   NumericValue.sqrt
+   NumericValue.log
+   NumericValue.ln
+   NumericValue.log2
+   NumericValue.log10
+   NumericValue.round
+   NumericValue.nullifzero
+   NumericValue.zeroifnull
 
 
 Array methods
@@ -301,6 +343,9 @@ Array methods
 
    NumericArray.sum
    NumericArray.mean
+
+   NumericArray.std
+   NumericArray.var
 
    NumericArray.cumsum
    NumericArray.cummean

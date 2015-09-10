@@ -20,11 +20,9 @@ or more of:
     import ibis
     import os
     hdfs_port = os.environ.get('IBIS_WEBHDFS_PORT', 50070)
-    
-    ic = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing')
     hdfs = ibis.hdfs_connect(host='quickstart.cloudera', port=hdfs_port)
-    con = ibis.make_client(ic, hdfs_client=hdfs)
-    
+    con = ibis.impala.connect(host='quickstart.cloudera', database='ibis_testing',
+                              hdfs_client=hdfs)
     ibis.options.interactive = True
 
 Using scalar aggregates in filters
@@ -41,18 +39,18 @@ Using scalar aggregates in filters
 .. parsed-literal::
 
          id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
-    0  6690     True            0             0        0           0        0.0   
-    1  6691    False            1             1        1          10        1.1   
-    2  6692     True            2             2        2          20        2.2   
-    3  6693    False            3             3        3          30        3.3   
-    4  6694     True            4             4        4          40        4.4   
+    0  4550     True            0             0        0           0        0.0   
+    1  4551    False            1             1        1          10        1.1   
+    2  4552     True            2             2        2          20        2.2   
+    3  4553    False            3             3        3          30        3.3   
+    4  4554     True            4             4        4          40        4.4   
     
        double_col date_string_col string_col           timestamp_col  year  month  
-    0         0.0        11/01/10          0 2010-11-01 00:00:00.000  2010     11  
-    1        10.1        11/01/10          1 2010-11-01 00:01:00.000  2010     11  
-    2        20.2        11/01/10          2 2010-11-01 00:02:00.100  2010     11  
-    3        30.3        11/01/10          3 2010-11-01 00:03:00.300  2010     11  
-    4        40.4        11/01/10          4 2010-11-01 00:04:00.600  2010     11  
+    0         0.0        04/01/10          0 2010-04-01 00:00:00.000  2010      4  
+    1        10.1        04/01/10          1 2010-04-01 00:01:00.000  2010      4  
+    2        20.2        04/01/10          2 2010-04-01 00:02:00.100  2010      4  
+    3        30.3        04/01/10          3 2010-04-01 00:03:00.300  2010      4  
+    4        40.4        04/01/10          4 2010-04-01 00:04:00.600  2010      4  
 
 
 
@@ -89,18 +87,18 @@ query rather than having to access Impala multiple times:
 .. parsed-literal::
 
          id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  \
-    0  6696     True            6             6        6          60        6.6   
-    1  6698     True            8             8        8          80        8.8   
-    2  6706     True            6             6        6          60        6.6   
-    3  6708     True            8             8        8          80        8.8   
-    4  6716     True            6             6        6          60        6.6   
+    0  5466     True            6             6        6          60        6.6   
+    1  5468     True            8             8        8          80        8.8   
+    2  5476     True            6             6        6          60        6.6   
+    3  5478     True            8             8        8          80        8.8   
+    4  5486     True            6             6        6          60        6.6   
     
        double_col date_string_col string_col           timestamp_col  year  month  
-    0        60.6        11/01/10          6 2010-11-01 00:06:00.150  2010     11  
-    1        80.8        11/01/10          8 2010-11-01 00:08:00.280  2010     11  
-    2        60.6        11/02/10          6 2010-11-02 00:16:00.600  2010     11  
-    3        80.8        11/02/10          8 2010-11-02 00:18:00.730  2010     11  
-    4        60.6        11/03/10          6 2010-11-03 00:26:01.500  2010     11  
+    0        60.6        07/01/10          6 2010-07-01 00:06:00.150  2010      7  
+    1        80.8        07/01/10          8 2010-07-01 00:08:00.280  2010      7  
+    2        60.6        07/02/10          6 2010-07-02 00:16:00.600  2010      7  
+    3        80.8        07/02/10          8 2010-07-02 00:18:00.730  2010      7  
+    4        60.6        07/03/10          6 2010-07-03 00:26:01.500  2010      7  
 
 
 
@@ -304,8 +302,8 @@ Or even group by year and compare before and after:
     0  1994     227597      108087  0.474905
     1  1996     228626      108757  0.475698
     2  1992     227089      107815  0.474770
-    3  1998     133623       63551  0.475599
-    4  1993     226645      107703  0.475206
+    3  1993     226645      107703  0.475206
+    4  1998     133623       63551  0.475599
     5  1995     228637      108315  0.473742
     6  1997     227783      107741  0.472998
 
@@ -346,25 +344,25 @@ TPC-H tables to illustrate the API:
 .. parsed-literal::
 
        o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  \
-    0           1      36901             O    173665.47  1996-01-02   
-    1           2      78002             O     46929.18  1996-12-01   
-    2           3     123314             F    193846.25  1993-10-14   
-    3           4     136777             O     32151.78  1995-10-11   
-    4           5      44485             F    144659.20  1994-07-30   
+    0     4726016     133885             F    160843.35  1992-06-22   
+    1     4726017      36934             O     78307.91  1996-04-19   
+    2     4726018      41483             F    103237.90  1994-10-12   
+    3     4726019     148102             O    201463.59  1997-09-12   
+    4     4726020      19864             O    166098.86  1995-09-12   
     
       o_orderpriority          o_clerk  o_shippriority  \
-    0           5-LOW  Clerk#000000951               0   
-    1        1-URGENT  Clerk#000000880               0   
-    2           5-LOW  Clerk#000000955               0   
-    3           5-LOW  Clerk#000000124               0   
-    4           5-LOW  Clerk#000000925               0   
+    0        1-URGENT  Clerk#000000420               0   
+    1          2-HIGH  Clerk#000000560               0   
+    2           5-LOW  Clerk#000000517               0   
+    3           5-LOW  Clerk#000000954               0   
+    4          2-HIGH  Clerk#000000973               0   
     
                                                o_comment  
-    0                 nstructions sleep furiously among   
-    1   foxes. pending accounts at the pending, silen...  
-    2  sly final accounts boost. carefully regular id...  
-    3  sits. slyly regular warthogs cajole. regular, ...  
-    4  quickly. bold deposits sleep slyly. packages u...  
+    0  ing to the unusual, ironic theodolites. furiou...  
+    1        s among the blithely sly requests boost car  
+    2                     s sleep above the packages. fu  
+    3     tegrate stealthily after the final, silent ide  
+    4                             le quickly blithely ev  
 
 
 

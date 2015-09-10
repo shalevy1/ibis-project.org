@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Impala UDFs in Ibis &mdash; Ibis 0.4.0 documentation</title>
+  <title>Using Impala UDFs in Ibis &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="index.html"/>
         <link rel="next" title="API Reference" href="api.html"/>
         <link rel="prev" title="Frequency tables" href="generated-notebooks/7.html"/> 
 
@@ -77,7 +77,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -123,6 +123,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -131,8 +132,10 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#general-numeric-methods">General numeric methods</a></li>
@@ -151,6 +154,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -226,8 +230,7 @@ point values:</p>
 <p>You can compile this to either a shared library (a <code class="docutils literal"><span class="pre">.so</span></code> file) or to LLVM
 bitcode with clang (a <code class="docutils literal"><span class="pre">.ll</span></code> file). Skipping that step for now (will add some
 more detailed instructions here later, promise).</p>
-<p>To make this function callable, we first create a UDF wrapper with
-<code class="docutils literal"><span class="pre">ibis.impala.wrap_udf</span></code>:</p>
+<p>To make this function callable, we use <code class="docutils literal"><span class="pre">ibis.impala.wrap_udf</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">library</span> <span class="o">=</span> <span class="s">&#39;/ibis/udfs/udftest.ll&#39;</span>
 <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;double&#39;</span><span class="p">,</span> <span class="s">&#39;double&#39;</span><span class="p">]</span>
 <span class="n">output</span> <span class="o">=</span> <span class="s">&#39;boolean&#39;</span>
@@ -235,41 +238,22 @@ more detailed instructions here later, promise).</p>
 <span class="n">udf_db</span> <span class="o">=</span> <span class="s">&#39;ibis_testing&#39;</span>
 <span class="n">udf_name</span> <span class="o">=</span> <span class="s">&#39;fuzzy_equals&#39;</span>
 
-<span class="n">wrapper</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">wrap_udf</span><span class="p">(</span><span class="n">library</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">udf_name</span><span class="p">)</span>
+<span class="n">fuzzy_equals</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">wrap_udf</span><span class="p">(</span><span class="n">library</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span>
+                                    <span class="n">symbol</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">udf_name</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In typical workflows, you will set up a UDF in Impala once then use it
 thenceforth. So the <em>first time</em> you do this, you need to create the UDF in
 Impala:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">create_udf</span><span class="p">(</span><span class="n">wrapper</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">udf_name</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">udf_db</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">client</span><span class="o">.</span><span class="n">create_function</span><span class="p">(</span><span class="n">fuzzy_equals</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">udf_db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now, we must register this function as a new Impala operation in Ibis. This
 must take place each time you load your Ibis session.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">operation_class</span> <span class="o">=</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">to_operation</span><span class="p">()</span>
-<span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">add_operation</span><span class="p">(</span><span class="n">operation_class</span><span class="p">,</span> <span class="n">udf_name</span><span class="p">,</span> <span class="n">udf_db</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">func</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">fuzzy_equals</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">udf_db</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Lastly, we define a <em>user API</em> to make <code class="docutils literal"><span class="pre">fuzzy_equals</span></code> callable on Ibis
-expressions:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">fuzzy_equals</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Approximate equals UDF</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    left : numeric</span>
-<span class="sd">    right : numeric</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    is_approx_equal : boolean</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">op</span> <span class="o">=</span> <span class="n">operation_class</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">to_expr</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Now, we have a callable Python function that works with Ibis expressions:</p>
+<p>The object <code class="docutils literal"><span class="pre">fuzzy_equals</span></code> is callable and works with Ibis expressions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">]:</span> <span class="n">db</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">database</span><span class="p">(</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">36</span><span class="p">]:</span> <span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">functional_alltypes</span>
@@ -291,7 +275,7 @@ expressions:</p>
 <span class="n">Name</span><span class="p">:</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">bool</span>
 </pre></div>
 </div>
-<p>Note that the call to <code class="docutils literal"><span class="pre">ibis.impala.add_operation</span></code> must happen each time you
+<p>Note that the call to <code class="docutils literal"><span class="pre">register</span></code> on the UDF object must happen each time you
 use Ibis. If you have a lot of UDFs, I suggest you create a file with all of
 your wrapper declarations and user APIs that you load with your Ibis session to
 plug in all your own functions.</p>
@@ -299,6 +283,23 @@ plug in all your own functions.</p>
 <div class="section" id="using-aggregate-functions-udas">
 <h2>Using aggregate functions (UDAs)<a class="headerlink" href="#using-aggregate-functions-udas" title="Permalink to this headline">¶</a></h2>
 <p>Coming soon.</p>
+</div>
+<div class="section" id="adding-documentation-to-new-functions">
+<h2>Adding documentation to new functions<a class="headerlink" href="#adding-documentation-to-new-functions" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">fuzzy_equal</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s">Approximate equals UDF</span>
+
+<span class="s">Parameters</span>
+<span class="s">----------</span>
+<span class="s">left : numeric</span>
+<span class="s">right : numeric</span>
+
+<span class="s">Returns</span>
+<span class="s">-------</span>
+<span class="s">is_approx_equal : boolean</span>
+<span class="s">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="adding-udf-functions-to-ibis-types">
 <h2>Adding UDF functions to Ibis types<a class="headerlink" href="#adding-udf-functions-to-ibis-types" title="Permalink to this headline">¶</a></h2>
@@ -353,7 +354,7 @@ plug in all your own functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

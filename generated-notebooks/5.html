@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>“Top-K” Filtering &mdash; Ibis 0.4.0 documentation</title>
+  <title>“Top-K” Filtering &mdash; Ibis 0.5.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.4.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
         <link rel="up" title="Tutorial" href="../tutorial.html"/>
         <link rel="next" title="More filtering mojo for your analytics" href="6.html"/>
         <link rel="prev" title="Creating new Impala tables from Ibis expressions" href="4.html"/> 
@@ -78,7 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="0.html">Intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
@@ -124,6 +124,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
@@ -132,8 +133,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
@@ -152,6 +155,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5.0 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4.0 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3.0 (July 20, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2.0 (June 16, 2015)</a></li>
@@ -206,11 +210,9 @@
   <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-
-<span class="n">ic</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">make_client</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
-
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
@@ -334,24 +336,24 @@ year-over-year change in total order amounts by region using joins.</p>
 </pre></div>
 </div>
 <pre class="literal-block">
-   o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  0           1      36901             O    173665.47  1996-01-02
-1           2      78002             O     46929.18  1996-12-01
-2           3     123314             F    193846.25  1993-10-14
-3           4     136777             O     32151.78  1995-10-11
-4           5      44485             F    144659.20  1994-07-30
+   o_orderkey  o_custkey o_orderstatus o_totalprice o_orderdate  0     4726016     133885             F    160843.35  1992-06-22
+1     4726017      36934             O     78307.91  1996-04-19
+2     4726018      41483             F    103237.90  1994-10-12
+3     4726019     148102             O    201463.59  1997-09-12
+4     4726020      19864             O    166098.86  1995-09-12
 
-  o_orderpriority          o_clerk  o_shippriority  0           5-LOW  Clerk#000000951               0
-1        1-URGENT  Clerk#000000880               0
-2           5-LOW  Clerk#000000955               0
-3           5-LOW  Clerk#000000124               0
-4           5-LOW  Clerk#000000925               0
+  o_orderpriority          o_clerk  o_shippriority  0        1-URGENT  Clerk#000000420               0
+1          2-HIGH  Clerk#000000560               0
+2           5-LOW  Clerk#000000517               0
+3           5-LOW  Clerk#000000954               0
+4          2-HIGH  Clerk#000000973               0
 
                                            o_comment
-0                 nstructions sleep furiously among
-1   foxes. pending accounts at the pending, silen...
-2  sly final accounts boost. carefully regular id...
-3  sits. slyly regular warthogs cajole. regular, ...
-4  quickly. bold deposits sleep slyly. packages u...
+0  ing to the unusual, ironic theodolites. furiou...
+1        s among the blithely sly requests boost car
+2                     s sleep above the packages. fu
+3     tegrate stealthily after the final, silent ide
+4                             le quickly blithely ev
 </pre>
 <p>First, let&#8217;s join all the things and select the fields we care about:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">fields_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">r_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;region&#39;</span><span class="p">),</span>
@@ -394,36 +396,36 @@ year-over-year change in total order amounts by region using joins.</p>
 1   MIDDLE EAST  1998  4.025011e+09
 2        AFRICA  1995  6.908429e+09
 3          ASIA  1996  6.955679e+09
-4   MIDDLE EAST  1992  6.761499e+09
-5       AMERICA  1996  6.883057e+09
-6   MIDDLE EAST  1995  6.830827e+09
-7          ASIA  1995  6.931738e+09
-8        EUROPE  1994  6.979473e+09
-9          ASIA  1993  6.864540e+09
-10       AFRICA  1993  6.859733e+09
-11       EUROPE  1992  6.926705e+09
-12      AMERICA  1993  6.906800e+09
-13       AFRICA  1998  4.024061e+09
-14         ASIA  1998  4.058824e+09
-15      AMERICA  1998  3.991377e+09
-16      AMERICA  1995  6.905139e+09
-17       AFRICA  1996  6.878112e+09
-18       EUROPE  1997  6.876824e+09
-19      AMERICA  1992  6.834349e+09
-20  MIDDLE EAST  1993  6.797943e+09
-21       EUROPE  1996  7.015421e+09
-22       AFRICA  1997  6.848983e+09
-23         ASIA  1994  6.957170e+09
-24  MIDDLE EAST  1996  6.877095e+09
-25       EUROPE  1998  4.113448e+09
-26      AMERICA  1997  6.922465e+09
-27  MIDDLE EAST  1994  6.778384e+09
-28         ASIA  1997  6.910663e+09
-29       AFRICA  1992  6.873319e+09
-30         ASIA  1992  6.934801e+09
-31      AMERICA  1994  6.863756e+09
-32       EUROPE  1995  6.970001e+09
-33       AFRICA  1994  6.837587e+09
+4   MIDDLE EAST  1995  6.830827e+09
+5          ASIA  1993  6.864540e+09
+6   MIDDLE EAST  1992  6.761499e+09
+7       AMERICA  1996  6.883057e+09
+8        AFRICA  1998  4.024061e+09
+9       AMERICA  1995  6.905139e+09
+10         ASIA  1995  6.931738e+09
+11       EUROPE  1994  6.979473e+09
+12      AMERICA  1992  6.834349e+09
+13       EUROPE  1996  7.015421e+09
+14       AFRICA  1997  6.848983e+09
+15         ASIA  1994  6.957170e+09
+16       AFRICA  1993  6.859733e+09
+17       EUROPE  1992  6.926705e+09
+18      AMERICA  1993  6.906800e+09
+19       EUROPE  1998  4.113448e+09
+20      AMERICA  1997  6.922465e+09
+21         ASIA  1998  4.058824e+09
+22      AMERICA  1998  3.991377e+09
+23       AFRICA  1992  6.873319e+09
+24       EUROPE  1995  6.970001e+09
+25       AFRICA  1994  6.837587e+09
+26       AFRICA  1996  6.878112e+09
+27       EUROPE  1997  6.876824e+09
+28  MIDDLE EAST  1993  6.797943e+09
+29  MIDDLE EAST  1996  6.877095e+09
+30  MIDDLE EAST  1994  6.778384e+09
+31         ASIA  1997  6.910663e+09
+32         ASIA  1992  6.934801e+09
+33      AMERICA  1994  6.863756e+09
 34       EUROPE  1993  6.911395e+09
 </pre></div>
 </div>
@@ -509,115 +511,115 @@ distinct object within Ibis. To do this, use the <code class="docutils literal">
     </tr>
     <tr>
       <th>7</th>
-      <td>AFRICA</td>
-      <td>1995</td>
-      <td>3.031631e+07</td>
-      <td>$30.32mm</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>EUROPE</td>
-      <td>1994</td>
-      <td>9.471985e+06</td>
-      <td>$9.47mm</td>
-    </tr>
-    <tr>
-      <th>9</th>
       <td>AMERICA</td>
       <td>1997</td>
       <td>2.931088e+09</td>
       <td>$2931.09mm</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>EUROPE</td>
-      <td>1995</td>
-      <td>-4.542062e+07</td>
-      <td>$-45.42mm</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>AFRICA</td>
-      <td>1994</td>
-      <td>-7.084172e+07</td>
-      <td>$-70.84mm</td>
-    </tr>
-    <tr>
-      <th>12</th>
+      <th>8</th>
       <td>ASIA</td>
       <td>1995</td>
       <td>-2.394126e+07</td>
       <td>$-23.94mm</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>ASIA</td>
-      <td>1997</td>
-      <td>2.851839e+09</td>
-      <td>$2851.84mm</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>EUROPE</td>
-      <td>1996</td>
-      <td>1.385975e+08</td>
-      <td>$138.60mm</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>MIDDLE EAST</td>
-      <td>1997</td>
-      <td>2.789688e+09</td>
-      <td>$2789.69mm</td>
-    </tr>
-    <tr>
-      <th>16</th>
+      <th>9</th>
       <td>AFRICA</td>
-      <td>1997</td>
-      <td>2.824921e+09</td>
-      <td>$2824.92mm</td>
+      <td>1995</td>
+      <td>3.031631e+07</td>
+      <td>$30.32mm</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>10</th>
+      <td>EUROPE</td>
+      <td>1994</td>
+      <td>9.471985e+06</td>
+      <td>$9.47mm</td>
+    </tr>
+    <tr>
+      <th>11</th>
       <td>AFRICA</td>
       <td>1993</td>
       <td>2.214559e+07</td>
       <td>$22.15mm</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>12</th>
       <td>EUROPE</td>
       <td>1992</td>
       <td>1.531005e+07</td>
       <td>$15.31mm</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>13</th>
+      <td>EUROPE</td>
+      <td>1995</td>
+      <td>-4.542062e+07</td>
+      <td>$-45.42mm</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>AFRICA</td>
+      <td>1994</td>
+      <td>-7.084172e+07</td>
+      <td>$-70.84mm</td>
+    </tr>
+    <tr>
+      <th>15</th>
       <td>MIDDLE EAST</td>
       <td>1993</td>
       <td>1.955937e+07</td>
       <td>$19.56mm</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>AMERICA</td>
-      <td>1995</td>
-      <td>2.208216e+07</td>
-      <td>$22.08mm</td>
+      <th>16</th>
+      <td>ASIA</td>
+      <td>1997</td>
+      <td>2.851839e+09</td>
+      <td>$2851.84mm</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>17</th>
       <td>MIDDLE EAST</td>
       <td>1994</td>
       <td>-5.244317e+07</td>
       <td>$-52.44mm</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>18</th>
+      <td>EUROPE</td>
+      <td>1996</td>
+      <td>1.385975e+08</td>
+      <td>$138.60mm</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>MIDDLE EAST</td>
+      <td>1997</td>
+      <td>2.789688e+09</td>
+      <td>$2789.69mm</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>AFRICA</td>
+      <td>1997</td>
+      <td>2.824921e+09</td>
+      <td>$2824.92mm</td>
+    </tr>
+    <tr>
+      <th>21</th>
       <td>AMERICA</td>
       <td>1996</td>
       <td>-3.940791e+07</td>
       <td>$-39.41mm</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>AMERICA</td>
+      <td>1995</td>
+      <td>2.208216e+07</td>
+      <td>$22.08mm</td>
     </tr>
     <tr>
       <th>23</th>
@@ -690,10 +692,10 @@ the join as zero:</p>
 2       EUROPE  1997  6.876824e+09  4.113448e+09  2.763376e+09
 3       AFRICA  1998  4.024061e+09  0.000000e+00  4.024061e+09
 4         ASIA  1996  6.955679e+09  6.910663e+09  4.501570e+07
-5      AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
-6         ASIA  1993  6.864540e+09  6.957170e+09 -9.262979e+07
-7      AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
-8  MIDDLE EAST  1996  6.877095e+09  6.814699e+09  6.239623e+07
+5         ASIA  1993  6.864540e+09  6.957170e+09 -9.262979e+07
+6      AMERICA  1994  6.863756e+09  6.905139e+09 -4.138320e+07
+7  MIDDLE EAST  1996  6.877095e+09  6.814699e+09  6.239623e+07
+8      AMERICA  1997  6.922465e+09  3.991377e+09  2.931088e+09
 9       AFRICA  1995  6.908429e+09  6.878112e+09  3.031631e+07
 </pre></div>
 </div>
@@ -738,7 +740,7 @@ the join as zero:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.4.0',
+            VERSION:'0.5.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
