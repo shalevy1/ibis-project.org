@@ -66,6 +66,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Installation and Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-a-client">Creating a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#learning-resources">Learning resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
@@ -214,8 +215,8 @@ to get up and running quickly.</p>
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="system-dependencies">
 <h3>System dependencies<a class="headerlink" href="#system-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>Ibis requires a working Python 2.6 or 2.7 installation (3.x support will come
-in a future release). We recommend <a class="reference external" href="http://continuum.io/downloads">Anaconda</a>.</p>
+<p>Ibis requires a working Python 2.6, 2.7, or 3.4 installation. We recommend
+<a class="reference external" href="http://continuum.io/downloads">Anaconda</a>.</p>
 </div>
 <div class="section" id="installing-the-python-package">
 <h3>Installing the Python package<a class="headerlink" href="#installing-the-python-package" title="Permalink to this headline">¶</a></h3>
@@ -234,6 +235,11 @@ in a future release). We recommend <a class="reference external" href="http://co
 <li>Ubuntu / Debian: <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libkrb5-dev</span></code></li>
 </ul>
 </div>
+</div>
+<div class="section" id="ibis-sqlite-quickstart">
+<span id="install-sqlite"></span><h2>Ibis SQLite Quickstart<a class="headerlink" href="#ibis-sqlite-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference external" href="http://blog.ibis-project.org/sqlite-crunchbase-quickstart/">http://blog.ibis-project.org/sqlite-crunchbase-quickstart/</a> for a quickstart
+using SQLite. Otherwise read on to try out Ibis on Impala.</p>
 </div>
 <div class="section" id="creating-a-client">
 <h2>Creating a client<a class="headerlink" href="#creating-a-client" title="Permalink to this headline">¶</a></h2>
@@ -259,8 +265,8 @@ reproduced as part of the documentation.</p>
 </div>
 <div class="section" id="using-ibis-with-the-cloudera-quickstart-vm">
 <span id="install-quickstart"></span><h2>Using Ibis with the Cloudera Quickstart VM<a class="headerlink" href="#using-ibis-with-the-cloudera-quickstart-vm" title="Permalink to this headline">¶</a></h2>
-<p>Since Ibis requires a running Impala cluster, we have provided a lean
-VirtualBox image to simplify the process for those looking to try out Ibis
+<p>Using Ibis with Impala requires a running Impala cluster, so we have provided a
+lean VirtualBox image to simplify the process for those looking to try out Ibis
 (without setting up a cluster) or start contributing code to the project.</p>
 <p>What follows are streamlined setup instructions for the VM. If you wish to
 download it directly and setup from the <code class="docutils literal"><span class="pre">ova</span></code> file, use this <a class="reference external" href="http://archive.cloudera.com/cloudera-ibis/ibis-demo.ova">download link</a>.</p>
