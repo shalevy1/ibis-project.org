@@ -148,20 +148,22 @@
 <li class="toctree-l2"><a class="reference internal" href="#decimal-methods">Decimal methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Developers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#projections-adding-removing-columns">Projections: adding/removing columns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#projections-select-add-remove-columns">Projections: select/add/remove columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#filtering-where">Filtering / <code class="docutils literal"><span class="pre">WHERE</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#aggregation-group-by">Aggregation / <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#sorting">Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#sorting-order-by">Sorting / <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#limit-and-offset"><code class="docutils literal"><span class="pre">LIMIT</span></code> and <code class="docutils literal"><span class="pre">OFFSET</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#common-column-expressions">Common column expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#column-expressions">Column expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#subqueries">Subqueries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#distinct-expressions"><code class="docutils literal"><span class="pre">DISTINCT</span></code> expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#window-functions">Window functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#top-k-operations">Top-K operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#date-time-data">Date / time data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#correlated-uncorrelated-subqueries">Correlated / uncorrelated subqueries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#common-table-expressions-ctes">Common table expressions (CTEs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#having-clause"><code class="docutils literal"><span class="pre">HAVING</span></code> clause</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#buckets-and-histograms">Buckets and histograms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql.html#unions">Unions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html#esoterica">Esoterica</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Ibis for Impala users</a><ul>
@@ -1066,7 +1068,7 @@ HDFS.</p>
 </table>
 </div>
 <div class="section" id="timestamp-methods">
-<h2>Timestamp methods<a class="headerlink" href="#timestamp-methods" title="Permalink to this headline">¶</a></h2>
+<span id="api-timestamp"></span><h2>Timestamp methods<a class="headerlink" href="#timestamp-methods" title="Permalink to this headline">¶</a></h2>
 <p>All timestamp operations are valid either on scalar or array values</p>
 <table border="1" class="longtable docutils">
 <colgroup>
