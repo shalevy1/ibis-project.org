@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis 0.5.0 documentation</title>
+  <title>Release Notes &mdash; Ibis v0.6.0 documentation</title>
   
 
   
@@ -30,9 +30,9 @@
   
 
   
-    <link rel="top" title="Ibis 0.5.0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.6.0 documentation" href="index.html"/>
         <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
-        <link rel="prev" title="Ibis for Impala users" href="impala.html"/> 
+        <link rel="prev" title="Ibis for SQL Programmers" href="sql.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -77,7 +77,7 @@
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
@@ -121,13 +121,19 @@
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala-udf.html">Using Impala UDFs in Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#the-impala-client-object">The Impala client object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#database-and-table-objects">Database and Table objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#creating-tables">Creating tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#partitioned-tables">Partitioned tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#managing-table-metadata">Managing table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#table-statistics">Table statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
@@ -166,12 +172,8 @@
 <li class="toctree-l2"><a class="reference internal" href="sql.html#esoterica">Esoterica</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala.html">Ibis for Impala users</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-metadata">Table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-partition-management">Table partition management</a></li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#december-1-2015">0.6 (December 1, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#september-10-2015">0.5 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#august-14-2015">0.4 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#july-20-2015">0.3 (July 20, 2015)</a></li>
@@ -229,13 +231,76 @@
 since most minor bug fixes tend to be esoteric and not generally
 interesting. Point (minor, e.g. 0.5.1) releases will generally not be found
 here and contain only bug fixes.</div></blockquote>
+<div class="section" id="december-1-2015">
+<h2>0.6 (December 1, 2015)<a class="headerlink" href="#december-1-2015" title="Permalink to this headline">¶</a></h2>
+<p>This release brings expanded pandas and Impala integration, including support
+for managing partitioned tables in Impala. See the new <a class="reference internal" href="impala.html#impala"><span>Ibis for Impala
+Users</span></a> guide for more on using Ibis with Impala.</p>
+<p>The <a class="reference internal" href="sql.html#sql"><span>Ibis for SQL Programmers</span></a> guide also was written since the 0.5
+release.</p>
+<p>This release also includes bug fixes affecting generated SQL correctness. All
+users should upgrade as soon as possible.</p>
+<div class="section" id="new-features">
+<h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>New integrated Impala functionality. See <a class="reference internal" href="impala.html#impala"><span>Ibis for Impala Users</span></a> for more details on these things.<ul>
+<li>Improved Impala-pandas integration. Create tables or insert into existing
+tables from pandas <code class="docutils literal"><span class="pre">DataFrame</span></code> objects.</li>
+<li>Partitioned table metadata management API. Add, drop, alter, and
+insert into table partitions.</li>
+<li>Add <code class="docutils literal"><span class="pre">is_partitioned</span></code> property to <code class="docutils literal"><span class="pre">ImpalaTable</span></code>.</li>
+<li>Added support for <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> DDL using the <code class="docutils literal"><span class="pre">load_data</span></code> function, also
+supporting partitioned tables.</li>
+<li>Modify table metadata (location, format, SerDe properties etc.)  using
+<code class="docutils literal"><span class="pre">ImpalaTable.alter</span></code></li>
+<li>Interrupting Impala expression execution with Control-C will attempt to
+cancel the running query with the server.</li>
+<li>Set the compression codec (e.g. snappy) used with
+<code class="docutils literal"><span class="pre">ImpalaClient.set_compression_codec</span></code>.</li>
+<li>Get and set query options for a client session with
+<code class="docutils literal"><span class="pre">ImpalaClient.get_options</span></code> and <code class="docutils literal"><span class="pre">ImpalaClient.set_options</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">ImpalaTable.metadata</span></code> method that parses the output of the
+<code class="docutils literal"><span class="pre">DESCRIBE</span> <span class="pre">FORMATTED</span></code> DDL to simplify table metadata inspection.</li>
+<li>Add <code class="docutils literal"><span class="pre">ImpalaTable.stats</span></code> and <code class="docutils literal"><span class="pre">ImpalaTable.column_stats</span></code> to see computed
+table and partition statistics.</li>
+<li>Add <code class="docutils literal"><span class="pre">CHAR</span></code> and <code class="docutils literal"><span class="pre">VARCHAR</span></code> handling</li>
+<li>Add <code class="docutils literal"><span class="pre">refresh</span></code>, <code class="docutils literal"><span class="pre">invalidate_metadata</span></code> DDL options and add
+<code class="docutils literal"><span class="pre">incremental</span></code> option to <code class="docutils literal"><span class="pre">compute_stats</span></code> for <code class="docutils literal"><span class="pre">COMPUTE</span> <span class="pre">INCREMENTAL</span>
+<span class="pre">STATS</span></code>.</li>
+</ul>
+</li>
+<li>Add <code class="docutils literal"><span class="pre">substitute</span></code> method for performing multiple value substitutions in an
+array or scalar expression.</li>
+<li>Division is by default <em>true division</em> like Python 3 for all numeric
+data. This means for SQL systems that use C-style division semantics, the
+appropriate <code class="docutils literal"><span class="pre">CAST</span></code> will be automatically inserted in the generated SQL.</li>
+<li>Easier joins on tables with overlapping column names. See <a class="reference internal" href="sql.html#sql"><span>Ibis for SQL Programmers</span></a>.</li>
+<li>Expressions like <code class="docutils literal"><span class="pre">string_expr[:3]</span></code> now work as expected.</li>
+<li>Add <code class="docutils literal"><span class="pre">coalesce</span></code> instance method to all value expressions.</li>
+<li>Passing <code class="docutils literal"><span class="pre">limit=None</span></code> to the <code class="docutils literal"><span class="pre">execute</span></code> method on expressions disables any
+default row limits.</li>
+</ul>
+</div>
+<div class="section" id="api-changes">
+<h3>API Changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ImpalaTable.rename</span></code> no longer mutates the calling table expression.</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre>$ git log v0.5.0..v0.6.0 --pretty=format:%aN | sort | uniq -c | sort -rn
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="september-10-2015">
 <h2>0.5 (September 10, 2015)<a class="headerlink" href="#september-10-2015" title="Permalink to this headline">¶</a></h2>
 <p>Highlights in this release are the SQLite, Python 3, Impala UDA support, and an
 asynchronous execution API. There are also many usability improvements, bug
 fixes, and other new features.</p>
-<div class="section" id="new-features">
-<h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>SQLite client and built-in function support</li>
 <li>Ibis now supports Python 3.4 as well as 2.6 and 2.7</li>
@@ -258,15 +323,15 @@ and ability to compile (since many operations are unavailable in SQLite, for
 example)</li>
 </ul>
 </div>
-<div class="section" id="api-changes">
-<h3>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>API changes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Impala Ibis client creation now uses only <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>, and
 <code class="docutils literal"><span class="pre">ibis.make_client</span></code> has been deprecated</li>
 </ul>
 </div>
-<div class="section" id="contributors">
-<h3>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Contributors<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>$ git log v0.4.0..v0.5.0 --pretty=format:%aN | sort | uniq -c | sort -rn
       55 Wes McKinney
       9 Uri Laserson
@@ -277,8 +342,8 @@ example)</li>
 </div>
 <div class="section" id="august-14-2015">
 <h2>0.4 (August 14, 2015)<a class="headerlink" href="#august-14-2015" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>New features<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Add tooling to use Impala C++ scalar UDFs within Ibis (#262, #195)</li>
 <li>Support and testing for Kerberos-enabled secure HDFS clusters</li>
@@ -307,8 +372,8 @@ to cluster, for better usability.</li>
 <li>Add conda installation recipes</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h3>Contributors<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Contributors<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>$ git log v0.3.0..v0.4.0 --pretty=format:%aN | sort | uniq -c | sort -rn
      38 Wes McKinney
       9 Uri Laserson
@@ -322,8 +387,8 @@ to cluster, for better usability.</li>
 <div class="section" id="july-20-2015">
 <h2>0.3 (July 20, 2015)<a class="headerlink" href="#july-20-2015" title="Permalink to this headline">¶</a></h2>
 <p>First public release. See <a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a> for more.</p>
-<div class="section" id="id3">
-<h3>New features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>New features<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Implement window / analytic function support</li>
 <li>Enable non-equijoins (join clauses with operations other than <code class="docutils literal"><span class="pre">==</span></code>).</li>
@@ -347,8 +412,8 @@ supports it).</li>
 productivity.</li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h3>Contributors<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Contributors<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>$ git log v0.2.0..v0.3.0 --pretty=format:%aN | sort | uniq -c | sort -rn
      59 Wes McKinney
      29 Uri Laserson
@@ -360,8 +425,8 @@ productivity.</li>
 </div>
 <div class="section" id="june-16-2015">
 <h2>0.2 (June 16, 2015)<a class="headerlink" href="#june-16-2015" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id5">
-<h3>New features<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>New features<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">insert</span></code> method on Ibis client for inserting data into existing tables.</li>
 <li><code class="docutils literal"><span class="pre">parquet_file</span></code>, <code class="docutils literal"><span class="pre">delimited_file</span></code>, and <code class="docutils literal"><span class="pre">avro_file</span></code> client methods for
@@ -407,8 +472,8 @@ callback function for improved query logging and visibility</li>
 expressions</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h3>API Changes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>API Changes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>New Ibis client and Impala connection workflow. Client now combined from an
 Impala connection and an optional HDFS connection</li>
@@ -420,8 +485,8 @@ Impala connection and an optional HDFS connection</li>
 <li>Numerous expression API bug fixes and rough edges fixed</li>
 </ul>
 </div>
-<div class="section" id="id7">
-<h3>Contributors<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Contributors<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>$ git log v0.1.0..v0.2.0 --pretty=format:%aN | sort | uniq -c | sort -rn
      71 Wes McKinney
       1 Juliet Hougland
@@ -456,7 +521,7 @@ Impala connection and an optional HDFS connection</li>
         <a href="developer.html" class="btn btn-neutral float-right" title="Developing and Contributing to Ibis">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="impala.html" class="btn btn-neutral" title="Ibis for Impala users"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sql.html" class="btn btn-neutral" title="Ibis for SQL Programmers"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -486,7 +551,7 @@ Impala connection and an optional HDFS connection</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5.0',
+            VERSION:'v0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

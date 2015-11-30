@@ -1,0 +1,6 @@
+ibis.impala.api.ImpalaTable.drop_partition
+==========================================
+
+.. currentmodule:: ibis.impala.api
+
+.. automethod:: ImpalaTable.drop_partition

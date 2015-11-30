@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Ibis 0.5.0 documentation</title>
+  <title>Index &mdash; Ibis v0.6.0 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.5.0 documentation" href="index.html"/> 
+    <link rel="top" title="Ibis v0.6.0 documentation" href="index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -76,7 +76,7 @@
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
@@ -120,13 +120,19 @@
 <li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala-udf.html">Using Impala UDFs in Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#the-impala-client-object">The Impala client object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#database-and-table-objects">Database and Table objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#creating-tables">Creating tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#partitioned-tables">Partitioned tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#managing-table-metadata">Managing table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#table-statistics">Table statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
@@ -165,12 +171,8 @@
 <li class="toctree-l2"><a class="reference internal" href="sql.html#esoterica">Esoterica</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala.html">Ibis for Impala users</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-metadata">Table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-partition-management">Table partition management</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
@@ -264,6 +266,10 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.add_partition.html#ibis.impala.api.ImpalaTable.add_partition">add_partition() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.expr.api.GroupedTableExpr.aggregate.html#ibis.expr.api.GroupedTableExpr.aggregate">aggregate() (ibis.expr.api.GroupedTableExpr method)</a>
   </dt>
 
@@ -278,11 +284,19 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join">anti_join() (ibis.expr.api.TableExpr method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.alter.html#ibis.impala.api.ImpalaTable.alter">alter() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.alter_partition.html#ibis.impala.api.ImpalaTable.alter_partition">alter_partition() (ibis.impala.api.ImpalaTable method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join">anti_join() (ibis.expr.api.TableExpr method)</a>
+  </dt>
+
       
   <dt><a href="generated/ibis.expr.api.BooleanArray.any.html#ibis.expr.api.BooleanArray.any">any() (ibis.expr.api.BooleanArray method)</a>
   </dt>
@@ -342,7 +356,7 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.expr.api.ArrayExpr.case.html#ibis.expr.api.ArrayExpr.case">case() (ibis.expr.api.ArrayExpr method)</a>
+  <dt><a href="generated/ibis.expr.api.ValueExpr.case.html#ibis.expr.api.ValueExpr.case">case() (ibis.expr.api.ValueExpr method)</a>
   </dt>
 
       <dd><dl>
@@ -352,7 +366,7 @@
 
       </dl></dd>
       
-  <dt><a href="generated/ibis.expr.api.ArrayExpr.cases.html#ibis.expr.api.ArrayExpr.cases">cases() (ibis.expr.api.ArrayExpr method)</a>
+  <dt><a href="generated/ibis.expr.api.ValueExpr.cases.html#ibis.expr.api.ValueExpr.cases">cases() (ibis.expr.api.ValueExpr method)</a>
   </dt>
 
       
@@ -376,7 +390,17 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.coalesce.html#ibis.coalesce">coalesce() (in module ibis)</a>
+  <dt><a href="generated/ibis.expr.api.ValueExpr.coalesce.html#ibis.expr.api.ValueExpr.coalesce">coalesce() (ibis.expr.api.ValueExpr method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="generated/ibis.coalesce.html#ibis.coalesce">(in module ibis)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.column_stats.html#ibis.impala.api.ImpalaTable.column_stats">column_stats() (ibis.impala.api.ImpalaTable method)</a>
   </dt>
 
       
@@ -397,12 +421,12 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="generated/ibis.expr.api.StringValue.contains.html#ibis.expr.api.StringValue.contains">contains() (ibis.expr.api.StringValue method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="generated/ibis.expr.api.IntegerValue.convert_base.html#ibis.expr.api.IntegerValue.convert_base">convert_base() (ibis.expr.api.IntegerValue method)</a>
   </dt>
@@ -435,6 +459,12 @@
   <dt><a href="generated/ibis.impala.api.ImpalaClient.create_table.html#ibis.impala.api.ImpalaClient.create_table">create_table() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="generated/ibis.impala.api.ImpalaDatabase.create_table.html#ibis.impala.api.ImpalaDatabase.create_table">(ibis.impala.api.ImpalaDatabase method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="generated/ibis.impala.api.ImpalaClient.create_view.html#ibis.impala.api.ImpalaClient.create_view">create_view() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
@@ -504,6 +534,10 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.describe_formatted.html#ibis.impala.api.ImpalaTable.describe_formatted">describe_formatted() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.impala.api.ImpalaClient.disable_codegen.html#ibis.impala.api.ImpalaClient.disable_codegen">disable_codegen() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
 
@@ -524,7 +558,7 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.impala.api.Database.drop.html#ibis.impala.api.Database.drop">drop() (ibis.impala.api.Database method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaDatabase.drop.html#ibis.impala.api.ImpalaDatabase.drop">drop() (ibis.impala.api.ImpalaDatabase method)</a>
   </dt>
 
       <dd><dl>
@@ -535,6 +569,10 @@
       </dl></dd>
       
   <dt><a href="generated/ibis.impala.api.ImpalaClient.drop_database.html#ibis.impala.api.ImpalaClient.drop_database">drop_database() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.drop_partition.html#ibis.impala.api.ImpalaTable.drop_partition">drop_partition() (ibis.impala.api.ImpalaTable method)</a>
   </dt>
 
       
@@ -594,6 +632,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.files.html#ibis.impala.api.ImpalaTable.files">files() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.expr.api.ValueExpr.fillna.html#ibis.expr.api.ValueExpr.fillna">fillna() (ibis.expr.api.ValueExpr method)</a>
   </dt>
 
@@ -638,11 +680,15 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.impala.api.ImpalaClient.get_schema.html#ibis.impala.api.ImpalaClient.get_schema">get_schema() (ibis.impala.api.ImpalaClient method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.get_options.html#ibis.impala.api.ImpalaClient.get_options">get_options() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.get_schema.html#ibis.impala.api.ImpalaClient.get_schema">get_schema() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
       
   <dt><a href="generated/ibis.greatest.html#ibis.greatest">greatest() (in module ibis)</a>
   </dt>
@@ -711,8 +757,6 @@
   <dt><a href="generated/ibis.expr.api.TableExpr.inner_join.html#ibis.expr.api.TableExpr.inner_join">inner_join() (ibis.expr.api.TableExpr method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="generated/ibis.impala.api.ImpalaClient.insert.html#ibis.impala.api.ImpalaClient.insert">insert() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
@@ -723,6 +767,22 @@
   </dt>
 
       </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.invalidate_metadata.html#ibis.impala.api.ImpalaClient.invalidate_metadata">invalidate_metadata() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.invalidate_metadata.html#ibis.impala.api.ImpalaTable.invalidate_metadata">(ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.is_partitioned.html#ibis.impala.api.ImpalaTable.is_partitioned">is_partitioned (ibis.impala.api.ImpalaTable attribute)</a>
+  </dt>
+
       
   <dt><a href="generated/ibis.expr.api.ValueExpr.isin.html#ibis.expr.api.ValueExpr.isin">isin() (ibis.expr.api.ValueExpr method)</a>
   </dt>
@@ -818,6 +878,16 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.load_data.html#ibis.impala.api.ImpalaClient.load_data">load_data() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.load_data.html#ibis.impala.api.ImpalaTable.load_data">(ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      </dl></dd>
+      
   <dt><a href="generated/ibis.expr.api.NumericValue.log.html#ibis.expr.api.NumericValue.log">log() (ibis.expr.api.NumericValue method)</a>
   </dt>
 
@@ -857,6 +927,10 @@
 
       
   <dt><a href="generated/ibis.expr.api.NumericArray.mean.html#ibis.expr.api.NumericArray.mean">mean() (ibis.expr.api.NumericArray method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.metadata.html#ibis.impala.api.ImpalaTable.metadata">metadata() (ibis.impala.api.ImpalaTable method)</a>
   </dt>
 
       
@@ -902,7 +976,7 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.impala.api.Database.namespace.html#ibis.impala.api.Database.namespace">namespace() (ibis.impala.api.Database method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaDatabase.namespace.html#ibis.impala.api.ImpalaDatabase.namespace">namespace() (ibis.impala.api.ImpalaDatabase method)</a>
   </dt>
 
       
@@ -980,15 +1054,23 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.expr.api.Expr.pipe.html#ibis.expr.api.Expr.pipe">pipe() (ibis.expr.api.Expr method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.partition_schema.html#ibis.impala.api.ImpalaTable.partition_schema">partition_schema() (ibis.impala.api.ImpalaTable method)</a>
   </dt>
 
       
-  <dt><a href="generated/ibis.expr.api.ValueExpr.pow.html#ibis.expr.api.ValueExpr.pow">pow() (ibis.expr.api.ValueExpr method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.partitions.html#ibis.impala.api.ImpalaTable.partitions">partitions() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.expr.api.Expr.pipe.html#ibis.expr.api.Expr.pipe">pipe() (ibis.expr.api.Expr method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/ibis.expr.api.ValueExpr.pow.html#ibis.expr.api.ValueExpr.pow">pow() (ibis.expr.api.ValueExpr method)</a>
+  </dt>
+
       
   <dt><a href="generated/ibis.expr.api.DecimalValue.precision.html#ibis.expr.api.DecimalValue.precision">precision() (ibis.expr.api.DecimalValue method)</a>
   </dt>
@@ -1042,6 +1124,10 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.refresh.html#ibis.impala.api.ImpalaTable.refresh">refresh() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.expr.api.TableExpr.relabel.html#ibis.expr.api.TableExpr.relabel">relabel() (ibis.expr.api.TableExpr method)</a>
   </dt>
 
@@ -1054,11 +1140,15 @@
   </dt>
 
       
-  <dt><a href="generated/ibis.expr.api.StringValue.reverse.html#ibis.expr.api.StringValue.reverse">reverse() (ibis.expr.api.StringValue method)</a>
+  <dt><a href="generated/ibis.expr.api.StringValue.replace.html#ibis.expr.api.StringValue.replace">replace() (ibis.expr.api.StringValue method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="generated/ibis.expr.api.StringValue.reverse.html#ibis.expr.api.StringValue.reverse">reverse() (ibis.expr.api.StringValue method)</a>
+  </dt>
+
       
   <dt><a href="generated/ibis.expr.api.StringValue.right.html#ibis.expr.api.StringValue.right">right() (ibis.expr.api.StringValue method)</a>
   </dt>
@@ -1111,6 +1201,10 @@
 
       <dd><dl>
         
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.schema.html#ibis.impala.api.ImpalaTable.schema">(ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+        
   <dt><a href="generated/ibis.schema.html#ibis.schema">(in module ibis)</a>
   </dt>
 
@@ -1128,7 +1222,15 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html#ibis.impala.api.ImpalaClient.set_compression_codec">set_compression_codec() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.impala.api.ImpalaClient.set_database.html#ibis.impala.api.ImpalaClient.set_database">set_database() (ibis.impala.api.ImpalaClient method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.set_options.html#ibis.impala.api.ImpalaClient.set_options">set_options() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
 
       
@@ -1160,6 +1262,10 @@
   </dt>
 
       
+  <dt><a href="generated/ibis.impala.api.ImpalaTable.stats.html#ibis.impala.api.ImpalaTable.stats">stats() (ibis.impala.api.ImpalaTable method)</a>
+  </dt>
+
+      
   <dt><a href="generated/ibis.HDFS.status.html#ibis.HDFS.status">status() (ibis.HDFS method)</a>
   </dt>
 
@@ -1173,6 +1279,10 @@
 
       
   <dt><a href="generated/ibis.expr.api.ValueExpr.sub.html#ibis.expr.api.ValueExpr.sub">sub() (ibis.expr.api.ValueExpr method)</a>
+  </dt>
+
+      
+  <dt><a href="generated/ibis.expr.api.ValueExpr.substitute.html#ibis.expr.api.ValueExpr.substitute">substitute() (ibis.expr.api.ValueExpr method)</a>
   </dt>
 
       
@@ -1194,12 +1304,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="generated/ibis.impala.api.Database.table.html#ibis.impala.api.Database.table">table() (ibis.impala.api.Database method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaClient.table.html#ibis.impala.api.ImpalaClient.table">table() (ibis.impala.api.ImpalaClient method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="generated/ibis.impala.api.ImpalaClient.table.html#ibis.impala.api.ImpalaClient.table">(ibis.impala.api.ImpalaClient method)</a>
+  <dt><a href="generated/ibis.impala.api.ImpalaDatabase.table.html#ibis.impala.api.ImpalaDatabase.table">(ibis.impala.api.ImpalaDatabase method)</a>
   </dt>
 
         
@@ -1355,7 +1465,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.5.0',
+            VERSION:'v0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

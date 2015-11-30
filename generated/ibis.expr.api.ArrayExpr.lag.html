@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ArrayExpr.lag &mdash; Ibis 0.5.0 documentation</title>
+  <title>ibis.expr.api.ArrayExpr.lag &mdash; Ibis v0.6.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis 0.5.0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.6.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.ArrayExpr.lead" href="ibis.expr.api.ArrayExpr.lead.html"/>
         <link rel="prev" title="ibis.expr.api.ArrayExpr.rank" href="ibis.expr.api.ArrayExpr.rank.html"/> 
@@ -78,7 +78,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Expression tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
@@ -122,13 +122,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../impala-udf.html">Using Impala UDFs in Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-scalar-functions-udfs">Using scalar functions (UDFs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#using-aggregate-functions-udas">Using aggregate functions (UDAs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-documentation-to-new-functions">Adding documentation to new functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#adding-udf-functions-to-ibis-types">Adding UDF functions to Ibis types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#installing-the-impala-udf-sdk-on-os-x-and-linux">Installing the Impala UDF SDK on OS X and Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala-udf.html#impala-types-to-ibis-types">Impala types to Ibis types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#the-impala-client-object">The Impala client object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#database-and-table-objects">Database and Table objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#creating-tables">Creating tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#partitioned-tables">Partitioned tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#managing-table-metadata">Managing table metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-statistics">Table statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
@@ -167,12 +173,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../sql.html#esoterica">Esoterica</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../impala.html">Ibis for Impala users</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-metadata">Table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-partition-management">Table partition management</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
@@ -273,7 +275,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.5.0',
+            VERSION:'v0.6.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -1,0 +1,6 @@
+ibis.impala.api.ImpalaTable.add_partition
+=========================================
+
+.. currentmodule:: ibis.impala.api
+
+.. automethod:: ImpalaTable.add_partition

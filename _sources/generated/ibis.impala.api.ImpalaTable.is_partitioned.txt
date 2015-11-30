@@ -1,0 +1,6 @@
+ibis.impala.api.ImpalaTable.is_partitioned
+==========================================
+
+.. currentmodule:: ibis.impala.api
+
+.. autoattribute:: ImpalaTable.is_partitioned
