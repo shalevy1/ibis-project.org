@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basics: Aggregation, filtering, limits &mdash; Ibis v0.6.0+2.gbbdc3fa documentation</title>
+  <title>Basics: Aggregation, filtering, limits &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
   
 
   
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,13 +30,13 @@
   
 
   
-    <link rel="top" title="Ibis v0.6.0+2.gbbdc3fa documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="../index.html"/>
         <link rel="up" title="Expression tutorial" href="../tutorial.html"/>
         <link rel="next" title="Projections: adding/selecting columns" href="2.html"/>
         <link rel="prev" title="Impala/HDFS intro and Setup" href="0.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,11 +46,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../index.html" class="fa fa-home"> Ibis</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.7.1+17.g3bc20c0
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -58,44 +74,31 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
-</ul>
-</li>
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Expression tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#accessing-an-impala-table">Accessing an Impala table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interactive-mode">Interactive mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#verbose-mode-and-logging">Verbose mode and logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#aggregation-basics">Aggregation basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#filtering">Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#limits">Limits</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basics: Aggregation, filtering, limits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-an-impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-mode">Interactive mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering">Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limits">Limits</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="2.html">Projections: adding/selecting columns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#explicit-join-materialization">Explicit join materialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#writing-down-join-keys">Writing down join keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#join-referential-nuances">Join referential nuances</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2.html#sorting">Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html">Type casting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
@@ -113,89 +116,21 @@
 <li class="toctree-l2"><a class="reference internal" href="4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5.html">&#8220;Top-K&#8221; Filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5.html#self-joins">Self joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html">More filtering mojo for your analytics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#conditional-aggregates">Conditional aggregates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html">Frequency tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html#binning-and-histograms">Binning and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#the-impala-client-object">The Impala client object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#database-and-table-objects">Database and Table objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#creating-tables">Creating tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#partitioned-tables">Partitioned tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#managing-table-metadata">Managing table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-statistics">Table statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#projections-select-add-remove-columns">Projections: select/add/remove columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#filtering-where">Filtering / <code class="docutils literal"><span class="pre">WHERE</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#aggregation-group-by">Aggregation / <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#sorting-order-by">Sorting / <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#limit-and-offset"><code class="docutils literal"><span class="pre">LIMIT</span></code> and <code class="docutils literal"><span class="pre">OFFSET</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#common-column-expressions">Common column expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#subqueries">Subqueries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#distinct-expressions"><code class="docutils literal"><span class="pre">DISTINCT</span></code> expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#window-functions">Window functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#top-k-operations">Top-K operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#date-time-data">Date / time data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#buckets-and-histograms">Buckets and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#unions">Unions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#esoterica">Esoterica</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2 (June 16, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1 (March 26, 2015)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -210,7 +145,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
@@ -219,58 +160,60 @@
     <li>Basics: Aggregation, filtering, limits</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../_sources/generated-notebooks/1.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/generated-notebooks/1.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="basics-aggregation-filtering-limits">
 <h1>Basics: Aggregation, filtering, limits<a class="headerlink" href="#basics-aggregation-filtering-limits" title="Permalink to this headline">¶</a></h1>
 <p>Now that you have ibis installed and connecting to your Impala, let&#8217;s
 get our feet wet.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
                           <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
 <div class="section" id="accessing-an-impala-table">
-<h1>Accessing an Impala table<a class="headerlink" href="#accessing-an-impala-table" title="Permalink to this headline">¶</a></h1>
+<h2>Accessing an Impala table<a class="headerlink" href="#accessing-an-impala-table" title="Permalink to this headline">¶</a></h2>
 <p>The optional <code class="docutils literal"><span class="pre">database</span></code> paramter allows to fully qualify the table.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="column-selection-and-basic-expressions">
-<h1>Column selection and basic expressions<a class="headerlink" href="#column-selection-and-basic-expressions" title="Permalink to this headline">¶</a></h1>
+<h2>Column selection and basic expressions<a class="headerlink" href="#column-selection-and-basic-expressions" title="Permalink to this headline">¶</a></h2>
 <p>Selecting columns from a table works just like pandas</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">col</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
 
-<span class="c"># alternately</span>
-<span class="n">col2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s">&#39;bigint_col&#39;</span><span class="p">]</span>
+<span class="c1"># alternately</span>
+<span class="n">col2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;bigint_col&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Table columns are equipped with a variety of math operations and other
 methods to assist in writing your analytics. For example:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">log2</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">log2</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>Some operations transform arrays to arrays, while others aggregate, like
 <code class="docutils literal"><span class="pre">sum</span></code> and <code class="docutils literal"><span class="pre">mean</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr2</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">expr2</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The methods that are available on columns depend on the type of the
 column. For example, you won&#8217;t see the <code class="docutils literal"><span class="pre">substr</span></code> or <code class="docutils literal"><span class="pre">upper</span></code> methods
 for strings on numeric columns:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">substr_expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">substr_expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Notice that printing the expressions to the console does not actually do
@@ -278,10 +221,10 @@ anything, and shows a graphical representation of the expression you&#8217;ve
 built.</p>
 <p><strong>Note: don&#8217;t worry too much about the details of the expression tree
 that&#8217;s outputted, it&#8217;s very likely to change over time</strong></p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr2</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">expr2</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>ref_0
+<div class="highlight-default"><div class="highlight"><pre><span></span>ref_0
 DatabaseTable[table]
   name: ibis_testing.`functional_alltypes`
   schema:
@@ -310,90 +253,90 @@ sum = Sum[double]
 </div>
 <p>We can also execute an expression by calling <code class="docutils literal"><span class="pre">execute</span></code> on the Impala
 connection object</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">331785.0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">331785.0</span>
 </pre></div>
 </div>
 <p>There&#8217;s a shortcut to make this a little more convenient in interactive
 use</p>
 </div>
 <div class="section" id="interactive-mode">
-<h1>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h1>
+<h2>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h2>
 <p>Many Ibis expressions can be immediately executed against the database,
 and it may improve your productivity to have the executed for you
 whenever you try to print the expression in the console / IPython
 notebook.</p>
 <p>To do this, we have an <em>interactive</em> mode available, which can be turned
 on/off like so:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 <p>Now, any expressions you write will be executed right away</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  5460     True            0             0        0           0        0.0
-1  5461    False            1             1        1          10        1.1
-2  5462     True            2             2        2          20        2.2
-3  5463    False            3             3        3          30        3.3
-4  5464     True            4             4        4          40        4.4
-5  5465    False            5             5        5          50        5.5
-6  5466     True            6             6        6          60        6.6
-7  5467    False            7             7        7          70        7.7
-8  5468     True            8             8        8          80        8.8
-9  5469    False            9             9        9          90        9.9
+    id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  900     True            0             0        0           0        0.0
+1  901    False            1             1        1          10        1.1
+2  902     True            2             2        2          20        2.2
+3  903    False            3             3        3          30        3.3
+4  904     True            4             4        4          40        4.4
+5  905    False            5             5        5          50        5.5
+6  906     True            6             6        6          60        6.6
+7  907    False            7             7        7          70        7.7
+8  908     True            8             8        8          80        8.8
+9  909    False            9             9        9          90        9.9
 
    double_col date_string_col string_col           timestamp_col  year  month
-0         0.0        07/01/10          0 2010-07-01 00:00:00.000  2010      7
-1        10.1        07/01/10          1 2010-07-01 00:01:00.000  2010      7
-2        20.2        07/01/10          2 2010-07-01 00:02:00.100  2010      7
-3        30.3        07/01/10          3 2010-07-01 00:03:00.300  2010      7
-4        40.4        07/01/10          4 2010-07-01 00:04:00.600  2010      7
-5        50.5        07/01/10          5 2010-07-01 00:05:00.100  2010      7
-6        60.6        07/01/10          6 2010-07-01 00:06:00.150  2010      7
-7        70.7        07/01/10          7 2010-07-01 00:07:00.210  2010      7
-8        80.8        07/01/10          8 2010-07-01 00:08:00.280  2010      7
-9        90.9        07/01/10          9 2010-07-01 00:09:00.360  2010      7
+0         0.0        04/01/09          0 2009-04-01 00:00:00.000  2009      4
+1        10.1        04/01/09          1 2009-04-01 00:01:00.000  2009      4
+2        20.2        04/01/09          2 2009-04-01 00:02:00.100  2009      4
+3        30.3        04/01/09          3 2009-04-01 00:03:00.300  2009      4
+4        40.4        04/01/09          4 2009-04-01 00:04:00.600  2009      4
+5        50.5        04/01/09          5 2009-04-01 00:05:00.100  2009      4
+6        60.6        04/01/09          6 2009-04-01 00:06:00.150  2009      4
+7        70.7        04/01/09          7 2009-04-01 00:07:00.210  2009      4
+8        80.8        04/01/09          8 2009-04-01 00:08:00.280  2009      4
+9        90.9        04/01/09          9 2009-04-01 00:09:00.360  2009      4
 </pre>
 <p>You can select a row range with slicing syntax:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">331785.0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">331785.0</span>
 </pre></div>
 </div>
 <p>Don&#8217;t worry about the syntax here, but expressions resulting in tabular
 output will come back as a pandas DataFrame by default:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)]</span>
-<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 <span class="n">expr</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  total
-0          6  44238
-1          1   7373
-2          8  58984
-3          2  14746
-4          5  36865
-5          0      0
-6          9  66357
-7          4  29492
-8          7  51611
-9          3  22119
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>    <span class="n">total</span>
+<span class="mi">0</span>          <span class="mi">6</span>  <span class="mf">44238.0</span>
+<span class="mi">1</span>          <span class="mi">1</span>   <span class="mf">7373.0</span>
+<span class="mi">2</span>          <span class="mi">4</span>  <span class="mf">29492.0</span>
+<span class="mi">3</span>          <span class="mi">8</span>  <span class="mf">58984.0</span>
+<span class="mi">4</span>          <span class="mi">7</span>  <span class="mf">51611.0</span>
+<span class="mi">5</span>          <span class="mi">9</span>  <span class="mf">66357.0</span>
+<span class="mi">6</span>          <span class="mi">2</span>  <span class="mf">14746.0</span>
+<span class="mi">7</span>          <span class="mi">5</span>  <span class="mf">36865.0</span>
+<span class="mi">8</span>          <span class="mi">3</span>  <span class="mf">22119.0</span>
+<span class="mi">9</span>          <span class="mi">0</span>      <span class="mf">0.0</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="verbose-mode-and-logging">
-<h1>Verbose mode and logging<a class="headerlink" href="#verbose-mode-and-logging" title="Permalink to this headline">¶</a></h1>
+<h2>Verbose mode and logging<a class="headerlink" href="#verbose-mode-and-logging" title="Permalink to this headline">¶</a></h2>
 <p>You may want to see or log all the Impala queries that Ibis executes
 under the hood. To do that, use the <code class="docutils literal"><span class="pre">options.verbose</span></code> option:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;total&#39;</span><span class="p">)]</span>
-<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
 <span class="n">expr</span>
 </pre></div>
 </div>
@@ -403,20 +346,20 @@ FROM ibis_testing.`functional_alltypes`
 GROUP BY 1
 LIMIT 10000
 </pre>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  total
-0          6  44238
-1          1   7373
-2          4  29492
-3          8  58984
-4          7  51611
-5          2  14746
-6          9  66357
-7          5  36865
-8          3  22119
-9          0      0
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>    <span class="n">total</span>
+<span class="mi">0</span>          <span class="mi">6</span>  <span class="mf">44238.0</span>
+<span class="mi">1</span>          <span class="mi">1</span>   <span class="mf">7373.0</span>
+<span class="mi">2</span>          <span class="mi">4</span>  <span class="mf">29492.0</span>
+<span class="mi">3</span>          <span class="mi">8</span>  <span class="mf">58984.0</span>
+<span class="mi">4</span>          <span class="mi">7</span>  <span class="mf">51611.0</span>
+<span class="mi">5</span>          <span class="mi">2</span>  <span class="mf">14746.0</span>
+<span class="mi">6</span>          <span class="mi">9</span>  <span class="mf">66357.0</span>
+<span class="mi">7</span>          <span class="mi">5</span>  <span class="mf">36865.0</span>
+<span class="mi">8</span>          <span class="mi">3</span>  <span class="mf">22119.0</span>
+<span class="mi">9</span>          <span class="mi">0</span>      <span class="mf">0.0</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
@@ -432,14 +375,14 @@ LIMIT 10000
 ['SELECT <cite>string_col</cite>, sum(<cite>double_col</cite>) AS <cite>total</cite>nFROM ibis_testing.`functional_alltypes`nGROUP BY 1nLIMIT 10000',
  'SELECT <cite>string_col</cite>, sum(<cite>double_col</cite>) AS <cite>total</cite>nFROM ibis_testing.`functional_alltypes`nGROUP BY 1nLIMIT 10000']
 </pre>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">False</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="aggregation-basics">
-<h1>Aggregation basics<a class="headerlink" href="#aggregation-basics" title="Permalink to this headline">¶</a></h1>
+<h2>Aggregation basics<a class="headerlink" href="#aggregation-basics" title="Permalink to this headline">¶</a></h2>
 <p>One of the essential table API functions is <code class="docutils literal"><span class="pre">aggregate</span></code>. Aggregation
 involves the following</p>
 <ul class="simple">
@@ -448,27 +391,27 @@ involves the following</p>
 </ul>
 <p>This ends up working very similarly to pandas&#8217;s <strong>groupby</strong> mechanism.</p>
 <p>Let&#8217;s start with a simple reduction:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>As you saw above, you can execute this immediately and obtain a value:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">metric</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">331785.0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">331785.0</span>
 </pre></div>
 </div>
 <p>The reduced column can be more complex; for example, you could count the
 number of null values in a column like so:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">0</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>
 </pre></div>
 </div>
 <p>To aggregate a table, potentially with grouping keys, we have to give
 the reduction a name and call <code class="docutils literal"><span class="pre">aggregate</span></code></p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;double_total&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;double_total&#39;</span><span class="p">)</span>
 <span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
 <span class="n">result</span>
@@ -485,214 +428,216 @@ the reduction a name and call <code class="docutils literal"><span class="pre">a
   <tbody>
     <tr>
       <th>0</th>
-      <td>331785</td>
+      <td>331785.0</td>
     </tr>
   </tbody>
 </table>
 </div><p>The result here is actually a pandas DataFrame with 1 row and just the
 one column. We can add another metric and add a grouping key</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">metric2</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">log10</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;some_metric&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">metric2</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">log10</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;some_metric&#39;</span><span class="p">)</span>
 
-<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;string_col&#39;</span><span class="p">])</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;string_col&#39;</span><span class="p">])</span>
 <span class="n">expr</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  double_total  some_metric
-0          6         44238     1.785330
-1          4         29492     1.612784
-2          9         66357     1.959041
-3          1          7373     1.041393
-4          7         51611     1.851258
-5          3         22119     1.491362
-6          8         58984     1.908485
-7          2         14746     1.322219
-8          5         36865     1.707570
-9          0             0     0.000000
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">double_total</span>  <span class="n">some_metric</span>
+<span class="mi">0</span>          <span class="mi">6</span>       <span class="mf">44238.0</span>     <span class="mf">1.785330</span>
+<span class="mi">1</span>          <span class="mi">4</span>       <span class="mf">29492.0</span>     <span class="mf">1.612784</span>
+<span class="mi">2</span>          <span class="mi">7</span>       <span class="mf">51611.0</span>     <span class="mf">1.851258</span>
+<span class="mi">3</span>          <span class="mi">1</span>        <span class="mf">7373.0</span>     <span class="mf">1.041393</span>
+<span class="mi">4</span>          <span class="mi">8</span>       <span class="mf">58984.0</span>     <span class="mf">1.908485</span>
+<span class="mi">5</span>          <span class="mi">2</span>       <span class="mf">14746.0</span>     <span class="mf">1.322219</span>
+<span class="mi">6</span>          <span class="mi">5</span>       <span class="mf">36865.0</span>     <span class="mf">1.707570</span>
+<span class="mi">7</span>          <span class="mi">0</span>           <span class="mf">0.0</span>     <span class="mf">0.000000</span>
+<span class="mi">8</span>          <span class="mi">9</span>       <span class="mf">66357.0</span>     <span class="mf">1.959041</span>
+<span class="mi">9</span>          <span class="mi">3</span>       <span class="mf">22119.0</span>     <span class="mf">1.491362</span>
 </pre></div>
 </div>
 <p>We provide a convenience <code class="docutils literal"><span class="pre">group_by</span></code>, a la pandas, to make this a
 little more composable:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span>
         <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">]))</span>
 <span class="n">expr</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  double_total  some_metric
-0          6         44238     1.785330
-1          4         29492     1.612784
-2          1          7373     1.041393
-3          7         51611     1.851258
-4          8         58984     1.908485
-5          2         14746     1.322219
-6          9         66357     1.959041
-7          5         36865     1.707570
-8          0             0     0.000000
-9          3         22119     1.491362
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">double_total</span>  <span class="n">some_metric</span>
+<span class="mi">0</span>          <span class="mi">6</span>       <span class="mf">44238.0</span>     <span class="mf">1.785330</span>
+<span class="mi">1</span>          <span class="mi">4</span>       <span class="mf">29492.0</span>     <span class="mf">1.612784</span>
+<span class="mi">2</span>          <span class="mi">7</span>       <span class="mf">51611.0</span>     <span class="mf">1.851258</span>
+<span class="mi">3</span>          <span class="mi">1</span>        <span class="mf">7373.0</span>     <span class="mf">1.041393</span>
+<span class="mi">4</span>          <span class="mi">8</span>       <span class="mf">58984.0</span>     <span class="mf">1.908485</span>
+<span class="mi">5</span>          <span class="mi">2</span>       <span class="mf">14746.0</span>     <span class="mf">1.322219</span>
+<span class="mi">6</span>          <span class="mi">9</span>       <span class="mf">66357.0</span>     <span class="mf">1.959041</span>
+<span class="mi">7</span>          <span class="mi">5</span>       <span class="mf">36865.0</span>     <span class="mf">1.707570</span>
+<span class="mi">8</span>          <span class="mi">0</span>           <span class="mf">0.0</span>     <span class="mf">0.000000</span>
+<span class="mi">9</span>          <span class="mi">3</span>       <span class="mf">22119.0</span>     <span class="mf">1.491362</span>
 </pre></div>
 </div>
 <p>You can also group by named column expressions</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;hour&#39;</span><span class="p">),</span> <span class="s">&#39;string_col&#39;</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">),</span> <span class="s1">&#39;string_col&#39;</span><span class="p">]</span>
 
 <span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
 
-<span class="c"># Top 10 by double_total, more on this later</span>
-<span class="n">expr</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([(</span><span class="s">&#39;double_total&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># Top 10 by double_total, more on this later</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([(</span><span class="s1">&#39;double_total&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   hour string_col  double_total
-0     1          9       13544.1
-1     2          9       13180.5
-2     0          9       13089.6
-3     3          9       13089.6
-4     4          9       12271.5
-5     1          8       12039.2
-6     2          8       11716.0
-7     0          8       11635.2
-8     3          8       11635.2
-9     4          8       10908.0
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">hour</span> <span class="n">string_col</span>  <span class="n">double_total</span>
+<span class="mi">0</span>     <span class="mi">1</span>          <span class="mi">9</span>       <span class="mf">13544.1</span>
+<span class="mi">1</span>     <span class="mi">2</span>          <span class="mi">9</span>       <span class="mf">13180.5</span>
+<span class="mi">2</span>     <span class="mi">0</span>          <span class="mi">9</span>       <span class="mf">13089.6</span>
+<span class="mi">3</span>     <span class="mi">3</span>          <span class="mi">9</span>       <span class="mf">13089.6</span>
+<span class="mi">4</span>     <span class="mi">4</span>          <span class="mi">9</span>       <span class="mf">12271.5</span>
+<span class="mi">5</span>     <span class="mi">1</span>          <span class="mi">8</span>       <span class="mf">12039.2</span>
+<span class="mi">6</span>     <span class="mi">2</span>          <span class="mi">8</span>       <span class="mf">11716.0</span>
+<span class="mi">7</span>     <span class="mi">0</span>          <span class="mi">8</span>       <span class="mf">11635.2</span>
+<span class="mi">8</span>     <span class="mi">3</span>          <span class="mi">8</span>       <span class="mf">11635.2</span>
+<span class="mi">9</span>     <span class="mi">4</span>          <span class="mi">8</span>       <span class="mf">10908.0</span>
 </pre></div>
 </div>
 <p>In most cases, an aggregation by itself can be evaluated:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">45.450000000000003</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">45.450000000000003</span>
 </pre></div>
 </div>
 <p>This can also be done in simple cases along with <code class="docutils literal"><span class="pre">group_by</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  mean(double_col)
-0          6              60.6
-1          4              40.4
-2          7              70.7
-3          1              10.1
-4          8              80.8
-5          9              90.9
-6          2              20.2
-7          3              30.3
-8          5              50.5
-9          0               0.0
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">mean</span><span class="p">(</span><span class="n">double_col</span><span class="p">)</span>
+<span class="mi">0</span>          <span class="mi">1</span>              <span class="mf">10.1</span>
+<span class="mi">1</span>          <span class="mi">6</span>              <span class="mf">60.6</span>
+<span class="mi">2</span>          <span class="mi">8</span>              <span class="mf">80.8</span>
+<span class="mi">3</span>          <span class="mi">4</span>              <span class="mf">40.4</span>
+<span class="mi">4</span>          <span class="mi">2</span>              <span class="mf">20.2</span>
+<span class="mi">5</span>          <span class="mi">9</span>              <span class="mf">90.9</span>
+<span class="mi">6</span>          <span class="mi">7</span>              <span class="mf">70.7</span>
+<span class="mi">7</span>          <span class="mi">5</span>              <span class="mf">50.5</span>
+<span class="mi">8</span>          <span class="mi">3</span>              <span class="mf">30.3</span>
+<span class="mi">9</span>          <span class="mi">0</span>               <span class="mf">0.0</span>
 </pre></div>
 </div>
 <p>Many reduction functions have a default expression name, unlike many
 other Ibis expressions (for now!), to make some common analyses easier:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
 
-<span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span>
  <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">()]))</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col    sum  mean   min   max
-0          6  44238  60.6  60.6  60.6
-1          4  29492  40.4  40.4  40.4
-2          7  51611  70.7  70.7  70.7
-3          1   7373  10.1  10.1  10.1
-4          8  58984  80.8  80.8  80.8
-5          9  66357  90.9  90.9  90.9
-6          3  22119  30.3  30.3  30.3
-7          2  14746  20.2  20.2  20.2
-8          5  36865  50.5  50.5  50.5
-9          0      0   0.0   0.0   0.0
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>      <span class="nb">sum</span>  <span class="n">mean</span>   <span class="nb">min</span>   <span class="nb">max</span>
+<span class="mi">0</span>          <span class="mi">1</span>   <span class="mf">7373.0</span>  <span class="mf">10.1</span>  <span class="mf">10.1</span>  <span class="mf">10.1</span>
+<span class="mi">1</span>          <span class="mi">8</span>  <span class="mf">58984.0</span>  <span class="mf">80.8</span>  <span class="mf">80.8</span>  <span class="mf">80.8</span>
+<span class="mi">2</span>          <span class="mi">2</span>  <span class="mf">14746.0</span>  <span class="mf">20.2</span>  <span class="mf">20.2</span>  <span class="mf">20.2</span>
+<span class="mi">3</span>          <span class="mi">5</span>  <span class="mf">36865.0</span>  <span class="mf">50.5</span>  <span class="mf">50.5</span>  <span class="mf">50.5</span>
+<span class="mi">4</span>          <span class="mi">0</span>      <span class="mf">0.0</span>   <span class="mf">0.0</span>   <span class="mf">0.0</span>   <span class="mf">0.0</span>
+<span class="mi">5</span>          <span class="mi">6</span>  <span class="mf">44238.0</span>  <span class="mf">60.6</span>  <span class="mf">60.6</span>  <span class="mf">60.6</span>
+<span class="mi">6</span>          <span class="mi">4</span>  <span class="mf">29492.0</span>  <span class="mf">40.4</span>  <span class="mf">40.4</span>  <span class="mf">40.4</span>
+<span class="mi">7</span>          <span class="mi">7</span>  <span class="mf">51611.0</span>  <span class="mf">70.7</span>  <span class="mf">70.7</span>  <span class="mf">70.7</span>
+<span class="mi">8</span>          <span class="mi">9</span>  <span class="mf">66357.0</span>  <span class="mf">90.9</span>  <span class="mf">90.9</span>  <span class="mf">90.9</span>
+<span class="mi">9</span>          <span class="mi">3</span>  <span class="mf">22119.0</span>  <span class="mf">30.3</span>  <span class="mf">30.3</span>  <span class="mf">30.3</span>
 </pre></div>
 </div>
 <p>Of course, for this <em>particular</em> case you can always use <code class="docutils literal"><span class="pre">summary</span></code></p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  count  nulls   min   max    sum  mean  approx_nunique
-0          6    730      0  60.6  60.6  44238  60.6               1
-1          4    730      0  40.4  40.4  29492  40.4               1
-2          7    730      0  70.7  70.7  51611  70.7               1
-3          1    730      0  10.1  10.1   7373  10.1               1
-4          9    730      0  90.9  90.9  66357  90.9               1
-5          3    730      0  30.3  30.3  22119  30.3               1
-6          8    730      0  80.8  80.8  58984  80.8               1
-7          2    730      0  20.2  20.2  14746  20.2               1
-8          5    730      0  50.5  50.5  36865  50.5               1
-9          0    730      0   0.0   0.0      0   0.0               1
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">count</span>  <span class="n">nulls</span>   <span class="nb">min</span>   <span class="nb">max</span>      <span class="nb">sum</span>  <span class="n">mean</span>  <span class="n">approx_nunique</span>
+<span class="mi">0</span>          <span class="mi">6</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">60.6</span>  <span class="mf">60.6</span>  <span class="mf">44238.0</span>  <span class="mf">60.6</span>               <span class="mi">1</span>
+<span class="mi">1</span>          <span class="mi">1</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">10.1</span>  <span class="mf">10.1</span>   <span class="mf">7373.0</span>  <span class="mf">10.1</span>               <span class="mi">1</span>
+<span class="mi">2</span>          <span class="mi">8</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">80.8</span>  <span class="mf">80.8</span>  <span class="mf">58984.0</span>  <span class="mf">80.8</span>               <span class="mi">1</span>
+<span class="mi">3</span>          <span class="mi">9</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">90.9</span>  <span class="mf">90.9</span>  <span class="mf">66357.0</span>  <span class="mf">90.9</span>               <span class="mi">1</span>
+<span class="mi">4</span>          <span class="mi">2</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">20.2</span>  <span class="mf">20.2</span>  <span class="mf">14746.0</span>  <span class="mf">20.2</span>               <span class="mi">1</span>
+<span class="mi">5</span>          <span class="mi">3</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">30.3</span>  <span class="mf">30.3</span>  <span class="mf">22119.0</span>  <span class="mf">30.3</span>               <span class="mi">1</span>
+<span class="mi">6</span>          <span class="mi">5</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">50.5</span>  <span class="mf">50.5</span>  <span class="mf">36865.0</span>  <span class="mf">50.5</span>               <span class="mi">1</span>
+<span class="mi">7</span>          <span class="mi">4</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">40.4</span>  <span class="mf">40.4</span>  <span class="mf">29492.0</span>  <span class="mf">40.4</span>               <span class="mi">1</span>
+<span class="mi">8</span>          <span class="mi">7</span>    <span class="mi">730</span>      <span class="mi">0</span>  <span class="mf">70.7</span>  <span class="mf">70.7</span>  <span class="mf">51611.0</span>  <span class="mf">70.7</span>               <span class="mi">1</span>
+<span class="mi">9</span>          <span class="mi">0</span>    <span class="mi">730</span>      <span class="mi">0</span>   <span class="mf">0.0</span>   <span class="mf">0.0</span>      <span class="mf">0.0</span>   <span class="mf">0.0</span>               <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="filtering">
-<h1>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h1>
+<h2>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
 <p>Filtering tables works similarly to pandas</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bigint_max&#39;</span><span class="p">),</span>
-                 <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;bigint_min&#39;</span><span class="p">),</span>
-                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;int_max&#39;</span><span class="p">),</span>
-                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;int_min&#39;</span><span class="p">)])</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bigint_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bigint_min&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;int_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;int_min&#39;</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   bigint_max  bigint_min  int_max  int_min
-0          90           0        9        0
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">bigint_max</span>  <span class="n">bigint_min</span>  <span class="n">int_max</span>  <span class="n">int_min</span>
+<span class="mi">0</span>          <span class="mi">90</span>           <span class="mi">0</span>        <span class="mi">9</span>        <span class="mi">0</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">7300</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">7300</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">2920</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">2920</span>
 </pre></div>
 </div>
 <p>Filters can be composed using &amp; (and), | (or), and other logical array
 operators</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">cond1</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">cond1</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span>
 <span class="n">cond2</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 <span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">|</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">5840</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">5840</span>
 </pre></div>
 </div>
 <p>There&#8217;s a <code class="docutils literal"><span class="pre">filter</span></code> function that allows you to pass a list of
 conditions (that are all required to hold):</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">cond1</span><span class="p">,</span> <span class="n">cond2</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">cond1</span><span class="p">,</span> <span class="n">cond2</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">1460</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1460</span>
 </pre></div>
 </div>
 <p>Note this is the same as &amp;-ing the boolean conditions yourself:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">&amp;</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">&amp;</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">1460</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1460</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="limits">
-<h1>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h1>
+<h2>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h2>
 <p>Like in SQL, the <code class="docutils literal"><span class="pre">limit</span></code> function selects the indicated numbers of
 rows from the beginning of a table&#8217;s result set</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">
-     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  5460     True            0             0        0           0        0.0
-1  5461    False            1             1        1          10        1.1
+     id bool_col  tinyint_col  smallint_col  int_col  bigint_col  float_col  0  1510     True            0             0        0           0        0.0
+1  1511    False            1             1        1          10        1.1
 
    double_col date_string_col string_col       timestamp_col  year  month
-0         0.0        07/01/10          0 2010-07-01 00:00:00  2010      7
-1        10.1        07/01/10          1 2010-07-01 00:01:00  2010      7
+0         0.0        06/01/09          0 2009-06-01 00:00:00  2009      6
+1        10.1        06/01/09          1 2009-06-01 00:01:00  2009      6
 </pre>
+</div>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="2.html" class="btn btn-neutral float-right" title="Projections: adding/selecting columns">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="2.html" class="btn btn-neutral float-right" title="Projections: adding/selecting columns" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="0.html" class="btn btn-neutral" title="Impala/HDFS intro and Setup"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="0.html" class="btn btn-neutral" title="Impala/HDFS intro and Setup" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -702,12 +647,13 @@ rows from the beginning of a table&#8217;s result set</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Cloudera, Inc..
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
@@ -722,7 +668,7 @@ rows from the beginning of a table&#8217;s result set</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.6.0+2.gbbdc3fa',
+            VERSION:'v0.7.1+17.g3bc20c0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

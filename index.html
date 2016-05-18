@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis: Python Data Analysis Framework &mdash; Ibis v0.6.0+2.gbbdc3fa documentation</title>
+  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
   
 
   
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,11 +30,11 @@
   
 
   
-    <link rel="top" title="Ibis v0.6.0+2.gbbdc3fa documentation" href="#"/>
+    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="#"/>
         <link rel="next" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,11 +44,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="#" class="fa fa-home"> Ibis</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.7.1+17.g3bc20c0
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,144 +72,31 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#creating-a-client">Creating a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#interactive-mode">Interactive mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#aggregation-basics">Aggregation basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#filtering">Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#limits">Limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html">Projections: adding/selecting columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#explicit-join-materialization">Explicit join materialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#writing-down-join-keys">Writing down join keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#join-referential-nuances">Join referential nuances</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#sorting">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html">Type casting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#set-membership">Set membership</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#null-ness">Null-ness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#distinct-based-operations">Distinct-based operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#string-operations">String operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#timestamp-operations">Timestamp operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html">Creating new Impala tables from Ibis expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html">&#8220;Top-K&#8221; Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html#self-joins">Self joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html">More filtering mojo for your analytics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#conditional-aggregates">Conditional aggregates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html">Frequency tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#binning-and-histograms">Binning and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#the-impala-client-object">The Impala client object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#database-and-table-objects">Database and Table objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#creating-tables">Creating tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#partitioned-tables">Partitioned tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#managing-table-metadata">Managing table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-statistics">Table statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#creating-connections">Creating connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#impala-client">Impala client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#sqlite-client">SQLite client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#hdfs">HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#top-level-expression-apis">Top-level expression APIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#general-expression-methods">General expression methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#api-table">Table methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#generic-value-methods">Generic value methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#general-numeric-methods">General numeric methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#integer-methods">Integer methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#string-methods">String methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#timestamp-methods">Timestamp methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#boolean-methods">Boolean methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#category-methods">Category methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#decimal-methods">Decimal methods</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#projections-select-add-remove-columns">Projections: select/add/remove columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#filtering-where">Filtering / <code class="docutils literal"><span class="pre">WHERE</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#aggregation-group-by">Aggregation / <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#sorting-order-by">Sorting / <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#limit-and-offset"><code class="docutils literal"><span class="pre">LIMIT</span></code> and <code class="docutils literal"><span class="pre">OFFSET</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#common-column-expressions">Common column expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#subqueries">Subqueries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#distinct-expressions"><code class="docutils literal"><span class="pre">DISTINCT</span></code> expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#window-functions">Window functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#top-k-operations">Top-K operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#date-time-data">Date / time data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#buckets-and-histograms">Buckets and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#unions">Unions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#esoterica">Esoterica</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#june-16-2015">0.2 (June 16, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#march-26-2015">0.1 (March 26, 2015)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#test-environment-setup">Test environment setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#contribution-ideas">Contribution Ideas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
-</ul>
-</li>
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -208,59 +111,77 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
       
-    <li>Ibis: Python Data Analysis Framework</li>
+    <li>Ibis: Python Data Analysis Productivity Framework</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
-  <div class="section" id="ibis-python-data-analysis-framework">
-<h1>Ibis: Python Data Analysis Framework<a class="headerlink" href="#ibis-python-data-analysis-framework" title="Permalink to this headline">¶</a></h1>
-<p>Ibis is a productivity-centric Python data analysis framework, designed to be
-an ideal companion for SQL engines and distributed storage systems like
-Hadoop. Ibis is being jointly developed with <a class="reference external" href="http://impala.io">Impala</a> to
-deliver a complete 100% Python user experience on data of any size (small,
-medium, or big).</p>
-<p>At this time, Ibis supports the following SQL-based systems:</p>
-<ul class="simple">
-<li>Impala (on HDFS)</li>
-<li>SQLite</li>
-</ul>
-<p>Coming from SQL? Check out <a class="reference internal" href="sql.html#sql"><span>Ibis for SQL Programmers</span></a>.</p>
+  <div class="section" id="ibis-python-data-analysis-productivity-framework">
+<h1>Ibis: Python Data Analysis Productivity Framework<a class="headerlink" href="#ibis-python-data-analysis-productivity-framework" title="Permalink to this headline">¶</a></h1>
+<p>Ibis is a toolbox to bridge the gap between local Python environments and
+remote storage and execution systems like Hadoop components (HDFS, Impala,
+Hive, Spark) and SQL databases (Postgres, etc.). Its goal is to simplify
+analytical workflows and make you more productive.</p>
 <p>We have a handful of specific priority focus areas:</p>
 <ul class="simple">
-<li>Enable data analysts to translation analytics using SQL engines to Python
-instead of using the SQL language.</li>
+<li>Enable data analysts to translate local, single-node data idioms to scalable
+computation representations (e.g. SQL or Spark)</li>
+<li>Integration with pandas and other Python data ecosystem components</li>
 <li>Provide high level analytics APIs and workflow tools to enhance productivity
 and streamline common or tedious tasks.</li>
-<li>Provide high performance extensions for the Impala MPP query engine to enable
-high performance Python code to operate in a scalable Hadoop-like environment</li>
-<li>Abstract away database-specific SQL differences</li>
 <li>Integration with community standard data formats (e.g. Parquet and Avro)</li>
-<li>Integrate with the Python data ecosystem using the above tools</li>
+<li>Abstract away database-specific SQL differences</li>
 </ul>
+<p>To learn more about Ibis&#8217;s vision, roadmap, and updates, please follow
+<a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a>.</p>
+<p>Source code is on GitHub: <a class="reference external" href="http://github.com/cloudera/ibis">http://github.com/cloudera/ibis</a></p>
+<p>Install Ibis from PyPI with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
+</pre></div>
+</div>
+<p>Or from <a class="reference external" href="http://conda-forge.github.io">conda-forge</a> with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+<p>At this time, Ibis offers some level of support for the following systems:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://impala.io/">Apache Impala (incubating)</a></li>
+<li><a class="reference external" href="http://getkudu.io">Apache Kudu (incubating)</a></li>
+<li>Hadoop Distributed File System (HDFS)</li>
+<li>PostgreSQL (Experimental)</li>
+<li>SQLite</li>
+</ul>
+<p>Coming from SQL? Check out <a class="reference internal" href="sql.html#sql"><span class="std std-ref">Ibis for SQL Programmers</span></a>.</p>
 <p>Architecturally, Ibis features:</p>
 <ul class="simple">
 <li>A pandas-like domain specific language (DSL) designed specifically for
 analytics, aka <strong>Ibis expressions</strong>, that enable composable, reusable
 analytics on structured data. If you can express something with a SQL SELECT
 query, you can write it with Ibis.</li>
+<li>Integrated user interfaces to HDFS and other storage systems.</li>
 <li>An extensible translator-compiler system that targets multiple SQL systems</li>
-<li>Tools for wrapping user-defined functions in Impala and eventually other SQL
-engines</li>
 </ul>
-<p>SQL engine support near on the horizon:</p>
+<p>SQL engine support needing code contributors:</p>
 <ul class="simple">
-<li>PostgreSQL</li>
 <li>Redshift</li>
 <li>Vertica</li>
 <li>Spark SQL</li>
@@ -268,10 +189,6 @@ engines</li>
 <li>Hive</li>
 <li>MySQL / MariaDB</li>
 </ul>
-<p>See the project blog <a class="reference external" href="http://blog.ibis-project.org">http://blog.ibis-project.org</a> for more frequent updates.</p>
-<p>To learn more about Ibis&#8217;s vision and roadmap, please visit
-<a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a>.</p>
-<p>Source code is on GitHub: <a class="reference external" href="http://github.com/cloudera/ibis">http://github.com/cloudera/ibis</a></p>
 <p>Since this is a young project, the documentation is definitely patchy in
 places, but this will improve as things progress.</p>
 <div class="toctree-wrapper compound">
@@ -292,19 +209,20 @@ places, but this will improve as things progress.</p>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="getting-started.html" class="btn btn-neutral float-right" title="Installation and Getting Started">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Installation and Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -315,12 +233,13 @@ places, but this will improve as things progress.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Cloudera, Inc..
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
@@ -335,7 +254,7 @@ places, but this will improve as things progress.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.6.0+2.gbbdc3fa',
+            VERSION:'v0.7.1+17.g3bc20c0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

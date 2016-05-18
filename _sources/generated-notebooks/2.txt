@@ -83,7 +83,7 @@ First, the basics: selecting columns:
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -131,7 +131,7 @@ You can make a list of columns you want, too, and pass that:
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -177,7 +177,7 @@ You can also use the explicit ``projection`` or ``select`` functions
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -225,7 +225,7 @@ We can add new columns by using named column expressions
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -276,7 +276,7 @@ always produces a new table reference
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -327,7 +327,7 @@ We just pass the whole table in the projection:
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -378,7 +378,7 @@ To use constants in projections, we have to use a special
         month : int32
     
     ref_1
-    Projection[table]
+    Selection[table]
       table:
         Table: ref_0
       selections:
@@ -433,7 +433,7 @@ Once you've joined tables, you don't necessarily have anything yet. I'll
 put it in big letters
 
 Joins are declarations of intent
-================================
+--------------------------------
 
 After calling the join function (which validates the join condition, of
 course), you may perform any number of other operations:
@@ -493,14 +493,17 @@ reference:
         n_comment : string
     
     ref_2
-    Projection[table]
+    Selection[table]
       table:
         InnerJoin[table]
-          Table: ref_0
-          Table: ref_1
-          Equals[array(boolean)]
-            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
-            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+          left:
+            Table: ref_0
+          right:
+            Table: ref_1
+          predicates:
+            Equals[array(boolean)]
+              r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+              n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
       selections:
         Table: ref_1
         region = Column[array(string)] 'r_name' from table ref_0
@@ -542,14 +545,17 @@ reference:
         n_comment : string
     
     ref_2
-    Projection[table]
+    Selection[table]
       table:
         InnerJoin[table]
-          Table: ref_0
-          Table: ref_1
-          Equals[array(boolean)]
-            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
-            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+          left:
+            Table: ref_0
+          right:
+            Table: ref_1
+          predicates:
+            Equals[array(boolean)]
+              r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+              n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
       selections:
         Table: ref_1
         region = Column[array(string)] 'r_name' from table ref_0
@@ -598,19 +604,25 @@ would hope.
     Aggregation[table]
       table:
         InnerJoin[table]
-          Table: ref_0
-          Table: ref_1
-          Equals[array(boolean)]
-            r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
-            n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
-      metrics:
-        count = Count[int64]
-          InnerJoin[table]
+          left:
             Table: ref_0
+          right:
             Table: ref_1
+          predicates:
             Equals[array(boolean)]
               r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
               n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
+      metrics:
+        count = Count[int64]
+          InnerJoin[table]
+            left:
+              Table: ref_0
+            right:
+              Table: ref_1
+            predicates:
+              Equals[array(boolean)]
+                r_regionkey = Column[array(int16)] 'r_regionkey' from table ref_0
+                n_regionkey = Column[array(int32)] 'n_regionkey' from table ref_1
           None
       by:
         r_name = Column[array(string)] 'r_name' from table ref_0
@@ -618,7 +630,7 @@ would hope.
 
 
 Explicit join materialization
-=============================
+-----------------------------
 
 If you're lucky enough to have two table schemas with no overlapping
 column names (lucky you!), the join can be *materialized* without having
@@ -639,7 +651,7 @@ there is a name overlap, just like with the equivalent projection, there
 will be an immediate error.
 
 Writing down join keys
-======================
+----------------------
 
 In addition to having explicit comparison expressions as join keys, you
 can also write down column names, or use expressions referencing the
@@ -658,7 +670,7 @@ want non-equality conditions in the join, you will have to form those
 yourself.
 
 Join referential nuances
-========================
+------------------------
 
 There's nothing to stop you from doing many joins in succession, and, in
 fact, with complex schemas it will be to your advantage to build the
@@ -675,7 +687,7 @@ expressions (or tuples of column references) referencing the joined
 tables.
 
 Aggregating joined table with metrics involving more than one base reference
-============================================================================
+----------------------------------------------------------------------------
 
 Let's consider the case similar to the SQL query
 
@@ -804,12 +816,15 @@ Now let's compute the MAD grouped by ``string_col``
     Aggregation[table]
       table:
         InnerJoin[table]
-          Table: ref_0
-          Table: ref_1
-          Equals[array(boolean)]
-            hour = ExtractHour[array(int32)]
-              timestamp_col = Column[array(timestamp)] 'timestamp_col' from table ref_0
-            hour = Column[array(int32)] 'hour' from table ref_1
+          left:
+            Table: ref_0
+          right:
+            Table: ref_1
+          predicates:
+            Equals[array(boolean)]
+              hour = ExtractHour[array(int32)]
+                timestamp_col = Column[array(timestamp)] 'timestamp_col' from table ref_0
+              hour = Column[array(int32)] 'hour' from table ref_1
       metrics:
         MAD = Mean[double]
           Abs[array(double)]
@@ -895,26 +910,9 @@ and sorting
         month : int32
     
     ref_1
-    Filter[table]
-      table:
-        Table: ref_0
-      predicates:
-        Less[array(boolean)]
-          int_col = Column[array(int32)] 'int_col' from table ref_0
-          Literal[int8]
-            8
-    
-    ref_2
     Aggregation[table]
       table:
-        Filter[table]
-          table:
-            Table: ref_0
-          predicates:
-            Less[array(boolean)]
-              int_col = Column[array(int32)] 'int_col' from table ref_0
-              Literal[int8]
-                8
+        Table: ref_0
       metrics:
         total = Sum[double]
           double_col = Column[array(double)] 'double_col' from table ref_0
@@ -930,19 +928,26 @@ and sorting
             high
           Literal[string]
             low
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            8
     
-    SortBy[table]
-      Table: ref_2
-      SortKey[array-sort]
-        by:
-          bigint_tier = Column[array(string)] 'bigint_tier' from table ref_2
-        ascending:
-          True
-      SortKey[array-sort]
-        by:
-          total = Column[array(double)] 'total' from table ref_2
-        ascending:
-          False
+    Selection[table]
+      table:
+        Table: ref_1
+      sort_keys:
+        SortKey[array-sort]
+          by:
+            bigint_tier = Column[array(string)] 'bigint_tier' from table ref_1
+          ascending:
+            True
+        SortKey[array-sort]
+          by:
+            total = Column[array(double)] 'total' from table ref_1
+          ascending:
+            False
 
 
 
@@ -977,26 +982,9 @@ function:
         month : int32
     
     ref_1
-    Filter[table]
-      table:
-        Table: ref_0
-      predicates:
-        Less[array(boolean)]
-          int_col = Column[array(int32)] 'int_col' from table ref_0
-          Literal[int8]
-            8
-    
-    ref_2
     Aggregation[table]
       table:
-        Filter[table]
-          table:
-            Table: ref_0
-          predicates:
-            Less[array(boolean)]
-              int_col = Column[array(int32)] 'int_col' from table ref_0
-              Literal[int8]
-                8
+        Table: ref_0
       metrics:
         total = Sum[double]
           double_col = Column[array(double)] 'double_col' from table ref_0
@@ -1012,13 +1000,20 @@ function:
             high
           Literal[string]
             low
+      predicates:
+        Less[array(boolean)]
+          int_col = Column[array(int32)] 'int_col' from table ref_0
+          Literal[int8]
+            8
     
-    SortBy[table]
-      Table: ref_2
-      SortKey[array-sort]
-        by:
-          total = Column[array(double)] 'total' from table ref_2
-        ascending:
-          False
+    Selection[table]
+      table:
+        Table: ref_1
+      sort_keys:
+        SortKey[array-sort]
+          by:
+            total = Column[array(double)] 'total' from table ref_1
+          ascending:
+            False
 
 

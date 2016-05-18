@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating new Impala tables from Ibis expressions &mdash; Ibis v0.6.0+2.gbbdc3fa documentation</title>
+  <title>Creating new Impala tables from Ibis expressions &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
   
 
   
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,13 +30,13 @@
   
 
   
-    <link rel="top" title="Ibis v0.6.0+2.gbbdc3fa documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="../index.html"/>
         <link rel="up" title="Expression tutorial" href="../tutorial.html"/>
         <link rel="next" title="“Top-K” Filtering" href="5.html"/>
         <link rel="prev" title="Type casting" href="3.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -46,11 +46,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../index.html" class="fa fa-home"> Ibis</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.7.1+17.g3bc20c0
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -58,44 +74,22 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#creating-a-client">Creating a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
-</ul>
-</li>
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Expression tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="0.html#getting-started">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#interactive-mode">Interactive mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#aggregation-basics">Aggregation basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#filtering">Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1.html#limits">Limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2.html">Projections: adding/selecting columns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#explicit-join-materialization">Explicit join materialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#writing-down-join-keys">Writing down join keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#join-referential-nuances">Join referential nuances</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2.html#sorting">Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html">Type casting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
@@ -104,7 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="3.html#distinct-based-operations">Distinct-based operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html#string-operations">String operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3.html#timestamp-operations">Timestamp operations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Creating new Impala tables from Ibis expressions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Creating new Impala tables from Ibis expressions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
@@ -113,89 +107,21 @@
 <li class="toctree-l2"><a class="reference internal" href="#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5.html">&#8220;Top-K&#8221; Filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5.html#self-joins">Self joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html">More filtering mojo for your analytics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#conditional-aggregates">Conditional aggregates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html">Frequency tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html#binning-and-histograms">Binning and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#the-impala-client-object">The Impala client object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#database-and-table-objects">Database and Table objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#creating-tables">Creating tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#partitioned-tables">Partitioned tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#managing-table-metadata">Managing table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#table-statistics">Table statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#sqlite-client">SQLite client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#hdfs">HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#top-level-expression-apis">Top-level expression APIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#general-expression-methods">General expression methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#api-table">Table methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#projections-select-add-remove-columns">Projections: select/add/remove columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#filtering-where">Filtering / <code class="docutils literal"><span class="pre">WHERE</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#aggregation-group-by">Aggregation / <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#sorting-order-by">Sorting / <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#limit-and-offset"><code class="docutils literal"><span class="pre">LIMIT</span></code> and <code class="docutils literal"><span class="pre">OFFSET</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#common-column-expressions">Common column expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#subqueries">Subqueries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#distinct-expressions"><code class="docutils literal"><span class="pre">DISTINCT</span></code> expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#window-functions">Window functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#top-k-operations">Top-K operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#date-time-data">Date / time data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#buckets-and-histograms">Buckets and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#unions">Unions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sql.html#esoterica">Esoterica</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#june-16-2015">0.2 (June 16, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../release.html#march-26-2015">0.1 (March 26, 2015)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#test-environment-setup">Test environment setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#contribution-ideas">Contribution Ideas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -210,7 +136,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
@@ -219,71 +151,74 @@
     <li>Creating new Impala tables from Ibis expressions</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../_sources/generated-notebooks/4.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/generated-notebooks/4.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
-  <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">ibis</span>
+  <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
                           <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
-<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 <div class="section" id="creating-new-impala-tables-from-ibis-expressions">
 <h1>Creating new Impala tables from Ibis expressions<a class="headerlink" href="#creating-new-impala-tables-from-ibis-expressions" title="Permalink to this headline">¶</a></h1>
 <p>Suppose you have an Ibis expression that produces a table:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
-<span class="n">t2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">-</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;foo&#39;</span><span class="p">)]</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">-</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)]</span>
 
 <span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t2</span>
         <span class="p">[</span><span class="n">t2</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">]</span>
-        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s">&#39;string_col&#39;</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;min_foo&#39;</span><span class="p">),</span>
-                    <span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;max_foo&#39;</span><span class="p">),</span>
-                    <span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s">&#39;sum_foo&#39;</span><span class="p">)]))</span>
+        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;min_foo&#39;</span><span class="p">),</span>
+                    <span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;max_foo&#39;</span><span class="p">),</span>
+                    <span class="n">t2</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;sum_foo&#39;</span><span class="p">)]))</span>
 <span class="n">expr</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          6       54       54    39420
-1          4       36       36    26280
-2          8       72       72    52560
-3          7       63       63    45990
-4          9       81       81    59130
-5          5       45       45    32850
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">min_foo</span>  <span class="n">max_foo</span>  <span class="n">sum_foo</span>
+<span class="mi">0</span>          <span class="mi">6</span>       <span class="mi">54</span>       <span class="mi">54</span>    <span class="mi">39420</span>
+<span class="mi">1</span>          <span class="mi">4</span>       <span class="mi">36</span>       <span class="mi">36</span>    <span class="mi">26280</span>
+<span class="mi">2</span>          <span class="mi">7</span>       <span class="mi">63</span>       <span class="mi">63</span>    <span class="mi">45990</span>
+<span class="mi">3</span>          <span class="mi">8</span>       <span class="mi">72</span>       <span class="mi">72</span>    <span class="mi">52560</span>
+<span class="mi">4</span>          <span class="mi">5</span>       <span class="mi">45</span>       <span class="mi">45</span>    <span class="mi">32850</span>
+<span class="mi">5</span>          <span class="mi">9</span>       <span class="mi">81</span>       <span class="mi">81</span>    <span class="mi">59130</span>
 </pre></div>
 </div>
 <p>To create a table in the database from the results of this expression,
 use the connection&#8217;s <code class="docutils literal"><span class="pre">create_table</span></code> method:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>By default, this creates a table stored as <strong>Parquet format</strong> in HDFS.
 Support for views, external tables, configurable file formats, and so
 forth, will come in the future. Feedback on what kind of interface would
 be useful for that would help.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          9       81       81    59130
-1          6       54       54    39420
-2          4       36       36    26280
-3          7       63       63    45990
-4          8       72       72    52560
-5          5       45       45    32850
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">min_foo</span>  <span class="n">max_foo</span>  <span class="n">sum_foo</span>
+<span class="mi">0</span>          <span class="mi">9</span>       <span class="mi">81</span>       <span class="mi">81</span>    <span class="mi">59130</span>
+<span class="mi">1</span>          <span class="mi">8</span>       <span class="mi">72</span>       <span class="mi">72</span>    <span class="mi">52560</span>
+<span class="mi">2</span>          <span class="mi">5</span>       <span class="mi">45</span>       <span class="mi">45</span>    <span class="mi">32850</span>
+<span class="mi">3</span>          <span class="mi">6</span>       <span class="mi">54</span>       <span class="mi">54</span>    <span class="mi">39420</span>
+<span class="mi">4</span>          <span class="mi">4</span>       <span class="mi">36</span>       <span class="mi">36</span>    <span class="mi">26280</span>
+<span class="mi">5</span>          <span class="mi">7</span>       <span class="mi">63</span>       <span class="mi">63</span>    <span class="mi">45990</span>
 </pre></div>
 </div>
 <p>Tables can be similarly dropped with <code class="docutils literal"><span class="pre">drop_table</span></code></p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -291,39 +226,39 @@ be useful for that would help.</p>
 <h1>Inserting data into existing Impala tables<a class="headerlink" href="#inserting-data-into-existing-impala-tables" title="Permalink to this headline">¶</a></h1>
 <p>The client&#8217;s <code class="docutils literal"><span class="pre">insert</span></code> method can append new data to an existing table
 or overwrite the data that is in there.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>  string_col  min_foo  max_foo  sum_foo
-0          8       72       72    52560
-1          5       45       45    32850
-2          9       81       81    59130
-3          6       54       54    39420
-4          4       36       36    26280
-5          7       63       63    45990
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">string_col</span>  <span class="n">min_foo</span>  <span class="n">max_foo</span>  <span class="n">sum_foo</span>
+<span class="mi">0</span>          <span class="mi">8</span>       <span class="mi">72</span>       <span class="mi">72</span>    <span class="mi">52560</span>
+<span class="mi">1</span>          <span class="mi">5</span>       <span class="mi">45</span>       <span class="mi">45</span>    <span class="mi">32850</span>
+<span class="mi">2</span>          <span class="mi">6</span>       <span class="mi">54</span>       <span class="mi">54</span>    <span class="mi">39420</span>
+<span class="mi">3</span>          <span class="mi">4</span>       <span class="mi">36</span>       <span class="mi">36</span>    <span class="mi">26280</span>
+<span class="mi">4</span>          <span class="mi">7</span>       <span class="mi">63</span>       <span class="mi">63</span>    <span class="mi">45990</span>
+<span class="mi">5</span>          <span class="mi">9</span>       <span class="mi">81</span>       <span class="mi">81</span>    <span class="mi">59130</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   string_col  min_foo  max_foo  sum_foo
-0           8       72       72    52560
-1           5       45       45    32850
-2           9       81       81    59130
-3           6       54       54    39420
-4           4       36       36    26280
-5           7       63       63    45990
-6           9       81       81    59130
-7           6       54       54    39420
-8           4       36       36    26280
-9           7       63       63    45990
-10          8       72       72    52560
-11          5       45       45    32850
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">string_col</span>  <span class="n">min_foo</span>  <span class="n">max_foo</span>  <span class="n">sum_foo</span>
+<span class="mi">0</span>           <span class="mi">9</span>       <span class="mi">81</span>       <span class="mi">81</span>    <span class="mi">59130</span>
+<span class="mi">1</span>           <span class="mi">6</span>       <span class="mi">54</span>       <span class="mi">54</span>    <span class="mi">39420</span>
+<span class="mi">2</span>           <span class="mi">4</span>       <span class="mi">36</span>       <span class="mi">36</span>    <span class="mi">26280</span>
+<span class="mi">3</span>           <span class="mi">7</span>       <span class="mi">63</span>       <span class="mi">63</span>    <span class="mi">45990</span>
+<span class="mi">4</span>           <span class="mi">8</span>       <span class="mi">72</span>       <span class="mi">72</span>    <span class="mi">52560</span>
+<span class="mi">5</span>           <span class="mi">5</span>       <span class="mi">45</span>       <span class="mi">45</span>    <span class="mi">32850</span>
+<span class="mi">6</span>           <span class="mi">9</span>       <span class="mi">81</span>       <span class="mi">81</span>    <span class="mi">59130</span>
+<span class="mi">7</span>           <span class="mi">8</span>       <span class="mi">72</span>       <span class="mi">72</span>    <span class="mi">52560</span>
+<span class="mi">8</span>           <span class="mi">5</span>       <span class="mi">45</span>       <span class="mi">45</span>    <span class="mi">32850</span>
+<span class="mi">9</span>           <span class="mi">6</span>       <span class="mi">54</span>       <span class="mi">54</span>    <span class="mi">39420</span>
+<span class="mi">10</span>          <span class="mi">4</span>       <span class="mi">36</span>       <span class="mi">36</span>    <span class="mi">26280</span>
+<span class="mi">11</span>          <span class="mi">7</span>       <span class="mi">63</span>       <span class="mi">63</span>    <span class="mi">45990</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s">&#39;testing_table&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -331,76 +266,77 @@ or overwrite the data that is in there.</p>
 <h1>Uploading / downloading data from HDFS<a class="headerlink" href="#uploading-downloading-data-from-hdfs" title="Permalink to this headline">¶</a></h1>
 <p>If you&#8217;ve set up an HDFS connection, you can use the Ibis HDFS interface
 to look through your data and read and write files to and from HDFS:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">hdfs</span>
-<span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;avro&#39;</span><span class="p">,</span> <span class="s">u&#39;csv&#39;</span><span class="p">,</span> <span class="s">u&#39;parquet&#39;</span><span class="p">,</span> <span class="s">u&#39;udf&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">u&#39;__ibis&#39;</span><span class="p">,</span> <span class="s1">u&#39;hbase&#39;</span><span class="p">,</span> <span class="s1">u&#39;home&#39;</span><span class="p">,</span> <span class="s1">u&#39;test-warehouse&#39;</span><span class="p">,</span> <span class="s1">u&#39;tmp&#39;</span><span class="p">,</span> <span class="s1">u&#39;user&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">hdfs</span>
+<span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;functional_alltypes&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_customer&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_lineitem&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_nation&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_orders&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_part&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_partsupp&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_region&#39;</span><span class="p">,</span>
- <span class="s">u&#39;tpch_supplier&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">u&#39;avro&#39;</span><span class="p">,</span> <span class="s1">u&#39;csv&#39;</span><span class="p">,</span> <span class="s1">u&#39;ibis_testing.db&#39;</span><span class="p">,</span> <span class="s1">u&#39;parquet&#39;</span><span class="p">,</span> <span class="s1">u&#39;udf&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">u&#39;functional_alltypes&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_customer&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_lineitem&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_nation&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_orders&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_part&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_partsupp&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_region&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;tpch_supplier&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Suppose we wanted to download
 <code class="docutils literal"><span class="pre">/__ibis/ibis-testing-data/parquet/functional_alltypes</span></code>, which is a
 directory. We need only do:</p>
-<div class="code python highlight-python"><div class="highlight"><pre>!rm -rf parquet_dir/
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>!rm -rf parquet_dir/
 hdfs.get(&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;, &#39;parquet_dir&#39;)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/parquet_dir&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;/home/wesm/code/ibis-notebooks/basic-tutorial/parquet_dir&#39;</span>
 </pre></div>
 </div>
 <p>Now we have that directory locally:</p>
-<div class="code python highlight-python"><div class="highlight"><pre>!ls parquet_dir/
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>!ls parquet_dir/
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
-e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
-e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">244</span><span class="n">b1a31ffc1d401</span><span class="o">-</span><span class="mi">54</span><span class="n">bea73c44789d_884230467_data</span><span class="o">.</span><span class="mf">0.</span><span class="n">parq</span>
+<span class="mi">244</span><span class="n">b1a31ffc1d401</span><span class="o">-</span><span class="mi">54</span><span class="n">bea73c44789e_1434316465_data</span><span class="o">.</span><span class="mf">0.</span><span class="n">parq</span>
+<span class="mi">244</span><span class="n">b1a31ffc1d401</span><span class="o">-</span><span class="mi">54</span><span class="n">bea73c44789f_1434316465_data</span><span class="o">.</span><span class="mf">0.</span><span class="n">parq</span>
 </pre></div>
 </div>
 <p>Files and directories can be written to HDFS just as easily using
 <code class="docutils literal"><span class="pre">put</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;/__ibis/dir-write-example&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/__ibis/dir-write-example&#39;</span>
 <span class="k">if</span> <span class="n">hdfs</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="n">hdfs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;parquet_dir&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">hdfs</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;parquet_dir&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
-WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
-WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;/__ibis/dir-write-example&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/__ibis/dir-write-example&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq&#39;</span><span class="p">,</span>
- <span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq&#39;</span><span class="p">,</span>
- <span class="s">u&#39;e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">u&#39;244b1a31ffc1d401-54bea73c44789d_884230467_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;244b1a31ffc1d401-54bea73c44789e_1434316465_data.0.parq&#39;</span><span class="p">,</span>
+ <span class="s1">u&#39;244b1a31ffc1d401-54bea73c44789f_1434316465_data.0.parq&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Delete files with <code class="docutils literal"><span class="pre">rm</span></code> or directories with <code class="docutils literal"><span class="pre">rmdir</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s1">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>!rm -rf parquet_dir/
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>!rm -rf parquet_dir/
 </pre></div>
 </div>
 </div>
@@ -415,7 +351,7 @@ reference data in the following formats:</p>
 </ul>
 <p>Parquet is the easiest because the schema can be read from the data
 files:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;</span>
 
 <span class="n">lineitem</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">parquet_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 <span class="n">lineitem</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -435,89 +371,89 @@ files:</p>
 0             egular courts above the
 1  ly final dependencies: slyly bold
 </pre>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">lineitem</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">lineitem</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you want to query a Parquet file and also create a table in Impala
 that remains after your session, you can pass more information to
 <code class="docutils literal"><span class="pre">parquet_file</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">parquet_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;my_parquet_table&#39;</span><span class="p">,</span>
-                         <span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span>
-                         <span class="n">persist</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">parquet_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">,</span>
+                         <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                         <span class="n">persist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">table</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;my_parquet_table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">Decimal</span><span class="p">(</span><span class="s">&#39;229577310901.20&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Decimal</span><span class="p">(</span><span class="s1">&#39;229577310901.20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s">&#39;my_parquet_table&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To query delimited files, you need to write down an Ibis schema. At some
 point we&#8217;d like to build some helper tools that will infer the schema
 for you, all in good time.</p>
 <p>There&#8217;s some CSV files in the test folder, so let&#8217;s use those:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span> <span class="s">&#39;csv-files&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span> <span class="s1">&#39;csv-files&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/csv-files&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;/home/wesm/code/ibis-notebooks/basic-tutorial/csv-files&#39;</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>!cat csv-files/0.csv
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>!cat csv-files/0.csv
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>dNmzRWWCKJ,0.558914329982219,42
-kpXp9U5Kv4,-0.8221358158299105,28
-7BcTT5B4wp,-1.2180159173981855,18
-W4vOjjJQrT,-1.7791277450782457,45
-tiVZsQWzpN,0.32936255878849235,84
-6ibbcK16f2,-0.36602855877465035,56
-QBsUQwKw0Z,0.1206123669383656,29
-FMp2sWNgaY,-0.015090055989338344,27
-UPXjybUQSj,0.42642200098179384,77
-L2f2ylNoIw,-0.5091003484680737,6
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">uXpivkAYSO</span><span class="p">,</span><span class="mf">1.01994339956</span><span class="p">,</span><span class="mi">27</span>
+<span class="n">BcIteg32mR</span><span class="p">,</span><span class="o">-</span><span class="mf">0.497745040687</span><span class="p">,</span><span class="mi">11</span>
+<span class="mi">5</span><span class="n">TZQvBHcwI</span><span class="p">,</span><span class="o">-</span><span class="mf">0.26731402764</span><span class="p">,</span><span class="mi">84</span>
+<span class="n">XX8upUlbDe</span><span class="p">,</span><span class="o">-</span><span class="mf">0.0709191028435</span><span class="p">,</span><span class="mi">96</span>
+<span class="n">sJdk6chNnx</span><span class="p">,</span><span class="o">-</span><span class="mf">0.27102973984</span><span class="p">,</span><span class="mi">60</span>
+<span class="n">NTVYJb1d7D</span><span class="p">,</span><span class="o">-</span><span class="mf">1.23610658876</span><span class="p">,</span><span class="mi">14</span>
+<span class="mi">3</span><span class="n">pX0MQsLIz</span><span class="p">,</span><span class="o">-</span><span class="mf">0.737931321383</span><span class="p">,</span><span class="mi">16</span>
+<span class="n">IpNIwdTK4P</span><span class="p">,</span><span class="o">-</span><span class="mf">0.293743595331</span><span class="p">,</span><span class="mi">23</span>
+<span class="n">ucIvA79467</span><span class="p">,</span><span class="mf">0.0707646026785</span><span class="p">,</span><span class="mi">12</span>
+<span class="n">JIunzB1CZs</span><span class="p">,</span><span class="o">-</span><span class="mf">1.1253763919</span><span class="p">,</span><span class="mi">4</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>!rm -rf csv-files/
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>!rm -rf csv-files/
 </pre></div>
 </div>
 <p>The schema here is pretty simple (see <code class="docutils literal"><span class="pre">ibis.schema</span></code> for more):</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">schema</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">schema</span><span class="p">([(</span><span class="s">&#39;foo&#39;</span><span class="p">,</span> <span class="s">&#39;string&#39;</span><span class="p">),</span>
-                      <span class="p">(</span><span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="s">&#39;double&#39;</span><span class="p">),</span>
-                      <span class="p">(</span><span class="s">&#39;baz&#39;</span><span class="p">,</span> <span class="s">&#39;int32&#39;</span><span class="p">)])</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">schema</span><span class="p">([(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                      <span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
+                      <span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">)])</span>
 
-<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">delimited_file</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">delimited_file</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span>
                            <span class="n">schema</span><span class="p">)</span>
 <span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>          foo       bar  baz
-0  dNmzRWWCKJ  0.558914   42
-1  kpXp9U5Kv4 -0.822136   28
-2  7BcTT5B4wp -1.218016   18
-3  W4vOjjJQrT -1.779128   45
-4  tiVZsQWzpN  0.329363   84
-5  6ibbcK16f2 -0.366029   56
-6  QBsUQwKw0Z  0.120612   29
-7  FMp2sWNgaY -0.015090   27
-8  UPXjybUQSj  0.426422   77
-9  L2f2ylNoIw -0.509100    6
+<div class="highlight-default"><div class="highlight"><pre><span></span>          <span class="n">foo</span>       <span class="n">bar</span>  <span class="n">baz</span>
+<span class="mi">0</span>  <span class="n">uXpivkAYSO</span>  <span class="mf">1.019943</span>   <span class="mi">27</span>
+<span class="mi">1</span>  <span class="n">BcIteg32mR</span> <span class="o">-</span><span class="mf">0.497745</span>   <span class="mi">11</span>
+<span class="mi">2</span>  <span class="mi">5</span><span class="n">TZQvBHcwI</span> <span class="o">-</span><span class="mf">0.267314</span>   <span class="mi">84</span>
+<span class="mi">3</span>  <span class="n">XX8upUlbDe</span> <span class="o">-</span><span class="mf">0.070919</span>   <span class="mi">96</span>
+<span class="mi">4</span>  <span class="n">sJdk6chNnx</span> <span class="o">-</span><span class="mf">0.271030</span>   <span class="mi">60</span>
+<span class="mi">5</span>  <span class="n">NTVYJb1d7D</span> <span class="o">-</span><span class="mf">1.236107</span>   <span class="mi">14</span>
+<span class="mi">6</span>  <span class="mi">3</span><span class="n">pX0MQsLIz</span> <span class="o">-</span><span class="mf">0.737931</span>   <span class="mi">16</span>
+<span class="mi">7</span>  <span class="n">IpNIwdTK4P</span> <span class="o">-</span><span class="mf">0.293744</span>   <span class="mi">23</span>
+<span class="mi">8</span>  <span class="n">ucIvA79467</span>  <span class="mf">0.070765</span>   <span class="mi">12</span>
+<span class="mi">9</span>  <span class="n">JIunzB1CZs</span> <span class="o">-</span><span class="mf">1.125376</span>    <span class="mi">4</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">table</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>   count  nulls       min       max        sum      mean  approx_nunique
-0    100      0 -1.779128  0.558914 -32.741872 -0.327419              10
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">count</span>  <span class="n">nulls</span>       <span class="nb">min</span>       <span class="nb">max</span>        <span class="nb">sum</span>      <span class="n">mean</span>  <span class="n">approx_nunique</span>
+<span class="mi">0</span>    <span class="mi">100</span>      <span class="mi">0</span> <span class="o">-</span><span class="mf">1.236107</span>  <span class="mf">1.019943</span> <span class="o">-</span><span class="mf">34.094578</span> <span class="o">-</span><span class="mf">0.340946</span>              <span class="mi">10</span>
 </pre></div>
 </div>
 <p>For functions like <code class="docutils literal"><span class="pre">parquet_file</span></code> and <code class="docutils literal"><span class="pre">delimited_file</span></code>, an HDFS
@@ -525,22 +461,22 @@ directory must be passed (we&#8217;ll add support for S3 and other filesystems
 later) and the directory must contain files all having the same schema.</p>
 <p>If you have Avro data, you can query it too if you have the full avro
 schema:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">avro_schema</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;int&quot;</span><span class="p">,</span> <span class="s">&quot;null&quot;</span><span class="p">],</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;R_REGIONKEY&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="s">&quot;null&quot;</span><span class="p">],</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;R_NAME&quot;</span><span class="p">},</span>
-        <span class="p">{</span><span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;string&quot;</span><span class="p">,</span> <span class="s">&quot;null&quot;</span><span class="p">],</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;R_COMMENT&quot;</span><span class="p">}],</span>
-    <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;record&quot;</span><span class="p">,</span>
-    <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;a&quot;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">avro_schema</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_REGIONKEY&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_NAME&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_COMMENT&quot;</span><span class="p">}],</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;record&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span>
 <span class="p">}</span>
 
-<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">avro_file</span><span class="p">(</span><span class="s">&#39;/__ibis/ibis-testing-data/avro/tpch.region&#39;</span><span class="p">,</span> <span class="n">avro_schema</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">avro_file</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/avro/tpch.region&#39;</span><span class="p">,</span> <span class="n">avro_schema</span><span class="p">)</span>
 <span class="n">table</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Empty DataFrame
-Columns: [r_regionkey, r_name, r_comment]
-Index: []
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Empty</span> <span class="n">DataFrame</span>
+<span class="n">Columns</span><span class="p">:</span> <span class="p">[</span><span class="n">r_regionkey</span><span class="p">,</span> <span class="n">r_name</span><span class="p">,</span> <span class="n">r_comment</span><span class="p">]</span>
+<span class="n">Index</span><span class="p">:</span> <span class="p">[]</span>
 </pre></div>
 </div>
 </div>
@@ -557,66 +493,66 @@ pleasant, please let us know.</p>
 <li>Creating and dropping databases</li>
 <li>Getting table schemas</li>
 </ul>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">list_databases</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s">&#39;ibis*&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">list_databases</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;ibis*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="s">&#39;tpch*&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="s1">&#39;tpch*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_customer&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_lineitem&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_nation&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_orders&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_part&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_partsupp&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_region&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_region_avro&#39;</span><span class="p">,</span>
- <span class="s">&#39;tpch_supplier&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;tpch_ctas_cancel&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_customer&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_lineitem&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_nation&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_orders&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_part&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_partsupp&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_region&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_region_avro&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;tpch_supplier&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">schema</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get_schema</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get_schema</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 <span class="n">schema</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>ibis.Schema {
-  id               int32
-  bool_col         boolean
-  tinyint_col      int8
-  smallint_col     int16
-  int_col          int32
-  bigint_col       int64
-  float_col        float
-  double_col       double
-  date_string_col  string
-  string_col       string
-  timestamp_col    timestamp
-  year             int32
-  month            int32
-}
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">Schema</span> <span class="p">{</span>
+  <span class="nb">id</span>               <span class="n">int32</span>
+  <span class="n">bool_col</span>         <span class="n">boolean</span>
+  <span class="n">tinyint_col</span>      <span class="n">int8</span>
+  <span class="n">smallint_col</span>     <span class="n">int16</span>
+  <span class="n">int_col</span>          <span class="n">int32</span>
+  <span class="n">bigint_col</span>       <span class="n">int64</span>
+  <span class="n">float_col</span>        <span class="nb">float</span>
+  <span class="n">double_col</span>       <span class="n">double</span>
+  <span class="n">date_string_col</span>  <span class="n">string</span>
+  <span class="n">string_col</span>       <span class="n">string</span>
+  <span class="n">timestamp_col</span>    <span class="n">timestamp</span>
+  <span class="n">year</span>             <span class="n">int32</span>
+  <span class="n">month</span>            <span class="n">int32</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Databases can be created, too, and you can set the storage path in HDFS
 you want for the data files</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">db</span> <span class="o">=</span> <span class="s">&#39;ibis_testing2&#39;</span>
-<span class="n">con</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
-<span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s">&#39;example_table&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;functional_alltypes&#39;</span><span class="p">),</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="s1">&#39;ibis_testing2&#39;</span>
+<span class="n">con</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
+<span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;example_table&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">),</span>
                  <span class="n">database</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Hopefully, there will be data files in the indicated spot in HDFS:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">u&#39;example_table&#39;</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">u&#39;example_table&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To drop a database, including all tables in it, you can use
 <code class="docutils literal"><span class="pre">drop_database</span></code> with <code class="docutils literal"><span class="pre">force=True</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -632,28 +568,28 @@ please let us know.</p>
 amount of overhead with running many kinds of queries, even on small
 datasets. You can disable LLVM code generation when using Ibis, which
 may significantly speed up queries on smaller datasets:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">rand</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="k">import</span> <span class="n">rand</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>t = con.table(&#39;ibis_testing.functional_alltypes&#39;)
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;ibis_testing.functional_alltypes&#39;</span><span class="p">)</span>
 
-%timeit (t.double_col + rand()).sum().execute()
+<span class="o">%</span><span class="n">timeit</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">double_col</span> <span class="o">+</span> <span class="n">rand</span><span class="p">())</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>10 loops, best of 3: 63 ms per loop
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">10</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">47.2</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># Turn codegen back on</span>
-<span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Turn codegen back on</span>
+<span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>%timeit (t.double_col + rand()).sum().execute()
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">double_col</span> <span class="o">+</span> <span class="n">rand</span><span class="p">())</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>1 loops, best of 3: 1.32 s per loop
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">loop</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">466</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span>
 </pre></div>
 </div>
 <p>It&#8217;s important to remember that codegen is a fixed overhead and will
@@ -661,15 +597,16 @@ significantly speed up queries on big data</p>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="5.html" class="btn btn-neutral float-right" title="“Top-K” Filtering">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="5.html" class="btn btn-neutral float-right" title="“Top-K” Filtering" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="3.html" class="btn btn-neutral" title="Type casting"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="3.html" class="btn btn-neutral" title="Type casting" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -679,12 +616,13 @@ significantly speed up queries on big data</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Cloudera, Inc..
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
@@ -699,7 +637,7 @@ significantly speed up queries on big data</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.6.0+2.gbbdc3fa',
+            VERSION:'v0.7.1+17.g3bc20c0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

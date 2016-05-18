@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis v0.6.0+2.gbbdc3fa documentation</title>
+  <title>API Reference &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
   
 
   
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,12 +30,12 @@
   
 
   
-    <link rel="top" title="Ibis v0.6.0+2.gbbdc3fa documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="index.html"/>
         <link rel="next" title="ibis.hdfs_connect" href="generated/ibis.hdfs_connect.html"/>
         <link rel="prev" title="ibis.impala.api.ImpalaClient.set_compression_codec" href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,11 +45,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="index.html" class="fa fa-home"> Ibis</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.7.1+17.g3bc20c0
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -57,144 +73,346 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#creating-a-client">Creating a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started.html#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a></li>
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-connections">Creating connections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.hdfs_connect.html">ibis.hdfs_connect</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#ibis-global-configuration">Ibis global configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#impala-client">Impala client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.connect.html">ibis.impala.api.connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.close.html">ibis.impala.api.ImpalaClient.close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html">ibis.impala.api.ImpalaClient.database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-methods">Database methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.set_database.html">ibis.impala.api.ImpalaClient.set_database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_database.html">ibis.impala.api.ImpalaClient.create_database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_database.html">ibis.impala.api.ImpalaClient.drop_database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.list_databases.html">ibis.impala.api.ImpalaClient.list_databases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.exists_database.html">ibis.impala.api.ImpalaClient.exists_database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.create_table.html">ibis.impala.api.ImpalaDatabase.create_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.drop.html">ibis.impala.api.ImpalaDatabase.drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.namespace.html">ibis.impala.api.ImpalaDatabase.namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.table.html">ibis.impala.api.ImpalaDatabase.table</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html#getting-started">Getting started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#accessing-an-impala-table">Accessing an Impala table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#interactive-mode">Interactive mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#verbose-mode-and-logging">Verbose mode and logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#aggregation-basics">Aggregation basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#filtering">Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html#limits">Limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html">Projections: adding/selecting columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins-are-declarations-of-intent">Joins are declarations of intent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#explicit-join-materialization">Explicit join materialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#writing-down-join-keys">Writing down join keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#join-referential-nuances">Join referential nuances</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">Aggregating joined table with metrics involving more than one base reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#sorting">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html">Type casting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#set-membership">Set membership</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#null-ness">Null-ness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#distinct-based-operations">Distinct-based operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#string-operations">String operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#timestamp-operations">Timestamp operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html">Creating new Impala tables from Ibis expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html">&#8220;Top-K&#8221; Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html#self-joins">Self joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html">More filtering mojo for your analytics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#conditional-aggregates">Conditional aggregates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/6.html#existence-filters">&#8220;Existence&#8221; filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html">Frequency tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#binning-and-histograms">Binning and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/7.html#filtering-in-aggregations">Filtering in aggregations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#table-methods">Table methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html">ibis.impala.api.ImpalaClient.database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.table.html">ibis.impala.api.ImpalaClient.table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.sql.html">ibis.impala.api.ImpalaClient.sql</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.raw_sql.html">ibis.impala.api.ImpalaClient.raw_sql</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.list_tables.html">ibis.impala.api.ImpalaClient.list_tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.exists_table.html">ibis.impala.api.ImpalaClient.exists_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_table.html">ibis.impala.api.ImpalaClient.drop_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_table.html">ibis.impala.api.ImpalaClient.create_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.insert.html">ibis.impala.api.ImpalaClient.insert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.truncate_table.html">ibis.impala.api.ImpalaClient.truncate_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.get_schema.html">ibis.impala.api.ImpalaClient.get_schema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.cache_table.html">ibis.impala.api.ImpalaClient.cache_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.load_data.html">ibis.impala.api.ImpalaClient.load_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.get_options.html">ibis.impala.api.ImpalaClient.get_options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.set_options.html">ibis.impala.api.ImpalaClient.set_options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html">ibis.impala.api.ImpalaClient.set_compression_codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.add_partition.html">ibis.impala.api.ImpalaTable.add_partition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.alter.html">ibis.impala.api.ImpalaTable.alter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.alter_partition.html">ibis.impala.api.ImpalaTable.alter_partition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.column_stats.html">ibis.impala.api.ImpalaTable.column_stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html">ibis.impala.api.ImpalaTable.compute_stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.describe_formatted.html">ibis.impala.api.ImpalaTable.describe_formatted</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.drop.html">ibis.impala.api.ImpalaTable.drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.drop_partition.html">ibis.impala.api.ImpalaTable.drop_partition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.files.html">ibis.impala.api.ImpalaTable.files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.insert.html">ibis.impala.api.ImpalaTable.insert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.invalidate_metadata.html">ibis.impala.api.ImpalaTable.invalidate_metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.load_data.html">ibis.impala.api.ImpalaTable.load_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.metadata.html">ibis.impala.api.ImpalaTable.metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partition_schema.html">ibis.impala.api.ImpalaTable.partition_schema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partitions.html">ibis.impala.api.ImpalaTable.partitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.refresh.html">ibis.impala.api.ImpalaTable.refresh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.rename.html">ibis.impala.api.ImpalaTable.rename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.stats.html">ibis.impala.api.ImpalaTable.stats</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_view.html">ibis.impala.api.ImpalaClient.create_view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_view.html">ibis.impala.api.ImpalaClient.drop_view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.drop_table_or_view.html">ibis.impala.api.ImpalaClient.drop_table_or_view</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#the-impala-client-object">The Impala client object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#database-and-table-objects">Database and Table objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#creating-tables">Creating tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#partitioned-tables">Partitioned tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#inserting-data-into-tables">Inserting data into tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#managing-table-metadata">Managing table metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#table-statistics">Table statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#issuing-load-data-commands">Issuing <code class="docutils literal"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#parquet-and-other-session-options">Parquet and other session options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#ingesting-data-from-pandas">Ingesting data from pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-data-formats-in-hdfs">Accessing data formats in HDFS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.avro_file.html">ibis.impala.api.ImpalaClient.avro_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.delimited_file.html">ibis.impala.api.ImpalaClient.delimited_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.parquet_file.html">ibis.impala.api.ImpalaClient.parquet_file</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#creating-connections">Creating connections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#impala-client">Impala client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sqlite-client">SQLite client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hdfs">HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#top-level-expression-apis">Top-level expression APIs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#general-expression-methods">General expression methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#api-table">Table methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generic-value-methods">Generic value methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#general-numeric-methods">General numeric methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integer-methods">Integer methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#string-methods">String methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#timestamp-methods">Timestamp methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#boolean-methods">Boolean methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#category-methods">Category methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decimal-methods">Decimal methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-expressions">Executing expressions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.execute.html">ibis.impala.api.ImpalaClient.execute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.disable_codegen.html">ibis.impala.api.ImpalaClient.disable_codegen</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#projections-select-add-remove-columns">Projections: select/add/remove columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#filtering-where">Filtering / <code class="docutils literal"><span class="pre">WHERE</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#aggregation-group-by">Aggregation / <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#sorting-order-by">Sorting / <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#limit-and-offset"><code class="docutils literal"><span class="pre">LIMIT</span></code> and <code class="docutils literal"><span class="pre">OFFSET</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#common-column-expressions">Common column expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#subqueries">Subqueries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#distinct-expressions"><code class="docutils literal"><span class="pre">DISTINCT</span></code> expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#window-functions">Window functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#top-k-operations">Top-K operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#date-time-data">Date / time data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#buckets-and-histograms">Buckets and histograms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#unions">Unions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sql.html#esoterica">Esoterica</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="release.html#december-1-2015">0.6 (December 1, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#september-10-2015">0.5 (September 10, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#august-14-2015">0.4 (August 14, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#july-20-2015">0.3 (July 20, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#june-16-2015">0.2 (June 16, 2015)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="release.html#march-26-2015">0.1 (March 26, 2015)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqlite-client">SQLite client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.connect.html">ibis.sql.sqlite.api.connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.SQLiteClient.attach.html">ibis.sql.sqlite.api.SQLiteClient.attach</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.SQLiteClient.database.html">ibis.sql.sqlite.api.SQLiteClient.database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.SQLiteClient.list_tables.html">ibis.sql.sqlite.api.SQLiteClient.list_tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.SQLiteClient.table.html">ibis.sql.sqlite.api.SQLiteClient.table</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#test-environment-setup">Test environment setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#contribution-ideas">Contribution Ideas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developer.html#contributor-license-agreements">Contributor License Agreements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdfs">HDFS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.ls.html">ibis.HDFS.ls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.chmod.html">ibis.HDFS.chmod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.chown.html">ibis.HDFS.chown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.get.html">ibis.HDFS.get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.head.html">ibis.HDFS.head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.put.html">ibis.HDFS.put</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.put_tarfile.html">ibis.HDFS.put_tarfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.rm.html">ibis.HDFS.rm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.rmdir.html">ibis.HDFS.rmdir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.size.html">ibis.HDFS.size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.HDFS.status.html">ibis.HDFS.status</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#top-level-expression-apis">Top-level expression APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.case.html">ibis.case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.literal.html">ibis.literal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.schema.html">ibis.schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.table.html">ibis.table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.timestamp.html">ibis.timestamp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.where.html">ibis.where</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.ifelse.html">ibis.ifelse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.coalesce.html">ibis.coalesce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.greatest.html">ibis.greatest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.least.html">ibis.least</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.negate.html">ibis.negate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.desc.html">ibis.desc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.now.html">ibis.now</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.NA.html">ibis.NA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.null.html">ibis.null</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr_list.html">ibis.expr_list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.row_number.html">ibis.row_number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.window.html">ibis.window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.trailing_window.html">ibis.trailing_window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.cumulative_window.html">ibis.cumulative_window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-expression-methods">General expression methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.Expr.compile.html">ibis.expr.api.Expr.compile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.Expr.equals.html">ibis.expr.api.Expr.equals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.Expr.execute.html">ibis.expr.api.Expr.execute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.Expr.pipe.html">ibis.expr.api.Expr.pipe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.Expr.verify.html">ibis.expr.api.Expr.verify</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api-table">Table methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.add_column.html">ibis.expr.api.TableExpr.add_column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.aggregate.html">ibis.expr.api.TableExpr.aggregate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.count.html">ibis.expr.api.TableExpr.count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.distinct.html">ibis.expr.api.TableExpr.distinct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.info.html">ibis.expr.api.TableExpr.info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.filter.html">ibis.expr.api.TableExpr.filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_column.html">ibis.expr.api.TableExpr.get_column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_columns.html">ibis.expr.api.TableExpr.get_columns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html">ibis.expr.api.TableExpr.group_by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html">ibis.expr.api.TableExpr.limit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html">ibis.expr.api.TableExpr.mutate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html">ibis.expr.api.TableExpr.projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.relabel.html">ibis.expr.api.TableExpr.relabel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.schema.html">ibis.expr.api.TableExpr.schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.set_column.html">ibis.expr.api.TableExpr.set_column</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.sort_by.html">ibis.expr.api.TableExpr.sort_by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.union.html">ibis.expr.api.TableExpr.union</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.view.html">ibis.expr.api.TableExpr.view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.join.html">ibis.expr.api.TableExpr.join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.cross_join.html">ibis.expr.api.TableExpr.cross_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.inner_join.html">ibis.expr.api.TableExpr.inner_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.left_join.html">ibis.expr.api.TableExpr.left_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.outer_join.html">ibis.expr.api.TableExpr.outer_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.semi_join.html">ibis.expr.api.TableExpr.semi_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.anti_join.html">ibis.expr.api.TableExpr.anti_join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grouped-table-methods">Grouped table methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.aggregate.html">ibis.expr.api.GroupedTableExpr.aggregate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.count.html">ibis.expr.api.GroupedTableExpr.count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.having.html">ibis.expr.api.GroupedTableExpr.having</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.mutate.html">ibis.expr.api.GroupedTableExpr.mutate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.order_by.html">ibis.expr.api.GroupedTableExpr.order_by</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.over.html">ibis.expr.api.GroupedTableExpr.over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.projection.html">ibis.expr.api.GroupedTableExpr.projection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.GroupedTableExpr.size.html">ibis.expr.api.GroupedTableExpr.size</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generic-value-methods">Generic value methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scalar-or-array-methods">Scalar or array methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.between.html">ibis.expr.api.ValueExpr.between</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.cast.html">ibis.expr.api.ValueExpr.cast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.coalesce.html">ibis.expr.api.ValueExpr.coalesce</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.fillna.html">ibis.expr.api.ValueExpr.fillna</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.isin.html">ibis.expr.api.ValueExpr.isin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.notin.html">ibis.expr.api.ValueExpr.notin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.nullif.html">ibis.expr.api.ValueExpr.nullif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.hash.html">ibis.expr.api.ValueExpr.hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.isnull.html">ibis.expr.api.ValueExpr.isnull</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.notnull.html">ibis.expr.api.ValueExpr.notnull</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.over.html">ibis.expr.api.ValueExpr.over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.typeof.html">ibis.expr.api.ValueExpr.typeof</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.add.html">ibis.expr.api.ValueExpr.add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.sub.html">ibis.expr.api.ValueExpr.sub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.mul.html">ibis.expr.api.ValueExpr.mul</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.div.html">ibis.expr.api.ValueExpr.div</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.pow.html">ibis.expr.api.ValueExpr.pow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.rdiv.html">ibis.expr.api.ValueExpr.rdiv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.rsub.html">ibis.expr.api.ValueExpr.rsub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.case.html">ibis.expr.api.ValueExpr.case</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.cases.html">ibis.expr.api.ValueExpr.cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ValueExpr.substitute.html">ibis.expr.api.ValueExpr.substitute</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#array-methods">Array methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.distinct.html">ibis.expr.api.ArrayExpr.distinct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.count.html">ibis.expr.api.ArrayExpr.count</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.min.html">ibis.expr.api.ArrayExpr.min</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.max.html">ibis.expr.api.ArrayExpr.max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.approx_median.html">ibis.expr.api.ArrayExpr.approx_median</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.approx_nunique.html">ibis.expr.api.ArrayExpr.approx_nunique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.group_concat.html">ibis.expr.api.ArrayExpr.group_concat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.nunique.html">ibis.expr.api.ArrayExpr.nunique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.summary.html">ibis.expr.api.ArrayExpr.summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.value_counts.html">ibis.expr.api.ArrayExpr.value_counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.first.html">ibis.expr.api.ArrayExpr.first</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.last.html">ibis.expr.api.ArrayExpr.last</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.dense_rank.html">ibis.expr.api.ArrayExpr.dense_rank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.rank.html">ibis.expr.api.ArrayExpr.rank</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.lag.html">ibis.expr.api.ArrayExpr.lag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.lead.html">ibis.expr.api.ArrayExpr.lead</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.cummin.html">ibis.expr.api.ArrayExpr.cummin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.ArrayExpr.cummax.html">ibis.expr.api.ArrayExpr.cummax</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#general-numeric-methods">General numeric methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Scalar or array methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.abs.html">ibis.expr.api.NumericValue.abs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.ceil.html">ibis.expr.api.NumericValue.ceil</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.floor.html">ibis.expr.api.NumericValue.floor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.sign.html">ibis.expr.api.NumericValue.sign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.exp.html">ibis.expr.api.NumericValue.exp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.sqrt.html">ibis.expr.api.NumericValue.sqrt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.log.html">ibis.expr.api.NumericValue.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.ln.html">ibis.expr.api.NumericValue.ln</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.log2.html">ibis.expr.api.NumericValue.log2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.log10.html">ibis.expr.api.NumericValue.log10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.round.html">ibis.expr.api.NumericValue.round</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.nullifzero.html">ibis.expr.api.NumericValue.nullifzero</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericValue.zeroifnull.html">ibis.expr.api.NumericValue.zeroifnull</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Array methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.sum.html">ibis.expr.api.NumericArray.sum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.mean.html">ibis.expr.api.NumericArray.mean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.std.html">ibis.expr.api.NumericArray.std</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.var.html">ibis.expr.api.NumericArray.var</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.cumsum.html">ibis.expr.api.NumericArray.cumsum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.cummean.html">ibis.expr.api.NumericArray.cummean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.bottomk.html">ibis.expr.api.NumericArray.bottomk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.topk.html">ibis.expr.api.NumericArray.topk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.bucket.html">ibis.expr.api.NumericArray.bucket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.NumericArray.histogram.html">ibis.expr.api.NumericArray.histogram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#integer-methods">Integer methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Scalar or array methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.IntegerValue.convert_base.html">ibis.expr.api.IntegerValue.convert_base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/ibis.expr.api.IntegerValue.to_timestamp.html">ibis.expr.api.IntegerValue.to_timestamp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#string-methods">String methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.convert_base.html">ibis.expr.api.StringValue.convert_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.length.html">ibis.expr.api.StringValue.length</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.lower.html">ibis.expr.api.StringValue.lower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.upper.html">ibis.expr.api.StringValue.upper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.reverse.html">ibis.expr.api.StringValue.reverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.ascii_str.html">ibis.expr.api.StringValue.ascii_str</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.strip.html">ibis.expr.api.StringValue.strip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.lstrip.html">ibis.expr.api.StringValue.lstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.rstrip.html">ibis.expr.api.StringValue.rstrip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.capitalize.html">ibis.expr.api.StringValue.capitalize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.contains.html">ibis.expr.api.StringValue.contains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.like.html">ibis.expr.api.StringValue.like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html">ibis.expr.api.StringValue.parse_url</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html">ibis.expr.api.StringValue.substr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html">ibis.expr.api.StringValue.left</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.right.html">ibis.expr.api.StringValue.right</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.repeat.html">ibis.expr.api.StringValue.repeat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.find.html">ibis.expr.api.StringValue.find</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.translate.html">ibis.expr.api.StringValue.translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.find_in_set.html">ibis.expr.api.StringValue.find_in_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.join.html">ibis.expr.api.StringValue.join</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.replace.html">ibis.expr.api.StringValue.replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.lpad.html">ibis.expr.api.StringValue.lpad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.rpad.html">ibis.expr.api.StringValue.rpad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.rlike.html">ibis.expr.api.StringValue.rlike</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_search.html">ibis.expr.api.StringValue.re_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_extract.html">ibis.expr.api.StringValue.re_extract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_replace.html">ibis.expr.api.StringValue.re_replace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#timestamp-methods">Timestamp methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.truncate.html">ibis.expr.api.TimestampValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.year.html">ibis.expr.api.TimestampValue.year</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.month.html">ibis.expr.api.TimestampValue.month</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.day.html">ibis.expr.api.TimestampValue.day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.hour.html">ibis.expr.api.TimestampValue.hour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.minute.html">ibis.expr.api.TimestampValue.minute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.second.html">ibis.expr.api.TimestampValue.second</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.millisecond.html">ibis.expr.api.TimestampValue.millisecond</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#boolean-methods">Boolean methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.BooleanValue.ifelse.html">ibis.expr.api.BooleanValue.ifelse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.any.html">ibis.expr.api.BooleanArray.any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.all.html">ibis.expr.api.BooleanArray.all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.cumany.html">ibis.expr.api.BooleanArray.cumany</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.BooleanArray.cumall.html">ibis.expr.api.BooleanArray.cumall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#category-methods">Category methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.CategoryValue.label.html">ibis.expr.api.CategoryValue.label</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#decimal-methods">Decimal methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DecimalValue.precision.html">ibis.expr.api.DecimalValue.precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DecimalValue.scale.html">ibis.expr.api.DecimalValue.scale</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -209,20 +427,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
     <li>API Reference</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/api.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/api.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="api-reference">
 <span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
@@ -342,7 +569,7 @@ the most methods on <code class="docutils literal"><span class="pre">ImpalaTable
 <td>Drop an Impala table</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_table.html#ibis.impala.api.ImpalaClient.create_table" title="ibis.impala.api.ImpalaClient.create_table"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.create_table</span></code></a>(table_name[,&nbsp;obj,&nbsp;...])</td>
-<td>Create a new table in Impala using an Ibis table expression</td>
+<td>Create a new table in Impala using an Ibis table expression.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.insert.html#ibis.impala.api.ImpalaClient.insert" title="ibis.impala.api.ImpalaClient.insert"><code class="xref py py-obj docutils literal"><span class="pre">ImpalaClient.insert</span></code></a>(table_name[,&nbsp;obj,&nbsp;...])</td>
 <td>Insert into existing table.</td>
@@ -695,7 +922,7 @@ HDFS.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_columns.html#ibis.expr.api.TableExpr.get_columns" title="ibis.expr.api.TableExpr.get_columns"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.get_columns</span></code></a>(iterable)</td>
 <td>Get multiple columns from the table</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html#ibis.expr.api.TableExpr.group_by" title="ibis.expr.api.TableExpr.group_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.group_by</span></code></a>(by)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html#ibis.expr.api.TableExpr.group_by" title="ibis.expr.api.TableExpr.group_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.group_by</span></code></a>([by])</td>
 <td>Create an intermediate grouped table expression, pending some group operation to be applied with it.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html#ibis.expr.api.TableExpr.limit" title="ibis.expr.api.TableExpr.limit"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.limit</span></code></a>(table,&nbsp;n[,&nbsp;offset])</td>
@@ -1245,15 +1472,16 @@ are represented semantically as integers starting at 0.</p>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="generated/ibis.hdfs_connect.html" class="btn btn-neutral float-right" title="ibis.hdfs_connect">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="generated/ibis.hdfs_connect.html" class="btn btn-neutral float-right" title="ibis.hdfs_connect" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaClient.set_compression_codec"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaClient.set_compression_codec" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1263,12 +1491,13 @@ are represented semantically as integers starting at 0.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Cloudera, Inc..
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
@@ -1283,7 +1512,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.6.0+2.gbbdc3fa',
+            VERSION:'v0.7.1+17.g3bc20c0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

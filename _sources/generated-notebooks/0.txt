@@ -3,7 +3,7 @@ Impala/HDFS intro and Setup
 ===========================
 
 Getting started
-===============
+---------------
 
 You're going to want to make sure you can import ``ibis``
 
@@ -34,7 +34,7 @@ Finally, create the Ibis client
 
 .. parsed-literal::
 
-    <ibis.impala.client.ImpalaClient at 0x7f6c3e919a50>
+    <ibis.impala.client.ImpalaClient at 0x7f04f55f4950>
 
 
 

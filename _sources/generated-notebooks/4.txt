@@ -10,7 +10,7 @@
     ibis.options.interactive = True
 
 Creating new Impala tables from Ibis expressions
-================================================
+------------------------------------------------
 
 Suppose you have an Ibis expression that produces a table:
 
@@ -36,10 +36,10 @@ Suppose you have an Ibis expression that produces a table:
       string_col  min_foo  max_foo  sum_foo
     0          6       54       54    39420
     1          4       36       36    26280
-    2          8       72       72    52560
-    3          7       63       63    45990
-    4          9       81       81    59130
-    5          5       45       45    32850
+    2          7       63       63    45990
+    3          8       72       72    52560
+    4          5       45       45    32850
+    5          9       81       81    59130
 
 
 
@@ -66,11 +66,11 @@ be useful for that would help.
 
       string_col  min_foo  max_foo  sum_foo
     0          9       81       81    59130
-    1          6       54       54    39420
-    2          4       36       36    26280
-    3          7       63       63    45990
-    4          8       72       72    52560
-    5          5       45       45    32850
+    1          8       72       72    52560
+    2          5       45       45    32850
+    3          6       54       54    39420
+    4          4       36       36    26280
+    5          7       63       63    45990
 
 
 
@@ -81,7 +81,7 @@ Tables can be similarly dropped with ``drop_table``
     con.drop_table('testing_table', database='ibis_testing')
 
 Inserting data into existing Impala tables
-==========================================
+------------------------------------------
 
 The client's ``insert`` method can append new data to an existing table
 or overwrite the data that is in there.
@@ -99,10 +99,10 @@ or overwrite the data that is in there.
       string_col  min_foo  max_foo  sum_foo
     0          8       72       72    52560
     1          5       45       45    32850
-    2          9       81       81    59130
-    3          6       54       54    39420
-    4          4       36       36    26280
-    5          7       63       63    45990
+    2          6       54       54    39420
+    3          4       36       36    26280
+    4          7       63       63    45990
+    5          9       81       81    59130
 
 
 
@@ -117,18 +117,18 @@ or overwrite the data that is in there.
 .. parsed-literal::
 
        string_col  min_foo  max_foo  sum_foo
-    0           8       72       72    52560
-    1           5       45       45    32850
-    2           9       81       81    59130
-    3           6       54       54    39420
-    4           4       36       36    26280
-    5           7       63       63    45990
+    0           9       81       81    59130
+    1           6       54       54    39420
+    2           4       36       36    26280
+    3           7       63       63    45990
+    4           8       72       72    52560
+    5           5       45       45    32850
     6           9       81       81    59130
-    7           6       54       54    39420
-    8           4       36       36    26280
-    9           7       63       63    45990
-    10          8       72       72    52560
-    11          5       45       45    32850
+    7           8       72       72    52560
+    8           5       45       45    32850
+    9           6       54       54    39420
+    10          4       36       36    26280
+    11          7       63       63    45990
 
 
 
@@ -137,10 +137,23 @@ or overwrite the data that is in there.
     con.drop_table('testing_table')
 
 Uploading / downloading data from HDFS
-======================================
+--------------------------------------
 
 If you've set up an HDFS connection, you can use the Ibis HDFS interface
 to look through your data and read and write files to and from HDFS:
+
+.. code:: python
+
+    hdfs.ls('/')
+
+
+
+
+.. parsed-literal::
+
+    [u'__ibis', u'hbase', u'home', u'test-warehouse', u'tmp', u'user']
+
+
 
 .. code:: python
 
@@ -152,7 +165,7 @@ to look through your data and read and write files to and from HDFS:
 
 .. parsed-literal::
 
-    [u'avro', u'csv', u'parquet', u'udf']
+    [u'avro', u'csv', u'ibis_testing.db', u'parquet', u'udf']
 
 
 
@@ -192,7 +205,7 @@ directory. We need only do:
 
 .. parsed-literal::
 
-    '/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/parquet_dir'
+    '/home/wesm/code/ibis-notebooks/basic-tutorial/parquet_dir'
 
 
 
@@ -205,9 +218,9 @@ Now we have that directory locally:
 
 .. parsed-literal::
 
-    e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq
-    e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq
-    e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq
+    244b1a31ffc1d401-54bea73c44789d_884230467_data.0.parq
+    244b1a31ffc1d401-54bea73c44789e_1434316465_data.0.parq
+    244b1a31ffc1d401-54bea73c44789f_1434316465_data.0.parq
 
 
 Files and directories can be written to HDFS just as easily using
@@ -219,13 +232,6 @@ Files and directories can be written to HDFS just as easily using
     if hdfs.exists(path):
         hdfs.rmdir(path)
     hdfs.put(path, 'parquet_dir', verbose=True)
-
-
-.. parsed-literal::
-
-    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
-    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
-    WARNING:requests.packages.urllib3.connectionpool:Connection pool is full, discarding connection: localhost
 
 
 
@@ -245,9 +251,9 @@ Files and directories can be written to HDFS just as easily using
 
 .. parsed-literal::
 
-    [u'e54d1a51b57207fb-757fe03770d6a8ab_722308252_data.0.parq',
-     u'e54d1a51b57207fb-757fe03770d6a8ac_722308252_data.0.parq',
-     u'e54d1a51b57207fb-757fe03770d6a8ad_1611361036_data.0.parq']
+    [u'244b1a31ffc1d401-54bea73c44789d_884230467_data.0.parq',
+     u'244b1a31ffc1d401-54bea73c44789e_1434316465_data.0.parq',
+     u'244b1a31ffc1d401-54bea73c44789f_1434316465_data.0.parq']
 
 
 
@@ -262,7 +268,7 @@ Delete files with ``rm`` or directories with ``rmdir``:
     !rm -rf parquet_dir/
 
 Queries on Parquet, Avro, and Delimited files in HDFS
-=====================================================
+-----------------------------------------------------
 
 Ibis can easily create temporary or persistent Impala tables that
 reference data in the following formats:
@@ -369,7 +375,7 @@ There's some CSV files in the test folder, so let's use those:
 
 .. parsed-literal::
 
-    '/home/wesm/code/cloudera/ibis-notebooks/basic-tutorial/csv-files'
+    '/home/wesm/code/ibis-notebooks/basic-tutorial/csv-files'
 
 
 
@@ -380,16 +386,16 @@ There's some CSV files in the test folder, so let's use those:
 
 .. parsed-literal::
 
-    dNmzRWWCKJ,0.558914329982219,42
-    kpXp9U5Kv4,-0.8221358158299105,28
-    7BcTT5B4wp,-1.2180159173981855,18
-    W4vOjjJQrT,-1.7791277450782457,45
-    tiVZsQWzpN,0.32936255878849235,84
-    6ibbcK16f2,-0.36602855877465035,56
-    QBsUQwKw0Z,0.1206123669383656,29
-    FMp2sWNgaY,-0.015090055989338344,27
-    UPXjybUQSj,0.42642200098179384,77
-    L2f2ylNoIw,-0.5091003484680737,6
+    uXpivkAYSO,1.01994339956,27
+    BcIteg32mR,-0.497745040687,11
+    5TZQvBHcwI,-0.26731402764,84
+    XX8upUlbDe,-0.0709191028435,96
+    sJdk6chNnx,-0.27102973984,60
+    NTVYJb1d7D,-1.23610658876,14
+    3pX0MQsLIz,-0.737931321383,16
+    IpNIwdTK4P,-0.293743595331,23
+    ucIvA79467,0.0707646026785,12
+    JIunzB1CZs,-1.1253763919,4
 
 
 .. code:: python
@@ -414,16 +420,16 @@ The schema here is pretty simple (see ``ibis.schema`` for more):
 .. parsed-literal::
 
               foo       bar  baz
-    0  dNmzRWWCKJ  0.558914   42
-    1  kpXp9U5Kv4 -0.822136   28
-    2  7BcTT5B4wp -1.218016   18
-    3  W4vOjjJQrT -1.779128   45
-    4  tiVZsQWzpN  0.329363   84
-    5  6ibbcK16f2 -0.366029   56
-    6  QBsUQwKw0Z  0.120612   29
-    7  FMp2sWNgaY -0.015090   27
-    8  UPXjybUQSj  0.426422   77
-    9  L2f2ylNoIw -0.509100    6
+    0  uXpivkAYSO  1.019943   27
+    1  BcIteg32mR -0.497745   11
+    2  5TZQvBHcwI -0.267314   84
+    3  XX8upUlbDe -0.070919   96
+    4  sJdk6chNnx -0.271030   60
+    5  NTVYJb1d7D -1.236107   14
+    6  3pX0MQsLIz -0.737931   16
+    7  IpNIwdTK4P -0.293744   23
+    8  ucIvA79467  0.070765   12
+    9  JIunzB1CZs -1.125376    4
 
 
 
@@ -437,7 +443,7 @@ The schema here is pretty simple (see ``ibis.schema`` for more):
 .. parsed-literal::
 
        count  nulls       min       max        sum      mean  approx_nunique
-    0    100      0 -1.779128  0.558914 -32.741872 -0.327419              10
+    0    100      0 -1.236107  1.019943 -34.094578 -0.340946              10
 
 
 
@@ -474,7 +480,7 @@ schema:
 
 
 Other helper functions for interacting with the database
-========================================================
+--------------------------------------------------------
 
 We're adding a growing list of useful utility functions for interacting
 with an Impala cluster on the client object. The idea is that you should
@@ -584,13 +590,13 @@ To drop a database, including all tables in it, you can use
     con.drop_database(db, force=True)
 
 Dealing with Partitioned tables in Impala
-=========================================
+-----------------------------------------
 
 **Placeholder:** This is not yet implemented. If you have use cases,
 please let us know.
 
 Faster queries on small data in Impala
-======================================
+--------------------------------------
 
 Since Impala internally uses LLVM to compile parts of queries (aka
 "codegen") to make them faster on large data sets there is a certain
@@ -615,7 +621,7 @@ may significantly speed up queries on smaller datasets:
 
 .. parsed-literal::
 
-    10 loops, best of 3: 63 ms per loop
+    10 loops, best of 3: 47.2 ms per loop
 
 
 .. code:: python
@@ -630,7 +636,7 @@ may significantly speed up queries on smaller datasets:
 
 .. parsed-literal::
 
-    1 loops, best of 3: 1.32 s per loop
+    1 loop, best of 3: 466 ms per loop
 
 
 It's important to remember that codegen is a fixed overhead and will
