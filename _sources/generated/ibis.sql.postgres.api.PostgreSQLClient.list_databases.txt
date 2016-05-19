@@ -1,0 +1,6 @@
+ibis.sql.postgres.api.PostgreSQLClient.list_databases
+=====================================================
+
+.. currentmodule:: ibis.sql.postgres.api
+
+.. automethod:: PostgreSQLClient.list_databases

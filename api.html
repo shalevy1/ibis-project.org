@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
+  <title>API Reference &mdash; Ibis v0.8.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.8.0 documentation" href="index.html"/>
         <link rel="next" title="ibis.hdfs_connect" href="generated/ibis.hdfs_connect.html"/>
         <link rel="prev" title="ibis.impala.api.ImpalaClient.set_compression_codec" href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                v0.7.1+17.g3bc20c0
+                v0.8.0
               </div>
             
           
@@ -160,6 +160,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql-client">PostgreSQL client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.postgres.api.connect.html">ibis.sql.postgres.api.connect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.database.html">ibis.sql.postgres.api.PostgreSQLClient.database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.list_tables.html">ibis.sql.postgres.api.PostgreSQLClient.list_tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.list_databases.html">ibis.sql.postgres.api.PostgreSQLClient.list_databases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.table.html">ibis.sql.postgres.api.PostgreSQLClient.table</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#sqlite-client">SQLite client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.connect.html">ibis.sql.sqlite.api.connect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.sql.sqlite.api.SQLiteClient.attach.html">ibis.sql.sqlite.api.SQLiteClient.attach</a></li>
@@ -223,6 +231,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_column.html">ibis.expr.api.TableExpr.get_column</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.get_columns.html">ibis.expr.api.TableExpr.get_columns</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html">ibis.expr.api.TableExpr.group_by</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.groupby.html">ibis.expr.api.TableExpr.groupby</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html">ibis.expr.api.TableExpr.limit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html">ibis.expr.api.TableExpr.mutate</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html">ibis.expr.api.TableExpr.projection</a></li>
@@ -718,6 +727,35 @@ object you get back from <code class="docutils literal"><span class="pre">Impala
 </table>
 </div>
 </div>
+<div class="section" id="postgresql-client">
+<span id="api-postgres"></span><h2>PostgreSQL client<a class="headerlink" href="#postgresql-client" title="Permalink to this headline">¶</a></h2>
+<p>The PostgreSQL client is accessible through the <code class="docutils literal"><span class="pre">ibis.postgres</span></code> namespace.</p>
+<p>Use <code class="docutils literal"><span class="pre">ibis.postgres.connect</span></code> with a SQLAlchemy-compatible connection string to
+create a client.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.sql.postgres.api.connect.html#ibis.sql.postgres.api.connect" title="ibis.sql.postgres.api.connect"><code class="xref py py-obj docutils literal"><span class="pre">connect</span></code></a>([host,&nbsp;user,&nbsp;password,&nbsp;port,&nbsp;...])</td>
+<td>Create an Ibis client connected to a PostgreSQL database.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.database.html#ibis.sql.postgres.api.PostgreSQLClient.database" title="ibis.sql.postgres.api.PostgreSQLClient.database"><code class="xref py py-obj docutils literal"><span class="pre">PostgreSQLClient.database</span></code></a>([name])</td>
+<td>Create a Database object for a given database name that can be used for</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.list_tables.html#ibis.sql.postgres.api.PostgreSQLClient.list_tables" title="ibis.sql.postgres.api.PostgreSQLClient.list_tables"><code class="xref py py-obj docutils literal"><span class="pre">PostgreSQLClient.list_tables</span></code></a>([like,&nbsp;database])</td>
+<td>List tables in the current (or indicated) database.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.list_databases.html#ibis.sql.postgres.api.PostgreSQLClient.list_databases" title="ibis.sql.postgres.api.PostgreSQLClient.list_databases"><code class="xref py py-obj docutils literal"><span class="pre">PostgreSQLClient.list_databases</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.sql.postgres.api.PostgreSQLClient.table.html#ibis.sql.postgres.api.PostgreSQLClient.table" title="ibis.sql.postgres.api.PostgreSQLClient.table"><code class="xref py py-obj docutils literal"><span class="pre">PostgreSQLClient.table</span></code></a>(name[,&nbsp;database])</td>
+<td>Create a table expression that references a particular table in the</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="sqlite-client">
 <span id="api-sqlite"></span><h2>SQLite client<a class="headerlink" href="#sqlite-client" title="Permalink to this headline">¶</a></h2>
 <p>The SQLite client is accessible through the <code class="docutils literal"><span class="pre">ibis.sqlite</span></code> namespace.</p>
@@ -925,52 +963,55 @@ HDFS.</p>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.group_by.html#ibis.expr.api.TableExpr.group_by" title="ibis.expr.api.TableExpr.group_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.group_by</span></code></a>([by])</td>
 <td>Create an intermediate grouped table expression, pending some group operation to be applied with it.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html#ibis.expr.api.TableExpr.limit" title="ibis.expr.api.TableExpr.limit"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.limit</span></code></a>(table,&nbsp;n[,&nbsp;offset])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.groupby.html#ibis.expr.api.TableExpr.groupby" title="ibis.expr.api.TableExpr.groupby"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.groupby</span></code></a>([by])</td>
+<td>Create an intermediate grouped table expression, pending some group operation to be applied with it.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.limit.html#ibis.expr.api.TableExpr.limit" title="ibis.expr.api.TableExpr.limit"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.limit</span></code></a>(table,&nbsp;n[,&nbsp;offset])</td>
 <td>Select the first n rows at beginning of table (may not be deterministic depending on implementatino and presence of a sorting).</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html#ibis.expr.api.TableExpr.mutate" title="ibis.expr.api.TableExpr.mutate"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.mutate</span></code></a>(table[,&nbsp;exprs])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.mutate.html#ibis.expr.api.TableExpr.mutate" title="ibis.expr.api.TableExpr.mutate"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.mutate</span></code></a>(table[,&nbsp;exprs])</td>
 <td>Convenience function for table projections involving adding columns</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html#ibis.expr.api.TableExpr.projection" title="ibis.expr.api.TableExpr.projection"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.projection</span></code></a>(table,&nbsp;exprs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.projection.html#ibis.expr.api.TableExpr.projection" title="ibis.expr.api.TableExpr.projection"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.projection</span></code></a>(table,&nbsp;exprs)</td>
 <td>Compute new table expression with the indicated column expressions from this table.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.relabel.html#ibis.expr.api.TableExpr.relabel" title="ibis.expr.api.TableExpr.relabel"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.relabel</span></code></a>(table,&nbsp;substitutions[,&nbsp;...])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.relabel.html#ibis.expr.api.TableExpr.relabel" title="ibis.expr.api.TableExpr.relabel"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.relabel</span></code></a>(table,&nbsp;substitutions[,&nbsp;...])</td>
 <td>Change table column names, otherwise leaving table unaltered</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.schema.html#ibis.expr.api.TableExpr.schema" title="ibis.expr.api.TableExpr.schema"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.schema</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.schema.html#ibis.expr.api.TableExpr.schema" title="ibis.expr.api.TableExpr.schema"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.schema</span></code></a>()</td>
 <td>Get the schema for this table (if one is known)</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.set_column.html#ibis.expr.api.TableExpr.set_column" title="ibis.expr.api.TableExpr.set_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.set_column</span></code></a>(table,&nbsp;name,&nbsp;expr)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.set_column.html#ibis.expr.api.TableExpr.set_column" title="ibis.expr.api.TableExpr.set_column"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.set_column</span></code></a>(table,&nbsp;name,&nbsp;expr)</td>
 <td>Replace an existing column with a new expression</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.sort_by.html#ibis.expr.api.TableExpr.sort_by" title="ibis.expr.api.TableExpr.sort_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.sort_by</span></code></a>(table,&nbsp;sort_exprs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.sort_by.html#ibis.expr.api.TableExpr.sort_by" title="ibis.expr.api.TableExpr.sort_by"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.sort_by</span></code></a>(table,&nbsp;sort_exprs)</td>
 <td>Sort table by the indicated column expressions and sort orders</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.union.html#ibis.expr.api.TableExpr.union" title="ibis.expr.api.TableExpr.union"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.union</span></code></a>(left,&nbsp;right[,&nbsp;distinct])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.union.html#ibis.expr.api.TableExpr.union" title="ibis.expr.api.TableExpr.union"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.union</span></code></a>(left,&nbsp;right[,&nbsp;distinct])</td>
 <td>Form the table set union of two table expressions having identical schemas.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.view.html#ibis.expr.api.TableExpr.view" title="ibis.expr.api.TableExpr.view"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.view</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.view.html#ibis.expr.api.TableExpr.view" title="ibis.expr.api.TableExpr.view"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.view</span></code></a>()</td>
 <td>Create a new table expression that is semantically equivalent to the current one, but is considered a distinct relation for evaluation purposes (e.g.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.join.html#ibis.expr.api.TableExpr.join" title="ibis.expr.api.TableExpr.join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.join</span></code></a>(left,&nbsp;right[,&nbsp;predicates,&nbsp;how])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.join.html#ibis.expr.api.TableExpr.join" title="ibis.expr.api.TableExpr.join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.join</span></code></a>(left,&nbsp;right[,&nbsp;predicates,&nbsp;how])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.cross_join.html#ibis.expr.api.TableExpr.cross_join" title="ibis.expr.api.TableExpr.cross_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.cross_join</span></code></a>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.cross_join.html#ibis.expr.api.TableExpr.cross_join" title="ibis.expr.api.TableExpr.cross_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.cross_join</span></code></a>(*args,&nbsp;**kwargs)</td>
 <td>Perform a cross join (cartesian product) amongst a list of tables, with</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.inner_join.html#ibis.expr.api.TableExpr.inner_join" title="ibis.expr.api.TableExpr.inner_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.inner_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.inner_join.html#ibis.expr.api.TableExpr.inner_join" title="ibis.expr.api.TableExpr.inner_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.inner_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.left_join.html#ibis.expr.api.TableExpr.left_join" title="ibis.expr.api.TableExpr.left_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.left_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.left_join.html#ibis.expr.api.TableExpr.left_join" title="ibis.expr.api.TableExpr.left_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.left_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.outer_join.html#ibis.expr.api.TableExpr.outer_join" title="ibis.expr.api.TableExpr.outer_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.outer_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.outer_join.html#ibis.expr.api.TableExpr.outer_join" title="ibis.expr.api.TableExpr.outer_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.outer_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.semi_join.html#ibis.expr.api.TableExpr.semi_join" title="ibis.expr.api.TableExpr.semi_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.semi_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.semi_join.html#ibis.expr.api.TableExpr.semi_join" title="ibis.expr.api.TableExpr.semi_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.semi_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join" title="ibis.expr.api.TableExpr.anti_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.anti_join</span></code></a>(other[,&nbsp;predicates])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TableExpr.anti_join.html#ibis.expr.api.TableExpr.anti_join" title="ibis.expr.api.TableExpr.anti_join"><code class="xref py py-obj docutils literal"><span class="pre">TableExpr.anti_join</span></code></a>(other[,&nbsp;predicates])</td>
 <td>Perform a relational join between two tables.</td>
 </tr>
 </tbody>
@@ -1512,7 +1553,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.7.1+17.g3bc20c0',
+            VERSION:'v0.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

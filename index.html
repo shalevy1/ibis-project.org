@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.7.1+17.g3bc20c0 documentation</title>
+  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.8.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="Ibis v0.7.1+17.g3bc20c0 documentation" href="#"/>
+    <link rel="top" title="Ibis v0.8.0 documentation" href="#"/>
         <link rel="next" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                v0.7.1+17.g3bc20c0
+                v0.8.0
               </div>
             
           
@@ -137,10 +137,11 @@
             
   <div class="section" id="ibis-python-data-analysis-productivity-framework">
 <h1>Ibis: Python Data Analysis Productivity Framework<a class="headerlink" href="#ibis-python-data-analysis-productivity-framework" title="Permalink to this headline">¶</a></h1>
-<p>Ibis is a toolbox to bridge the gap between local Python environments and
-remote storage and execution systems like Hadoop components (HDFS, Impala,
-Hive, Spark) and SQL databases (Postgres, etc.). Its goal is to simplify
-analytical workflows and make you more productive.</p>
+<p>Ibis is a toolbox to bridge the gap between local Python environments (like
+pandas and scikit-learn) and remote storage and execution systems like Hadoop
+components (like HDFS, Impala, Hive, Spark) and SQL databases (Postgres,
+etc.). Its goal is to simplify analytical workflows and make you more
+productive.</p>
 <p>We have a handful of specific priority focus areas:</p>
 <ul class="simple">
 <li>Enable data analysts to translate local, single-node data idioms to scalable
@@ -151,6 +152,9 @@ and streamline common or tedious tasks.</li>
 <li>Integration with community standard data formats (e.g. Parquet and Avro)</li>
 <li>Abstract away database-specific SQL differences</li>
 </ul>
+<p>As the <a class="reference external" href="http://arrow.apache.org/">Apache Arrow</a> project develops, we will
+look to use Arrow to enable computational code written in Python to be executed
+natively within other systems like Apache Spark and Apache Impala (incubating).</p>
 <p>To learn more about Ibis&#8217;s vision, roadmap, and updates, please follow
 <a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a>.</p>
 <p>Source code is on GitHub: <a class="reference external" href="http://github.com/cloudera/ibis">http://github.com/cloudera/ibis</a></p>
@@ -254,7 +258,7 @@ places, but this will improve as things progress.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.7.1+17.g3bc20c0',
+            VERSION:'v0.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
