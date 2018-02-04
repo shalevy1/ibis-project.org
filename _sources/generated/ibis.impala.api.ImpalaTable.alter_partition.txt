@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaTable.alter_partition
-===========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaTable.alter_partition

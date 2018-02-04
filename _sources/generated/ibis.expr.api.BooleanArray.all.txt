@@ -1,6 +1,0 @@
-ibis.expr.api.BooleanArray.all
-==============================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: BooleanArray.all

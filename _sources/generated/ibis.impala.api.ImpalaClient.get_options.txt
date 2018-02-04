@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.get_options
-========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.get_options

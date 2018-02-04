@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis v0.8.0 documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="index.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="index.html"/>
         <link rel="next" title="Configuring Ibis" href="configuration.html"/>
         <link rel="prev" title="Ibis: Python Data Analysis Productivity Framework" href="index.html"/> 
 
@@ -41,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -60,7 +66,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -81,32 +87,33 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#system-dependencies">System dependencies</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-the-python-package">Installing the Python package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#ibis-sqlite-quickstart">Ibis SQLite Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-client">Creating a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#impala-quickstart">Impala Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqlite-quickstart">SQLite Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postgresql-quickstart">PostgreSQL Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clickhouse-quickstart">Clickhouse Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bigquery-quickstart">BigQuery Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-ibis-with-the-cloudera-quickstart-vm">Using Ibis with the Cloudera Quickstart VM</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tl-dr">TL;DR</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#single-steps">Single Steps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vm-setup">VM setup</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-ibis-queries-using-docker">Running Ibis Queries using Docker</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
@@ -120,8 +127,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ibis</a>
+        
       </nav>
 
 
@@ -130,44 +139,95 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Installation and Getting Started</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation and Getting Started</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/getting-started.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation-and-getting-started">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="installation-and-getting-started">
 <span id="install"></span><h1>Installation and Getting Started<a class="headerlink" href="#installation-and-getting-started" title="Permalink to this headline">¶</a></h1>
 <p>Getting up and running with Ibis involves installing the Python package and
-connecting to HDFS and Impala. If you don&#8217;t have a Hadoop cluster available
-with Impala, see <a class="reference internal" href="#install-quickstart"><span class="std std-ref">Using Ibis with the Cloudera Quickstart VM</span></a> below for instructions to use a VM
+connecting to HDFS and Impala. If you don’t have a Hadoop cluster available
+with Impala, see <a class="reference internal" href="#install-quickstart"><span class="std std-ref">Running Ibis Queries using Docker</span></a> below for instructions to use a VM
 to get up and running quickly.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="system-dependencies">
 <h3>System dependencies<a class="headerlink" href="#system-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>Ibis requires a working Python 2.6, 2.7, or 3.4 installation. We recommend
+<p>Ibis requires a working Python 2.7 or &gt;= 3.4 installation. We recommend
 <a class="reference external" href="http://continuum.io/downloads">Anaconda</a>.</p>
 </div>
 <div class="section" id="installing-the-python-package">
 <h3>Installing the Python package<a class="headerlink" href="#installing-the-python-package" title="Permalink to this headline">¶</a></h3>
-<p>Install ibis using <code class="docutils literal"><span class="pre">pip</span></code> (or <code class="docutils literal"><span class="pre">conda</span></code>, whenever it becomes available):</p>
+<p>Install ibis using <code class="docutils literal"><span class="pre">pip</span></code> or <code class="docutils literal"><span class="pre">conda</span></code>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
 </pre></div>
 </div>
@@ -180,18 +240,18 @@ to get up and running quickly.</p>
 <ul class="simple">
 <li>Redhat / CentOS: <code class="docutils literal"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">krb5-devel</span></code></li>
 <li>Ubuntu / Debian: <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libkrb5-dev</span></code></li>
+<li>Arch Linux     : <code class="docutils literal"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">krb5</span></code></li>
 </ul>
 </div>
 </div>
-<div class="section" id="ibis-sqlite-quickstart">
-<span id="install-sqlite"></span><h2>Ibis SQLite Quickstart<a class="headerlink" href="#ibis-sqlite-quickstart" title="Permalink to this headline">¶</a></h2>
-<p>See <a class="reference external" href="http://blog.ibis-project.org/sqlite-crunchbase-quickstart/">http://blog.ibis-project.org/sqlite-crunchbase-quickstart/</a> for a quickstart
-using SQLite. Otherwise read on to try out Ibis on Impala.</p>
+<div class="section" id="impala-quickstart">
+<span id="install-impala"></span><h2><a class="reference external" href="https://impala.apache.org/">Impala</a> Quickstart<a class="headerlink" href="#impala-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s Impala dialect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">impala</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="creating-a-client">
-<h2>Creating a client<a class="headerlink" href="#creating-a-client" title="Permalink to this headline">¶</a></h2>
-<p>To create an Ibis &#8220;client&#8221;, you must first connect your services and assemble
-the client using <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>:</p>
+<p>To create an Ibis client, you must first connect your services and assemble the
+client using <code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">webhdfs_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">webhdfs_port</span><span class="p">)</span>
@@ -204,69 +264,113 @@ the client using <code class="docutils literal"><span class="pre">ibis.impala.co
 cluster setup, this may also include SSL. See the <a class="reference internal" href="api.html#api-client"><span class="std std-ref">API reference</span></a> for more, along with the Impala shell reference, as the
 connection semantics are identical.</p>
 </div>
-<div class="section" id="learning-resources">
-<h2>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
-<p>We are collecting IPython notebooks for learning here:
-<a class="reference external" href="http://github.com/cloudera/ibis-notebooks">http://github.com/cloudera/ibis-notebooks</a>. Some of these notebooks will be
-reproduced as part of the documentation.</p>
+<div class="section" id="sqlite-quickstart">
+<span id="install-sqlite"></span><h2><a class="reference external" href="https://www.sqlite.org/">SQLite</a> Quickstart<a class="headerlink" href="#sqlite-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s SQLite dialect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">sqlite</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="using-ibis-with-the-cloudera-quickstart-vm">
-<span id="install-quickstart"></span><h2>Using Ibis with the Cloudera Quickstart VM<a class="headerlink" href="#using-ibis-with-the-cloudera-quickstart-vm" title="Permalink to this headline">¶</a></h2>
-<p>Using Ibis with Impala requires a running Impala cluster, so we have provided a
-lean VirtualBox image to simplify the process for those looking to try out Ibis
-(without setting up a cluster) or start contributing code to the project.</p>
-<p>What follows are streamlined setup instructions for the VM. If you wish to
-download it directly and setup from the <code class="docutils literal"><span class="pre">ova</span></code> file, use this <a class="reference external" href="http://archive.cloudera.com/cloudera-ibis/ibis-demo.ova">download link</a>.</p>
-<p>The VM was built with Oracle VirtualBox 4.3.28.</p>
-<div class="section" id="tl-dr">
-<h3>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">s</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cloudera</span><span class="o">/</span><span class="n">ibis</span><span class="o">-</span><span class="n">notebooks</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">setup</span><span class="o">/</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
+<p>Create a client by passing a path to a SQLite database to
+<code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ibis</span><span class="o">.</span><span class="n">sqlite</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;path/to/my/sqlite.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="http://blog.ibis-project.org/sqlite-crunchbase-quickstart/">http://blog.ibis-project.org/sqlite-crunchbase-quickstart/</a> for a quickstart
+using SQLite.</p>
+</div>
+<div class="section" id="postgresql-quickstart">
+<span id="install-postgres"></span><h2><a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> Quickstart<a class="headerlink" href="#postgresql-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s PostgreSQL dialect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Create a client by passing a connection string or individual parameters to
+<code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;postgresql://user:pass@host:port/my_database&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23569</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="single-steps">
-<h3>Single Steps<a class="headerlink" href="#single-steps" title="Permalink to this headline">¶</a></h3>
-<p>To use Ibis with the special Cloudera Quickstart VM follow the below
-instructions:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Make sure Anaconda is installed. You can get it from
-<a class="reference external" href="http://continuum.io/downloads">http://continuum.io/downloads</a>. Now prepend the Anaconda Python
-to your path like this <code class="docutils literal"><span class="pre">export</span> <span class="pre">PATH=$ANACONDA_HOME/bin:$PATH</span></code></li>
-<li><code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ibis-framework</span></code></li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/cloudera/ibis-notebooks.git</span></code></li>
-<li><code class="docutils literal"><span class="pre">cd</span> <span class="pre">ibis-notebooks</span></code></li>
-<li><code class="docutils literal"><span class="pre">./setup/setup-ibis-demo-vm.sh</span></code></li>
-<li><code class="docutils literal"><span class="pre">source</span> <span class="pre">setup/ibis-env.sh</span></code></li>
-<li><code class="docutils literal"><span class="pre">ipython</span> <span class="pre">notebook</span></code></li>
-</ul>
-</div></blockquote>
+<div class="section" id="clickhouse-quickstart">
+<span id="install-bigquery"></span><h2><a class="reference external" href="https://clickhouse.yandex/">Clickhouse</a> Quickstart<a class="headerlink" href="#clickhouse-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s Clickhouse dialect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">clickhouse</span><span class="p">]</span>
+</pre></div>
 </div>
-<div class="section" id="vm-setup">
-<h3>VM setup<a class="headerlink" href="#vm-setup" title="Permalink to this headline">¶</a></h3>
-<p>The setup script will download a VirtualBox appliance image and import it in
-VirtualBox. In addition, it will create a new host only network adapter with
-DHCP. After the VM is started, it will extract the current IP address and add a
-new /etc/hosts entry pointing from the IP of the VM to the hostname
-<code class="docutils literal"><span class="pre">quickstart.cloudera</span></code>. The reason for this entry is that Hadoop and HDFS
-require a working reverse name mapping. If you don&#8217;t want to run the automated
-steps make sure to check the individual steps in the file
-<code class="docutils literal"><span class="pre">setup/setup-ibis-demo-vm.sh</span></code>.</p>
+<p>Create a client by passing in database connection parameters such as <code class="docutils literal"><span class="pre">host</span></code>,
+<code class="docutils literal"><span class="pre">port</span></code>, <code class="docutils literal"><span class="pre">database</span></code>, and <code class="docutils literal"><span class="pre">user</span></code> to <code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">clickhouse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bigquery-quickstart">
+<h2><a class="reference external" href="https://cloud.google.com/bigquery/">BigQuery</a> Quickstart<a class="headerlink" href="#bigquery-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s BigQuery dialect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">bigquery</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Create a client by passing in the project id and dataset id you wish to operate
+with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="s1">&#39;ibis-gbq&#39;</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="s1">&#39;testing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="learning-resources">
+<h2>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
+<p>We are collecting Jupyter notebooks for learning here:
+<a class="reference external" href="https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks">https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks</a>. Some of
+these notebooks will be reproduced as part of the documentation.</p>
+</div>
+<div class="section" id="running-ibis-queries-using-docker">
+<span id="install-quickstart"></span><h2>Running Ibis Queries using Docker<a class="headerlink" href="#running-ibis-queries-using-docker" title="Permalink to this headline">¶</a></h2>
+<p>Contributor <a class="reference external" href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
+crafting a very easy-to-use <code class="docutils literal"><span class="pre">docker-compose</span></code> setup that enables users and
+developers of ibis to get up and running quickly.</p>
+<p>Here are the steps:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
+git clone https://github.com/ibis-project/ibis
+
+<span class="c1"># go to where the docker-compose file is</span>
+<span class="nb">pushd</span> ibis/ci
+
+<span class="c1"># build the latest version of ibis</span>
+docker-compose build --pull ibis
+
+<span class="c1"># spin up containers</span>
+docker-compose up -d --no-build postgres impala clickhouse
+
+<span class="c1"># wait for things to finish starting</span>
+docker-compose run waiter
+
+<span class="c1"># load data into databases</span>
+docker-compose run ibis ci/load-data.sh
+
+<span class="c1"># confirm that you can reach impala</span>
+<span class="nv">impala_ip_address</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>docker inspect -f <span class="s1">&#39;{{.NetworkSettings.Networks.ci_default.IPAddress}}&#39;</span> ci_impala_1<span class="k">)</span><span class="s2">&quot;</span>
+ping -c <span class="m">1</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">impala_ip_address</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
 </div>
 </div>
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuring Ibis" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuring Ibis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Ibis: Python Data Analysis Productivity Framework" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Ibis: Python Data Analysis Productivity Framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -297,16 +401,17 @@ steps make sure to check the individual steps in the file
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

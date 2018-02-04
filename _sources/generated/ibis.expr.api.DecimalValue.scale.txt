@@ -1,6 +1,0 @@
-ibis.expr.api.DecimalValue.scale
-================================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: DecimalValue.scale

@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.raw_sql
-====================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.raw_sql

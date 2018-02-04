@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.drop_table_or_view
-===============================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.drop_table_or_view

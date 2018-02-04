@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.load_data &mdash; Ibis v0.8.0 documentation</title>
+  <title>ibis.impala.api.ImpalaClient.load_data &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../index.html"/>
         <link rel="up" title="Using Ibis with Impala" href="../impala.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaTable.load_data" href="ibis.impala.api.ImpalaTable.load_data.html"/>
         <link rel="prev" title="ibis.impala.api.ImpalaTable.refresh" href="ibis.impala.api.ImpalaTable.refresh.html"/> 
@@ -42,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +67,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -82,10 +88,12 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../impala.html#the-impala-client-object">The Impala client object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../impala.html#database-and-table-objects">Database and Table objects</a></li>
@@ -105,11 +113,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../impala.html#using-impala-udfs-in-ibis">Using Impala UDFs in Ibis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
@@ -123,8 +132,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ibis</a>
+        
       </nav>
 
 
@@ -133,31 +144,82 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../impala.html">Using Ibis with Impala</a> &raquo;</li>
-      
-    <li>ibis.impala.api.ImpalaClient.load_data</li>
+        
+      <li>ibis.impala.api.ImpalaClient.load_data</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../_sources/generated/ibis.impala.api.ImpalaClient.load_data.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../_sources/generated/ibis.impala.api.ImpalaClient.load_data.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ibis-impala-api-impalaclient-load-data">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="ibis-impala-api-impalaclient-load-data">
 <h1>ibis.impala.api.ImpalaClient.load_data<a class="headerlink" href="#ibis-impala-api-impalaclient-load-data" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.impala.api.ImpalaClient.load_data">
@@ -180,15 +242,18 @@ physically moving data files.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ibis.impala.api.ImpalaTable.load_data.html" class="btn btn-neutral float-right" title="ibis.impala.api.ImpalaTable.load_data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ibis.impala.api.ImpalaTable.load_data.html" class="btn btn-neutral float-right" title="ibis.impala.api.ImpalaTable.load_data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ibis.impala.api.ImpalaTable.refresh.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaTable.refresh" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ibis.impala.api.ImpalaTable.refresh.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaTable.refresh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -219,16 +284,17 @@ physically moving data files.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.cache_table
-========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.cache_table

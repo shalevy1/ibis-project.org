@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.list_databases
-===========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.list_databases

@@ -1,6 +1,0 @@
-ibis.impala.api.Database.table
-==============================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: Database.table

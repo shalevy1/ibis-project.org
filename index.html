@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.8.0 documentation</title>
+  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="#"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="#"/>
         <link rel="next" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
@@ -40,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +65,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -80,16 +86,19 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
@@ -103,8 +112,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Ibis</a>
+        
       </nav>
 
 
@@ -113,29 +124,80 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
-      
-    <li>Ibis: Python Data Analysis Productivity Framework</li>
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Ibis: Python Data Analysis Productivity Framework</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ibis-python-data-analysis-productivity-framework">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="ibis-python-data-analysis-productivity-framework">
 <h1>Ibis: Python Data Analysis Productivity Framework<a class="headerlink" href="#ibis-python-data-analysis-productivity-framework" title="Permalink to this headline">¶</a></h1>
 <p>Ibis is a toolbox to bridge the gap between local Python environments (like
 pandas and scikit-learn) and remote storage and execution systems like Hadoop
@@ -155,9 +217,9 @@ and streamline common or tedious tasks.</li>
 <p>As the <a class="reference external" href="http://arrow.apache.org/">Apache Arrow</a> project develops, we will
 look to use Arrow to enable computational code written in Python to be executed
 natively within other systems like Apache Spark and Apache Impala (incubating).</p>
-<p>To learn more about Ibis&#8217;s vision, roadmap, and updates, please follow
+<p>To learn more about Ibis’s vision, roadmap, and updates, please follow
 <a class="reference external" href="http://ibis-project.org">http://ibis-project.org</a>.</p>
-<p>Source code is on GitHub: <a class="reference external" href="http://github.com/cloudera/ibis">http://github.com/cloudera/ibis</a></p>
+<p>Source code is on GitHub: <a class="reference external" href="http://github.com/pandas-dev/ibis">http://github.com/pandas-dev/ibis</a></p>
 <p>Install Ibis from PyPI with:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
 </pre></div>
@@ -170,9 +232,11 @@ natively within other systems like Apache Spark and Apache Impala (incubating).<
 <ul class="simple">
 <li><a class="reference external" href="http://impala.io/">Apache Impala (incubating)</a></li>
 <li><a class="reference external" href="http://getkudu.io">Apache Kudu (incubating)</a></li>
-<li>Hadoop Distributed File System (HDFS)</li>
-<li>PostgreSQL (Experimental)</li>
+<li>PostgreSQL</li>
 <li>SQLite</li>
+<li>Google BigQuery (experimental)</li>
+<li>Yandex Clickhouse</li>
+<li>Direct execution of ibis expressions against pandas objects (Experimental)</li>
 </ul>
 <p>Coming from SQL? Check out <a class="reference internal" href="sql.html#sql"><span class="std std-ref">Ibis for SQL Programmers</span></a>.</p>
 <p>Architecturally, Ibis features:</p>
@@ -199,13 +263,13 @@ places, but this will improve as things progress.</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 </div>
@@ -221,12 +285,15 @@ places, but this will improve as things progress.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="getting-started.html" class="btn btn-neutral float-right" title="Installation and Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="getting-started.html" class="btn btn-neutral float-right" title="Installation and Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
@@ -258,16 +325,17 @@ places, but this will improve as things progress.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

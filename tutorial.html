@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Expression tutorial &mdash; Ibis v0.8.0 documentation</title>
+  <title>Tutorial &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,9 +32,12 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="index.html"/>
-        <link rel="next" title="Impala/HDFS intro and Setup" href="generated-notebooks/0.html"/>
-        <link rel="prev" title="Configuring Ibis" href="configuration.html"/> 
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="index.html"/>
+        <link rel="next" title="Impala/HDFS intro and Setup" href="notebooks/tutorial/1-Intro-and-Setup.html"/>
+        <link rel="prev" title="ibis.impala.api.ImpalaClient.set_compression_codec" href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -41,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -60,7 +66,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -81,39 +87,29 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Expression tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html">Projections: adding/selecting columns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#joins">Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/2.html#sorting">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html">Type casting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#set-membership">Set membership</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#null-ness">Null-ness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#distinct-based-operations">Distinct-based operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#string-operations">String operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/3.html#timestamp-operations">Timestamp operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html">Creating new Impala tables from Ibis expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html">&#8220;Top-K&#8221; Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated-notebooks/5.html#self-joins">Self joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/4-More-Value-Expressions.html">More Value Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
@@ -127,8 +123,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ibis</a>
+        
       </nav>
 
 
@@ -137,96 +135,110 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Expression tutorial</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/tutorial.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="expression-tutorial">
-<span id="tutorial"></span><h1>Expression tutorial<a class="headerlink" href="#expression-tutorial" title="Permalink to this headline">¶</a></h1>
-<p>These notebooks come from <a class="reference external" href="http://github.com/cloudera/ibis-notebooks">http://github.com/cloudera/ibis-notebooks</a> and are
-reproduced here using <code class="docutils literal"><span class="pre">nbconvert</span></code>.</p>
-<p>Notebook 1</p>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="tutorial">
+<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>Here we show Jupyter notebooks that take you through various tasks using ibis.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/0.html">Impala/HDFS intro and Setup</a></li>
-</ul>
-</div>
-<p>Notebook 2</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/1.html">Basics: Aggregation, filtering, limits</a></li>
-</ul>
-</div>
-<p>Notebook 3</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/2.html">Projections: adding/selecting columns</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/2.html#joins">Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/2.html#sorting">Sorting</a></li>
-</ul>
-</div>
-<p>Notebook 4</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html">Type casting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#case-if-then-else-expressions">Case / if-then-else expressions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#set-membership">Set membership</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#null-ness">Null-ness</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#distinct-based-operations">Distinct-based operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#string-operations">String operations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/3.html#timestamp-operations">Timestamp operations</a></li>
-</ul>
-</div>
-<p>Notebook 5</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html">Creating new Impala tables from Ibis expressions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#inserting-data-into-existing-impala-tables">Inserting data into existing Impala tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#uploading-downloading-data-from-hdfs">Uploading / downloading data from HDFS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#queries-on-parquet-avro-and-delimited-files-in-hdfs">Queries on Parquet, Avro, and Delimited files in HDFS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#other-helper-functions-for-interacting-with-the-database">Other helper functions for interacting with the database</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#dealing-with-partitioned-tables-in-impala">Dealing with Partitioned tables in Impala</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/4.html#faster-queries-on-small-data-in-impala">Faster queries on small data in Impala</a></li>
-</ul>
-</div>
-<p>Notebook 6</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/5.html">&#8220;Top-K&#8221; Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generated-notebooks/5.html#self-joins">Self joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/4-More-Value-Expressions.html">More Value Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
 </ul>
 </div>
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="generated-notebooks/0.html" class="btn btn-neutral float-right" title="Impala/HDFS intro and Setup" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="notebooks/tutorial/1-Intro-and-Setup.html" class="btn btn-neutral float-right" title="Impala/HDFS intro and Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configuration.html" class="btn btn-neutral" title="Configuring Ibis" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaClient.set_compression_codec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -257,16 +269,17 @@ reproduced here using <code class="docutils literal"><span class="pre">nbconvert
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

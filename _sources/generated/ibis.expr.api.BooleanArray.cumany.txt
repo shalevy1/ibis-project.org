@@ -1,6 +1,0 @@
-ibis.expr.api.BooleanArray.cumany
-=================================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: BooleanArray.cumany

@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Topics: Additional Filtering &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../../index.html"/>
+        <link rel="up" title="Tutorial" href="../../tutorial.html"/>
+        <link rel="next" title="Additional Analytics Tools" href="8-More-Analytics-Helpers.html"/>
+        <link rel="prev" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.12.0+47.g45e9452
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Topics: Additional Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-scalar-aggregates-in-filters">Using scalar aggregates in filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Conditional-aggregates">Conditional aggregates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#“Existence”-filters">“Existence” filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../legal.html">Legal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ibis</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tutorial.html">Tutorial</a> &raquo;</li>
+        
+      <li>Advanced Topics: Additional Filtering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/notebooks/tutorial/7-Advanced-Topics-ComplexFiltering.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Advanced-Topics:-Additional-Filtering">
+<h1>Advanced Topics: Additional Filtering<a class="headerlink" href="#Advanced-Topics:-Additional-Filtering" title="Permalink to this headline">¶</a></h1>
+<p>The filtering examples we’ve shown to this point have been pretty
+simple, either comparisons between columns or fixed values, or set
+filter functions like <code class="docutils literal"><span class="pre">isin</span></code> and <code class="docutils literal"><span class="pre">notin</span></code>.</p>
+<p>Ibis supports a number of richer analytical filters that can involve one
+or more of:</p>
+<ul class="simple">
+<li>Aggregates computed from the same or other tables</li>
+<li>Conditional aggregates (in SQL-speak these are similar to “correlated
+subqueries”)</li>
+<li>“Existence” set filters (equivalent to the SQL <code class="docutils literal"><span class="pre">EXISTS</span></code> and
+<code class="docutils literal"><span class="pre">NOT</span> <span class="pre">EXISTS</span></code> keywords)</li>
+</ul>
+<div class="section" id="Setup">
+<h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Using-scalar-aggregates-in-filters">
+<h2>Using scalar aggregates in filters<a class="headerlink" href="#Using-scalar-aggregates-in-filters" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_4_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_4_0.png" />
+</div>
+</div>
+<p>We could always compute some aggregate value from the table and use that
+in another expression, or we can use a data-derived aggregate in the
+filter. Take the average of a column for example:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_6_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_6_0.png" />
+</div>
+</div>
+<p>You can use this expression as a substitute for a scalar value in a
+filter, and the execution engine will combine everything into a single
+query rather than having to access Impala multiple times:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cond</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">cond</span> <span class="o">&amp;</span> <span class="n">table</span><span class="o">.</span><span class="n">bool_col</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_8_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_8_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Conditional-aggregates">
+<h2>Conditional aggregates<a class="headerlink" href="#Conditional-aggregates" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that we wish to filter using an aggregate computed conditional
+on some other expressions holding true. Using the TPC-H datasets,
+suppose that we want to filter customers based on the following
+criteria: Orders such that their amount exceeds the average amount for
+their sales region over the whole dataset. This can be computed any
+numbers of ways (such as joining auxiliary tables and filtering
+post-join)</p>
+<p>Again, from prior examples, here are the joined up tables with all the
+customer data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">region</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_region&#39;</span><span class="p">)</span>
+<span class="n">nation</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_nation&#39;</span><span class="p">)</span>
+<span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_customer&#39;</span><span class="p">)</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_orders&#39;</span><span class="p">)</span>
+
+<span class="n">fields_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="n">customer</span><span class="p">,</span>
+                      <span class="n">region</span><span class="o">.</span><span class="n">r_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">),</span>
+                      <span class="n">orders</span><span class="o">.</span><span class="n">o_totalprice</span><span class="p">,</span>
+                      <span class="n">orders</span><span class="o">.</span><span class="n">o_orderdate</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;odate&#39;</span><span class="p">)]</span>
+
+<span class="n">tpch</span> <span class="o">=</span> <span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nation</span><span class="p">,</span> <span class="n">region</span><span class="o">.</span><span class="n">r_regionkey</span> <span class="o">==</span> <span class="n">nation</span><span class="o">.</span><span class="n">n_regionkey</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">c_nationkey</span> <span class="o">==</span> <span class="n">nation</span><span class="o">.</span><span class="n">n_nationkey</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span> <span class="o">==</span> <span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">fields_of_interest</span><span class="p">])</span>
+
+<span class="n">tpch</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[5]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>c_custkey              c_name                            c_address  \
+0     133885  Customer#000133885                         EVK76gJeTspw
+1      36934  Customer#000036934                0rsf17ITLCTceWGXzpe9n
+2      41483  Customer#000041483                          LNzmnS7zhAH
+3     148102  Customer#000148102           sqd6wCIoHZ6qMdVveUERJraOO1
+4      19864  Customer#000019864  juCsfGD12 ySsWfOrSp5TQyHbxmJMuYKp3k
+
+   c_nationkey          c_phone c_acctbal c_mktsegment  \
+0           24  34-956-563-4308   6723.55   AUTOMOBILE
+1           10  20-879-918-2113   5928.79    FURNITURE
+2            6  16-613-774-2621   6913.32    HOUSEHOLD
+3            6  16-318-581-1666   8906.57     BUILDING
+4           12  22-890-475-8535   4600.19    HOUSEHOLD
+
+                                           c_comment       region  \
+0  mptotes use blithely furiously regular escapad...      AMERICA
+1  usual dependencies serve blithely deposits. ir...  MIDDLE EAST
+2  structions. blithely final pearls boost around...       EUROPE
+3  eas. deposits integrate along the slyly ironic...       EUROPE
+4  careful braids. unusual, silent requests after...         ASIA
+
+  o_totalprice      odate
+0    160843.35 1992-06-22
+1     78307.91 1996-04-19
+2    103237.90 1994-10-12
+3    201463.59 1997-09-12
+4    166098.86 1995-09-12
+</pre></div>
+</div>
+</div>
+<p>In this particular case, filtering based on the conditional average
+<code class="docutils literal"><span class="pre">o_totalprice</span></code> by region requires creating a table view (similar to
+the self-join examples from earlier) that can be treated as a distinct
+table entity in the expression. This would <strong>not</strong> be required if we
+were computing a conditional statistic from some other table. So this is
+a little more complicated than some other cases would be:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">conditional_avg</span> <span class="o">=</span> <span class="n">t2</span><span class="p">[(</span><span class="n">t2</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">tpch</span><span class="o">.</span><span class="n">region</span><span class="p">)]</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Once you’ve done this, you can use the conditional average in a filter
+expression</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">amount_filter</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">o_totalprice</span> <span class="o">&gt;</span> <span class="n">conditional_avg</span>
+<span class="n">tpch</span><span class="p">[</span><span class="n">amount_filter</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>c_custkey              c_name                              c_address  \
+0      36901  Customer#000036901                   TBb1yDZcf 8Zepk7apFJ
+1     123314  Customer#000123314   nKPmaZi,OKhObOYSL3wc egXR4Vt99CXRclF
+2      39136  Customer#000039136        afZJC1mWpwvsfKT0211ZD6NQXVGETfl
+3     130057  Customer#000130057            jQDBlCU2IlHmzkDfcqgIHg2eLsN
+4      66958  Customer#000066958            h5jsmOq8nxf8Pz1Knqe GZdK4lh
+5     127588  Customer#000127588      DbnvQxsG0,Nobhbj6n5cMUNPjfouzdFzH
+6      86116  Customer#000086116  63BSp8bODm1dImPJEPTRmsSa4GqNA1SeRqFgx
+7      81763  Customer#000081763     mZtn4M5r0KIw4aooP BXF3ReR RUlPJcAb
+8      56614  Customer#000056614                    sRgxfCf6gDLmFnrO8UO
+9      28547  Customer#000028547            AeWmD3BLrsSkmRY7O,wbB75i6Ll
+
+   c_nationkey          c_phone c_acctbal c_mktsegment  \
+0           13  23-644-998-4944   4809.84   AUTOMOBILE
+1           15  25-884-345-1592   -686.40    MACHINERY
+2            5  15-400-347-1643   5555.41    FURNITURE
+3            9  19-938-862-4157   5009.55    FURNITURE
+4           18  28-393-112-1873   9160.79    MACHINERY
+5           14  24-409-883-5840    358.38     BUILDING
+6            0  10-356-493-3518   3205.60   AUTOMOBILE
+7            8  18-425-613-5972   8368.23    MACHINERY
+8           11  21-657-845-6087   7623.48     BUILDING
+9            1  11-711-951-5798   2095.42    MACHINERY
+
+                                           c_comment       region  \
+0  nstructions sleep final, regular deposits. qui...  MIDDLE EAST
+1             ounts serve furiously. carefully expre       AFRICA
+2  y? express theodolites haggle against the bold...       AFRICA
+3   blithely regular packages. carefully bold acc...         ASIA
+4  ggle quickly after the carefully stealthy depo...         ASIA
+5                  accounts wake slyly along the bli       AFRICA
+6    ironic ideas. quickly pending ideas sleep blith       AFRICA
+7  ronic frays. slyly pending pinto beans are fur...         ASIA
+8  sts. slyly ironic sheaves cajole dogged packag...  MIDDLE EAST
+9  y regular foxes nag quickly after the express,...      AMERICA
+
+  o_totalprice      odate
+0    173665.47 1996-01-02
+1    193846.25 1993-10-14
+2    252004.18 1996-01-10
+3    208660.75 1995-07-16
+4    163243.98 1993-10-27
+5    253724.56 1995-10-23
+6    206680.66 1992-06-03
+7    341734.47 1996-09-20
+8    169405.01 1996-12-19
+9    330793.52 1998-04-18
+</pre></div>
+</div>
+</div>
+<p>By looking at the table sizes before and after applying the filter you
+can see the relative size of the subset taken.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tpch</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>1500000
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tpch</span><span class="p">[</span><span class="n">amount_filter</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[9]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>711969
+</pre></div>
+</div>
+</div>
+<p>Or even group by year and compare before and after:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">tpch</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>ibis.Schema {
+  c_custkey     int64
+  c_name        string
+  c_address     string
+  c_nationkey   int32
+  c_phone       string
+  c_acctbal     decimal(12, 2)
+  c_mktsegment  string
+  c_comment     string
+  region        string
+  o_totalprice  decimal(12, 2)
+  odate         timestamp
+}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">year</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">odate</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+
+<span class="n">pre_sizes</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">post_sizes</span> <span class="o">=</span> <span class="n">tpch</span><span class="p">[</span><span class="n">amount_filter</span><span class="p">]</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+
+<span class="n">percent</span> <span class="o">=</span> <span class="p">((</span><span class="n">post_sizes</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">pre_sizes</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">))</span>
+           <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;fraction&#39;</span><span class="p">))</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">pre_sizes</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">post_sizes</span><span class="p">,</span> <span class="n">pre_sizes</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">post_sizes</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">pre_sizes</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+         <span class="n">pre_sizes</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;pre_count&#39;</span><span class="p">),</span>
+         <span class="n">post_sizes</span><span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;post_count&#39;</span><span class="p">),</span>
+         <span class="n">percent</span><span class="p">])</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>year  pre_count  post_count  fraction
+0  1994     227597      108087  0.474905
+1  1996     228626      108757  0.475698
+2  1992     227089      107815  0.474770
+3  1998     133623       63551  0.475599
+4  1993     226645      107703  0.475206
+5  1995     228637      108315  0.473742
+6  1997     227783      107741  0.472998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="“Existence”-filters">
+<h2>“Existence” filters<a class="headerlink" href="#“Existence”-filters" title="Permalink to this headline">¶</a></h2>
+<p>Some filtering involves checking for the existence of a particular value
+in a column of another table, or amount the results of some value
+expression. This is common in many-to-many relationships, and can be
+performed in numerous different ways, but it’s nice to be able to
+express it with a single concise statement and let Ibis compute it
+optimally.</p>
+<p>Here’s some examples:</p>
+<ul class="simple">
+<li>Filter down to customers having at least one open order</li>
+<li>Find customers having no open orders with 1-URGENT status</li>
+<li>Find stores (in the stores table) having the same name as a vendor
+(in the vendors table).</li>
+</ul>
+<p>We’ll go ahead and solve the first couple of these problems using the
+TPC-H tables to illustrate the API:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_customer&#39;</span><span class="p">)</span>
+<span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_orders&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">orders</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_23_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_23_0.png" />
+</div>
+</div>
+<p>We introduce the <code class="docutils literal"><span class="pre">any</span></code> reduction:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">has_open_orders</span> <span class="o">=</span> <span class="p">((</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderstatus</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+                   <span class="p">(</span><span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span> <span class="o">==</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>This is now a valid filter:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">customer</span><span class="p">[</span><span class="n">has_open_orders</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_27_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_27_0.png" />
+</div>
+</div>
+<p>For the second example, in which we want to find customers not having
+any open urgent orders, we write down the condition that they <em>do</em> have
+some first:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">has_open_urgent_orders</span> <span class="o">=</span> <span class="p">((</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderstatus</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderpriority</span> <span class="o">==</span> <span class="s1">&#39;1-URGENT&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span> <span class="o">==</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Now, we can negate this condition and use it as a filter:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">customer</span><span class="p">[</span><span class="o">-</span><span class="n">has_open_urgent_orders</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_31_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_31_0.png" />
+</div>
+</div>
+<p>In this case, it is true that <code class="docutils literal"><span class="pre">customer.c_custkey</span></code> has no duplicate
+values, but that need not be the case. There could be multiple copies of
+any given value in either table column being compared, and the behavior
+will be the same (existence or non-existence is verified).</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="8-More-Analytics-Helpers.html" class="btn btn-neutral float-right" title="Additional Analytics Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="6-Advanced-Topics-TopK-SelfJoins.html" class="btn btn-neutral" title="Advanced Topics: Top-K and Self Joins" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'v0.12.0+47.g45e9452',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

@@ -1,6 +1,0 @@
-ibis.sql.sqlite.api.SQLiteClient.list_tables
-============================================
-
-.. currentmodule:: ibis.sql.sqlite.api
-
-.. automethod:: SQLiteClient.list_tables

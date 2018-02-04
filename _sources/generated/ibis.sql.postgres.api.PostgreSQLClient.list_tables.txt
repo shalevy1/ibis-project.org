@@ -1,6 +1,0 @@
-ibis.sql.postgres.api.PostgreSQLClient.list_tables
-==================================================
-
-.. currentmodule:: ibis.sql.postgres.api
-
-.. automethod:: PostgreSQLClient.list_tables

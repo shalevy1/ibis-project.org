@@ -1,6 +1,0 @@
-ibis.impala.api.Database.namespace
-==================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: Database.namespace

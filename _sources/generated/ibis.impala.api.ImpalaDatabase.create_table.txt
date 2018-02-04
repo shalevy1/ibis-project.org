@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaDatabase.create_table
-===========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaDatabase.create_table

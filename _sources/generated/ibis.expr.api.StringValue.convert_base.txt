@@ -1,6 +1,0 @@
-ibis.expr.api.StringValue.convert_base
-======================================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: StringValue.convert_base

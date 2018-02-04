@@ -1,6 +1,0 @@
-ibis.impala.api.Database.drop
-=============================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: Database.drop

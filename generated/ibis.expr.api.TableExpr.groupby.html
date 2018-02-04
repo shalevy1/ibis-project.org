@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.groupby &mdash; Ibis v0.8.0 documentation</title>
+  <title>ibis.expr.api.TableExpr.groupby &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.limit" href="ibis.expr.api.TableExpr.limit.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.group_by" href="ibis.expr.api.TableExpr.group_by.html"/> 
@@ -42,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +67,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -82,11 +88,14 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
@@ -136,9 +145,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
@@ -152,8 +161,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ibis</a>
+        
       </nav>
 
 
@@ -162,31 +173,82 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../api.html">API Reference</a> &raquo;</li>
-      
-    <li>ibis.expr.api.TableExpr.groupby</li>
+        
+      <li>ibis.expr.api.TableExpr.groupby</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../_sources/generated/ibis.expr.api.TableExpr.groupby.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../_sources/generated/ibis.expr.api.TableExpr.groupby.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ibis-expr-api-tableexpr-groupby">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="ibis-expr-api-tableexpr-groupby">
 <h1>ibis.expr.api.TableExpr.groupby<a class="headerlink" href="#ibis-expr-api-tableexpr-groupby" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.groupby">
@@ -205,22 +267,31 @@ operation to be applied with it.</p>
 <p>group_by and groupby are equivalent, with <cite>groupby</cite> being provided for
 ease-of-use for pandas users.</p>
 <p class="rubric">Examples</p>
-<p>x.group_by([b1, b2]).aggregate(metrics)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">sum_of_c</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ibis.expr.api.TableExpr.limit.html" class="btn btn-neutral float-right" title="ibis.expr.api.TableExpr.limit" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ibis.expr.api.TableExpr.limit.html" class="btn btn-neutral float-right" title="ibis.expr.api.TableExpr.limit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ibis.expr.api.TableExpr.group_by.html" class="btn btn-neutral" title="ibis.expr.api.TableExpr.group_by" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ibis.expr.api.TableExpr.group_by.html" class="btn btn-neutral" title="ibis.expr.api.TableExpr.group_by" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -251,16 +322,17 @@ ease-of-use for pandas users.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

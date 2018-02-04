@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.IntegerValue.convert_base &mdash; Ibis v0.8.0 documentation</title>
+  <title>ibis.expr.api.IntegerValue.convert_base &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,10 +32,13 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.IntegerValue.to_timestamp" href="ibis.expr.api.IntegerValue.to_timestamp.html"/>
-        <link rel="prev" title="ibis.expr.api.NumericArray.histogram" href="ibis.expr.api.NumericArray.histogram.html"/> 
+        <link rel="prev" title="ibis.expr.api.NumericColumn.histogram" href="ibis.expr.api.NumericColumn.histogram.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -42,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +67,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -82,11 +88,14 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
@@ -99,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#generic-value-methods">Generic value methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#general-numeric-methods">General numeric methods</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id4">Scalar or array methods</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id4">Scalar or column methods</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">ibis.expr.api.IntegerValue.convert_base</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ibis.expr.api.IntegerValue.to_timestamp.html">ibis.expr.api.IntegerValue.to_timestamp</a></li>
 </ul>
@@ -114,9 +123,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
@@ -130,8 +139,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ibis</a>
+        
       </nav>
 
 
@@ -140,31 +151,82 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../api.html">API Reference</a> &raquo;</li>
-      
-    <li>ibis.expr.api.IntegerValue.convert_base</li>
+        
+      <li>ibis.expr.api.IntegerValue.convert_base</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../_sources/generated/ibis.expr.api.IntegerValue.convert_base.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../_sources/generated/ibis.expr.api.IntegerValue.convert_base.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ibis-expr-api-integervalue-convert-base">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="ibis-expr-api-integervalue-convert-base">
 <h1>ibis.expr.api.IntegerValue.convert_base<a class="headerlink" href="#ibis-expr-api-integervalue-convert-base" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.IntegerValue.convert_base">
@@ -190,15 +252,18 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ibis.expr.api.IntegerValue.to_timestamp.html" class="btn btn-neutral float-right" title="ibis.expr.api.IntegerValue.to_timestamp" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ibis.expr.api.IntegerValue.to_timestamp.html" class="btn btn-neutral float-right" title="ibis.expr.api.IntegerValue.to_timestamp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ibis.expr.api.NumericArray.histogram.html" class="btn btn-neutral" title="ibis.expr.api.NumericArray.histogram" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ibis.expr.api.NumericColumn.histogram.html" class="btn btn-neutral" title="ibis.expr.api.NumericColumn.histogram" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -229,16 +294,17 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

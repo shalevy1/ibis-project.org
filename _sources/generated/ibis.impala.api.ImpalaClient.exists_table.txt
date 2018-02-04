@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.exists_table
-=========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.exists_table

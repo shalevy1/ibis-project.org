@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.truncate_table
-===========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.truncate_table

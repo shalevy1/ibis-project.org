@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaTable.invalidate_metadata
-===============================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaTable.invalidate_metadata

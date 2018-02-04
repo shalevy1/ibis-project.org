@@ -1,6 +1,0 @@
-ibis.expr.api.ValueExpr.over
-============================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: ValueExpr.over

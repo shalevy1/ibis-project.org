@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.disable_codegen
-============================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.disable_codegen

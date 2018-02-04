@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.set_compression_codec
-==================================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.set_compression_codec

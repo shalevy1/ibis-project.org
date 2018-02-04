@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.Expr.pipe &mdash; Ibis v0.8.0 documentation</title>
+  <title>ibis.expr.api.Expr.pipe &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,7 +32,10 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="../index.html"/>
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.Expr.verify" href="ibis.expr.api.Expr.verify.html"/>
         <link rel="prev" title="ibis.expr.api.Expr.execute" href="ibis.expr.api.Expr.execute.html"/> 
@@ -42,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -61,7 +67,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -82,11 +88,14 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Expression tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../api.html#creating-connections">Creating connections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#impala-client">Impala client</a></li>
@@ -114,9 +123,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
 
@@ -130,8 +139,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ibis</a>
+        
       </nav>
 
 
@@ -140,45 +151,87 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../api.html">API Reference</a> &raquo;</li>
-      
-    <li>ibis.expr.api.Expr.pipe</li>
+        
+      <li>ibis.expr.api.Expr.pipe</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../_sources/generated/ibis.expr.api.Expr.pipe.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../_sources/generated/ibis.expr.api.Expr.pipe.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="ibis-expr-api-expr-pipe">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="ibis-expr-api-expr-pipe">
 <h1>ibis.expr.api.Expr.pipe<a class="headerlink" href="#ibis-expr-api-expr-pipe" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.Expr.pipe">
 <code class="descclassname">Expr.</code><code class="descname">pipe</code><span class="sig-paren">(</span><em>f</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.Expr.pipe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generic composition function to enable expression pipelining</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">expr</span>
-<span class="gp">&gt;&gt;&gt; </span> <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span> <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="o">*</span><span class="n">args2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs2</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>is equivalent to</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="o">*</span><span class="n">args2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs2</span><span class="p">)</span>
-</pre></div>
-</div>
+<dd><p>Generic composition function to enable expression pipelining.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -187,7 +240,7 @@
 <blockquote>
 <div><p>If the expression needs to be passed as anything other than the first
 argument to the function, pass a tuple with the argument name. For
-example, (f, &#8216;data&#8217;) if the function f expects a &#8216;data&#8217; keyword</p>
+example, (f, ‘data’) if the function f expects a ‘data’ keyword</p>
 </div></blockquote>
 <p><strong>args</strong> : positional arguments</p>
 <p><strong>kwargs</strong> : keyword arguments</p>
@@ -199,12 +252,33 @@ example, (f, &#8216;data&#8217;) if the function f expects a &#8216;data&#8217; 
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">pass</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">pass</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span><span class="o">.</span><span class="n">pipe</span><span class="p">((</span><span class="n">bar</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result1</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result1</span>  
+<span class="go">ref_0</span>
+<span class="go">UnboundTable[table]</span>
+<span class="go">  name: t</span>
+<span class="go">  schema:</span>
+<span class="go">    a : int64</span>
+<span class="go">    b : string</span>
+<span class="go">a = Multiply[int64*]</span>
+<span class="go">  left:</span>
+<span class="go">    a = Add[int64*]</span>
+<span class="go">      left:</span>
+<span class="go">        a = Column[int64*] &#39;a&#39; from table</span>
+<span class="go">          ref_0</span>
+<span class="go">      right:</span>
+<span class="go">        Literal[int8]</span>
+<span class="go">          1</span>
+<span class="go">  right:</span>
+<span class="go">    Literal[int8]</span>
+<span class="go">      2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result2</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">))</span>  <span class="c1"># equivalent to the above</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result1</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+<span class="go">True</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -213,15 +287,18 @@ example, (f, &#8216;data&#8217;) if the function f expects a &#8216;data&#8217; 
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ibis.expr.api.Expr.verify.html" class="btn btn-neutral float-right" title="ibis.expr.api.Expr.verify" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ibis.expr.api.Expr.verify.html" class="btn btn-neutral float-right" title="ibis.expr.api.Expr.verify" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="ibis.expr.api.Expr.execute.html" class="btn btn-neutral" title="ibis.expr.api.Expr.execute" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ibis.expr.api.Expr.execute.html" class="btn btn-neutral" title="ibis.expr.api.Expr.execute" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -252,16 +329,17 @@ example, (f, &#8216;data&#8217;) if the function f expects a &#8216;data&#8217; 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

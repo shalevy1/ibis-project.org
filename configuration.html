@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuring Ibis &mdash; Ibis v0.8.0 documentation</title>
+  <title>Configuring Ibis &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,8 +32,11 @@
   
 
   
-    <link rel="top" title="Ibis v0.8.0 documentation" href="index.html"/>
-        <link rel="next" title="Expression tutorial" href="tutorial.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="index.html"/>
+        <link rel="next" title="Using Ibis with Impala" href="impala.html"/>
         <link rel="prev" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
@@ -41,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -60,7 +66,7 @@
             
             
               <div class="version">
-                v0.8.0
+                v0.12.0+47.g45e9452
               </div>
             
           
@@ -81,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring Ibis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ibis-global-configuration">Ibis global configuration</a><ul>
@@ -90,16 +99,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#verbose-option-and-logging">Verbose option and Logging</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-secure-clusters-kerberos">Working with secure clusters (Kerberos)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-configuation-values-for-cdh-components">Default Configuation Values for CDH Components</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Expression tutorial</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-system.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
 
@@ -113,8 +125,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Ibis</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ibis</a>
+        
       </nav>
 
 
@@ -123,29 +137,80 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Configuring Ibis</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuring Ibis</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/configuration.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configuring-ibis">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="configuring-ibis">
 <span id="configuration"></span><h1>Configuring Ibis<a class="headerlink" href="#configuring-ibis" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="ibis-global-configuration">
 <h2>Ibis global configuration<a class="headerlink" href="#ibis-global-configuration" title="Permalink to this headline">¶</a></h2>
@@ -216,20 +281,31 @@ certificates (which may be helpful in testing).  Ibis will assume <code class="d
 when connecting to a Kerberized cluster. Because some Ibis commands create HDFS
 directories as well as new Impala databases and/or tables, your user will
 require the necessary privileges.</p>
+<div class="section" id="default-configuation-values-for-cdh-components">
+<h3>Default Configuation Values for CDH Components<a class="headerlink" href="#default-configuation-values-for-cdh-components" title="Permalink to this headline">¶</a></h3>
+<p>Cloudera CDH ships with HDFS, Impala, Hive and many other components.
+Sometimes it’s not obvious what default configuration values these tools are
+using or should be using.</p>
+<p>This url <a class="reference external" href="https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_ports_cdh5.html#topic_9_1">https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_ig_ports_cdh5.html#topic_9_1</a>
+shows the default configuration values for every component of CDH.</p>
+</div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tutorial.html" class="btn btn-neutral float-right" title="Expression tutorial" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="impala.html" class="btn btn-neutral float-right" title="Using Ibis with Impala" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="getting-started.html" class="btn btn-neutral" title="Installation and Getting Started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="getting-started.html" class="btn btn-neutral" title="Installation and Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -260,16 +336,17 @@ require the necessary privileges.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.8.0',
+            VERSION:'v0.12.0+47.g45e9452',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

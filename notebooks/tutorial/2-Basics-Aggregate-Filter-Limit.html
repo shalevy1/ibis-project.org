@@ -1,0 +1,1194 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basics: Aggregation, filtering, limits &mdash; Ibis v0.12.0+47.g45e9452 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+47.g45e9452 documentation" href="../../index.html"/>
+        <link rel="up" title="Tutorial" href="../../tutorial.html"/>
+        <link rel="next" title="Projection, Joining, and Sorting" href="3-Projection-Join-Sort.html"/>
+        <link rel="prev" title="Impala/HDFS intro and Setup" href="1-Intro-and-Setup.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.12.0+47.g45e9452
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basics: Aggregation, filtering, limits</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Accessing-an-Impala-table">Accessing an Impala table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Column-selection-and-basic-expressions">Column selection and basic expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Interactive-mode">Interactive mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Verbose-mode-and-logging">Verbose mode and logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Aggregation-basics">Aggregation basics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Filtering">Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Limits">Limits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../legal.html">Legal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ibis</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tutorial.html">Tutorial</a> &raquo;</li>
+        
+      <li>Basics: Aggregation, filtering, limits</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/notebooks/tutorial/2-Basics-Aggregate-Filter-Limit.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Basics:-Aggregation,-filtering,-limits">
+<h1>Basics: Aggregation, filtering, limits<a class="headerlink" href="#Basics:-Aggregation,-filtering,-limits" title="Permalink to this headline">¶</a></h1>
+<p>Now that you have ibis installed and connecting to your Impala, let’s
+get our feet wet.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Accessing-an-Impala-table">
+<h2>Accessing an Impala table<a class="headerlink" href="#Accessing-an-Impala-table" title="Permalink to this headline">¶</a></h2>
+<p>The optional <code class="docutils literal"><span class="pre">database</span></code> paramter allows to fully qualify the table.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Column-selection-and-basic-expressions">
+<h2>Column selection and basic expressions<a class="headerlink" href="#Column-selection-and-basic-expressions" title="Permalink to this headline">¶</a></h2>
+<p>Selecting columns from a table works just like pandas</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">col</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+
+<span class="c1"># alternately</span>
+<span class="n">col2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;bigint_col&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Table columns are equipped with a variety of math operations and other
+methods to assist in writing your analytics. For example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">log2</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<p>Some operations transform arrays to arrays, while others aggregate, like
+<code class="docutils literal"><span class="pre">sum</span></code> and <code class="docutils literal"><span class="pre">mean</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">expr2</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The methods that are available on columns depend on the type of the
+column. For example, you won’t see the <code class="docutils literal"><span class="pre">substr</span></code> or <code class="docutils literal"><span class="pre">upper</span></code> methods
+for strings on numeric columns:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">substr_expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Notice that printing the expressions to the console does not actually do
+anything, and shows a graphical representation of the expression you’ve
+built.</p>
+<p><strong>Note: don’t worry too much about the details of the expression tree
+that’s outputted, it’s very likely to change over time</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">expr2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_14_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_14_0.png" />
+</div>
+</div>
+<p>We can also execute an expression by calling <code class="docutils literal"><span class="pre">execute</span></code> on the Impala
+connection object</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>331785.00000000006
+</pre></div>
+</div>
+</div>
+<p>There’s a shortcut to make this a little more convenient in interactive
+use</p>
+</div>
+<div class="section" id="Interactive-mode">
+<h2>Interactive mode<a class="headerlink" href="#Interactive-mode" title="Permalink to this headline">¶</a></h2>
+<p>Many Ibis expressions can be immediately executed against the database,
+and it may improve your productivity to have the executed for you
+whenever you try to print the expression in the console / IPython
+notebook.</p>
+<p>To do this, we have an <em>interactive</em> mode available, which can be turned
+on/off like so:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<p>Now, any expressions you write will be executed right away</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_21_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_21_0.png" />
+</div>
+</div>
+<p>You can select a row range with slicing syntax:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_23_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_23_0.png" />
+</div>
+</div>
+<p>Don’t worry about the syntax here, but expressions resulting in tabular
+output will come back as a pandas DataFrame by default:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_25_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Verbose-mode-and-logging">
+<h2>Verbose mode and logging<a class="headerlink" href="#Verbose-mode-and-logging" title="Permalink to this headline">¶</a></h2>
+<p>You may want to see or log all the Impala queries that Ibis executes
+under the hood. To do that, use the <code class="docutils literal"><span class="pre">options.verbose</span></code> option:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)]</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SELECT `string_col`, sum(`double_col`) AS `total`
+FROM ibis_testing.`functional_alltypes`
+GROUP BY 1
+LIMIT 10000
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_27_1.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_27_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">queries</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">def</span> <span class="nf">logger</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">queries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="n">logger</span>
+
+<span class="n">expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+
+<span class="n">queries</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[14]:
+</pre></div>
+</div>
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;SELECT `string_col`, sum(`double_col`) AS `total`\nFROM ibis_testing.`functional_alltypes`\nGROUP BY 1\nLIMIT 10000&#39;,
+ &#39;SELECT `string_col`, sum(`double_col`) AS `total`\nFROM ibis_testing.`functional_alltypes`\nGROUP BY 1\nLIMIT 10000&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Aggregation-basics">
+<h2>Aggregation basics<a class="headerlink" href="#Aggregation-basics" title="Permalink to this headline">¶</a></h2>
+<p>One of the essential table API functions is <code class="docutils literal"><span class="pre">aggregate</span></code>. Aggregation
+involves the following</p>
+<ul class="simple">
+<li>One or more <em>named</em> aggregate expressions, or <em>reductions</em></li>
+<li>Zero or more grouping expressions or column names</li>
+</ul>
+<p>This ends up working very similarly to pandas’s <strong>groupby</strong> mechanism.</p>
+<p>Let’s start with a simple reduction:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>As you saw above, you can execute this immediately and obtain a value:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">metric</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_33_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_33_0.png" />
+</div>
+</div>
+<p>The reduced column can be more complex; for example, you could count the
+number of null values in a column like so:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_35_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_35_0.png" />
+</div>
+</div>
+<p>To aggregate a table, potentially with grouping keys, we have to give
+the reduction a name and call <code class="docutils literal"><span class="pre">aggregate</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;double_total&#39;</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>double_total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>331785.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The result here is actually a pandas DataFrame with 1 row and just the
+one column. We can add another metric and add a grouping key</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">metric2</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">log10</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;some_metric&#39;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;string_col&#39;</span><span class="p">])</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_39_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_39_0.png" />
+</div>
+</div>
+<p>We provide a convenience <code class="docutils literal"><span class="pre">group_by</span></code>, a la pandas, to make this a
+little more composable:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">,</span> <span class="n">metric2</span><span class="p">]))</span>
+<span class="n">expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_41_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_41_0.png" />
+</div>
+</div>
+<p>You can also group by named column expressions</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">),</span> <span class="s1">&#39;string_col&#39;</span><span class="p">]</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">metric</span><span class="p">])</span>
+
+<span class="c1"># Top 10 by double_total, more on this later</span>
+<span class="n">expr</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([(</span><span class="s1">&#39;double_total&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_43_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_43_0.png" />
+</div>
+</div>
+<p>In most cases, an aggregation by itself can be evaluated:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_45_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_45_0.png" />
+</div>
+</div>
+<p>This can also be done in simple cases along with <code class="docutils literal"><span class="pre">group_by</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_47_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_47_0.png" />
+</div>
+</div>
+<p>Many reduction functions have a default expression name, unlike many
+other Ibis expressions (for now!), to make some common analyses easier:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">d</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span>
+
+<span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">()]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_49_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_49_0.png" />
+</div>
+</div>
+<p>Of course, for this <em>particular</em> case you can always use <code class="docutils literal"><span class="pre">summary</span></code></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_51_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_51_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Filtering">
+<h2>Filtering<a class="headerlink" href="#Filtering" title="Permalink to this headline">¶</a></h2>
+<p>Filtering tables works similarly to pandas</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bigint_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bigint_min&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;int_max&#39;</span><span class="p">),</span>
+                 <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;int_min&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_53_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_53_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_54_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_54_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_55_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_55_0.png" />
+</div>
+</div>
+<p>Filters can be composed using &amp; (and), | (or), and other logical array
+operators</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">cond1</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="mi">50</span>
+<span class="n">cond2</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">|</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[30]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_57_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_57_0.png" />
+</div>
+</div>
+<p>There’s a <code class="docutils literal"><span class="pre">filter</span></code> function that allows you to pass a list of
+conditions (that are all required to hold):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">cond1</span><span class="p">,</span> <span class="n">cond2</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[31]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_59_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_59_0.png" />
+</div>
+</div>
+<p>Note this is the same as &amp;-ing the boolean conditions yourself:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="p">[</span><span class="n">cond1</span> <span class="o">&amp;</span> <span class="n">cond2</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_61_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_61_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Limits">
+<h2>Limits<a class="headerlink" href="#Limits" title="Permalink to this headline">¶</a></h2>
+<p>Like in SQL, the <code class="docutils literal"><span class="pre">limit</span></code> function selects the indicated numbers of
+rows from the beginning of a table’s result set</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>In [33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none"><div class="highlight"><pre>
+<span></span>Out[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_63_0.png" src="../../_images/notebooks_tutorial_2-Basics-Aggregate-Filter-Limit_63_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="3-Projection-Join-Sort.html" class="btn btn-neutral float-right" title="Projection, Joining, and Sorting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="1-Intro-and-Setup.html" class="btn btn-neutral" title="Impala/HDFS intro and Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'v0.12.0+47.g45e9452',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

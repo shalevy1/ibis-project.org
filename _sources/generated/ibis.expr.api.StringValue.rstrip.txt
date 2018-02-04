@@ -1,6 +1,0 @@
-ibis.expr.api.StringValue.rstrip
-================================
-
-.. currentmodule:: ibis.expr.api
-
-.. automethod:: StringValue.rstrip

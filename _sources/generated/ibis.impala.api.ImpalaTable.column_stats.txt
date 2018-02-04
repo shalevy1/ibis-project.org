@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaTable.column_stats
-========================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaTable.column_stats

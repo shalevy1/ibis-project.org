@@ -1,6 +1,0 @@
-ibis.impala.api.ImpalaClient.load_data
-======================================
-
-.. currentmodule:: ibis.impala.api
-
-.. automethod:: ImpalaClient.load_data
