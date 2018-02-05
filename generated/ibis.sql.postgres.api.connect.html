@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.sql.postgres.api.connect &mdash; Ibis v0.12.0+54.ge3579bc documentation</title>
+  <title>ibis.sql.postgres.api.connect &mdash; Ibis v0.12.0+55.g36251a1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+54.ge3579bc documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+55.g36251a1 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.sql.postgres.api.PostgreSQLClient.database" href="ibis.sql.postgres.api.PostgreSQLClient.database.html"/>
         <link rel="prev" title="ibis.impala.api.ImpalaClient.execute" href="ibis.impala.api.ImpalaClient.execute.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+54.ge3579bc
+                v0.12.0+55.g36251a1
               </div>
             
           
@@ -230,17 +230,17 @@
 <h1>ibis.sql.postgres.api.connect<a class="headerlink" href="#ibis-sql-postgres-api-connect" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="ibis.sql.postgres.api.connect">
-<code class="descclassname">ibis.sql.postgres.api.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>host=None</em>, <em>user=None</em>, <em>password=None</em>, <em>port=None</em>, <em>database=None</em>, <em>url=None</em>, <em>driver=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.postgres.api.connect" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ibis.sql.postgres.api.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>user=None</em>, <em>password=None</em>, <em>port=5432</em>, <em>database=None</em>, <em>url=None</em>, <em>driver='psycopg2'</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.postgres.api.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an Ibis client located at <cite>user</cite>:<cite>password`&#64;`host</cite>:<cite>port</cite>
 connected to a PostgreSQL database named <cite>database</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : string, default None</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : string, default ‘localhost’</p>
 <p><strong>user</strong> : string, default None</p>
 <p><strong>password</strong> : string, default None</p>
-<p><strong>port</strong> : string or integer, default None</p>
+<p><strong>port</strong> : string or integer, default 5432</p>
 <p><strong>database</strong> : string, default None</p>
 <p><strong>url</strong> : string, default None</p>
 <blockquote>
@@ -341,7 +341,7 @@ arguments are ignored.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+54.ge3579bc',
+            VERSION:'v0.12.0+55.g36251a1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
