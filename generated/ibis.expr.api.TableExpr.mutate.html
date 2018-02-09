@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.mutate &mdash; Ibis v0.12.0+68.gd3192a0 documentation</title>
+  <title>ibis.expr.api.TableExpr.mutate &mdash; Ibis v0.12.0+69.gdd56277 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+68.gd3192a0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+69.gdd56277 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.projection" href="ibis.expr.api.TableExpr.projection.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.limit" href="ibis.expr.api.TableExpr.limit.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+68.gd3192a0
+                v0.12.0+69.gdd56277
               </div>
             
           
@@ -252,7 +252,7 @@
 <h1>ibis.expr.api.TableExpr.mutate<a class="headerlink" href="#ibis-expr-api-tableexpr-mutate" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.mutate">
-<code class="descclassname">TableExpr.</code><code class="descname">mutate</code><span class="sig-paren">(</span><em>table</em>, <em>exprs=None</em>, <em>**kwds</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.mutate" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">mutate</code><span class="sig-paren">(</span><em>table</em>, <em>exprs=None</em>, <em>**mutations</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.mutate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience function for table projections involving adding columns</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -262,7 +262,7 @@
 <blockquote>
 <div><p>List of named expressions to add as columns</p>
 </div></blockquote>
-<p><strong>kwds</strong> : keywords for new columns</p>
+<p><strong>mutations</strong> : keywords for new columns</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>mutated</strong> : TableExpr</p>
@@ -271,9 +271,58 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">qux</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">foo</span> <span class="o">+</span> <span class="n">table</span><span class="o">.</span><span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  
-</pre></div>
-</div>
+<p>Using keywords arguments to name the new columns
+&gt;&gt;&gt; import ibis
+&gt;&gt;&gt; table = ibis.table([(‘foo’, ‘double’), (‘bar’, ‘double’)], name=’t’)
+&gt;&gt;&gt; expr = table.mutate(qux=table.foo + table.bar, baz=5)
+&gt;&gt;&gt; expr  # doctest: +NORMALIZE_WHITESPACE
+ref_0
+UnboundTable[table]</p>
+<blockquote>
+<div><p>name: t
+schema:</p>
+<blockquote>
+<div>foo : double
+bar : double</div></blockquote>
+</div></blockquote>
+<p>&lt;BLANKLINE&gt;
+Selection[table]</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>table:</dt>
+<dd>Table: ref_0</dd>
+<dt>selections:</dt>
+<dd><p class="first">Table: ref_0
+baz = Literal[int8]</p>
+<blockquote>
+<div>5</div></blockquote>
+<dl class="last docutils">
+<dt>qux = Add[double*]</dt>
+<dd><dl class="first last docutils">
+<dt>left:</dt>
+<dd><dl class="first last docutils">
+<dt>foo = Column[double*] ‘foo’ from table</dt>
+<dd>ref_0</dd>
+</dl>
+</dd>
+<dt>right:</dt>
+<dd><dl class="first last docutils">
+<dt>bar = Column[double*] ‘bar’ from table</dt>
+<dd>ref_0</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Using the <code class="xref py py-meth docutils literal"><span class="pre">ibis.expr.types.Expr.name()</span></code> method to name the new columns
+&gt;&gt;&gt; new_columns = [ibis.literal(5).name(‘baz’,),
+…                (table.foo + table.bar).name(‘qux’)]
+&gt;&gt;&gt; expr2 = table.mutate(new_columns)
+&gt;&gt;&gt; expr.equals(expr2)
+True</p>
 </dd></dl>
 
 </div>
@@ -322,7 +371,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+68.gd3192a0',
+            VERSION:'v0.12.0+69.gdd56277',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

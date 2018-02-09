@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ValueExpr.case &mdash; Ibis v0.12.0+68.gd3192a0 documentation</title>
+  <title>ibis.expr.api.ValueExpr.case &mdash; Ibis v0.12.0+69.gdd56277 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+68.gd3192a0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+69.gdd56277 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.ValueExpr.cases" href="ibis.expr.api.ValueExpr.cases.html"/>
         <link rel="prev" title="ibis.expr.api.ValueExpr.typeof" href="ibis.expr.api.ValueExpr.typeof.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+68.gd3192a0
+                v0.12.0+69.gdd56277
               </div>
             
           
@@ -245,10 +245,9 @@
 <dl class="method">
 <dt id="ibis.expr.api.ValueExpr.case">
 <code class="descclassname">ValueExpr.</code><code class="descname">case</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.case" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new SimpleCaseBuilder to chain multiple if-else
-statements. Add new search expressions with the .when method. These
-must be comparable with this array expression. Conclude by calling
-.end()</p>
+<dd><p>Create a new SimpleCaseBuilder to chain multiple if-else statements. Add
+new search expressions with the .when method. These must be comparable with
+this array expression. Conclude by calling .end()</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -258,11 +257,40 @@ must be comparable with this array expression. Conclude by calling
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">case_expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
-<span class="gp">... </span>             <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">case1</span><span class="p">,</span> <span class="n">output1</span><span class="p">)</span>
-<span class="gp">... </span>             <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">case2</span><span class="p">,</span> <span class="n">output2</span><span class="p">)</span>
-<span class="gp">... </span>             <span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">default_output</span><span class="p">)</span>
-<span class="gp">... </span>             <span class="o">.</span><span class="n">end</span><span class="p">())</span>  
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">string_col</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">case_expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
+<span class="gp">... </span>             <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;an a&#39;</span><span class="p">)</span>
+<span class="gp">... </span>             <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a b&#39;</span><span class="p">)</span>
+<span class="gp">... </span>             <span class="o">.</span><span class="n">else_</span><span class="p">(</span><span class="s1">&#39;null or (not a and not b)&#39;</span><span class="p">)</span>
+<span class="gp">... </span>             <span class="o">.</span><span class="n">end</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">case_expr</span>  
+<span class="go">ref_0</span>
+<span class="go">UnboundTable[table]</span>
+<span class="go">  name: t</span>
+<span class="go">  schema:</span>
+<span class="go">    string_col : string</span>
+
+<span class="go">SimpleCase[string*]</span>
+<span class="go">  base:</span>
+<span class="go">    string_col = Column[string*] &#39;string_col&#39; from table</span>
+<span class="go">      ref_0</span>
+<span class="go">  cases:</span>
+<span class="go">    ValueList[string*]</span>
+<span class="go">      Literal[string]</span>
+<span class="go">        a</span>
+<span class="go">      Literal[string]</span>
+<span class="go">        b</span>
+<span class="go">  results:</span>
+<span class="go">    ValueList[string*]</span>
+<span class="go">      Literal[string]</span>
+<span class="go">        an a</span>
+<span class="go">      Literal[string]</span>
+<span class="go">        a b</span>
+<span class="go">  default:</span>
+<span class="go">    Literal[string]</span>
+<span class="go">      null or (not a and not b)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -313,7 +341,7 @@ must be comparable with this array expression. Conclude by calling
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+68.gd3192a0',
+            VERSION:'v0.12.0+69.gdd56277',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

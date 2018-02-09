@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.projection &mdash; Ibis v0.12.0+68.gd3192a0 documentation</title>
+  <title>ibis.expr.api.TableExpr.projection &mdash; Ibis v0.12.0+69.gdd56277 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+68.gd3192a0 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+69.gdd56277 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.relabel" href="ibis.expr.api.TableExpr.relabel.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.mutate" href="ibis.expr.api.TableExpr.mutate.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+68.gd3192a0
+                v0.12.0+69.gdd56277
               </div>
             
           
@@ -270,6 +270,118 @@ this table.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Notes</p>
+<p>Passing an aggregate function to this method will broadcast the aggregate’s
+value over the number of rows in the table. See the examples section for
+more details.</p>
+<p class="rubric">Examples</p>
+<p>Simple projection
+&gt;&gt;&gt; import ibis
+&gt;&gt;&gt; fields = [(‘a’, ‘int64’), (‘b’, ‘double’)]
+&gt;&gt;&gt; t = ibis.table(fields, name=’t’)
+&gt;&gt;&gt; proj = t.projection([t.a, (t.b + 1).name(‘b_plus_1’)])
+&gt;&gt;&gt; proj  # doctest: +NORMALIZE_WHITESPACE
+ref_0
+UnboundTable[table]</p>
+<blockquote>
+<div><p>name: t
+schema:</p>
+<blockquote>
+<div>a : int64
+b : double</div></blockquote>
+</div></blockquote>
+<p>&lt;BLANKLINE&gt;
+Selection[table]</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>table:</dt>
+<dd>Table: ref_0</dd>
+<dt>selections:</dt>
+<dd><dl class="first last docutils">
+<dt>a = Column[int64*] ‘a’ from table</dt>
+<dd>ref_0</dd>
+<dt>b_plus_1 = Add[double*]</dt>
+<dd><dl class="first last docutils">
+<dt>left:</dt>
+<dd><dl class="first last docutils">
+<dt>b = Column[double*] ‘b’ from table</dt>
+<dd>ref_0</dd>
+</dl>
+</dd>
+<dt>right:</dt>
+<dd><dl class="first last docutils">
+<dt>Literal[int8]</dt>
+<dd>1</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">proj2</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;b_plus_1&#39;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">proj</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">proj2</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Aggregate projection
+&gt;&gt;&gt; agg_proj = t[t.a.sum().name(‘sum_a’), t.b.mean().name(‘mean_b’)]
+&gt;&gt;&gt; agg_proj  # doctest: +NORMALIZE_WHITESPACE, +ELLIPSIS
+ref_0
+UnboundTable[table]</p>
+<blockquote>
+<div><p>name: t
+schema:</p>
+<blockquote>
+<div>a : int64
+b : double</div></blockquote>
+</div></blockquote>
+<p>&lt;BLANKLINE&gt;
+Selection[table]</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>table:</dt>
+<dd>Table: ref_0</dd>
+<dt>selections:</dt>
+<dd><dl class="first last docutils">
+<dt>sum_a = WindowOp[int64*]</dt>
+<dd><dl class="first docutils">
+<dt>sum_a = Sum[int64]</dt>
+<dd><dl class="first last docutils">
+<dt>a = Column[int64*] ‘a’ from table</dt>
+<dd>ref_0</dd>
+<dt>where:</dt>
+<dd>None</dd>
+</dl>
+</dd>
+</dl>
+<p class="last">&lt;ibis.expr.window.Window object at 0x…&gt;</p>
+</dd>
+<dt>mean_b = WindowOp[double*]</dt>
+<dd><dl class="first docutils">
+<dt>mean_b = Mean[double]</dt>
+<dd><dl class="first last docutils">
+<dt>b = Column[double*] ‘b’ from table</dt>
+<dd>ref_0</dd>
+<dt>where:</dt>
+<dd>None</dd>
+</dl>
+</dd>
+</dl>
+<p class="last">&lt;ibis.expr.window.Window object at 0x…&gt;</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Note the <code class="docutils literal"><span class="pre">&lt;ibis.expr.window.Window&gt;</span></code> objects here, their existence means
+that the result of the aggregation will be broadcast across the number of
+rows in the input column. The purpose of this expression rewrite is to make
+it easy to write column/scalar-aggregate operations like</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">[(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;demeaned_a&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -318,7 +430,7 @@ this table.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+68.gd3192a0',
+            VERSION:'v0.12.0+69.gdd56277',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
