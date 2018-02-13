@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Additional Analytics Tools &mdash; Ibis v0.12.0+74.g4d202c3 documentation</title>
+  <title>Additional Analytics Tools &mdash; Ibis v0.12.0+75.g0c63d4b documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+74.g4d202c3 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+75.g0c63d4b documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="API Reference" href="../../api.html"/>
         <link rel="prev" title="Advanced Topics: Additional Filtering" href="7-Advanced-Topics-ComplexFiltering.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+74.g4d202c3
+                v0.12.0+75.g0c63d4b
               </div>
             
           
@@ -100,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Additional Analytics Tools</a><ul>
@@ -386,11 +386,11 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
@@ -404,15 +404,15 @@ div.nboutput div.output_area.stderr {
 </div>
 <div class="section" id="Frequency-tables">
 <h2>Frequency tables<a class="headerlink" href="#Frequency-tables" title="Permalink to this headline">¶</a></h2>
-<p>Ibis provides the <code class="docutils literal"><span class="pre">value_counts</span></code> API, just like pandas, for computing
+<p>Ibis provides the <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> API, just like pandas, for computing
 a frequency table for a table column or array expression. You might have
 seen it used already earlier in the tutorial.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">lineitem</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_lineitem&#39;</span><span class="p">)</span>
 <span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_orders&#39;</span><span class="p">)</span>
 
@@ -424,7 +424,7 @@ seen it used already earlier in the tutorial.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[2]:
 </pre></div>
 </div>
@@ -434,11 +434,11 @@ seen it used already earlier in the tutorial.</p>
 </div>
 <p>This can be customized, of course:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">o_orderpriority</span><span class="p">)</span>
         <span class="o">.</span><span class="n">aggregate</span><span class="p">([</span><span class="n">items</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;nrows&#39;</span><span class="p">),</span>
                     <span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total $&#39;</span><span class="p">)]))</span>
@@ -447,7 +447,7 @@ seen it used already earlier in the tutorial.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[3]:
 </pre></div>
 </div>
@@ -459,24 +459,24 @@ seen it used already earlier in the tutorial.</p>
 <div class="section" id="Binning-and-histograms">
 <h2>Binning and histograms<a class="headerlink" href="#Binning-and-histograms" title="Permalink to this headline">¶</a></h2>
 <p>Numeric array expressions (columns with numeric type and other array
-expressions) have <code class="docutils literal"><span class="pre">bucket</span></code> and <code class="docutils literal"><span class="pre">histogram</span></code> methods which produce
+expressions) have <code class="docutils literal notranslate"><span class="pre">bucket</span></code> and <code class="docutils literal notranslate"><span class="pre">histogram</span></code> methods which produce
 different kinds of binning. These produce category values (the computed
 bins) that can be used in grouping and other analytics.</p>
 <p>Let’s have a look at a few examples</p>
-<p>I’ll use the <code class="docutils literal"><span class="pre">summary</span></code> function to see the general distribution of
+<p>I’ll use the <code class="docutils literal notranslate"><span class="pre">summary</span></code> function to see the general distribution of
 lineitem prices in the order data joined above:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[4]:
 </pre></div>
 </div>
@@ -487,39 +487,39 @@ lineitem prices in the order data joined above:</p>
 <p>Alright then, now suppose we want to split the item prices up into some
 buckets of our choosing:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">bucket</span></code> function creates a bucketed category from the prices:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">bucket</span></code> function creates a bucketed category from the prices:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">bucketed</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bucket&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Let’s have a look at the value counts:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">bucketed</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[7]:
 </pre></div>
 </div>
@@ -528,16 +528,16 @@ buckets of our choosing:</p>
 </div>
 </div>
 <p>The buckets we wrote down define 4 buckets numbered 0 through 3. The
-<code class="docutils literal"><span class="pre">NaN</span></code> is a pandas <code class="docutils literal"><span class="pre">NULL</span></code> value (since that’s how pandas represents
+<code class="docutils literal notranslate"><span class="pre">NaN</span></code> is a pandas <code class="docutils literal notranslate"><span class="pre">NULL</span></code> value (since that’s how pandas represents
 nulls in numeric arrays), so don’t worry too much about that. Since the
 bucketing ends at 100000, we see there are 4122 values that are over
-100000. These can be included in the bucketing with <code class="docutils literal"><span class="pre">include_over</span></code>:</p>
+100000. These can be included in the bucketing with <code class="docutils literal notranslate"><span class="pre">include_over</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">bucketed</span> <span class="o">=</span> <span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">l_extendedprice</span>
             <span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">,</span> <span class="n">include_over</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
             <span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;bucket&#39;</span><span class="p">))</span>
@@ -546,7 +546,7 @@ bucketing ends at 100000, we see there are 4122 values that are over
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[8]:
 </pre></div>
 </div>
@@ -554,38 +554,38 @@ bucketing ends at 100000, we see there are 4122 values that are over
 <img alt="../../_images/notebooks_tutorial_8-More-Analytics-Helpers_16_0.png" src="../../_images/notebooks_tutorial_8-More-Analytics-Helpers_16_0.png" />
 </div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">bucketed</span></code> object here is a special <strong>*category*</strong> type</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">bucketed</span></code> object here is a special <strong>*category*</strong> type</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">bucketed</span><span class="o">.</span><span class="n">type</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[9]:
 </pre></div>
 </div>
-<div class="output_area highlight-none"><div class="highlight"><pre>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Category(cardinality=5)
 </pre></div>
 </div>
 </div>
 <p>Category values can either have a known or unknown <strong>*cardinality*</strong>. In
 this case, there’s either 4 or 5 buckets based on how we used the
-<code class="docutils literal"><span class="pre">bucket</span></code> function.</p>
-<p>Labels can be assigned to the buckets at any time using the <code class="docutils literal"><span class="pre">label</span></code>
+<code class="docutils literal notranslate"><span class="pre">bucket</span></code> function.</p>
+<p>Labels can be assigned to the buckets at any time using the <code class="docutils literal notranslate"><span class="pre">label</span></code>
 function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">bucket_counts</span> <span class="o">=</span> <span class="n">bucketed</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
 <span class="n">labeled_bucket</span> <span class="o">=</span> <span class="p">(</span><span class="n">bucket_counts</span><span class="o">.</span><span class="n">bucket</span>
@@ -600,7 +600,7 @@ function:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[10]:
 </pre></div>
 </div>
@@ -609,13 +609,13 @@ function:</p>
 </div>
 </div>
 <p>Nice, huh?</p>
-<p><code class="docutils literal"><span class="pre">histogram</span></code> is a linear (fixed size bin) equivalent:</p>
+<p><code class="docutils literal notranslate"><span class="pre">histogram</span></code> is a linear (fixed size bin) equivalent:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
 <span class="n">d</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">double_col</span>
@@ -629,7 +629,7 @@ function:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[11]:
 </pre></div>
 </div>
@@ -643,14 +643,14 @@ function:</p>
 <p>Suppose that you want to compute an aggregation with a subset of the
 data for <em>only one</em> of the metrics / aggregates in question, and the
 complete data set with the other aggregates. Most aggregation functions
-are thus equipped with a <code class="docutils literal"><span class="pre">where</span></code> argument. Let me show it to you in
+are thus equipped with a <code class="docutils literal notranslate"><span class="pre">where</span></code> argument. Let me show it to you in
 action:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
 <span class="n">d</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">double_col</span>
@@ -673,7 +673,7 @@ action:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[12]:
 </pre></div>
 </div>
@@ -728,7 +728,7 @@ action:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+74.g4d202c3',
+            VERSION:'v0.12.0+75.g0c63d4b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

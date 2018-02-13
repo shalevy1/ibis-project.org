@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.lpad
-==================================
+ibis.expr.api.StringValue.lpad
+==============================
 
 .. currentmodule:: ibis.expr.api
 

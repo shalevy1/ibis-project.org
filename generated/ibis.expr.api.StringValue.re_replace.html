@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.StringValue.re_replace &mdash; Ibis v0.12.0+74.g4d202c3 documentation</title>
+  <title>ibis.expr.api.StringValue.re_replace &mdash; Ibis v0.12.0+75.g0c63d4b documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+74.g4d202c3 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+75.g0c63d4b documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TimestampValue.truncate" href="ibis.expr.api.TimestampValue.truncate.html"/>
         <link rel="prev" title="ibis.expr.api.StringValue.re_extract" href="ibis.expr.api.StringValue.re_extract.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.12.0+74.g4d202c3
+                v0.12.0+75.g0c63d4b
               </div>
             
           
@@ -253,7 +253,7 @@
 <h1>ibis.expr.api.StringValue.re_replace<a class="headerlink" href="#ibis-expr-api-stringvalue-re-replace" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.StringValue.re_replace">
-<code class="descclassname">StringValue.</code><code class="descname">re_replace</code><span class="sig-paren">(</span><em>arg</em>, <em>pattern</em>, <em>replacement</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.StringValue.re_replace" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">StringValue.</code><code class="descname">re_replace</code><span class="sig-paren">(</span><em>pattern</em>, <em>replacement</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.StringValue.re_replace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replaces match found by regex with replacement string.
 Replacement string can also be a regex</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -270,7 +270,7 @@ Replacement string can also be a regex</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;strings&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(b+)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;&lt;&gt;&#39;</span><span class="p">)</span>  <span class="c1"># &#39;aaabbbaa&#39; becomes &#39;aaa&lt;bbb&gt;aaa&#39;  # noqa: E501</span>
 </pre></div>
@@ -323,7 +323,7 @@ Replacement string can also be a regex</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+74.g4d202c3',
+            VERSION:'v0.12.0+75.g0c63d4b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

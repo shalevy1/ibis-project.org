@@ -1,5 +1,5 @@
-ibis\.trailing\_window
-======================
+ibis.trailing\_window
+=====================
 
 .. currentmodule:: ibis
 

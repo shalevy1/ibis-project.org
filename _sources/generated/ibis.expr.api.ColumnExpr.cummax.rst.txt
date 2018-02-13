@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ColumnExpr\.cummax
-===================================
+ibis.expr.api.ColumnExpr.cummax
+===============================
 
 .. currentmodule:: ibis.expr.api
 

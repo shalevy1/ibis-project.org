@@ -1,5 +1,5 @@
-ibis\.expr\.api\.GroupedTableExpr\.projection
-=============================================
+ibis.expr.api.GroupedTableExpr.projection
+=========================================
 
 .. currentmodule:: ibis.expr.api
 

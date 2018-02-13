@@ -1,5 +1,5 @@
-ibis\.expr\.api\.IntegerValue\.convert\_base
-============================================
+ibis.expr.api.IntegerValue.convert\_base
+========================================
 
 .. currentmodule:: ibis.expr.api
 

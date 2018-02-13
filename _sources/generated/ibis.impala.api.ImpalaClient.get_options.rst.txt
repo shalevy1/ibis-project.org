@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.get\_options
-=============================================
+ibis.impala.api.ImpalaClient.get\_options
+=========================================
 
 .. currentmodule:: ibis.impala.api
 

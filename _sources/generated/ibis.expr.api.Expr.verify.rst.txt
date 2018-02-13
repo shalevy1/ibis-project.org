@@ -1,5 +1,5 @@
-ibis\.expr\.api\.Expr\.verify
-=============================
+ibis.expr.api.Expr.verify
+=========================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.expr\.api\.NumericColumn\.cummean
-=======================================
+ibis.expr.api.NumericColumn.cummean
+===================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.cumulative\_window
-========================
+ibis.cumulative\_window
+=======================
 
 .. currentmodule:: ibis
 

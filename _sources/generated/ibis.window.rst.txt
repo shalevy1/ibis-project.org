@@ -1,5 +1,5 @@
-ibis\.window
-============
+ibis.window
+===========
 
 .. currentmodule:: ibis
 

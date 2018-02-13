@@ -1,5 +1,5 @@
-ibis\.expr\.api\.NumericColumn\.cumsum
-======================================
+ibis.expr.api.NumericColumn.cumsum
+==================================
 
 .. currentmodule:: ibis.expr.api
 

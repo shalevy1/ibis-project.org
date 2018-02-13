@@ -1,5 +1,5 @@
-ibis\.HDFS\.head
-================
+ibis.HDFS.head
+==============
 
 .. currentmodule:: ibis
 

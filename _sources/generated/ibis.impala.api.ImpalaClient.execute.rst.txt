@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.execute
-========================================
+ibis.impala.api.ImpalaClient.execute
+====================================
 
 .. currentmodule:: ibis.impala.api
 

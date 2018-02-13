@@ -1,5 +1,5 @@
-ibis\.sql\.postgres\.api\.connect
-=================================
+ibis.sql.postgres.api.connect
+=============================
 
 .. currentmodule:: ibis.sql.postgres.api
 

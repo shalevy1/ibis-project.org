@@ -1,5 +1,5 @@
-ibis\.sql\.sqlite\.api\.SQLiteClient\.database
-==============================================
+ibis.sql.sqlite.api.SQLiteClient.database
+=========================================
 
 .. currentmodule:: ibis.sql.sqlite.api
 

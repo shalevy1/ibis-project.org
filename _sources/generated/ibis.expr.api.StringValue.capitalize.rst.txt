@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.capitalize
-========================================
+ibis.expr.api.StringValue.capitalize
+====================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ValueExpr\.cases
-=================================
+ibis.expr.api.ValueExpr.cases
+=============================
 
 .. currentmodule:: ibis.expr.api
 

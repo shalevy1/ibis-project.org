@@ -1,5 +1,5 @@
-ibis\.expr\.api\.NumericColumn\.bucket
-======================================
+ibis.expr.api.NumericColumn.bucket
+==================================
 
 .. currentmodule:: ibis.expr.api
 
