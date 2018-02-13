@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.12.0+76.g5952b1a documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Ibis v0.12.0+76.g5952b1a documentation" href="../../index.html"/>
+        <link rel="up" title="Extending Ibis" href="../../extending.html"/>
+        <link rel="next" title="Release Notes" href="../../release.html"/>
+        <link rel="prev" title="Extending Ibis" href="../../extending.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.12.0+76.g5952b1a
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../extending.html">Extending Ibis</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../extending.html#adding-a-new-expression">Adding a New Expression</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Extending Ibis Part 1: Adding a New Expression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Interlude:-Create-some-expressions-with-sha1">Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending.html#adding-a-new-backend">Adding a New Backend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../legal.html">Legal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ibis</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../extending.html">Extending Ibis</a> &raquo;</li>
+        
+      <li>Extending Ibis Part 1: Adding a New Expression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/notebooks/tutorial/9-Adding-a-new-expression.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Extending-Ibis-Part-1:-Adding-a-New-Expression">
+<h1>Extending Ibis Part 1: Adding a New Expression<a class="headerlink" href="#Extending-Ibis-Part-1:-Adding-a-New-Expression" title="Permalink to this headline">¶</a></h1>
+<p>There are two parts of ibis that users typically want to extend:</p>
+<ol class="arabic simple">
+<li>Expressions (for example, by adding a new operation)</li>
+<li>Backends</li>
+</ol>
+<p>This notebook will show you how to add a new operation (<code class="docutils literal notranslate"><span class="pre">sha1</span></code>) to an
+existing backend (BigQuery).</p>
+<div class="section" id="Description">
+<h2>Description<a class="headerlink" href="#Description" title="Permalink to this headline">¶</a></h2>
+<p>We’re going to add a <strong>``sha1``</strong> method to ibis.
+<a class="reference external" href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a> is a hash algorithm,
+employed in systems such as git.</p>
+</div>
+<div class="section" id="Step-1:-Define-the-Operation">
+<h2>Step 1: Define the Operation<a class="headerlink" href="#Step-1:-Define-the-Operation" title="Permalink to this headline">¶</a></h2>
+<p>Let’s define the <code class="docutils literal notranslate"><span class="pre">sha</span></code> operation as a function that takes one string
+input argument and returns a hexidecimal string.</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="n">string</span> <span class="ow">-&gt;</span> <span class="n">string</span>
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+
+<span class="kn">from</span> <span class="nn">ibis.expr</span> <span class="kn">import</span> <span class="n">rules</span>
+<span class="kn">from</span> <span class="nn">ibis.expr.operations</span> <span class="kn">import</span> <span class="n">ValueOp</span>
+
+
+<span class="k">class</span> <span class="nc">SHA1</span><span class="p">(</span><span class="n">ValueOp</span><span class="p">):</span>
+
+    <span class="n">input_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">rules</span><span class="o">.</span><span class="n">string</span><span class="p">]</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">shape_like_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We just defined a <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> class that takes one argument of type string
+or binary, and returns a binary. This matches the description of the
+function provided by BigQuery.</p>
+</div>
+<div class="section" id="Step-2:-Define-the-API">
+<h2>Step 2: Define the API<a class="headerlink" href="#Step-2:-Define-the-API" title="Permalink to this headline">¶</a></h2>
+<p>Because we know the output type of the operation, to make an expression
+out of <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> we simply need to construct it and call its
+<code class="docutils literal notranslate"><span class="pre">ibis.expr.types.Node.to_expr</span></code> method.</p>
+<p>We still need to add a method to <code class="docutils literal notranslate"><span class="pre">StringValue</span></code> and <code class="docutils literal notranslate"><span class="pre">BinaryValue</span></code>
+(this needs to work on both scalars and columns).</p>
+<p>When you add a method to any of the expression classes whose name
+matches <code class="docutils literal notranslate"><span class="pre">*Value</span></code> both the scalar and column child classes will pick it
+up, making it easy to define operations for both scalars and columns in
+one place.</p>
+<p>We can do this by defining a function and assigning it to the
+appropriate class of expressions.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">ibis.expr.types</span> <span class="kn">import</span> <span class="n">StringValue</span><span class="p">,</span> <span class="n">BinaryValue</span>
+
+
+<span class="k">def</span> <span class="nf">sha1</span><span class="p">(</span><span class="n">string_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">SHA1</span><span class="p">(</span><span class="n">string_value</span><span class="p">)</span><span class="o">.</span><span class="n">to_expr</span><span class="p">()</span>
+
+
+<span class="n">StringValue</span><span class="o">.</span><span class="n">sha1</span> <span class="o">=</span> <span class="n">sha1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Interlude:-Create-some-expressions-with-sha1">
+<h2>Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code><a class="headerlink" href="#Interlude:-Create-some-expressions-with-sha1" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ibis</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_13_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_13_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Step-3:-Turn-the-Expression-into-SQL">
+<h2>Step 3: Turn the Expression into SQL<a class="headerlink" href="#Step-3:-Turn-the-Expression-into-SQL" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">sa</span>
+
+
+<span class="nd">@ibis.postgres.compiles</span><span class="p">(</span><span class="n">SHA1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compile_sha1</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+    <span class="c1"># pull out the arguments to the expression</span>
+    <span class="n">arg</span><span class="p">,</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span><span class="p">()</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="c1"># compile the argument</span>
+    <span class="n">compiled_arg</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+
+    <span class="c1"># return a SQLAlchemy expression that calls into the PostgreSQL pgcrypto extension</span>
+    <span class="k">return</span> <span class="n">sa</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sa</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="n">compiled_arg</span><span class="p">,</span> <span class="s1">&#39;sha1&#39;</span><span class="p">),</span> <span class="s1">&#39;hex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Step-4:-Putting-it-all-Together">
+<h2>Step 4: Putting it all Together<a class="headerlink" href="#Step-4:-Putting-it-all-Together" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Connect-to-the-ibis_testing-database">
+<h3>Connect to the <code class="docutils literal notranslate"><span class="pre">ibis_testing</span></code> database<a class="headerlink" href="#Connect-to-the-ibis_testing-database" title="Permalink to this headline">¶</a></h3>
+<p><strong>NOTE:</strong></p>
+<p>To be able to execute the rest of this notebook you need to run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres impala clickhouse mysql dns
+docker-compose run waiter
+docker-compose run ibis ci/load-data.sh
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Register-the-`pgcrypto-&lt;https://www.postgresql.org/docs/10/static/pgcrypto.html&gt;`__-extension">
+<h3>Register the <code class="docutils literal notranslate"><span class="pre">`pgcrypto</span></code> &lt;<a class="reference external" href="https://www.postgresql.org/docs/10/static/pgcrypto.html">https://www.postgresql.org/docs/10/static/pgcrypto.html</a>&gt;`__ extension<a class="headerlink" href="#Register-the-`pgcrypto-<https://www.postgresql.org/docs/10/static/pgcrypto.html>`__-extension" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">con</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s1">&#39;CREATE EXTENSION IF NOT EXISTS pgcrypto&#39;</span><span class="p">);</span>  <span class="c1"># we don&#39;t care about the output</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Create-and-execute-a-sha1-expression">
+<h3>Create and execute a <code class="docutils literal notranslate"><span class="pre">sha1</span></code> expression<a class="headerlink" href="#Create-and-execute-a-sha1-expression" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_23_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_23_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sha1_expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
+<span class="n">sha1_expr</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_24_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_24_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sql_expr</span> <span class="o">=</span> <span class="n">sha1_expr</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sql_expr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SELECT encode(digest(t0.string_col, %(digest_1)s), %(encode_1)s) AS tmp
+FROM functional_alltypes AS t0
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result</span> <span class="o">=</span> <span class="n">sha1_expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[13]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>0    b6589fc6ab0dc82cf12099d1c2d40ab994e8410c
+1    356a192b7913b04c54574d18c28d46e6395428ab
+2    da4b9237bacccdf19c0760cab7aec4a8359010b0
+3    77de68daecd823babbb58edb1c8e14d7106e83bb
+4    1b6453892473a467d07372d45eb05abc2031647a
+Name: tmp, dtype: object
+</pre></div>
+</div>
+</div>
+<p>Because we’ve defined our operation on <code class="docutils literal notranslate"><span class="pre">StringValue</span></code>, and not just on
+<code class="docutils literal notranslate"><span class="pre">StringColumn</span></code> we get operations on both string scalars <em>and</em> string
+columns for free</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">string_scalar</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;abcdefg&#39;</span><span class="p">)</span>
+<span class="n">string_scalar</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_29_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_29_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sha1_scalar</span> <span class="o">=</span> <span class="n">string_scalar</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sha1_scalar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;2fb5e13419fc89246865e7a324f476ec624e8740&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../release.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../extending.html" class="btn btn-neutral" title="Extending Ibis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cloudera, Inc..
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'v0.12.0+76.g5952b1a',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

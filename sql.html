@@ -8,10 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.12.0+75.g0c63d4b documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.12.0+76.g5952b1a documentation</title>
   
 
   
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
   
   
   
@@ -35,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+75.g0c63d4b documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+76.g5952b1a documentation" href="index.html"/>
         <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -66,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+75.g0c63d4b
+                v0.12.0+76.g5952b1a
               </div>
             
           
@@ -159,7 +161,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design.html">Ibis design internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
 </ul>
@@ -649,9 +652,9 @@ expression that is correct for your query engine.</p>
 <div class="section" id="frequency-table-convenience-value-counts">
 <h3>Frequency table convenience: <code class="docutils literal notranslate"><span class="pre">value_counts</span></code><a class="headerlink" href="#frequency-table-convenience-value-counts" title="Permalink to this headline">¶</a></h3>
 <p>Consider the SQL idiom:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SELECT {{ COLUMN_EXPR }}, count(*)
-FROM table
-GROUP BY 1
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">some_column_expression</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="k">table</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>This is so common that, like pandas, there is a generic array method
@@ -1731,7 +1734,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+75.g0c63d4b',
+            VERSION:'v0.12.0+76.g5952b1a',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
