@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.floor
-================================
+ibis\.expr\.api\.NumericValue\.floor
+====================================
 
 .. currentmodule:: ibis.expr.api
 

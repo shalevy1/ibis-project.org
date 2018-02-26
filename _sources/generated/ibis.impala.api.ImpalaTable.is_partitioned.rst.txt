@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaTable.is\_partitioned
-===========================================
+ibis\.impala\.api\.ImpalaTable\.is\_partitioned
+===============================================
 
 .. currentmodule:: ibis.impala.api
 

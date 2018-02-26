@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaDatabase.namespace
-========================================
+ibis\.impala\.api\.ImpalaDatabase\.namespace
+============================================
 
 .. currentmodule:: ibis.impala.api
 

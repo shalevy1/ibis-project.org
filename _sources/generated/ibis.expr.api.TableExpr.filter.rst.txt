@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.filter
-==============================
+ibis\.expr\.api\.TableExpr\.filter
+==================================
 
 .. currentmodule:: ibis.expr.api
 

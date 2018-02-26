@@ -1,5 +1,5 @@
-ibis.hdfs\_connect
-==================
+ibis\.hdfs\_connect
+===================
 
 .. currentmodule:: ibis
 

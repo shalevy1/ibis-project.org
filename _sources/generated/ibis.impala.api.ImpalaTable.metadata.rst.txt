@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaTable.metadata
-====================================
+ibis\.impala\.api\.ImpalaTable\.metadata
+========================================
 
 .. currentmodule:: ibis.impala.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.aggregate
-=================================
+ibis\.expr\.api\.TableExpr\.aggregate
+=====================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.Expr.compile
-==========================
+ibis\.expr\.api\.Expr\.compile
+==============================
 
 .. currentmodule:: ibis.expr.api
 

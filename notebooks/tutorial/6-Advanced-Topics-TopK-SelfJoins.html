@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis v0.12.0+80.g61867cc documentation</title>
+  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis v0.12.0+81.ge763eb1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+80.g61867cc documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+81.ge763eb1 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Advanced Topics: Additional Filtering" href="7-Advanced-Topics-ComplexFiltering.html"/>
         <link rel="prev" title="IO, CREATE/INSERT, and External Data" href="5-IO-Create-Insert-External-Data.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+80.g61867cc
+                v0.12.0+81.ge763eb1
               </div>
             
           
@@ -102,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Topics: Top-K and Self Joins</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#“Top-K”-Filtering">“Top-K” Filtering</a></li>
@@ -388,11 +388,11 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
@@ -416,17 +416,17 @@ definition of important.</p>
 <li>Choose a ranking metric</li>
 <li>Aggregate, computing the ranking metric, by the target dimension</li>
 <li>Order by the ranking metric and take the highest K values</li>
-<li>Use those values as a set filter (either with <code class="docutils literal notranslate"><span class="pre">semi_join</span></code> or
-<code class="docutils literal notranslate"><span class="pre">isin</span></code>) in your next query</li>
+<li>Use those values as a set filter (either with <code class="docutils literal"><span class="pre">semi_join</span></code> or
+<code class="docutils literal"><span class="pre">isin</span></code>) in your next query</li>
 </ul>
 <p>For example, let’s look at the TPC-H tables and find the 5 or 10
 customers who placed the most orders over their lifetime:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_orders&#39;</span><span class="p">)</span>
 
 <span class="n">top_orders</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span>
@@ -439,7 +439,7 @@ customers who placed the most orders over their lifetime:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[2]:
 </pre></div>
 </div>
@@ -450,11 +450,11 @@ customers who placed the most orders over their lifetime:</p>
 <p>Now, we could use these customer keys as a filter in some other
 analysis:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="c1"># Among the top 5 most frequent customers, what&#39;s the histogram of their order statuses?</span>
 <span class="n">analysis</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">)]</span>
             <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;o_orderstatus&#39;</span><span class="p">)</span>
@@ -464,7 +464,7 @@ analysis:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[3]:
 </pre></div>
 </div>
@@ -473,20 +473,20 @@ analysis:</p>
 </div>
 </div>
 <p>This is such a common pattern that Ibis supports a high level primitive
-<code class="docutils literal notranslate"><span class="pre">topk</span></code> operation, which can be used immediately as a filter:</p>
+<code class="docutils literal"><span class="pre">topk</span></code> operation, which can be used immediately as a filter:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">top_orders</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">orders</span><span class="p">[</span><span class="n">top_orders</span><span class="p">]</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;o_orderstatus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[4]:
 </pre></div>
 </div>
@@ -498,11 +498,11 @@ analysis:</p>
 their total spending instead of the number of orders, perhaps a more
 meaningful metric:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">total_spend</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
 <span class="n">top_spenders</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span>
                 <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;o_custkey&#39;</span><span class="p">)</span>
@@ -514,7 +514,7 @@ meaningful metric:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[5]:
 </pre></div>
 </div>
@@ -522,20 +522,20 @@ meaningful metric:</p>
 <img alt="../../_images/notebooks_tutorial_6-Advanced-Topics-TopK-SelfJoins_10_0.png" src="../../_images/notebooks_tutorial_6-Advanced-Topics-TopK-SelfJoins_10_0.png" />
 </div>
 </div>
-<p>To use another metric, just pass it to the <code class="docutils literal notranslate"><span class="pre">by</span></code> argument in <code class="docutils literal notranslate"><span class="pre">topk</span></code>:</p>
+<p>To use another metric, just pass it to the <code class="docutils literal"><span class="pre">by</span></code> argument in <code class="docutils literal"><span class="pre">topk</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">top_spenders</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="n">total_spend</span><span class="p">)</span>
 <span class="n">orders</span><span class="p">[</span><span class="n">top_spenders</span><span class="p">]</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;o_orderstatus&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[6]:
 </pre></div>
 </div>
@@ -550,7 +550,7 @@ meaningful metric:</p>
 possible to join tables with themselves, because joins clauses involve
 column references back to the original table.</p>
 <p>Consider the SQL</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">t1</span><span class="p">.</span><span class="k">key</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">t2</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">metric</span>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">t1</span><span class="p">.</span><span class="k">key</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">t1</span><span class="p">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">t2</span><span class="p">.</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">metric</span>
 <span class="k">FROM</span> <span class="n">my_table</span> <span class="n">t1</span>
   <span class="k">JOIN</span> <span class="n">my_table</span> <span class="n">t2</span>
     <span class="k">ON</span> <span class="n">t1</span><span class="p">.</span><span class="k">key</span> <span class="o">=</span> <span class="n">t2</span><span class="p">.</span><span class="n">subkey</span>
@@ -562,11 +562,11 @@ aliasing.</p>
 <p>Let’s consider the TPC-H database, and support we want to compute
 year-over-year change in total order amounts by region using joins.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">region</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_region&#39;</span><span class="p">)</span>
 <span class="n">nation</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_nation&#39;</span><span class="p">)</span>
 <span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_customer&#39;</span><span class="p">)</span>
@@ -577,7 +577,7 @@ year-over-year change in total order amounts by region using joins.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[7]:
 </pre></div>
 </div>
@@ -587,11 +587,11 @@ year-over-year change in total order amounts by region using joins.</p>
 </div>
 <p>First, let’s join all the things and select the fields we care about:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">fields_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="n">region</span><span class="o">.</span><span class="n">r_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">),</span>
                       <span class="n">nation</span><span class="o">.</span><span class="n">n_name</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;nation&#39;</span><span class="p">),</span>
                       <span class="n">orders</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">),</span>
@@ -607,37 +607,37 @@ year-over-year change in total order amounts by region using joins.</p>
 </div>
 <p>Okay, great, let’s have a look:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">joined_all</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[9]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>region        nation     amount      odate
-0  MIDDLE EAST        JORDAN  173665.47 1996-01-02
-1  MIDDLE EAST          IRAN   46929.18 1996-12-01
-2       AFRICA       MOROCCO  193846.25 1993-10-14
-3  MIDDLE EAST          IRAN   32151.78 1995-10-11
-4  MIDDLE EAST  SAUDI ARABIA  144659.20 1994-07-30
+<div class="output_area highlight-none"><div class="highlight"><pre>
+<span></span>region         nation     amount      odate
+0      AMERICA  UNITED STATES  160843.35 1992-06-22
+1  MIDDLE EAST           IRAN   78307.91 1996-04-19
+2       EUROPE         FRANCE  103237.90 1994-10-12
+3       EUROPE         FRANCE  201463.59 1997-09-12
+4         ASIA          JAPAN  166098.86 1995-09-12
 </pre></div>
 </div>
 </div>
 <p>Sweet, now let’s aggregate by year and region:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">year</span> <span class="o">=</span> <span class="n">joined_all</span><span class="o">.</span><span class="n">odate</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
 
 <span class="n">total</span> <span class="o">=</span> <span class="n">joined_all</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
@@ -650,11 +650,11 @@ year-over-year change in total order amounts by region using joins.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[10]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>region  year         total
 0        EUROPE  1994  6.979473e+09
 1        EUROPE  1996  7.015421e+09
@@ -697,13 +697,13 @@ year-over-year change in total order amounts by region using joins.</p>
 <p>Looking good so far. Now, we need to join this table on itself, by
 subtracting 1 from one of the year columns.</p>
 <p>We do this by creating a “joinable” view of a table that is considered a
-distinct object within Ibis. To do this, use the <code class="docutils literal notranslate"><span class="pre">view</span></code> function:</p>
+distinct object within Ibis. To do this, use the <code class="docutils literal"><span class="pre">view</span></code> function:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">current</span> <span class="o">=</span> <span class="n">annual_amounts</span>
 <span class="n">prior</span> <span class="o">=</span> <span class="n">annual_amounts</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
 
@@ -717,18 +717,18 @@ distinct object within Ibis. To do this, use the <code class="docutils literal n
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;yoy_pretty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">yoy_change</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;$</span><span class="si">%.2f</span><span class="s1">mm&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="mf">1000000.</span><span class="p">))</span>
 <span class="n">df</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[12]:
 </pre></div>
 </div>
@@ -977,11 +977,11 @@ in the dataset for each region to have 0 for the prior year, you will
 instead need to do an outer join and treat nulls in the prior side of
 the join as zero:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">yoy_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">total</span> <span class="o">-</span> <span class="n">prior</span><span class="o">.</span><span class="n">total</span><span class="o">.</span><span class="n">zeroifnull</span><span class="p">())</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;yoy_change&#39;</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">outer_join</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="p">((</span><span class="n">current</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">prior</span><span class="o">.</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span>
                                       <span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="p">(</span><span class="n">prior</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span>
@@ -994,11 +994,11 @@ the join as zero:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[13]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>region  year         total   prior_total    yoy_change
 0         ASIA  1998  4.058824e+09  0.000000e+00  4.058824e+09
 1       AFRICA  1994  6.837587e+09  6.908429e+09 -7.084172e+07
@@ -1060,7 +1060,7 @@ the join as zero:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+80.g61867cc',
+            VERSION:'v0.12.0+81.ge763eb1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

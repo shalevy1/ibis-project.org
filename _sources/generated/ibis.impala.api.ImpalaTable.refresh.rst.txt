@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaTable.refresh
-===================================
+ibis\.impala\.api\.ImpalaTable\.refresh
+=======================================
 
 .. currentmodule:: ibis.impala.api
 

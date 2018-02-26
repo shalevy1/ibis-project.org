@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.StringValue.parse_url &mdash; Ibis v0.12.0+80.g61867cc documentation</title>
+  <title>ibis.expr.api.StringValue.parse_url &mdash; Ibis v0.12.0+81.ge763eb1 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+80.g61867cc documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+81.ge763eb1 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.StringValue.substr" href="ibis.expr.api.StringValue.substr.html"/>
         <link rel="prev" title="ibis.expr.api.StringValue.like" href="ibis.expr.api.StringValue.like.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+80.g61867cc
+                v0.12.0+81.ge763eb1
               </div>
             
           
@@ -256,7 +256,7 @@
 <h1>ibis.expr.api.StringValue.parse_url<a class="headerlink" href="#ibis-expr-api-stringvalue-parse-url" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.StringValue.parse_url">
-<code class="descclassname">StringValue.</code><code class="descname">parse_url</code><span class="sig-paren">(</span><em>extract</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.StringValue.parse_url" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">StringValue.</code><code class="descname">parse_url</code><span class="sig-paren">(</span><em>arg</em>, <em>extract</em>, <em>key=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.StringValue.parse_url" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the portion of a URL corresponding to a part specified
 by ‘extract’
 Can optionally specify a key to retrieve an associated value
@@ -278,7 +278,7 @@ if extract parameter is ‘QUERY’</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=kEuEcWfewf8&amp;t=10&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=kEuEcWfewf8&amp;t=10&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">parse_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;QUERY&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">)</span>  
 <span class="go">&#39;kEuEcWfewf8&#39;</span>
 </pre></div>
@@ -331,7 +331,7 @@ if extract parameter is ‘QUERY’</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+80.g61867cc',
+            VERSION:'v0.12.0+81.ge763eb1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

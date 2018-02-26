@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.invalidate\_metadata
-=================================================
+ibis\.impala\.api\.ImpalaClient\.invalidate\_metadata
+=====================================================
 
 .. currentmodule:: ibis.impala.api
 

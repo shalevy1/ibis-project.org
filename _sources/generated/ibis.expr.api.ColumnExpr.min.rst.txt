@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.min
-============================
+ibis\.expr\.api\.ColumnExpr\.min
+================================
 
 .. currentmodule:: ibis.expr.api
 

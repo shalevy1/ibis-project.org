@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.sign
-===============================
+ibis\.expr\.api\.NumericValue\.sign
+===================================
 
 .. currentmodule:: ibis.expr.api
 

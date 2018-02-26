@@ -1,5 +1,5 @@
-ibis.expr.api.GroupedTableExpr.aggregate
-========================================
+ibis\.expr\.api\.GroupedTableExpr\.aggregate
+============================================
 
 .. currentmodule:: ibis.expr.api
 

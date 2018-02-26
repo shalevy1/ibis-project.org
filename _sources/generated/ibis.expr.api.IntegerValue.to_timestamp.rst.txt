@@ -1,5 +1,5 @@
-ibis.expr.api.IntegerValue.to\_timestamp
-========================================
+ibis\.expr\.api\.IntegerValue\.to\_timestamp
+============================================
 
 .. currentmodule:: ibis.expr.api
 

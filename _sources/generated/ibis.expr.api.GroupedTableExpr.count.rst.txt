@@ -1,5 +1,5 @@
-ibis.expr.api.GroupedTableExpr.count
-====================================
+ibis\.expr\.api\.GroupedTableExpr\.count
+========================================
 
 .. currentmodule:: ibis.expr.api
 

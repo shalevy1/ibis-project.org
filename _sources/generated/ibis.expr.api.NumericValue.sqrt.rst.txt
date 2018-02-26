@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.sqrt
-===============================
+ibis\.expr\.api\.NumericValue\.sqrt
+===================================
 
 .. currentmodule:: ibis.expr.api
 

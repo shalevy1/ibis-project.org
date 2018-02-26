@@ -1,5 +1,5 @@
-ibis.HDFS.chown
-===============
+ibis\.HDFS\.chown
+=================
 
 .. currentmodule:: ibis
 

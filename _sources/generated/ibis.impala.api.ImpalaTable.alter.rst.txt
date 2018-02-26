@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaTable.alter
-=================================
+ibis\.impala\.api\.ImpalaTable\.alter
+=====================================
 
 .. currentmodule:: ibis.impala.api
 
