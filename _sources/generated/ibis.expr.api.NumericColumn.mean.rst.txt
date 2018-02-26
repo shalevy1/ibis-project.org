@@ -1,5 +1,5 @@
-ibis.expr.api.NumericColumn.mean
-================================
+ibis\.expr\.api\.NumericColumn\.mean
+====================================
 
 .. currentmodule:: ibis.expr.api
 

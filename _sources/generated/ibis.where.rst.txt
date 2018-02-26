@@ -1,5 +1,5 @@
-ibis.where
-==========
+ibis\.where
+===========
 
 .. currentmodule:: ibis
 

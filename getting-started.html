@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis v0.12.0+78.g38f45aa documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis v0.12.0+79.gc7aa4b7 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+78.g38f45aa documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+79.gc7aa4b7 documentation" href="index.html"/>
         <link rel="next" title="Configuring Ibis" href="configuration.html"/>
         <link rel="prev" title="Ibis: Python Data Analysis Productivity Framework" href="index.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+78.g38f45aa
+                v0.12.0+79.gc7aa4b7
               </div>
             
           
@@ -230,52 +230,52 @@ to get up and running quickly.</p>
 </div>
 <div class="section" id="installing-the-python-package">
 <h3>Installing the Python package<a class="headerlink" href="#installing-the-python-package" title="Permalink to this headline">¶</a></h3>
-<p>Install ibis using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
+<p>Install ibis using <code class="docutils literal"><span class="pre">pip</span></code> or <code class="docutils literal"><span class="pre">conda</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
 </pre></div>
 </div>
-<p>This installs the <code class="docutils literal notranslate"><span class="pre">ibis</span></code> library to your configured Python environment.</p>
+<p>This installs the <code class="docutils literal"><span class="pre">ibis</span></code> library to your configured Python environment.</p>
 <p>Ibis can also be installed with Kerberos support for its HDFS functionality:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">kerberos</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">kerberos</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Some platforms will require that you have Kerberos installed to build properly.</p>
 <ul class="simple">
-<li>Redhat / CentOS: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">krb5-devel</span></code></li>
-<li>Ubuntu / Debian: <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libkrb5-dev</span></code></li>
-<li>Arch Linux     : <code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">krb5</span></code></li>
+<li>Redhat / CentOS: <code class="docutils literal"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">krb5-devel</span></code></li>
+<li>Ubuntu / Debian: <code class="docutils literal"><span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libkrb5-dev</span></code></li>
+<li>Arch Linux     : <code class="docutils literal"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">krb5</span></code></li>
 </ul>
 </div>
 </div>
 <div class="section" id="impala-quickstart">
 <span id="install-impala"></span><h2><a class="reference external" href="https://impala.apache.org/">Impala</a> Quickstart<a class="headerlink" href="#impala-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s Impala dialect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">impala</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">impala</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>To create an Ibis client, you must first connect your services and assemble the
-client using <code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
+client using <code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">webhdfs_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">webhdfs_port</span><span class="p">)</span>
 <span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">impala_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">impala_port</span><span class="p">,</span>
                           <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Both method calls can take <code class="docutils literal notranslate"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
-<code class="docutils literal notranslate"><span class="pre">auth_mechanism='LDAP'</span></code> to connect to Kerberos clusters.  Depending on your
+<p>Both method calls can take <code class="docutils literal"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
+<code class="docutils literal"><span class="pre">auth_mechanism='LDAP'</span></code> to connect to Kerberos clusters.  Depending on your
 cluster setup, this may also include SSL. See the <a class="reference internal" href="api.html#api-client"><span class="std std-ref">API reference</span></a> for more, along with the Impala shell reference, as the
 connection semantics are identical.</p>
 </div>
 <div class="section" id="sqlite-quickstart">
 <span id="install-sqlite"></span><h2><a class="reference external" href="https://www.sqlite.org/">SQLite</a> Quickstart<a class="headerlink" href="#sqlite-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s SQLite dialect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">sqlite</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">sqlite</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Create a client by passing a path to a SQLite database to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ibis</span><span class="o">.</span><span class="n">sqlite</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;path/to/my/sqlite.db&#39;</span><span class="p">)</span>
+<code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ibis</span><span class="o">.</span><span class="n">sqlite</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;path/to/my/sqlite.db&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>See <a class="reference external" href="http://blog.ibis-project.org/sqlite-crunchbase-quickstart/">http://blog.ibis-project.org/sqlite-crunchbase-quickstart/</a> for a quickstart
@@ -284,12 +284,12 @@ using SQLite.</p>
 <div class="section" id="postgresql-quickstart">
 <span id="install-postgres"></span><h2><a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> Quickstart<a class="headerlink" href="#postgresql-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s PostgreSQL dialect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Create a client by passing a connection string or individual parameters to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="s1">&#39;postgresql://user:pass@host:port/my_database&#39;</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
@@ -301,24 +301,24 @@ using SQLite.</p>
 <div class="section" id="clickhouse-quickstart">
 <span id="install-bigquery"></span><h2><a class="reference external" href="https://clickhouse.yandex/">Clickhouse</a> Quickstart<a class="headerlink" href="#clickhouse-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s Clickhouse dialect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">clickhouse</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">clickhouse</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Create a client by passing in database connection parameters such as <code class="docutils literal notranslate"><span class="pre">host</span></code>,
-<code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">database</span></code>, and <code class="docutils literal notranslate"><span class="pre">user</span></code> to <code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">clickhouse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
+<p>Create a client by passing in database connection parameters such as <code class="docutils literal"><span class="pre">host</span></code>,
+<code class="docutils literal"><span class="pre">port</span></code>, <code class="docutils literal"><span class="pre">database</span></code>, and <code class="docutils literal"><span class="pre">user</span></code> to <code class="xref py py-func docutils literal"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">clickhouse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="bigquery-quickstart">
 <h2><a class="reference external" href="https://cloud.google.com/bigquery/">BigQuery</a> Quickstart<a class="headerlink" href="#bigquery-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s BigQuery dialect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">bigquery</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">bigquery</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Create a client by passing in the project id and dataset id you wish to operate
 with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="s1">&#39;ibis-gbq&#39;</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="s1">&#39;testing&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="s1">&#39;ibis-gbq&#39;</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="s1">&#39;testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -331,10 +331,10 @@ these notebooks will be reproduced as part of the documentation.</p>
 <div class="section" id="running-ibis-queries-using-docker">
 <span id="install-quickstart"></span><h2>Running Ibis Queries using Docker<a class="headerlink" href="#running-ibis-queries-using-docker" title="Permalink to this headline">¶</a></h2>
 <p>Contributor <a class="reference external" href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
-crafting a very easy-to-use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> setup that enables users and
+crafting a very easy-to-use <code class="docutils literal"><span class="pre">docker-compose</span></code> setup that enables users and
 developers of ibis to get up and running quickly.</p>
 <p>Here are the steps:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
 git clone https://github.com/ibis-project/ibis
 
 <span class="c1"># go to where the docker-compose file is</span>
@@ -404,7 +404,7 @@ ping -c <span class="m">1</span> <span class="s2">&quot;</span><span class="si">
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+78.g38f45aa',
+            VERSION:'v0.12.0+79.gc7aa4b7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

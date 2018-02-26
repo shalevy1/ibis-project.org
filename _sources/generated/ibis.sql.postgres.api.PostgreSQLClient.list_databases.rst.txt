@@ -1,5 +1,5 @@
-ibis.sql.postgres.api.PostgreSQLClient.list\_databases
-======================================================
+ibis\.sql\.postgres\.api\.PostgreSQLClient\.list\_databases
+===========================================================
 
 .. currentmodule:: ibis.sql.postgres.api
 

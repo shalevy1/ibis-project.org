@@ -1,5 +1,5 @@
-ibis.expr.api.TimestampValue.second
-===================================
+ibis\.expr\.api\.TimestampValue\.second
+=======================================
 
 .. currentmodule:: ibis.expr.api
 

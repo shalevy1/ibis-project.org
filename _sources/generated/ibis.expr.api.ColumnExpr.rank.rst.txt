@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.rank
-=============================
+ibis\.expr\.api\.ColumnExpr\.rank
+=================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.join
-==============================
+ibis\.expr\.api\.StringValue\.join
+==================================
 
 .. currentmodule:: ibis.expr.api
 

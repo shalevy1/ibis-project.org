@@ -1,5 +1,5 @@
-ibis.expr.api.Expr.equals
-=========================
+ibis\.expr\.api\.Expr\.equals
+=============================
 
 .. currentmodule:: ibis.expr.api
 

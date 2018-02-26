@@ -1,5 +1,5 @@
-ibis.least
-==========
+ibis\.least
+===========
 
 .. currentmodule:: ibis
 

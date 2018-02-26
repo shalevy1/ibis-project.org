@@ -1,5 +1,5 @@
-ibis.expr.api.BooleanColumn.all
-===============================
+ibis\.expr\.api\.BooleanColumn\.all
+===================================
 
 .. currentmodule:: ibis.expr.api
 

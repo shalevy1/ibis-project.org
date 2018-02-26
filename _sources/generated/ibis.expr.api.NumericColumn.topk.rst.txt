@@ -1,5 +1,5 @@
-ibis.expr.api.NumericColumn.topk
-================================
+ibis\.expr\.api\.NumericColumn\.topk
+====================================
 
 .. currentmodule:: ibis.expr.api
 

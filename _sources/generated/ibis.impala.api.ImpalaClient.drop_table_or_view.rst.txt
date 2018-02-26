@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.drop\_table\_or\_view
-==================================================
+ibis\.impala\.api\.ImpalaClient\.drop\_table\_or\_view
+======================================================
 
 .. currentmodule:: ibis.impala.api
 

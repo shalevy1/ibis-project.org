@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.sub
-==============================
+ibis\.expr\.api\.NumericValue\.sub
+==================================
 
 .. currentmodule:: ibis.expr.api
 

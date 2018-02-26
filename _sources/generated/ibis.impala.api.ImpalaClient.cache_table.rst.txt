@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.cache\_table
-=========================================
+ibis\.impala\.api\.ImpalaClient\.cache\_table
+=============================================
 
 .. currentmodule:: ibis.impala.api
 

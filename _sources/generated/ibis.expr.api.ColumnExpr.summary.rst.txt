@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.summary
-================================
+ibis\.expr\.api\.ColumnExpr\.summary
+====================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.re\_extract
-=====================================
+ibis\.expr\.api\.StringValue\.re\_extract
+=========================================
 
 .. currentmodule:: ibis.expr.api
 

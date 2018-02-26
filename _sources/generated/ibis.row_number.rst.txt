@@ -1,5 +1,5 @@
-ibis.row\_number
-================
+ibis\.row\_number
+=================
 
 .. currentmodule:: ibis
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.12.0+78.g38f45aa documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.12.0+79.gc7aa4b7 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+78.g38f45aa documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+79.gc7aa4b7 documentation" href="index.html"/>
         <link rel="next" title="Design" href="design.html"/>
         <link rel="prev" title="Ibis for SQL Programmers" href="sql.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+78.g38f45aa
+                v0.12.0+79.gc7aa4b7
               </div>
             
           
@@ -229,7 +229,7 @@ project will be run much like pandas has been.</p>
 <h3>Conda Environment Setup<a class="headerlink" href="#conda-environment-setup" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p class="first"><strong>Install the latest version of miniconda</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the miniconda bash installer</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># Download the miniconda bash installer</span>
 curl -Ls -o <span class="nv">$HOME</span>/miniconda.sh <span class="se">\</span>
     https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
@@ -243,7 +243,7 @@ bash <span class="nv">$HOME</span>/miniconda.sh -b -p <span class="nv">$HOME</sp
 </li>
 <li><p class="first"><strong>Install the development environment of your choice (Python 3.6 in this
 example), activate and install ibis in development mode</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
 conda env create --name ibis36 --file<span class="o">=</span>ci/requirements_dev-3.6.yml
 
 <span class="c1"># Activate the conda environment</span>
@@ -265,7 +265,7 @@ python setup.py develop
 <li><p class="first">Starts each backend via docker-compose</p>
 </li>
 <li><p class="first">Initializes the backends with the test tables</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> testing
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="nb">cd</span> testing
 bash start-all.sh
 </pre></div>
 </div>
@@ -281,7 +281,7 @@ bash start-all.sh
 <li><p class="first"><strong>Download the test data</strong>:</p>
 <p>By default this will download and extract the dataset under
 testing/ibis-testing-data.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>testing/datamgr.py download
+<div class="highlight-sh"><div class="highlight"><pre><span></span>testing/datamgr.py download
 </pre></div>
 </div>
 </li>
@@ -291,7 +291,7 @@ testing/ibis-testing-data.</p>
 <h3>Setting Up Test Databases<a class="headerlink" href="#setting-up-test-databases" title="Permalink to this headline">¶</a></h3>
 <p>To start each backends</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> testing
+<div><div class="highlight-sh"><div class="highlight"><pre><span></span><span class="nb">cd</span> testing
 docker-compose up
 </pre></div>
 </div>
@@ -300,13 +300,13 @@ docker-compose up
 <h4>Impala (with UDFs)<a class="headerlink" href="#impala-with-udfs" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic">
 <li><p class="first"><strong>Start the Impala docker image in another terminal</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
 docker run --tty --rm --hostname impala cpcloud86/impala:java8
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>Load data and UDFs into impala</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>testing/impalamgr.py load --data --data-dir ibis-testing-data
+<div class="highlight-sh"><div class="highlight"><pre><span></span>testing/impalamgr.py load --data --data-dir ibis-testing-data
 </pre></div>
 </div>
 </li>
@@ -316,13 +316,13 @@ docker run --tty --rm --hostname impala cpcloud86/impala:java8
 <h4>Clickhouse<a class="headerlink" href="#clickhouse" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic">
 <li><p class="first"><strong>Start the Clickhouse Server docker image in another terminal</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
 docker run --rm -p <span class="m">9000</span>:9000 --tty yandex/clickhouse-server
 </pre></div>
 </div>
 </li>
 <li><p class="first"><strong>Load data</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>testing/datamgr.py clickhouse
+<div class="highlight-sh"><div class="highlight"><pre><span></span>testing/datamgr.py clickhouse
 </pre></div>
 </div>
 </li>
@@ -334,7 +334,7 @@ docker run --rm -p <span class="m">9000</span>:9000 --tty yandex/clickhouse-serv
 docker image or from your machine directly.</p>
 <p>Here’s how to load test data into PostgreSQL:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>testing/datamgr.py postgres
+<div><div class="highlight-sh"><div class="highlight"><pre><span></span>testing/datamgr.py postgres
 </pre></div>
 </div>
 </div></blockquote>
@@ -344,7 +344,7 @@ docker image or from your machine directly.</p>
 <p>SQLite comes already installed on many systems. If you used the conda setup
 instructions above, then SQLite will be available in the conda environment.</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>testing/datamgr.py sqlite
+<div><div class="highlight-sh"><div class="highlight"><pre><span></span>testing/datamgr.py sqlite
 </pre></div>
 </div>
 </div></blockquote>
@@ -354,7 +354,7 @@ instructions above, then SQLite will be available in the conda environment.</p>
 <h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
 <p>You are now ready to run the full ibis test suite:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pytest ibis
+<div><div class="highlight-sh"><div class="highlight"><pre><span></span>pytest ibis
 </pre></div>
 </div>
 </div></blockquote>
@@ -418,7 +418,7 @@ development roadmap:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+78.g38f45aa',
+            VERSION:'v0.12.0+79.gc7aa4b7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

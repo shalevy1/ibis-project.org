@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.limit
-=============================
+ibis\.expr\.api\.TableExpr\.limit
+=================================
 
 .. currentmodule:: ibis.expr.api
 

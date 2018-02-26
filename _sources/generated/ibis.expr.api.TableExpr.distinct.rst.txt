@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.distinct
-================================
+ibis\.expr\.api\.TableExpr\.distinct
+====================================
 
 .. currentmodule:: ibis.expr.api
 

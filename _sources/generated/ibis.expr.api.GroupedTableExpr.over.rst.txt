@@ -1,5 +1,5 @@
-ibis.expr.api.GroupedTableExpr.over
-===================================
+ibis\.expr\.api\.GroupedTableExpr\.over
+=======================================
 
 .. currentmodule:: ibis.expr.api
 

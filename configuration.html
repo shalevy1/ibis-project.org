@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuring Ibis &mdash; Ibis v0.12.0+78.g38f45aa documentation</title>
+  <title>Configuring Ibis &mdash; Ibis v0.12.0+79.gc7aa4b7 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+78.g38f45aa documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+79.gc7aa4b7 documentation" href="index.html"/>
         <link rel="next" title="Using Ibis with Impala" href="impala.html"/>
         <link rel="prev" title="Installation and Getting Started" href="getting-started.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+78.g38f45aa
+                v0.12.0+79.gc7aa4b7
               </div>
             
           
@@ -217,14 +217,14 @@
 <span id="configuration"></span><h1>Configuring Ibis<a class="headerlink" href="#configuring-ibis" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="ibis-global-configuration">
 <h2>Ibis global configuration<a class="headerlink" href="#ibis-global-configuration" title="Permalink to this headline">¶</a></h2>
-<p>Ibis global configuration happens through the <code class="docutils literal notranslate"><span class="pre">ibis.options</span></code>
+<p>Ibis global configuration happens through the <code class="docutils literal"><span class="pre">ibis.options</span></code>
 attribute. Attributes can be get and set like class attributes.</p>
 <div class="section" id="interactive-mode">
 <h3>Interactive mode<a class="headerlink" href="#interactive-mode" title="Permalink to this headline">¶</a></h3>
 <p>Ibis out of the box is in <em>developer mode</em>. Expressions display their internal
 details when printed to the console. For a better interactive experience, set
-the <code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">option</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
+the <code class="docutils literal"><span class="pre">interactive</span> <span class="pre">option</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
 <p>This will cause expressions to be executed immediately when printed to the
@@ -232,15 +232,15 @@ console (or in IPython or the IPython notebook).</p>
 </div>
 <div class="section" id="sql-query-execution">
 <h3>SQL query execution<a class="headerlink" href="#sql-query-execution" title="Permalink to this headline">¶</a></h3>
-<p>If an Ibis table expression has no row limit set using the <code class="docutils literal notranslate"><span class="pre">limit</span></code> API, a
+<p>If an Ibis table expression has no row limit set using the <code class="docutils literal"><span class="pre">limit</span></code> API, a
 default one is applied to prevent too much data from being retrieved from the
 query engine. The default is currently 10000 rows, but this can be configured
-with the <code class="docutils literal notranslate"><span class="pre">sql.default_limit</span></code> option:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="mi">100</span>
+with the <code class="docutils literal"><span class="pre">sql.default_limit</span></code> option:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="mi">100</span>
 </pre></div>
 </div>
-<p>Set this to <code class="docutils literal notranslate"><span class="pre">None</span></code> to retrieve all rows in all queries (be careful!).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="bp">None</span>
+<p>Set this to <code class="docutils literal"><span class="pre">None</span></code> to retrieve all rows in all queries (be careful!).</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">default_limit</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
 </div>
 </div>
@@ -248,12 +248,12 @@ with the <code class="docutils literal notranslate"><span class="pre">sql.defaul
 <h3>Verbose option and Logging<a class="headerlink" href="#verbose-option-and-logging" title="Permalink to this headline">¶</a></h3>
 <p>To see all internal Ibis activity (like queries being executed) set
 <cite>ibis.options.verbose</cite>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
-<p>By default this information is sent to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code>, but you can set some
+<p>By default this information is sent to <code class="docutils literal"><span class="pre">sys.stdout</span></code>, but you can set some
 other logging function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cowsay</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cowsay</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Cow says: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">verbose_log</span> <span class="o">=</span> <span class="n">cowsay</span>
@@ -269,18 +269,18 @@ connects to Impala through the HiveServer2 interface (using the impyla client).
 Therefore, the connection semantics are similar to the other access methods for
 working with secure clusters.</p>
 <p>Specifically, after authenticating yourself against Kerberos (e.g., by issuing
-the appropriate <code class="docutils literal notranslate"><span class="pre">kinit</span></code> commmand), simply pass <code class="docutils literal notranslate"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
-<code class="docutils literal notranslate"><span class="pre">auth_mechanism='LDAP'</span></code> (and set <code class="docutils literal notranslate"><span class="pre">kerberos_service_name</span></code> if necessary along
-with <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> if necessary) to the
-<code class="docutils literal notranslate"><span class="pre">ibis.impala_connect(...)</span></code> method when instantiating an <code class="docutils literal notranslate"><span class="pre">ImpalaConnection</span></code>.
-This method also takes arguments to configure SSL (<code class="docutils literal notranslate"><span class="pre">use_ssl</span></code>, <code class="docutils literal notranslate"><span class="pre">ca_cert</span></code>).
+the appropriate <code class="docutils literal"><span class="pre">kinit</span></code> commmand), simply pass <code class="docutils literal"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
+<code class="docutils literal"><span class="pre">auth_mechanism='LDAP'</span></code> (and set <code class="docutils literal"><span class="pre">kerberos_service_name</span></code> if necessary along
+with <code class="docutils literal"><span class="pre">user</span></code> and <code class="docutils literal"><span class="pre">password</span></code> if necessary) to the
+<code class="docutils literal"><span class="pre">ibis.impala_connect(...)</span></code> method when instantiating an <code class="docutils literal"><span class="pre">ImpalaConnection</span></code>.
+This method also takes arguments to configure SSL (<code class="docutils literal"><span class="pre">use_ssl</span></code>, <code class="docutils literal"><span class="pre">ca_cert</span></code>).
 See the documentation for the Impala shell for more details.</p>
 <p>Ibis also includes functionality that communicates directly with HDFS, using
-the WebHDFS REST API.  When calling <code class="docutils literal notranslate"><span class="pre">ibis.hdfs_connect(...)</span></code>, also pass
-<code class="docutils literal notranslate"><span class="pre">auth_mechanism='GSSAPI'</span></code> or <code class="docutils literal notranslate"><span class="pre">auth_mechanism='LDAP'</span></code>, and ensure that you
+the WebHDFS REST API.  When calling <code class="docutils literal"><span class="pre">ibis.hdfs_connect(...)</span></code>, also pass
+<code class="docutils literal"><span class="pre">auth_mechanism='GSSAPI'</span></code> or <code class="docutils literal"><span class="pre">auth_mechanism='LDAP'</span></code>, and ensure that you
 are connecting to the correct port, which may likely be an SSL-secured WebHDFS
-port.  Also note that you can pass <code class="docutils literal notranslate"><span class="pre">verify=False</span></code> to avoid verifying SSL
-certificates (which may be helpful in testing).  Ibis will assume <code class="docutils literal notranslate"><span class="pre">https</span></code>
+port.  Also note that you can pass <code class="docutils literal"><span class="pre">verify=False</span></code> to avoid verifying SSL
+certificates (which may be helpful in testing).  Ibis will assume <code class="docutils literal"><span class="pre">https</span></code>
 when connecting to a Kerberized cluster. Because some Ibis commands create HDFS
 directories as well as new Impala databases and/or tables, your user will
 require the necessary privileges.</p>
@@ -339,7 +339,7 @@ shows the default configuration values for every component of CDH.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+78.g38f45aa',
+            VERSION:'v0.12.0+79.gc7aa4b7',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

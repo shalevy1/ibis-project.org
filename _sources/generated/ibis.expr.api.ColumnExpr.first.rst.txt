@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.first
-==============================
+ibis\.expr\.api\.ColumnExpr\.first
+==================================
 
 .. currentmodule:: ibis.expr.api
 

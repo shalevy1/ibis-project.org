@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.find
-==============================
+ibis\.expr\.api\.StringValue\.find
+==================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.round
-================================
+ibis\.expr\.api\.NumericValue\.round
+====================================
 
 .. currentmodule:: ibis.expr.api
 
