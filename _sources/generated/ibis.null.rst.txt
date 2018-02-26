@@ -1,5 +1,5 @@
-ibis\.null
-==========
+ibis.null
+=========
 
 .. currentmodule:: ibis
 

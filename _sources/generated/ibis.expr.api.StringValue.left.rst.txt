@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.left
-==================================
+ibis.expr.api.StringValue.left
+==============================
 
 .. currentmodule:: ibis.expr.api
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.cross_join &mdash; Ibis v0.12.0+79.gc7aa4b7 documentation</title>
+  <title>ibis.expr.api.TableExpr.cross_join &mdash; Ibis v0.12.0+80.g61867cc documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+79.gc7aa4b7 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+80.g61867cc documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.inner_join" href="ibis.expr.api.TableExpr.inner_join.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.join" href="ibis.expr.api.TableExpr.join.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+79.gc7aa4b7
+                v0.12.0+80.g61867cc
               </div>
             
           
@@ -255,7 +255,7 @@
 <h1>ibis.expr.api.TableExpr.cross_join<a class="headerlink" href="#ibis-expr-api-tableexpr-cross-join" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.cross_join">
-<code class="descclassname">TableExpr.</code><code class="descname">cross_join</code><span class="sig-paren">(</span><em>*tables</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.cross_join" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">cross_join</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.cross_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform a cross join (cartesian product) amongst a list of tables, with
 optional set of prefixes to apply to overlapping column names</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -269,7 +269,7 @@ optional set of prefixes to apply to overlapping column names</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">schemas</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="s1">&#39;abcde&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="p">[</span>
 <span class="gp">... </span>    <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">schemas</span>
@@ -368,7 +368,7 @@ optional set of prefixes to apply to overlapping column names</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+79.gc7aa4b7',
+            VERSION:'v0.12.0+80.g61867cc',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

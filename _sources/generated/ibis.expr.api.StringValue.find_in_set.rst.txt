@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.find\_in\_set
-===========================================
+ibis.expr.api.StringValue.find\_in\_set
+=======================================
 
 .. currentmodule:: ibis.expr.api
 

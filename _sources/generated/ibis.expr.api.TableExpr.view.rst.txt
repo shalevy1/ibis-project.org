@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TableExpr\.view
-================================
+ibis.expr.api.TableExpr.view
+============================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TableExpr\.sort\_by
-====================================
+ibis.expr.api.TableExpr.sort\_by
+================================
 
 .. currentmodule:: ibis.expr.api
 

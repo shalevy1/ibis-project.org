@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ValueExpr\.notin
-=================================
+ibis.expr.api.ValueExpr.notin
+=============================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TableExpr\.projection
-======================================
+ibis.expr.api.TableExpr.projection
+==================================
 
 .. currentmodule:: ibis.expr.api
 

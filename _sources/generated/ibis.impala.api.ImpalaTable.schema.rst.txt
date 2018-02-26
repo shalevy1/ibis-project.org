@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaTable\.schema
-======================================
+ibis.impala.api.ImpalaTable.schema
+==================================
 
 .. currentmodule:: ibis.impala.api
 

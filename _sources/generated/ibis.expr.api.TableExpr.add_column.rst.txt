@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TableExpr\.add\_column
-=======================================
+ibis.expr.api.TableExpr.add\_column
+===================================
 
 .. currentmodule:: ibis.expr.api
 

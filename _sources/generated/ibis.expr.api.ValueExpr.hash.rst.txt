@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ValueExpr\.hash
-================================
+ibis.expr.api.ValueExpr.hash
+============================
 
 .. currentmodule:: ibis.expr.api
 

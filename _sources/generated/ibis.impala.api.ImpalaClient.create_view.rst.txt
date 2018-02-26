@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.create\_view
-=============================================
+ibis.impala.api.ImpalaClient.create\_view
+=========================================
 
 .. currentmodule:: ibis.impala.api
 

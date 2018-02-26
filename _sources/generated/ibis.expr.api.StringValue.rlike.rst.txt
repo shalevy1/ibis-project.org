@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.rlike
-===================================
+ibis.expr.api.StringValue.rlike
+===============================
 
 .. currentmodule:: ibis.expr.api
 
