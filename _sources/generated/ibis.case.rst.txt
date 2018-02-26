@@ -1,5 +1,5 @@
-ibis\.case
-==========
+ibis.case
+=========
 
 .. currentmodule:: ibis
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ValueExpr.case &mdash; Ibis v0.12.0+81.ge763eb1 documentation</title>
+  <title>ibis.expr.api.ValueExpr.case &mdash; Ibis v0.12.0+82.gae2322b documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+81.ge763eb1 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+82.gae2322b documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.ValueExpr.cases" href="ibis.expr.api.ValueExpr.cases.html"/>
         <link rel="prev" title="ibis.expr.api.ValueExpr.typeof" href="ibis.expr.api.ValueExpr.typeof.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+81.ge763eb1
+                v0.12.0+82.gae2322b
               </div>
             
           
@@ -247,7 +247,7 @@
 <h1>ibis.expr.api.ValueExpr.case<a class="headerlink" href="#ibis-expr-api-valueexpr-case" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.ValueExpr.case">
-<code class="descclassname">ValueExpr.</code><code class="descname">case</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.case" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ValueExpr.</code><code class="descname">case</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.case" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new SimpleCaseBuilder to chain multiple if-else statements. Add
 new search expressions with the .when method. These must be comparable with
 this array expression. Conclude by calling .end()</p>
@@ -260,7 +260,7 @@ this array expression. Conclude by calling .end()</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">string_col</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">case_expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
@@ -344,7 +344,7 @@ this array expression. Conclude by calling .end()</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+81.ge763eb1',
+            VERSION:'v0.12.0+82.gae2322b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

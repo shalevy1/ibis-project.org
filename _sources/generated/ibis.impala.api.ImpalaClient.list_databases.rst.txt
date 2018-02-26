@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.list\_databases
-================================================
+ibis.impala.api.ImpalaClient.list\_databases
+============================================
 
 .. currentmodule:: ibis.impala.api
 

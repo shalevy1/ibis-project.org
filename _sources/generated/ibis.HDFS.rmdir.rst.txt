@@ -1,5 +1,5 @@
-ibis\.HDFS\.rmdir
-=================
+ibis.HDFS.rmdir
+===============
 
 .. currentmodule:: ibis
 

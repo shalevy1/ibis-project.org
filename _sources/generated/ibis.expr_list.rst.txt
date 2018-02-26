@@ -1,5 +1,5 @@
-ibis\.expr\_list
-================
+ibis.expr\_list
+===============
 
 .. currentmodule:: ibis
 

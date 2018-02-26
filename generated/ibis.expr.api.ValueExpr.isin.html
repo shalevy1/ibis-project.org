@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ValueExpr.isin &mdash; Ibis v0.12.0+81.ge763eb1 documentation</title>
+  <title>ibis.expr.api.ValueExpr.isin &mdash; Ibis v0.12.0+82.gae2322b documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+81.ge763eb1 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+82.gae2322b documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.ValueExpr.notin" href="ibis.expr.api.ValueExpr.notin.html"/>
         <link rel="prev" title="ibis.expr.api.ValueExpr.fillna" href="ibis.expr.api.ValueExpr.fillna.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+81.ge763eb1
+                v0.12.0+82.gae2322b
               </div>
             
           
@@ -247,7 +247,7 @@
 <h1>ibis.expr.api.ValueExpr.isin<a class="headerlink" href="#ibis-expr-api-valueexpr-isin" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.ValueExpr.isin">
-<code class="descclassname">ValueExpr.</code><code class="descname">isin</code><span class="sig-paren">(</span><em>arg</em>, <em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.isin" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ValueExpr.</code><code class="descname">isin</code><span class="sig-paren">(</span><em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.isin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check whether the value expression is contained within the indicated
 list of values.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -267,7 +267,7 @@ comparable with the calling expression, or None (NULL).</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">table2</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;other_string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz&#39;</span><span class="p">])</span>
@@ -322,7 +322,7 @@ comparable with the calling expression, or None (NULL).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.12.0+81.ge763eb1',
+            VERSION:'v0.12.0+82.gae2322b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

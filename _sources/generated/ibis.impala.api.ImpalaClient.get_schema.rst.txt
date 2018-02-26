@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.get\_schema
-============================================
+ibis.impala.api.ImpalaClient.get\_schema
+========================================
 
 .. currentmodule:: ibis.impala.api
 

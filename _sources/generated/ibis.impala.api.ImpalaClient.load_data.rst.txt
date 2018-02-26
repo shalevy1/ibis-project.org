@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.load\_data
-===========================================
+ibis.impala.api.ImpalaClient.load\_data
+=======================================
 
 .. currentmodule:: ibis.impala.api
 

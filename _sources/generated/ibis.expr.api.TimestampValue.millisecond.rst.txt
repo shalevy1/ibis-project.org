@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TimestampValue\.millisecond
-============================================
+ibis.expr.api.TimestampValue.millisecond
+========================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.list\_tables
-=============================================
+ibis.impala.api.ImpalaClient.list\_tables
+=========================================
 
 .. currentmodule:: ibis.impala.api
 

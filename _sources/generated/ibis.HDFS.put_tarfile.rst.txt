@@ -1,5 +1,5 @@
-ibis\.HDFS\.put\_tarfile
-========================
+ibis.HDFS.put\_tarfile
+======================
 
 .. currentmodule:: ibis
 

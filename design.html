@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Design &mdash; Ibis v0.12.0+81.ge763eb1 documentation</title>
+  <title>Design &mdash; Ibis v0.12.0+82.gae2322b documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+81.ge763eb1 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+82.gae2322b documentation" href="index.html"/>
         <link rel="next" title="Extending Ibis" href="extending.html"/>
         <link rel="prev" title="Developing and Contributing to Ibis" href="developer.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+81.ge763eb1
+                v0.12.0+82.gae2322b
               </div>
             
           
@@ -105,8 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#flow-of-execution">Flow of Execution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#expressions">Expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#type-system">Type System</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-expr-class">The <code class="docutils literal"><span class="pre">Expr</span></code> class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-node-class">The <code class="docutils literal"><span class="pre">Node</span></code> Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-expr-class">The <code class="docutils literal notranslate"><span class="pre">Expr</span></code> class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-node-class">The <code class="docutils literal notranslate"><span class="pre">Node</span></code> Class</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#expressions-vs-operations-why-are-they-different">Expressions vs Operations: Why are they different?</a></li>
 </ul>
 </li>
@@ -243,26 +243,26 @@ by ibis</li>
 <div class="section" id="expressions">
 <span id="id4"></span><h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h2>
 <p>The main user-facing component of ibis is expressions. The base class of all
-expressions in ibis is the <code class="xref py py-class docutils literal"><span class="pre">Expr</span></code> class.</p>
-<p>Expressions provide the user facing API, defined in <code class="docutils literal"><span class="pre">ibis/expr/api.py</span></code></p>
+expressions in ibis is the <code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code> class.</p>
+<p>Expressions provide the user facing API, defined in <code class="docutils literal notranslate"><span class="pre">ibis/expr/api.py</span></code></p>
 <div class="section" id="type-system">
 <span id="id5"></span><h3>Type System<a class="headerlink" href="#type-system" title="Permalink to this headline">¶</a></h3>
 <p>Ibis’s type system consists of a set of rules for specifying the types of
-inputs to <code class="xref py py-class docutils literal"><span class="pre">Node</span></code> subclasses. Upon construction of a
-<code class="xref py py-class docutils literal"><span class="pre">Node</span></code> subclass, ibis performs validation of every
+inputs to <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> subclasses. Upon construction of a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> subclass, ibis performs validation of every
 input to the node based on the rule that was used to declare the input.</p>
-<p>Rules are defined in <code class="docutils literal"><span class="pre">ibis/expr/rules.py</span></code></p>
+<p>Rules are defined in <code class="docutils literal notranslate"><span class="pre">ibis/expr/rules.py</span></code></p>
 </div>
 <div class="section" id="the-expr-class">
-<span id="expr-class"></span><h3>The <code class="xref py py-class docutils literal"><span class="pre">Expr</span></code> class<a class="headerlink" href="#the-expr-class" title="Permalink to this headline">¶</a></h3>
+<span id="expr-class"></span><h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code> class<a class="headerlink" href="#the-expr-class" title="Permalink to this headline">¶</a></h3>
 <p>Expressions are a thin but important abstraction over operations, containing
 only type information and shape information, i.e., whether they are tables,
 columns, or scalars.</p>
-<p>Examples of expressions include <code class="xref py py-class docutils literal"><span class="pre">Int64Column</span></code>,
-<code class="xref py py-class docutils literal"><span class="pre">StringScalar</span></code>, and
-<code class="xref py py-class docutils literal"><span class="pre">TableExpr</span></code>.</p>
+<p>Examples of expressions include <code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Column</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">StringScalar</span></code>, and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TableExpr</span></code>.</p>
 <p>Here’s an example of each type of expression:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">)])</span>
 <span class="n">int64_column</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span>
 <span class="nb">type</span><span class="p">(</span><span class="n">int64_column</span><span class="p">)</span>
@@ -274,24 +274,24 @@ columns, or scalars.</p>
 </div>
 </div>
 <div class="section" id="the-node-class">
-<span id="node-class"></span><h3>The <code class="xref py py-class docutils literal"><span class="pre">Node</span></code> Class<a class="headerlink" href="#the-node-class" title="Permalink to this headline">¶</a></h3>
-<p><code class="xref py py-class docutils literal"><span class="pre">Node</span></code> subclasses make up the core set of operations of
+<span id="node-class"></span><h3>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> Class<a class="headerlink" href="#the-node-class" title="Permalink to this headline">¶</a></h3>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> subclasses make up the core set of operations of
 ibis. Each node corresponds to a particular operation.</p>
-<p>Most nodes are defined in the <code class="xref py py-mod docutils literal"><span class="pre">operations</span></code> module.</p>
-<p>Examples of nodes include <code class="xref py py-class docutils literal"><span class="pre">Add</span></code> and
-<code class="xref py py-class docutils literal"><span class="pre">Sum</span></code>.</p>
+<p>Most nodes are defined in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">operations</span></code> module.</p>
+<p>Examples of nodes include <code class="xref py py-class docutils literal notranslate"><span class="pre">Add</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Sum</span></code>.</p>
 <p>Nodes have two important members (and often these are the only members defined):</p>
 <ol class="arabic simple">
-<li><code class="docutils literal"><span class="pre">input_type</span></code>: a list of rules</li>
-<li><code class="docutils literal"><span class="pre">output_type</span></code>: a rule or method</li>
+<li><code class="docutils literal notranslate"><span class="pre">input_type</span></code>: a list of rules</li>
+<li><code class="docutils literal notranslate"><span class="pre">output_type</span></code>: a rule or method</li>
 </ol>
-<p>The <code class="docutils literal"><span class="pre">input_type</span></code> member is a list of rules that defines the types of
+<p>The <code class="docutils literal notranslate"><span class="pre">input_type</span></code> member is a list of rules that defines the types of
 the inputs to the operation. This is sometimes called the signature.</p>
-<p>The <code class="docutils literal"><span class="pre">output_type</span></code> member is a rule or a method that defines the output type
+<p>The <code class="docutils literal notranslate"><span class="pre">output_type</span></code> member is a rule or a method that defines the output type
 of the operation. This is sometimes called the return type.</p>
-<p>An example of <code class="docutils literal"><span class="pre">input_type</span></code>/<code class="docutils literal"><span class="pre">output_type</span></code> usage is the
-<code class="xref py py-class docutils literal"><span class="pre">Log</span></code> class:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Log</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<p>An example of <code class="docutils literal notranslate"><span class="pre">input_type</span></code>/<code class="docutils literal notranslate"><span class="pre">output_type</span></code> usage is the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Log</span></code> class:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Log</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
 
     <span class="n">input_type</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">rules</span><span class="o">.</span><span class="n">double</span><span class="p">(),</span>
@@ -300,13 +300,13 @@ of the operation. This is sometimes called the return type.</p>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">shape_like_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This class describes an operation called <code class="docutils literal"><span class="pre">Log</span></code> that takes one required
+<p>This class describes an operation called <code class="docutils literal notranslate"><span class="pre">Log</span></code> that takes one required
 argument: a double scalar or column, and one optional argument: a double scalar
-or column named <code class="docutils literal"><span class="pre">base</span></code> that defaults to nothing if not provided. The base
-argument is <code class="docutils literal"><span class="pre">None</span></code> by default so that the expression will behave as the
+or column named <code class="docutils literal notranslate"><span class="pre">base</span></code> that defaults to nothing if not provided. The base
+argument is <code class="docutils literal notranslate"><span class="pre">None</span></code> by default so that the expression will behave as the
 underlying database does.</p>
 <p>These objects are instantiated when you use ibis APIs:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)])</span>
 <span class="n">log_1p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>  <span class="c1"># an Add and a Log are instantiated here</span>
 </pre></div>
@@ -318,13 +318,13 @@ underlying database does.</p>
 generically describe and validate the inputs to particular nodes. In the log
 example, it doesn’t matter what <em>operation</em> (node) the double-valued arguments
 are coming from, they must only satisfy the requirement denoted by the rule.</p>
-<p>Separation of the <code class="xref py py-class docutils literal"><span class="pre">Node</span></code> and
-<code class="xref py py-class docutils literal"><span class="pre">Expr</span></code> classes also allows the API to be tied to the
+<p>Separation of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Expr</span></code> classes also allows the API to be tied to the
 physical type of the expression rather than the particular operation, making it
 easy to define the API in terms of types rather than specific operations.</p>
 <p>Furthermore, operations often have an output type that depends on the input
-type. An example of this is the <code class="docutils literal"><span class="pre">greatest</span></code> function, which takes the maximum
-of all of its arguments. Another example is <code class="docutils literal"><span class="pre">CASE</span></code> statements, whose <code class="docutils literal"><span class="pre">THEN</span></code>
+type. An example of this is the <code class="docutils literal notranslate"><span class="pre">greatest</span></code> function, which takes the maximum
+of all of its arguments. Another example is <code class="docutils literal notranslate"><span class="pre">CASE</span></code> statements, whose <code class="docutils literal notranslate"><span class="pre">THEN</span></code>
 expressions determine the output type of the expression.</p>
 <p>This allows ibis to provide <strong>only</strong> the APIs that make sense for a particular
 type, even when an operation yields a different output type depending on its
@@ -339,20 +339,20 @@ make sense, like computing the average of a string column.</p>
 infrastructure was generalized to support compilation of <a class="reference external" href="https://docs.sqlalchemy.org/en/latest/core/tutorial.html">SQLAlchemy</a> based expressions.</p>
 <p>The compiler works by translating the different pieces of SQL expression into a
 string or SQLAlchemy expression.</p>
-<p>The main pieces of a <code class="docutils literal"><span class="pre">SELECT</span></code> statement are:</p>
+<p>The main pieces of a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement are:</p>
 <ol class="arabic simple">
-<li>The set of column expressions (<code class="docutils literal"><span class="pre">select_set</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">WHERE</span></code> clauses (<code class="docutils literal"><span class="pre">where</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clauses (<code class="docutils literal"><span class="pre">group_by</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">HAVING</span></code> clauses (<code class="docutils literal"><span class="pre">having</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">LIMIT</span></code> clauses (<code class="docutils literal"><span class="pre">limit</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clauses (<code class="docutils literal"><span class="pre">order_by</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">DISTINCT</span></code> clauses (<code class="docutils literal"><span class="pre">distinct</span></code>)</li>
+<li>The set of column expressions (<code class="docutils literal notranslate"><span class="pre">select_set</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">where</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">group_by</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">having</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">limit</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">order_by</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> clauses (<code class="docutils literal notranslate"><span class="pre">distinct</span></code>)</li>
 </ol>
 <p>Each of these pieces is translated into a SQL string and finally assembled by
-the instance of the <code class="xref py py-class docutils literal"><span class="pre">ExprTranslator</span></code> subclass
+the instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">ExprTranslator</span></code> subclass
 specific to the backend being compiled. For example, the
-<code class="xref py py-class docutils literal"><span class="pre">ImpalaExprTranslator</span></code> is one of the subclasses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ImpalaExprTranslator</span></code> is one of the subclasses
 that will perform this translation.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -370,8 +370,8 @@ handle whatever the database hands back.</p>
 SQL is sent from ibis.</p>
 <p>However, once the data arrives from the database we need to convert that
 data to a pandas DataFrame.</p>
-<p>The Query class, with its <code class="xref py py-meth docutils literal"><span class="pre">_fetch()</span></code> method,
-provides a way for ibis <code class="xref py py-class docutils literal"><span class="pre">SQLClient</span></code> objects to do any
+<p>The Query class, with its <code class="xref py py-meth docutils literal notranslate"><span class="pre">_fetch()</span></code> method,
+provides a way for ibis <code class="xref py py-class docutils literal notranslate"><span class="pre">SQLClient</span></code> objects to do any
 additional processing necessary after the database returns results to the
 client.</p>
 </div>
@@ -421,7 +421,7 @@ client.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+81.ge763eb1',
+            VERSION:'v0.12.0+82.gae2322b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

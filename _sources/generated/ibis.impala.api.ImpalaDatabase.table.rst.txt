@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaDatabase\.table
-========================================
+ibis.impala.api.ImpalaDatabase.table
+====================================
 
 .. currentmodule:: ibis.impala.api
 

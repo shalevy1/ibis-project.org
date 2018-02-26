@@ -1,5 +1,5 @@
-ibis\.expr\.api\.GroupedTableExpr\.order\_by
-============================================
+ibis.expr.api.GroupedTableExpr.order\_by
+========================================
 
 .. currentmodule:: ibis.expr.api
 

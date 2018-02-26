@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaTable\.describe\_formatted
-===================================================
+ibis.impala.api.ImpalaTable.describe\_formatted
+===============================================
 
 .. currentmodule:: ibis.impala.api
 

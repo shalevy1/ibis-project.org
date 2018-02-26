@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaTable\.drop
-====================================
+ibis.impala.api.ImpalaTable.drop
+================================
 
 .. currentmodule:: ibis.impala.api
 

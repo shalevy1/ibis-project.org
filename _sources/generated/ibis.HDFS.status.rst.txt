@@ -1,5 +1,5 @@
-ibis\.HDFS\.status
-==================
+ibis.HDFS.status
+================
 
 .. currentmodule:: ibis
 
