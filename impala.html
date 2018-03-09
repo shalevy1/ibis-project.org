@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Ibis with Impala &mdash; Ibis v0.12.0+83.g3243deb documentation</title>
+  <title>Using Ibis with Impala &mdash; Ibis v0.12.0+84.g1127162 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+83.g3243deb documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+84.g1127162 documentation" href="index.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.database" href="generated/ibis.impala.api.ImpalaClient.database.html"/>
         <link rel="prev" title="Configuring Ibis" href="configuration.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+83.g3243deb
+                v0.12.0+84.g1127162
               </div>
             
           
@@ -320,10 +320,10 @@ database.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html#ibis.impala.api.ImpalaClient.database" title="ibis.impala.api.ImpalaClient.database"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.database</span></code></a>([name])</td>
-<td>Create a Database object for a given database name that can be used for exploring and manipulating the objects (tables, functions, views, etc.</td>
+<td>Create a Database object for a given database name that can be used for</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.table.html#ibis.impala.api.ImpalaClient.table" title="ibis.impala.api.ImpalaClient.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.table</span></code></a>(name[,&nbsp;database])</td>
-<td>Create a table expression that references a particular table in the database</td>
+<td>Create a table expression that references a particular table in the</td>
 </tr>
 </tbody>
 </table>
@@ -503,7 +503,7 @@ top-level client connection or a database object.</p>
 <td>Create a new table in Impala using an Ibis table expression.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.create_table.html#ibis.impala.api.ImpalaDatabase.create_table" title="ibis.impala.api.ImpalaDatabase.create_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaDatabase.create_table</span></code></a>(table_name[,&nbsp;obj])</td>
-<td>Dispatch to ImpalaClient.</td>
+<td>Dispatch to ImpalaClient.create_table.</td>
 </tr>
 </tbody>
 </table>
@@ -660,10 +660,10 @@ getting information about the partition schema and any existing partition data:<
 <td>True if the table is partitioned</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partition_schema.html#ibis.impala.api.ImpalaTable.partition_schema" title="ibis.impala.api.ImpalaTable.partition_schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.partition_schema</span></code></a>()</td>
-<td>For partitioned tables, return the schema (names and types) for the partition columns</td>
+<td>For partitioned tables, return the schema (names and types) for the</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partitions.html#ibis.impala.api.ImpalaTable.partitions" title="ibis.impala.api.ImpalaTable.partitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.partitions</span></code></a>()</td>
-<td>Return a pandas.</td>
+<td>Return a pandas.DataFrame giving information about this table’s partitions.</td>
 </tr>
 </tbody>
 </table>
@@ -1376,7 +1376,7 @@ plug in all your own functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+83.g3243deb',
+            VERSION:'v0.12.0+84.g1127162',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

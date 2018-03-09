@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Topics: Additional Filtering &mdash; Ibis v0.12.0+83.g3243deb documentation</title>
+  <title>Advanced Topics: Additional Filtering &mdash; Ibis v0.12.0+84.g1127162 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+83.g3243deb documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+84.g1127162 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Additional Analytics Tools" href="8-More-Analytics-Helpers.html"/>
         <link rel="prev" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+83.g3243deb
+                v0.12.0+84.g1127162
               </div>
             
           
@@ -528,33 +528,33 @@ customer data:</p>
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>c_custkey              c_name                                 c_address  \
-0      36901  Customer#000036901                      TBb1yDZcf 8Zepk7apFJ
-1      78002  Customer#000078002                                v7Jkg5XIqM
-2     123314  Customer#000123314      nKPmaZi,OKhObOYSL3wc egXR4Vt99CXRclF
-3     136777  Customer#000136777  Qy6YjXMy1jjCBkVDvnDThNMMLQG49wXEgIJ6DPLK
-4      44485  Customer#000044485                           hlyA8oJVqUQfBOb
+<span></span>c_custkey              c_name                            c_address  \
+0     133885  Customer#000133885                         EVK76gJeTspw
+1      36934  Customer#000036934                0rsf17ITLCTceWGXzpe9n
+2      41483  Customer#000041483                          LNzmnS7zhAH
+3     148102  Customer#000148102           sqd6wCIoHZ6qMdVveUERJraOO1
+4      19864  Customer#000019864  juCsfGD12 ySsWfOrSp5TQyHbxmJMuYKp3k
 
    c_nationkey          c_phone  c_acctbal c_mktsegment  \
-0           13  23-644-998-4944    4809.84   AUTOMOBILE
-1           10  20-715-308-7926    4128.41   AUTOMOBILE
-2           15  25-884-345-1592    -686.40    MACHINERY
-3           10  20-500-807-1549     -65.46    HOUSEHOLD
-4           20  30-452-969-2072    4543.02    FURNITURE
+0           24  34-956-563-4308    6723.55   AUTOMOBILE
+1           10  20-879-918-2113    5928.79    FURNITURE
+2            6  16-613-774-2621    6913.32    HOUSEHOLD
+3            6  16-318-581-1666    8906.57     BUILDING
+4           12  22-890-475-8535    4600.19    HOUSEHOLD
 
                                            c_comment       region  \
-0  nstructions sleep final, regular deposits. qui...  MIDDLE EAST
-1    ly after the special deposits. careful packages  MIDDLE EAST
-2             ounts serve furiously. carefully expre       AFRICA
-3  y regular foxes nag blithely among the careful...  MIDDLE EAST
-4                ng excuses cajole along the silent,  MIDDLE EAST
+0  mptotes use blithely furiously regular escapad...      AMERICA
+1  usual dependencies serve blithely deposits. ir...  MIDDLE EAST
+2  structions. blithely final pearls boost around...       EUROPE
+3  eas. deposits integrate along the slyly ironic...       EUROPE
+4  careful braids. unusual, silent requests after...         ASIA
 
    o_totalprice      odate
-0     173665.47 1996-01-02
-1      46929.18 1996-12-01
-2     193846.25 1993-10-14
-3      32151.78 1995-10-11
-4     144659.20 1994-07-30
+0     160843.35 1992-06-22
+1      78307.91 1996-04-19
+2     103237.90 1994-10-12
+3     201463.59 1997-09-12
+4     166098.86 1995-09-12
 </pre></div>
 </div>
 </div>
@@ -594,53 +594,53 @@ expression</p>
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>c_custkey              c_name                                c_address  \
-0     133885  Customer#000133885                             EVK76gJeTspw
-1     148102  Customer#000148102               sqd6wCIoHZ6qMdVveUERJraOO1
-2      19864  Customer#000019864      juCsfGD12 ySsWfOrSp5TQyHbxmJMuYKp3k
-3      57892  Customer#000057892  MxXEs3,3mbP0wLenKMByJ4bgQHN1cFMgzFXJE5i
-4      86575  Customer#000086575                       zM8VpTc8mN8FH3hhSB
-5      49127  Customer#000049127      7IWyxOa2IsnbukRaMT0VPHPWZx9 cgKjWDj
-6      63037  Customer#000063037          YdZC4nk04tmsxK6XvoSEaoF2fF5H64J
-7      96217  Customer#000096217  l2QpgaSPRJDXYO,HDUgD8aGfJajIem6eZpLGEBy
-8     110077  Customer#000110077                  WYMxagzV8I4oZ70p,udJLpo
-9      95935  Customer#000095935                               6N81QQGoEY
+<span></span>c_custkey              c_name                              c_address  \
+0      36901  Customer#000036901                   TBb1yDZcf 8Zepk7apFJ
+1     123314  Customer#000123314   nKPmaZi,OKhObOYSL3wc egXR4Vt99CXRclF
+2      39136  Customer#000039136        afZJC1mWpwvsfKT0211ZD6NQXVGETfl
+3     130057  Customer#000130057            jQDBlCU2IlHmzkDfcqgIHg2eLsN
+4      66958  Customer#000066958            h5jsmOq8nxf8Pz1Knqe GZdK4lh
+5     127588  Customer#000127588      DbnvQxsG0,Nobhbj6n5cMUNPjfouzdFzH
+6      86116  Customer#000086116  63BSp8bODm1dImPJEPTRmsSa4GqNA1SeRqFgx
+7      81763  Customer#000081763     mZtn4M5r0KIw4aooP BXF3ReR RUlPJcAb
+8      56614  Customer#000056614                    sRgxfCf6gDLmFnrO8UO
+9      28547  Customer#000028547            AeWmD3BLrsSkmRY7O,wbB75i6Ll
 
    c_nationkey          c_phone  c_acctbal c_mktsegment  \
-0           24  34-956-563-4308    6723.55   AUTOMOBILE
-1            6  16-318-581-1666    8906.57     BUILDING
-2           12  22-890-475-8535    4600.19    HOUSEHOLD
-3            4  14-994-636-3663    -224.11    FURNITURE
-4           14  24-285-938-5455    2829.32     BUILDING
-5           18  28-188-101-1358     -43.40    HOUSEHOLD
-6            1  11-233-858-3620    1899.70     BUILDING
-7            8  18-247-268-4415    2648.95     BUILDING
-8           13  23-554-808-3156    3028.96    FURNITURE
-9           13  23-546-903-7783    6959.40    HOUSEHOLD
+0           13  23-644-998-4944    4809.84   AUTOMOBILE
+1           15  25-884-345-1592    -686.40    MACHINERY
+2            5  15-400-347-1643    5555.41    FURNITURE
+3            9  19-938-862-4157    5009.55    FURNITURE
+4           18  28-393-112-1873    9160.79    MACHINERY
+5           14  24-409-883-5840     358.38     BUILDING
+6            0  10-356-493-3518    3205.60   AUTOMOBILE
+7            8  18-425-613-5972    8368.23    MACHINERY
+8           11  21-657-845-6087    7623.48     BUILDING
+9            1  11-711-951-5798    2095.42    MACHINERY
 
                                            c_comment       region  \
-0  mptotes use blithely furiously regular escapad...      AMERICA
-1  eas. deposits integrate along the slyly ironic...       EUROPE
-2  careful braids. unusual, silent requests after...         ASIA
-3   es around the silent theodolites wake pending id  MIDDLE EAST
-4  en hockey players. even foxes grow slyly above...       AFRICA
-5  ag permanently. carefully regular deposits caj...         ASIA
-6  are doggedly even deposits. slyly slow ideas h...      AMERICA
-7        uickly ironic excuses. blithely careful dep         ASIA
-8   pending platelets against the slyly silent de...  MIDDLE EAST
-9  ithely brave packages haggle furiously after t...  MIDDLE EAST
+0  nstructions sleep final, regular deposits. qui...  MIDDLE EAST
+1             ounts serve furiously. carefully expre       AFRICA
+2  y? express theodolites haggle against the bold...       AFRICA
+3   blithely regular packages. carefully bold acc...         ASIA
+4  ggle quickly after the carefully stealthy depo...         ASIA
+5                  accounts wake slyly along the bli       AFRICA
+6    ironic ideas. quickly pending ideas sleep blith       AFRICA
+7  ronic frays. slyly pending pinto beans are fur...         ASIA
+8  sts. slyly ironic sheaves cajole dogged packag...  MIDDLE EAST
+9  y regular foxes nag quickly after the express,...      AMERICA
 
    o_totalprice      odate
-0     160843.35 1992-06-22
-1     201463.59 1997-09-12
-2     166098.86 1995-09-12
-3     306441.92 1996-01-03
-4     158056.07 1993-11-27
-5     279866.40 1992-09-04
-6     294134.21 1998-01-27
-7     228231.98 1992-01-03
-8     229979.86 1998-05-03
-9     164732.95 1992-10-13
+0     173665.47 1996-01-02
+1     193846.25 1993-10-14
+2     252004.18 1996-01-10
+3     208660.75 1995-07-16
+4     163243.98 1993-10-27
+5     253724.56 1995-10-23
+6     206680.66 1992-06-03
+7     341734.47 1996-09-20
+8     169405.01 1996-12-19
+9     330793.52 1998-04-18
 </pre></div>
 </div>
 </div>
@@ -925,7 +925,7 @@ will be the same (existence or non-existence is verified).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+83.g3243deb',
+            VERSION:'v0.12.0+84.g1127162',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
