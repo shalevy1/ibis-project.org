@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TimestampValue\.year
-=====================================
+ibis.expr.api.TimestampValue.year
+=================================
 
 .. currentmodule:: ibis.expr.api
 

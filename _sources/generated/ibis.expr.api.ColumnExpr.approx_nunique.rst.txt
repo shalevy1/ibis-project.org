@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ColumnExpr\.approx\_nunique
-============================================
+ibis.expr.api.ColumnExpr.approx\_nunique
+========================================
 
 .. currentmodule:: ibis.expr.api
 

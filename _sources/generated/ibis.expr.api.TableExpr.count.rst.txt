@@ -1,5 +1,5 @@
-ibis\.expr\.api\.TableExpr\.count
-=================================
+ibis.expr.api.TableExpr.count
+=============================
 
 .. currentmodule:: ibis.expr.api
 

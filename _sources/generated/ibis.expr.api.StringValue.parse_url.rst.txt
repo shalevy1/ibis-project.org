@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.parse\_url
-========================================
+ibis.expr.api.StringValue.parse\_url
+====================================
 
 .. currentmodule:: ibis.expr.api
 

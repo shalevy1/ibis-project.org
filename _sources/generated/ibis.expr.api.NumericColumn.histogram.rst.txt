@@ -1,5 +1,5 @@
-ibis\.expr\.api\.NumericColumn\.histogram
-=========================================
+ibis.expr.api.NumericColumn.histogram
+=====================================
 
 .. currentmodule:: ibis.expr.api
 

@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.translate
-=======================================
+ibis.expr.api.StringValue.translate
+===================================
 
 .. currentmodule:: ibis.expr.api
 

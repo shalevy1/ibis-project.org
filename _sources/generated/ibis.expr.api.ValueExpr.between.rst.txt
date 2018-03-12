@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ValueExpr\.between
-===================================
+ibis.expr.api.ValueExpr.between
+===============================
 
 .. currentmodule:: ibis.expr.api
 

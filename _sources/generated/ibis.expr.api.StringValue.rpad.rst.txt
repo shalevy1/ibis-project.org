@@ -1,5 +1,5 @@
-ibis\.expr\.api\.StringValue\.rpad
-==================================
+ibis.expr.api.StringValue.rpad
+==============================
 
 .. currentmodule:: ibis.expr.api
 

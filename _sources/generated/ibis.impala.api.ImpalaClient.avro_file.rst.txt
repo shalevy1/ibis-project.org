@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaClient\.avro\_file
-===========================================
+ibis.impala.api.ImpalaClient.avro\_file
+=======================================
 
 .. currentmodule:: ibis.impala.api
 

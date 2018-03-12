@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ColumnExpr\.cummin
-===================================
+ibis.expr.api.ColumnExpr.cummin
+===============================
 
 .. currentmodule:: ibis.expr.api
 

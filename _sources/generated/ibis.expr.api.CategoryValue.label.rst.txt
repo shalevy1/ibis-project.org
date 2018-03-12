@@ -1,5 +1,5 @@
-ibis\.expr\.api\.CategoryValue\.label
-=====================================
+ibis.expr.api.CategoryValue.label
+=================================
 
 .. currentmodule:: ibis.expr.api
 

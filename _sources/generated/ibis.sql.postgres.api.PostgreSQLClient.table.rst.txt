@@ -1,5 +1,5 @@
-ibis\.sql\.postgres\.api\.PostgreSQLClient\.table
-=================================================
+ibis.sql.postgres.api.PostgreSQLClient.table
+============================================
 
 .. currentmodule:: ibis.sql.postgres.api
 

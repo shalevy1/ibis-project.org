@@ -1,5 +1,5 @@
-ibis\.expr\.api\.GroupedTableExpr\.mutate
-=========================================
+ibis.expr.api.GroupedTableExpr.mutate
+=====================================
 
 .. currentmodule:: ibis.expr.api
 

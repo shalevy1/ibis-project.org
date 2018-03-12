@@ -1,5 +1,5 @@
-ibis\.impala\.api\.ImpalaTable\.column\_stats
-=============================================
+ibis.impala.api.ImpalaTable.column\_stats
+=========================================
 
 .. currentmodule:: ibis.impala.api
 

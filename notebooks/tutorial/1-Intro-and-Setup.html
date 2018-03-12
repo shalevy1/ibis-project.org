@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.12.0+86.gf8045f3 documentation</title>
+  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.12.0+87.gedb1006 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+86.gf8045f3 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+87.gedb1006 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/>
         <link rel="prev" title="Tutorial" href="../../tutorial.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+86.gf8045f3
+                v0.12.0+87.gedb1006
               </div>
             
           
@@ -105,7 +105,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
@@ -385,13 +385,13 @@ div.nboutput div.output_area.stderr {
 <h1>Impala/HDFS intro and Setup<a class="headerlink" href="#Impala/HDFS-intro-and-Setup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Getting-started">
 <h2>Getting started<a class="headerlink" href="#Getting-started" title="Permalink to this headline">¶</a></h2>
-<p>You’re going to want to make sure you can import <code class="docutils literal"><span class="pre">ibis</span></code></p>
+<p>You’re going to want to make sure you can import <code class="docutils literal notranslate"><span class="pre">ibis</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
@@ -400,13 +400,13 @@ div.nboutput div.output_area.stderr {
 <p>If you have WebHDFS available, connect to HDFS with according to your
 WebHDFS config. For kerberized or more complex HDFS clusters please look
 at <a class="reference external" href="http://hdfscli.readthedocs.org/en/latest/">http://hdfscli.readthedocs.org/en/latest/</a> for info on connecting. You
-can use a connection from that library instead of using <code class="docutils literal"><span class="pre">hdfs_connect</span></code></p>
+can use a connection from that library instead of using <code class="docutils literal notranslate"><span class="pre">hdfs_connect</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
 <span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
 </pre></div>
@@ -414,29 +414,29 @@ can use a connection from that library instead of using <code class="docutils li
 </div>
 <p>Finally, create the Ibis client</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">con</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none"><div class="highlight"><pre>
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>Out[3]:
 </pre></div>
 </div>
-<div class="output_area highlight-none"><div class="highlight"><pre>
-<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7ff6aebe9fd0&gt;
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7f30753f4f98&gt;
 </pre></div>
 </div>
 </div>
 <p>Obviously, substitute the parameters that are appropriate for your
-environment (see docstring for <code class="docutils literal"><span class="pre">ibis.impala.connect</span></code>).
-<code class="docutils literal"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla’s
+environment (see docstring for <code class="docutils literal notranslate"><span class="pre">ibis.impala.connect</span></code>).
+<code class="docutils literal notranslate"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla’s
 (<a class="reference external" href="https://pypi.python.org/pypi/impyla">https://pypi.python.org/pypi/impyla</a>) DBAPI interface</p>
 </div>
 </div>
@@ -463,7 +463,7 @@ environment (see docstring for <code class="docutils literal"><span class="pre">
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Cloudera, Inc..
+        &copy; Copyright 2018, Ibis Developers.
 
     </p>
   </div>
@@ -485,7 +485,7 @@ environment (see docstring for <code class="docutils literal"><span class="pre">
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+86.gf8045f3',
+            VERSION:'v0.12.0+87.gedb1006',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

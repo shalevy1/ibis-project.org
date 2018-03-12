@@ -1,5 +1,5 @@
-ibis\.negate
-============
+ibis.negate
+===========
 
 .. currentmodule:: ibis
 

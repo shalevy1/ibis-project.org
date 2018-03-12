@@ -1,5 +1,5 @@
-ibis\.expr\.api\.NumericValue\.ceil
-===================================
+ibis.expr.api.NumericValue.ceil
+===============================
 
 .. currentmodule:: ibis.expr.api
 

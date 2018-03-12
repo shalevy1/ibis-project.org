@@ -1,5 +1,5 @@
-ibis\.expr\.api\.DecimalValue\.scale
-====================================
+ibis.expr.api.DecimalValue.scale
+================================
 
 .. currentmodule:: ibis.expr.api
 

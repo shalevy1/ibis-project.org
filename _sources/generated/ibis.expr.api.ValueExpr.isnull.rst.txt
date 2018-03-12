@@ -1,5 +1,5 @@
-ibis\.expr\.api\.ValueExpr\.isnull
-==================================
+ibis.expr.api.ValueExpr.isnull
+==============================
 
 .. currentmodule:: ibis.expr.api
 
