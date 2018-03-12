@@ -1,5 +1,5 @@
-ibis.expr.api.ValueExpr.isin
-============================
+ibis\.expr\.api\.ValueExpr\.isin
+================================
 
 .. currentmodule:: ibis.expr.api
 

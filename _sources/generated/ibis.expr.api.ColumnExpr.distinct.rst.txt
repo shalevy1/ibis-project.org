@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.distinct
-=================================
+ibis\.expr\.api\.ColumnExpr\.distinct
+=====================================
 
 .. currentmodule:: ibis.expr.api
 

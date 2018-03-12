@@ -1,5 +1,5 @@
-ibis.expr.api.ColumnExpr.lag
-============================
+ibis\.expr\.api\.ColumnExpr\.lag
+================================
 
 .. currentmodule:: ibis.expr.api
 

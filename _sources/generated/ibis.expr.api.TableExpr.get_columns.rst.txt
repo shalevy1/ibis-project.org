@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.get\_columns
-====================================
+ibis\.expr\.api\.TableExpr\.get\_columns
+========================================
 
 .. currentmodule:: ibis.expr.api
 

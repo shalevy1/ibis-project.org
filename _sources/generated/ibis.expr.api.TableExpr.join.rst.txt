@@ -1,5 +1,5 @@
-ibis.expr.api.TableExpr.join
-============================
+ibis\.expr\.api\.TableExpr\.join
+================================
 
 .. currentmodule:: ibis.expr.api
 

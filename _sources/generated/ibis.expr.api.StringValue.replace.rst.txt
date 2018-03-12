@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.replace
-=================================
+ibis\.expr\.api\.StringValue\.replace
+=====================================
 
 .. currentmodule:: ibis.expr.api
 

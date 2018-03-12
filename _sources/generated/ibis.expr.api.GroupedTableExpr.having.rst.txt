@@ -1,5 +1,5 @@
-ibis.expr.api.GroupedTableExpr.having
-=====================================
+ibis\.expr\.api\.GroupedTableExpr\.having
+=========================================
 
 .. currentmodule:: ibis.expr.api
 

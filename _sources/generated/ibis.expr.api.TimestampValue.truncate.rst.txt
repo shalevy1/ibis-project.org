@@ -1,5 +1,5 @@
-ibis.expr.api.TimestampValue.truncate
-=====================================
+ibis\.expr\.api\.TimestampValue\.truncate
+=========================================
 
 .. currentmodule:: ibis.expr.api
 

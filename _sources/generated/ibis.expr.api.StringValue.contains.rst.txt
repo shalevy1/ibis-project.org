@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.contains
-==================================
+ibis\.expr\.api\.StringValue\.contains
+======================================
 
 .. currentmodule:: ibis.expr.api
 

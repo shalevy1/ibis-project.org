@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.exists\_table
-==========================================
+ibis\.impala\.api\.ImpalaClient\.exists\_table
+==============================================
 
 .. currentmodule:: ibis.impala.api
 

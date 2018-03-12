@@ -1,5 +1,5 @@
-ibis.HDFS.get
-=============
+ibis\.HDFS\.get
+===============
 
 .. currentmodule:: ibis
 

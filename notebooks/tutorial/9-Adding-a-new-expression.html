@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.12.0+85.ga2a9f0e documentation</title>
+  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.12.0+86.gf8045f3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+85.ga2a9f0e documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+86.gf8045f3 documentation" href="../../index.html"/>
         <link rel="up" title="Extending Ibis" href="../../extending.html"/>
         <link rel="next" title="Release Notes" href="../../release.html"/>
         <link rel="prev" title="Extending Ibis" href="../../extending.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+85.ga2a9f0e
+                v0.12.0+86.gf8045f3
               </div>
             
           
@@ -108,7 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Description">Description</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Interlude:-Create-some-expressions-with-sha1">Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Interlude:-Create-some-expressions-with-sha1">Interlude: Create some expressions with <code class="docutils literal"><span class="pre">sha1</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a></li>
 </ul>
@@ -390,7 +390,7 @@ div.nboutput div.output_area.stderr {
 <li>Expressions (for example, by adding a new operation)</li>
 <li>Backends</li>
 </ol>
-<p>This notebook will show you how to add a new operation (<code class="docutils literal notranslate"><span class="pre">sha1</span></code>) to an
+<p>This notebook will show you how to add a new operation (<code class="docutils literal"><span class="pre">sha1</span></code>) to an
 existing backend (BigQuery).</p>
 <div class="section" id="Description">
 <h2>Description<a class="headerlink" href="#Description" title="Permalink to this headline">¶</a></h2>
@@ -400,17 +400,17 @@ employed in systems such as git.</p>
 </div>
 <div class="section" id="Step-1:-Define-the-Operation">
 <h2>Step 1: Define the Operation<a class="headerlink" href="#Step-1:-Define-the-Operation" title="Permalink to this headline">¶</a></h2>
-<p>Let’s define the <code class="docutils literal notranslate"><span class="pre">sha</span></code> operation as a function that takes one string
+<p>Let’s define the <code class="docutils literal"><span class="pre">sha</span></code> operation as a function that takes one string
 input argument and returns a hexidecimal string.</p>
-<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="n">string</span> <span class="ow">-&gt;</span> <span class="n">string</span>
+<div class="highlight-haskell"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="n">string</span> <span class="ow">-&gt;</span> <span class="n">string</span>
 </pre></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
 
 <span class="kn">from</span> <span class="nn">ibis.expr</span> <span class="kn">import</span> <span class="n">rules</span>
@@ -424,29 +424,29 @@ input argument and returns a hexidecimal string.</p>
 </pre></div>
 </div>
 </div>
-<p>We just defined a <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> class that takes one argument of type string
+<p>We just defined a <code class="docutils literal"><span class="pre">SHA1</span></code> class that takes one argument of type string
 or binary, and returns a binary. This matches the description of the
 function provided by BigQuery.</p>
 </div>
 <div class="section" id="Step-2:-Define-the-API">
 <h2>Step 2: Define the API<a class="headerlink" href="#Step-2:-Define-the-API" title="Permalink to this headline">¶</a></h2>
 <p>Because we know the output type of the operation, to make an expression
-out of <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> we simply need to construct it and call its
-<code class="docutils literal notranslate"><span class="pre">ibis.expr.types.Node.to_expr</span></code> method.</p>
-<p>We still need to add a method to <code class="docutils literal notranslate"><span class="pre">StringValue</span></code> and <code class="docutils literal notranslate"><span class="pre">BinaryValue</span></code>
+out of <code class="docutils literal"><span class="pre">SHA1</span></code> we simply need to construct it and call its
+<code class="docutils literal"><span class="pre">ibis.expr.types.Node.to_expr</span></code> method.</p>
+<p>We still need to add a method to <code class="docutils literal"><span class="pre">StringValue</span></code> and <code class="docutils literal"><span class="pre">BinaryValue</span></code>
 (this needs to work on both scalars and columns).</p>
 <p>When you add a method to any of the expression classes whose name
-matches <code class="docutils literal notranslate"><span class="pre">*Value</span></code> both the scalar and column child classes will pick it
+matches <code class="docutils literal"><span class="pre">*Value</span></code> both the scalar and column child classes will pick it
 up, making it easy to define operations for both scalars and columns in
 one place.</p>
 <p>We can do this by defining a function and assigning it to the
 appropriate class of expressions.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">ibis.expr.types</span> <span class="kn">import</span> <span class="n">StringValue</span><span class="p">,</span> <span class="n">BinaryValue</span>
 
 
@@ -460,39 +460,39 @@ appropriate class of expressions.</p>
 </div>
 </div>
 <div class="section" id="Interlude:-Create-some-expressions-with-sha1">
-<h2>Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code><a class="headerlink" href="#Interlude:-Create-some-expressions-with-sha1" title="Permalink to this headline">¶</a></h2>
+<h2>Interlude: Create some expressions with <code class="docutils literal"><span class="pre">sha1</span></code><a class="headerlink" href="#Interlude:-Create-some-expressions-with-sha1" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">t</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[5]:
 </pre></div>
 </div>
@@ -504,11 +504,11 @@ appropriate class of expressions.</p>
 <div class="section" id="Step-3:-Turn-the-Expression-into-SQL">
 <h2>Step 3: Turn the Expression into SQL<a class="headerlink" href="#Step-3:-Turn-the-Expression-into-SQL" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">sa</span>
 
 
@@ -529,20 +529,20 @@ appropriate class of expressions.</p>
 <div class="section" id="Step-4:-Putting-it-all-Together">
 <h2>Step 4: Putting it all Together<a class="headerlink" href="#Step-4:-Putting-it-all-Together" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="Connect-to-the-ibis_testing-database">
-<h3>Connect to the <code class="docutils literal notranslate"><span class="pre">ibis_testing</span></code> database<a class="headerlink" href="#Connect-to-the-ibis_testing-database" title="Permalink to this headline">¶</a></h3>
+<h3>Connect to the <code class="docutils literal"><span class="pre">ibis_testing</span></code> database<a class="headerlink" href="#Connect-to-the-ibis_testing-database" title="Permalink to this headline">¶</a></h3>
 <p><strong>NOTE:</strong></p>
 <p>To be able to execute the rest of this notebook you need to run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres impala clickhouse mysql dns
+<div class="highlight-sh"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres impala clickhouse mysql dns
 docker-compose run waiter
 docker-compose run ibis ci/load-data.sh
 </pre></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
     <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">)</span>
 </pre></div>
@@ -550,33 +550,33 @@ docker-compose run ibis ci/load-data.sh
 </div>
 </div>
 <div class="section" id="Register-the-`pgcrypto-&lt;https://www.postgresql.org/docs/10/static/pgcrypto.html&gt;`__-extension">
-<h3>Register the <code class="docutils literal notranslate"><span class="pre">`pgcrypto</span></code> &lt;<a class="reference external" href="https://www.postgresql.org/docs/10/static/pgcrypto.html">https://www.postgresql.org/docs/10/static/pgcrypto.html</a>&gt;`__ extension<a class="headerlink" href="#Register-the-`pgcrypto-<https://www.postgresql.org/docs/10/static/pgcrypto.html>`__-extension" title="Permalink to this headline">¶</a></h3>
+<h3>Register the <code class="docutils literal"><span class="pre">`pgcrypto</span></code> &lt;<a class="reference external" href="https://www.postgresql.org/docs/10/static/pgcrypto.html">https://www.postgresql.org/docs/10/static/pgcrypto.html</a>&gt;`__ extension<a class="headerlink" href="#Register-the-`pgcrypto-<https://www.postgresql.org/docs/10/static/pgcrypto.html>`__-extension" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s1">&#39;CREATE EXTENSION IF NOT EXISTS pgcrypto&#39;</span><span class="p">);</span>  <span class="c1"># we don&#39;t care about the output</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="Create-and-execute-a-sha1-expression">
-<h3>Create and execute a <code class="docutils literal notranslate"><span class="pre">sha1</span></code> expression<a class="headerlink" href="#Create-and-execute-a-sha1-expression" title="Permalink to this headline">¶</a></h3>
+<h3>Create and execute a <code class="docutils literal"><span class="pre">sha1</span></code> expression<a class="headerlink" href="#Create-and-execute-a-sha1-expression" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 <span class="n">t</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[9]:
 </pre></div>
 </div>
@@ -585,18 +585,18 @@ docker-compose run ibis ci/load-data.sh
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">sha1_expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">string_col</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
 <span class="n">sha1_expr</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[10]:
 </pre></div>
 </div>
@@ -605,11 +605,11 @@ docker-compose run ibis ci/load-data.sh
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">sql_expr</span> <span class="o">=</span> <span class="n">sha1_expr</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">sql_expr</span><span class="p">)</span>
 </pre></div>
@@ -625,31 +625,31 @@ FROM functional_alltypes AS t0
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">result</span> <span class="o">=</span> <span class="n">sha1_expr</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[13]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>0    b6589fc6ab0dc82cf12099d1c2d40ab994e8410c
 1    356a192b7913b04c54574d18c28d46e6395428ab
 2    da4b9237bacccdf19c0760cab7aec4a8359010b0
@@ -659,22 +659,22 @@ Name: tmp, dtype: object
 </pre></div>
 </div>
 </div>
-<p>Because we’ve defined our operation on <code class="docutils literal notranslate"><span class="pre">StringValue</span></code>, and not just on
-<code class="docutils literal notranslate"><span class="pre">StringColumn</span></code> we get operations on both string scalars <em>and</em> string
+<p>Because we’ve defined our operation on <code class="docutils literal"><span class="pre">StringValue</span></code>, and not just on
+<code class="docutils literal"><span class="pre">StringColumn</span></code> we get operations on both string scalars <em>and</em> string
 columns for free</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">string_scalar</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;abcdefg&#39;</span><span class="p">)</span>
 <span class="n">string_scalar</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[14]:
 </pre></div>
 </div>
@@ -683,31 +683,31 @@ columns for free</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">sha1_scalar</span> <span class="o">=</span> <span class="n">string_scalar</span><span class="o">.</span><span class="n">sha1</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sha1_scalar</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[16]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>&#39;2fb5e13419fc89246865e7a324f476ec624e8740&#39;
 </pre></div>
 </div>
@@ -760,7 +760,7 @@ columns for free</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+85.ga2a9f0e',
+            VERSION:'v0.12.0+86.gf8045f3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

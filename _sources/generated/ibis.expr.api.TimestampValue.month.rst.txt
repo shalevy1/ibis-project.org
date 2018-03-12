@@ -1,5 +1,5 @@
-ibis.expr.api.TimestampValue.month
-==================================
+ibis\.expr\.api\.TimestampValue\.month
+======================================
 
 .. currentmodule:: ibis.expr.api
 

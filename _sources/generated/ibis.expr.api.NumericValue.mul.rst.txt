@@ -1,5 +1,5 @@
-ibis.expr.api.NumericValue.mul
-==============================
+ibis\.expr\.api\.NumericValue\.mul
+==================================
 
 .. currentmodule:: ibis.expr.api
 

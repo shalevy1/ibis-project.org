@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaTable.load\_data
-======================================
+ibis\.impala\.api\.ImpalaTable\.load\_data
+==========================================
 
 .. currentmodule:: ibis.impala.api
 

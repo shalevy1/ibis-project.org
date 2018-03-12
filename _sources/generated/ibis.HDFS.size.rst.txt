@@ -1,5 +1,5 @@
-ibis.HDFS.size
-==============
+ibis\.HDFS\.size
+================
 
 .. currentmodule:: ibis
 

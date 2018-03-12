@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Topics: Additional Filtering &mdash; Ibis v0.12.0+85.ga2a9f0e documentation</title>
+  <title>Advanced Topics: Additional Filtering &mdash; Ibis v0.12.0+86.gf8045f3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+85.ga2a9f0e documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+86.gf8045f3 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Additional Analytics Tools" href="8-More-Analytics-Helpers.html"/>
         <link rel="prev" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+85.ga2a9f0e
+                v0.12.0+86.gf8045f3
               </div>
             
           
@@ -102,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Topics: Additional Filtering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a></li>
@@ -388,24 +388,24 @@ div.nboutput div.output_area.stderr {
 <h1>Advanced Topics: Additional Filtering<a class="headerlink" href="#Advanced-Topics:-Additional-Filtering" title="Permalink to this headline">¶</a></h1>
 <p>The filtering examples we’ve shown to this point have been pretty
 simple, either comparisons between columns or fixed values, or set
-filter functions like <code class="docutils literal notranslate"><span class="pre">isin</span></code> and <code class="docutils literal notranslate"><span class="pre">notin</span></code>.</p>
+filter functions like <code class="docutils literal"><span class="pre">isin</span></code> and <code class="docutils literal"><span class="pre">notin</span></code>.</p>
 <p>Ibis supports a number of richer analytical filters that can involve one
 or more of:</p>
 <ul class="simple">
 <li>Aggregates computed from the same or other tables</li>
 <li>Conditional aggregates (in SQL-speak these are similar to “correlated
 subqueries”)</li>
-<li>“Existence” set filters (equivalent to the SQL <code class="docutils literal notranslate"><span class="pre">EXISTS</span></code> and
-<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">EXISTS</span></code> keywords)</li>
+<li>“Existence” set filters (equivalent to the SQL <code class="docutils literal"><span class="pre">EXISTS</span></code> and
+<code class="docutils literal"><span class="pre">NOT</span> <span class="pre">EXISTS</span></code> keywords)</li>
 </ul>
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
@@ -420,18 +420,18 @@ subqueries”)</li>
 <div class="section" id="Using-scalar-aggregates-in-filters">
 <h2>Using scalar aggregates in filters<a class="headerlink" href="#Using-scalar-aggregates-in-filters" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 <span class="n">table</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[2]:
 </pre></div>
 </div>
@@ -443,17 +443,17 @@ subqueries”)</li>
 in another expression, or we can use a data-derived aggregate in the
 filter. Take the average of a column for example:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[3]:
 </pre></div>
 </div>
@@ -465,11 +465,11 @@ filter. Take the average of a column for example:</p>
 filter, and the execution engine will combine everything into a single
 query rather than having to access Impala multiple times:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">cond</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">&gt;</span> <span class="n">table</span><span class="o">.</span><span class="n">double_col</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">cond</span> <span class="o">&amp;</span> <span class="n">table</span><span class="o">.</span><span class="n">bool_col</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">expr</span>
@@ -477,7 +477,7 @@ query rather than having to access Impala multiple times:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[4]:
 </pre></div>
 </div>
@@ -498,11 +498,11 @@ post-join)</p>
 <p>Again, from prior examples, here are the joined up tables with all the
 customer data:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">region</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_region&#39;</span><span class="p">)</span>
 <span class="n">nation</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_nation&#39;</span><span class="p">)</span>
 <span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_customer&#39;</span><span class="p">)</span>
@@ -523,11 +523,11 @@ customer data:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[5]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>c_custkey              c_name                            c_address  \
 0     133885  Customer#000133885                         EVK76gJeTspw
 1      36934  Customer#000036934                0rsf17ITLCTceWGXzpe9n
@@ -559,17 +559,17 @@ customer data:</p>
 </div>
 </div>
 <p>In this particular case, filtering based on the conditional average
-<code class="docutils literal notranslate"><span class="pre">o_totalprice</span></code> by region requires creating a table view (similar to
+<code class="docutils literal"><span class="pre">o_totalprice</span></code> by region requires creating a table view (similar to
 the self-join examples from earlier) that can be treated as a distinct
 table entity in the expression. This would <strong>not</strong> be required if we
 were computing a conditional statistic from some other table. So this is
 a little more complicated than some other cases would be:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
 <span class="n">conditional_avg</span> <span class="o">=</span> <span class="n">t2</span><span class="p">[(</span><span class="n">t2</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">tpch</span><span class="o">.</span><span class="n">region</span><span class="p">)]</span><span class="o">.</span><span class="n">o_totalprice</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
@@ -578,22 +578,22 @@ a little more complicated than some other cases would be:</p>
 <p>Once you’ve done this, you can use the conditional average in a filter
 expression</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">amount_filter</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">o_totalprice</span> <span class="o">&gt;</span> <span class="n">conditional_avg</span>
 <span class="n">tpch</span><span class="p">[</span><span class="n">amount_filter</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[7]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>c_custkey              c_name                                c_address  \
 0     133885  Customer#000133885                             EVK76gJeTspw
 1     148102  Customer#000148102               sqd6wCIoHZ6qMdVveUERJraOO1
@@ -647,62 +647,62 @@ expression</p>
 <p>By looking at the table sizes before and after applying the filter you
 can see the relative size of the subset taken.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">tpch</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[8]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>1500000
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">tpch</span><span class="p">[</span><span class="n">amount_filter</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[9]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>711969
 </pre></div>
 </div>
 </div>
 <p>Or even group by year and compare before and after:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">tpch</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[10]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>ibis.Schema {
   c_custkey     int64
   c_name        string
@@ -720,11 +720,11 @@ can see the relative size of the subset taken.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">year</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">odate</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
 
 <span class="n">pre_sizes</span> <span class="o">=</span> <span class="n">tpch</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
@@ -743,11 +743,11 @@ can see the relative size of the subset taken.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[11]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>year  pre_count  post_count  fraction
 0  1994     227597      108087  0.474905
 1  1996     228626      108757  0.475698
@@ -778,28 +778,28 @@ optimally.</p>
 <p>We’ll go ahead and solve the first couple of these problems using the
 TPC-H tables to illustrate the API:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">customer</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_customer&#39;</span><span class="p">)</span>
 <span class="n">orders</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;tpch_orders&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">orders</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[13]:
 </pre></div>
 </div>
@@ -807,13 +807,13 @@ TPC-H tables to illustrate the API:</p>
 <img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_23_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_23_0.png" />
 </div>
 </div>
-<p>We introduce the <code class="docutils literal notranslate"><span class="pre">any</span></code> reduction:</p>
+<p>We introduce the <code class="docutils literal"><span class="pre">any</span></code> reduction:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">has_open_orders</span> <span class="o">=</span> <span class="p">((</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderstatus</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
                    <span class="p">(</span><span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span> <span class="o">==</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
 </pre></div>
@@ -821,17 +821,17 @@ TPC-H tables to illustrate the API:</p>
 </div>
 <p>This is now a valid filter:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">customer</span><span class="p">[</span><span class="n">has_open_orders</span><span class="p">]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[15]:
 </pre></div>
 </div>
@@ -843,11 +843,11 @@ TPC-H tables to illustrate the API:</p>
 any open urgent orders, we write down the condition that they <em>do</em> have
 some first:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">has_open_urgent_orders</span> <span class="o">=</span> <span class="p">((</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderstatus</span> <span class="o">==</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
                           <span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">o_orderpriority</span> <span class="o">==</span> <span class="s1">&#39;1-URGENT&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
                           <span class="p">(</span><span class="n">customer</span><span class="o">.</span><span class="n">c_custkey</span> <span class="o">==</span> <span class="n">orders</span><span class="o">.</span><span class="n">o_custkey</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
@@ -856,17 +856,17 @@ some first:</p>
 </div>
 <p>Now, we can negate this condition and use it as a filter:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">customer</span><span class="p">[</span><span class="o">-</span><span class="n">has_open_urgent_orders</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[17]:
 </pre></div>
 </div>
@@ -874,7 +874,7 @@ some first:</p>
 <img alt="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_31_0.png" src="../../_images/notebooks_tutorial_7-Advanced-Topics-ComplexFiltering_31_0.png" />
 </div>
 </div>
-<p>In this case, it is true that <code class="docutils literal notranslate"><span class="pre">customer.c_custkey</span></code> has no duplicate
+<p>In this case, it is true that <code class="docutils literal"><span class="pre">customer.c_custkey</span></code> has no duplicate
 values, but that need not be the case. There could be multiple copies of
 any given value in either table column being compared, and the behavior
 will be the same (existence or non-existence is verified).</p>
@@ -925,7 +925,7 @@ will be the same (existence or non-existence is verified).</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+85.ga2a9f0e',
+            VERSION:'v0.12.0+86.gf8045f3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

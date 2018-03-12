@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.drop\_view
-=======================================
+ibis\.impala\.api\.ImpalaClient\.drop\_view
+===========================================
 
 .. currentmodule:: ibis.impala.api
 

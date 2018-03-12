@@ -1,5 +1,5 @@
-ibis.impala.api.ImpalaClient.create\_table
-==========================================
+ibis\.impala\.api\.ImpalaClient\.create\_table
+==============================================
 
 .. currentmodule:: ibis.impala.api
 

@@ -1,5 +1,5 @@
-ibis.expr.api.StringValue.lstrip
-================================
+ibis\.expr\.api\.StringValue\.lstrip
+====================================
 
 .. currentmodule:: ibis.expr.api
 

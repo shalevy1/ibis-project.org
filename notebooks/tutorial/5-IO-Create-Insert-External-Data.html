@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.12.0+85.ga2a9f0e documentation</title>
+  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.12.0+86.gf8045f3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.12.0+85.ga2a9f0e documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.12.0+86.gf8045f3 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/>
         <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.12.0+85.ga2a9f0e
+                v0.12.0+86.gf8045f3
               </div>
             
           
@@ -102,7 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Setup">Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Creating-new-Impala-tables-from-Ibis-expressions">Creating new Impala tables from Ibis expressions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Inserting-data-into-existing-Impala-tables">Inserting data into existing Impala tables</a></li>
@@ -171,7 +171,7 @@
         
           <li><a href="../../tutorial.html">Tutorial</a> &raquo;</li>
         
-      <li>IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</li>
+      <li>IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -389,15 +389,15 @@ div.nboutput div.output_area.stderr {
 }
 </style>
 <div class="section" id="IO,-CREATE/INSERT,-and-External-Data">
-<h1>IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data<a class="headerlink" href="#IO,-CREATE/INSERT,-and-External-Data" title="Permalink to this headline">¶</a></h1>
+<h1>IO, <code class="docutils literal"><span class="pre">CREATE</span></code>/<code class="docutils literal"><span class="pre">INSERT</span></code>, and External Data<a class="headerlink" href="#IO,-CREATE/INSERT,-and-External-Data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_TEST_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">))</span>
@@ -414,11 +414,11 @@ div.nboutput div.output_area.stderr {
 <h2>Creating new Impala tables from Ibis expressions<a class="headerlink" href="#Creating-new-Impala-tables-from-Ibis-expressions" title="Permalink to this headline">¶</a></h2>
 <p>Suppose you have an Ibis expression that produces a table:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
 <span class="n">t2</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="p">,</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">bigint_col</span> <span class="o">-</span> <span class="n">table</span><span class="o">.</span><span class="n">int_col</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)]</span>
@@ -434,7 +434,7 @@ div.nboutput div.output_area.stderr {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[2]:
 </pre></div>
 </div>
@@ -443,13 +443,13 @@ div.nboutput div.output_area.stderr {
 </div>
 </div>
 <p>To create a table in the database from the results of this expression,
-use the connection’s <code class="docutils literal notranslate"><span class="pre">create_table</span></code> method:</p>
+use the connection’s <code class="docutils literal"><span class="pre">create_table</span></code> method:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -459,17 +459,17 @@ Support for views, external tables, configurable file formats, and so
 forth, will come in the future. Feedback on what kind of interface would
 be useful for that would help.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[4]:
 </pre></div>
 </div>
@@ -477,13 +477,13 @@ be useful for that would help.</p>
 <img alt="../../_images/notebooks_tutorial_5-IO-Create-Insert-External-Data_8_0.png" src="../../_images/notebooks_tutorial_5-IO-Create-Insert-External-Data_8_0.png" />
 </div>
 </div>
-<p>Tables can be similarly dropped with <code class="docutils literal notranslate"><span class="pre">drop_table</span></code></p>
+<p>Tables can be similarly dropped with <code class="docutils literal"><span class="pre">drop_table</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -491,21 +491,21 @@ be useful for that would help.</p>
 </div>
 <div class="section" id="Inserting-data-into-existing-Impala-tables">
 <h2>Inserting data into existing Impala tables<a class="headerlink" href="#Inserting-data-into-existing-Impala-tables" title="Permalink to this headline">¶</a></h2>
-<p>The client’s <code class="docutils literal notranslate"><span class="pre">insert</span></code> method can append new data to an existing table
+<p>The client’s <code class="docutils literal"><span class="pre">insert</span></code> method can append new data to an existing table
 or overwrite the data that is in there.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[6]:
 </pre></div>
 </div>
@@ -514,18 +514,18 @@ or overwrite the data that is in there.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
 <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[7]:
 </pre></div>
 </div>
@@ -534,11 +534,11 @@ or overwrite the data that is in there.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;testing_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -549,22 +549,22 @@ or overwrite the data that is in there.</p>
 <p>If you’ve set up an HDFS connection, you can use the Ibis HDFS interface
 to look through your data and read and write files to and from HDFS:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">hdfs</span>
 <span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[9]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;avro&#39;,
  &#39;awards_players.csv&#39;,
  &#39;awards_players.parquet&#39;,
@@ -582,21 +582,21 @@ to look through your data and read and write files to and from HDFS:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/parquet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[10]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;functional_alltypes&#39;,
  &#39;tpch_customer&#39;,
  &#39;tpch_lineitem&#39;,
@@ -610,36 +610,36 @@ to look through your data and read and write files to and from HDFS:</p>
 </div>
 </div>
 <p>Suppose we wanted to download
-<code class="docutils literal notranslate"><span class="pre">/__ibis/ibis-testing-data/parquet/functional_alltypes</span></code>, which is a
+<code class="docutils literal"><span class="pre">/__ibis/ibis-testing-data/parquet/functional_alltypes</span></code>, which is a
 directory. We need only do:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">!</span>rm -rf parquet_dir/
 <span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span><span class="p">,</span> <span class="s1">&#39;parquet_dir&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[11]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>&#39;/ibis/docs/source/notebooks/tutorial/parquet_dir&#39;
 </pre></div>
 </div>
 </div>
 <p>Now we have that directory locally:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">!</span>ls parquet_dir/
 </pre></div>
 </div>
@@ -655,13 +655,13 @@ directory. We need only do:</p>
 </pre></div></div>
 </div>
 <p>Files and directories can be written to HDFS just as easily using
-<code class="docutils literal notranslate"><span class="pre">put</span></code>:</p>
+<code class="docutils literal"><span class="pre">put</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/__ibis/dir-write-example&#39;</span>
 <span class="k">if</span> <span class="n">hdfs</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
     <span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -670,54 +670,54 @@ directory. We need only do:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[13]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>&#39;/__ibis/dir-write-example&#39;
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[14]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;9a41de519352ab07-4e76bc4d9fb5a789_1624886651_data.0.parq&#39;,
  &#39;9a41de519352ab07-4e76bc4d9fb5a78a_778826485_data.0.parq&#39;,
  &#39;9a41de519352ab07-4e76bc4d9fb5a78b_1277612014_data.0.parq&#39;]
 </pre></div>
 </div>
 </div>
-<p>Delete files with <code class="docutils literal notranslate"><span class="pre">rm</span></code> or directories with <code class="docutils literal notranslate"><span class="pre">rmdir</span></code>:</p>
+<p>Delete files with <code class="docutils literal"><span class="pre">rm</span></code> or directories with <code class="docutils literal"><span class="pre">rmdir</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="s1">&#39;/__ibis/dir-write-example&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">!</span>rm -rf parquet_dir/
 </pre></div>
 </div>
@@ -728,18 +728,18 @@ directory. We need only do:</p>
 <p>Ibis can easily create temporary or persistent Impala tables that
 reference data in the following formats:</p>
 <ul class="simple">
-<li>Parquet (<code class="docutils literal notranslate"><span class="pre">parquet_file</span></code>)</li>
-<li>Avro (<code class="docutils literal notranslate"><span class="pre">avro_file</span></code>)</li>
-<li>Delimited text formats (CSV, TSV, etc.) (<code class="docutils literal notranslate"><span class="pre">delimited_file</span></code>)</li>
+<li>Parquet (<code class="docutils literal"><span class="pre">parquet_file</span></code>)</li>
+<li>Avro (<code class="docutils literal"><span class="pre">avro_file</span></code>)</li>
+<li>Delimited text formats (CSV, TSV, etc.) (<code class="docutils literal"><span class="pre">delimited_file</span></code>)</li>
 </ul>
 <p>Parquet is the easiest because the schema can be read from the data
 files:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/__ibis/ibis-testing-data/parquet/tpch_lineitem&#39;</span>
 
 <span class="n">lineitem</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">parquet_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
@@ -748,7 +748,7 @@ files:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[17]:
 </pre></div>
 </div>
@@ -757,17 +757,17 @@ files:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">lineitem</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[18]:
 </pre></div>
 </div>
@@ -777,13 +777,13 @@ files:</p>
 </div>
 <p>If you want to query a Parquet file and also create a table in Impala
 that remains after your session, you can pass more information to
-<code class="docutils literal notranslate"><span class="pre">parquet_file</span></code>:</p>
+<code class="docutils literal"><span class="pre">parquet_file</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">table</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">parquet_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">,</span>
                          <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
                          <span class="n">persist</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -792,7 +792,7 @@ that remains after your session, you can pass more information to
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[19]:
 </pre></div>
 </div>
@@ -801,17 +801,17 @@ that remains after your session, you can pass more information to
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">l_extendedprice</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[20]:
 </pre></div>
 </div>
@@ -820,11 +820,11 @@ that remains after your session, you can pass more information to
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;my_parquet_table&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -834,31 +834,31 @@ point we’d like to build some helper tools that will infer the schema
 for you, all in good time.</p>
 <p>There’s some CSV files in the test folder, so let’s use those:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/__ibis/ibis-testing-data/csv&#39;</span><span class="p">,</span> <span class="s1">&#39;csv-files&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[22]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>&#39;/ibis/docs/source/notebooks/tutorial/csv-files&#39;
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">!</span>cat csv-files/0.csv
 </pre></div>
 </div>
@@ -881,22 +881,22 @@ KsfjPyDf5e,-0.578930506363,70
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">!</span>rm -rf csv-files/
 </pre></div>
 </div>
 </div>
-<p>The schema here is pretty simple (see <code class="docutils literal notranslate"><span class="pre">ibis.schema</span></code> for more):</p>
+<p>The schema here is pretty simple (see <code class="docutils literal"><span class="pre">ibis.schema</span></code> for more):</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">schema</span><span class="p">([(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
                       <span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
                       <span class="p">(</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">)])</span>
@@ -908,7 +908,7 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[25]:
 </pre></div>
 </div>
@@ -917,17 +917,17 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">table</span><span class="o">.</span><span class="n">bar</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[26]:
 </pre></div>
 </div>
@@ -935,17 +935,17 @@ KsfjPyDf5e,-0.578930506363,70
 <img alt="../../_images/notebooks_tutorial_5-IO-Create-Insert-External-Data_43_0.png" src="../../_images/notebooks_tutorial_5-IO-Create-Insert-External-Data_43_0.png" />
 </div>
 </div>
-<p>For functions like <code class="docutils literal notranslate"><span class="pre">parquet_file</span></code> and <code class="docutils literal notranslate"><span class="pre">delimited_file</span></code>, an HDFS
+<p>For functions like <code class="docutils literal"><span class="pre">parquet_file</span></code> and <code class="docutils literal"><span class="pre">delimited_file</span></code>, an HDFS
 directory must be passed (we’ll add support for S3 and other filesystems
 later) and the directory must contain files all having the same schema.</p>
 <p>If you have Avro data, you can query it too if you have the full avro
 schema:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">avro_schema</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">,</span> <span class="s2">&quot;null&quot;</span><span class="p">],</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;R_REGIONKEY&quot;</span><span class="p">},</span>
@@ -964,7 +964,7 @@ schema:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[27]:
 </pre></div>
 </div>
@@ -987,41 +987,41 @@ pleasant, please let us know.</p>
 <li>Getting table schemas</li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">list_databases</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;ibis*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[28]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;ibis_testing&#39;]
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">list_tables</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="s1">&#39;tpch*&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[29]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;tpch_customer&#39;,
  &#39;tpch_lineitem&#39;,
  &#39;tpch_nation&#39;,
@@ -1035,22 +1035,22 @@ pleasant, please let us know.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">schema</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get_schema</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 <span class="n">schema</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[30]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>ibis.Schema {
   id               int32
   bool_col         boolean
@@ -1072,11 +1072,11 @@ pleasant, please let us know.</p>
 <p>Databases can be created, too, and you can set the storage path in HDFS
 you want for the data files</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">db</span> <span class="o">=</span> <span class="s1">&#39;ibis_testing2&#39;</span>
 <span class="n">con</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;/__ibis/my-test-database&#39;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
@@ -1086,11 +1086,11 @@ you want for the data files</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;example_table&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">),</span>
                  <span class="n">database</span><span class="o">=</span><span class="n">db</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -1098,33 +1098,33 @@ you want for the data files</p>
 </div>
 <p>Hopefully, there will be data files in the indicated spot in HDFS:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">hdfs</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="s1">&#39;/__ibis/my-test-database&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>Out[33]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<div class="output_area highlight-none"><div class="highlight"><pre>
 <span></span>[&#39;example_table&#39;]
 </pre></div>
 </div>
 </div>
 <p>To drop a database, including all tables in it, you can use
-<code class="docutils literal notranslate"><span class="pre">drop_database</span></code> with <code class="docutils literal notranslate"><span class="pre">force=True</span></code>:</p>
+<code class="docutils literal"><span class="pre">drop_database</span></code> with <code class="docutils literal"><span class="pre">force=True</span></code>:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1143,31 +1143,31 @@ amount of overhead with running many kinds of queries, even on small
 datasets. You can disable LLVM code generation when using Ibis, which
 may significantly speed up queries on smaller datasets:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">rand</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;ibis_testing.functional_alltypes&#39;</span><span class="p">)</span>
 
 <span class="o">%</span><span class="k">timeit</span> (t.double_col + rand()).sum().execute()
@@ -1179,26 +1179,26 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-21.8 ms ± 1.72 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+25.6 ms ± 1.5 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="c1"># Turn codegen back on</span>
 <span class="n">con</span><span class="o">.</span><span class="n">disable_codegen</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<div class="prompt highlight-none"><div class="highlight"><pre>
 <span></span>In [39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<div class="input_area highlight-ipython3"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">timeit</span> (t.double_col + rand()).sum().execute()
 </pre></div>
 </div>
@@ -1208,7 +1208,7 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-66 ms ± 4.02 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+76.3 ms ± 5.15 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <p>It’s important to remember that codegen is a fixed overhead and will
@@ -1260,7 +1260,7 @@ significantly speed up queries on big data</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.12.0+85.ga2a9f0e',
+            VERSION:'v0.12.0+86.gf8045f3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
