@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Ibis with Impala &mdash; Ibis v0.12.0+89.g852f9ad documentation</title>
+  <title>Using Ibis with Impala &mdash; Ibis v0.12.0+90.ga885e70 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+89.g852f9ad documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+90.ga885e70 documentation" href="index.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.database" href="generated/ibis.impala.api.ImpalaClient.database.html"/>
         <link rel="prev" title="Configuring Ibis" href="configuration.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+89.g852f9ad
+                v0.12.0+90.ga885e70
               </div>
             
           
@@ -320,10 +320,10 @@ database.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.database.html#ibis.impala.api.ImpalaClient.database" title="ibis.impala.api.ImpalaClient.database"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.database</span></code></a>([name])</td>
-<td>Create a Database object for a given database name that can be used for exploring and manipulating the objects (tables, functions, views, etc.</td>
+<td>Create a Database object for a given database name that can be used for</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.table.html#ibis.impala.api.ImpalaClient.table" title="ibis.impala.api.ImpalaClient.table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.table</span></code></a>(name[,&nbsp;database])</td>
-<td>Create a table expression that references a particular table in the database</td>
+<td>Create a table expression that references a particular table in the</td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +445,7 @@ top-level client connection or a database object.</p>
 <td>Create a new table in Impala using an Ibis table expression.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.create_table.html#ibis.impala.api.ImpalaDatabase.create_table" title="ibis.impala.api.ImpalaDatabase.create_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaDatabase.create_table</span></code></a>(table_name[,&nbsp;obj])</td>
-<td>Dispatch to ImpalaClient.</td>
+<td>Dispatch to ImpalaClient.create_table.</td>
 </tr>
 </tbody>
 </table>
@@ -573,10 +573,10 @@ getting information about the partition schema and any existing partition data:<
 <td>True if the table is partitioned</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partition_schema.html#ibis.impala.api.ImpalaTable.partition_schema" title="ibis.impala.api.ImpalaTable.partition_schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.partition_schema</span></code></a>()</td>
-<td>For partitioned tables, return the schema (names and types) for the partition columns</td>
+<td>For partitioned tables, return the schema (names and types) for the</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.partitions.html#ibis.impala.api.ImpalaTable.partitions" title="ibis.impala.api.ImpalaTable.partitions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.partitions</span></code></a>()</td>
-<td>Return a pandas.</td>
+<td>Return a pandas.DataFrame giving information about this table’s partitions.</td>
 </tr>
 </tbody>
 </table>
@@ -677,7 +677,7 @@ many attributes set that you can explore in IPython:</p>
 <span class="gp">In [34]: </span><span class="n">meta</span>
 <span class="gh">Out[34]: </span><span class="go"></span>
 <span class="go">&lt;class &#39;ibis.impala.metadata.TableMetadata&#39;&gt;</span>
-<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 3, 13, 22, 14, 19),</span>
+<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 3, 13, 22, 22, 26),</span>
 <span class="go">          &#39;Database&#39;: &#39;ibis_testing&#39;,</span>
 <span class="go">          &#39;LastAccessTime&#39;: &#39;UNKNOWN&#39;,</span>
 <span class="go">          &#39;Location&#39;: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;,</span>
@@ -690,7 +690,7 @@ many attributes set that you can explore in IPython:</p>
 <span class="go">                               &#39;numRows&#39;: 7300,</span>
 <span class="go">                               &#39;rawDataSize&#39;: &#39;-1&#39;,</span>
 <span class="go">                               &#39;totalSize&#39;: 0,</span>
-<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 3, 13, 22, 15, 7)},</span>
+<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 3, 13, 22, 23, 13)},</span>
 <span class="go">          &#39;Table Type&#39;: &#39;EXTERNAL_TABLE&#39;},</span>
 <span class="go"> &#39;schema&#39;: [(&#39;id&#39;, &#39;int&#39;),</span>
 <span class="go">            (&#39;bool_col&#39;, &#39;boolean&#39;),</span>
@@ -714,10 +714,10 @@ many attributes set that you can explore in IPython:</p>
 <span class="go">                  &#39;Sort Columns&#39;: &#39;[]&#39;}}</span>
 
 <span class="gp">In [35]: </span><span class="n">meta</span><span class="o">.</span><span class="n">location</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Out[35]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Out[35]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
 
 <span class="gp">In [36]: </span><span class="n">meta</span><span class="o">.</span><span class="n">create_time</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Out[36]: datetime.datetime(2018, 3, 13, 22, 14, 19)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Out[36]: datetime.datetime(2018, 3, 13, 22, 22, 26)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">files</span></code> function is also available to see all of the physical HDFS data
@@ -1269,7 +1269,7 @@ plug in all your own functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+89.g852f9ad',
+            VERSION:'v0.12.0+90.ga885e70',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
