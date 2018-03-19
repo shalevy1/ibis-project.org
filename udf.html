@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Defined Functions &mdash; Ibis v0.12.0+91.gd1b1f7d documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.12.0+91.gd1b1f7d documentation" href="index.html"/>
+        <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
+        <link rel="prev" title="Ibis for SQL Programmers" href="sql.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Ibis
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.12.0+91.gd1b1f7d
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Defined Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#impala">Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pandas">Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bigquery">BigQuery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sqlite">SQLite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ibis</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>User Defined Functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/udf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="user-defined-functions">
+<span id="udf"></span><h1>User Defined Functions<a class="headerlink" href="#user-defined-functions" title="Permalink to this headline">¶</a></h1>
+<p>Ibis provides a mechanism for writing custom scalar and aggregate functions,
+with varying levels of support for different backends. UDFs/UDAFs are a complex
+topic.</p>
+<p>This section of the documentation will discuss some of the backend specific
+details of user defined functions.</p>
+<div class="section" id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The UDF/UDAF API is quite experimental at this point and is therefore
+provisional and subject to change.</p>
+</div>
+<p>Going forward, the API for user defined <em>scalar</em> functions will look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>User defined <em>aggregate</em> functions are nearly identical, with the exception
+of using the <code class="docutils literal notranslate"><span class="pre">&#64;udaf</span></code> decorator instead of the <code class="docutils literal notranslate"><span class="pre">&#64;udf</span></code> decorator.</p>
+</div>
+<div class="section" id="impala">
+<h2>Impala<a class="headerlink" href="#impala" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="pandas">
+<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p>Pandas supports defining both UDFs and UDAFs.</p>
+<p>When you define a UDF you automatically get support for applying that UDF in a
+scalar context, <em>as well as</em> in any group by operation.</p>
+<p>When you define a UDAF you automatically get support for standard scalar
+aggregations, group bys, <em>as well as</em> any supported windowing operation.</p>
+<p>The API for these functions is the same as described above.</p>
+<p>The objects you receive as input arguments are either <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> or
+python or numpy scalars depending on the operation.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">add_one</span></code> from above as an example, the following call will receive a
+<code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> for the <code class="docutils literal notranslate"><span class="pre">x</span></code> argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">({</span><span class="s1">&#39;df&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And this will receive the <code class="docutils literal notranslate"><span class="pre">int</span></code> 1:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, since the pandas backend passes around <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> you can accept
+<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> in your function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Or you can leave them out as we did in the example above. You can also
+optionally accept <em>specific</em> keyword arguments. This requires knowledge of how
+the pandas backend works for it to be useful:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Any keyword arguments (other than <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>) must be given a default
+value or the UDF/UDAF <strong>will not work</strong>. A standard Python convention is to
+set the default value to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bigquery">
+<h2>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="sqlite">
+<h2>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="developer.html" class="btn btn-neutral float-right" title="Developing and Contributing to Ibis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sql.html" class="btn btn-neutral" title="Ibis for SQL Programmers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ibis Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.12.0+91.gd1b1f7d',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
