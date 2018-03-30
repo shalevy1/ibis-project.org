@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis v0.12.0+93.g65d353f documentation</title>
+  <title>Release Notes &mdash; Ibis v0.12.0+94.g40a063f documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.12.0+93.g65d353f documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.12.0+94.g40a063f documentation" href="index.html"/>
         <link rel="next" title="Legal" href="legal.html"/>
         <link rel="prev" title="Backends" href="backends.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.12.0+93.g65d353f
+                v0.12.0+94.g40a063f
               </div>
             
           
@@ -105,7 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#v0-13-0">v0.13.0 (????)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v0-13-0-march-20-2018">v0.13.0 (March 20, 2018)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#new-backends">New Backends</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
@@ -278,16 +278,19 @@ minor bug fixes tend to be esoteric and not generally interesting. Point
 releases (e.g., <code class="docutils literal notranslate"><span class="pre">0.5.1</span></code>) will generally not be found here and contain
 only bug fixes.</p>
 </div>
-<div class="section" id="v0-13-0">
-<h2>v0.13.0 (????)<a class="headerlink" href="#v0-13-0" title="Permalink to this headline">¶</a></h2>
-<p>This release brings a new backend, File Support support along with a number of
-bug fixes and reliability enhancements. We recommend that all users upgrade
+<p>Current <code class="docutils literal notranslate"><span class="pre">ibis.__version__</span></code>: v0.12.0+94.g40a063f</p>
+<div class="section" id="v0-13-0-march-20-2018">
+<h2>v0.13.0 (March 20, 2018)<a class="headerlink" href="#v0-13-0-march-20-2018" title="Permalink to this headline">¶</a></h2>
+<p>This release brings new backends, including support for executing against
+files, MySQL, Pandas user defined scalar and aggregations along with a number
+of bug fixes and reliability enhancements. We recommend that all users upgrade
 from earlier versions of Ibis.</p>
 <div class="section" id="new-backends">
 <h3>New Backends<a class="headerlink" href="#new-backends" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>File Support for CSV &amp; HDF5 (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1165">#1165</a>)</li>
-<li>File Support for Parquet Format (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1175">#1175</a>)</li>
+<li>File Support for CSV &amp; HDF5 (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1165">#1165</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1194">#1194</a>)</li>
+<li>File Support for Parquet Format (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1175">#1175</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1194">#1194</a>)</li>
+<li>Experimental support for <code class="docutils literal notranslate"><span class="pre">MySQL</span></code> thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1224">#1224</a>)</li>
 </ul>
 </div>
 <div class="section" id="new-features">
@@ -304,6 +307,31 @@ Impala and Clickhouse backends (<a class="reference external" href="https://gith
 <li>Add <code class="docutils literal notranslate"><span class="pre">.get()</span></code> operation on a Map type (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1376">#1376</a>)</li>
 <li>Allow visualization of custom defined expressions</li>
 <li>Add experimental support for pandas UDFs/UDAFs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1277">#1277</a>)</li>
+<li>Functions can be used as groupby keys (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1214">#1214</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1215">#1215</a>)</li>
+<li>Generalize the use of the <code class="docutils literal notranslate"><span class="pre">where</span></code> parameter to reduction operations
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1220">#1220</a>)</li>
+<li>Support for interval operations thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1243">#1243</a>,
+<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1260">#1260</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1249">#1249</a>)</li>
+<li>Support for the <code class="docutils literal notranslate"><span class="pre">PARTITIONTIME</span></code> column in the BigQuery backend
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1322">#1322</a>)</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">arbitrary()</span></code> method for selecting the first non null value in a column
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1230">#1230</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1309">#1309</a>)</li>
+<li>Windowed <code class="docutils literal notranslate"><span class="pre">MultiQuantile</span></code> operation in the pandas backend thanks to
+&#64;DiegoAlbertoTorres (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1343">#1343</a>)</li>
+<li>Rules for validating table expressions thanks to &#64;DiegoAlbertoTorres
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1298">#1298</a>)</li>
+<li>Complete end-to-end testing framework for all supported backends
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1256">#1256</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">contains</span></code>/<code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">contains</span></code> now supported in the pandas backend
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1210">#1210</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1211">#1211</a>)</li>
+<li>CI builds are now reproducible <em>locally</em> thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1121">#1121</a>,
+<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1237">#1237</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1255">#1255</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1311">#1311</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">isnan</span></code>/<code class="docutils literal notranslate"><span class="pre">isinf</span></code> operations thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1261">#1261</a>)</li>
+<li>Framework for generalized dtype and schema inference, and implicit casting
+thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1221">#1221</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1269">#1269</a>)</li>
+<li>Generic utilities for expression traversal thanks to &#64;kszucs (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1336">#1336</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">day_of_week</span></code> API (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/306">#306</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1047">#1047</a>)</li>
+<li>Design documentation for ibis (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1351">#1351</a>)</li>
 </ul>
 </div>
 <div class="section" id="bug-fixes">
@@ -312,6 +340,15 @@ Impala and Clickhouse backends (<a class="reference external" href="https://gith
 <li>Unbound parameters were failing in the simple case of a
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">mutate()</span></code> call with no operation
 (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1378">#1378</a>)</li>
+<li>Fix parameterized subqueries (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1300">#1300</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1331">#1331</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1303">#1303</a>,
+<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1378">#1378</a>)</li>
+<li>Fix subquery extraction, which wasn’t happening in topological order
+(<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1342">#1342</a>)</li>
+<li>Fix parenthesization if <code class="docutils literal notranslate"><span class="pre">isnull</span></code> (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1307">#1307</a>)</li>
+<li>Calling drop after mutate did not work (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1296">#1296</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1299">#1299</a>)</li>
+<li>SQLAlchemy backends were missing an implementation of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">NotContains</span></code>.</li>
+<li>Support <code class="docutils literal notranslate"><span class="pre">REGEX_EXTRACT</span></code> in PostgreSQL 10 (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1276">#1276</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1278">#1278</a>)</li>
 </ul>
 </div>
 </div>
@@ -902,7 +939,7 @@ Impala connection and an optional HDFS connection</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.12.0+93.g65d353f',
+            VERSION:'v0.12.0+94.g40a063f',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
