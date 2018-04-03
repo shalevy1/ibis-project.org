@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.NumericColumn.bucket &mdash; Ibis v0.13.0+3.g847974f documentation</title>
+  <title>ibis.expr.api.NumericColumn.bucket &mdash; Ibis v0.13.0+4.gbd8bbe5 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+3.g847974f documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+4.gbd8bbe5 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.NumericColumn.histogram" href="ibis.expr.api.NumericColumn.histogram.html"/>
         <link rel="prev" title="ibis.expr.api.NumericColumn.topk" href="ibis.expr.api.NumericColumn.topk.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+3.g847974f
+                v0.13.0+4.gbd8bbe5
               </div>
             
           
@@ -250,19 +250,26 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>arg</strong> : numeric array expression</p>
-<p><strong>buckets</strong> : list</p>
-<p><strong>closed</strong> : {‘left’, ‘right’}, default ‘left’</p>
-<blockquote>
-<div><p>Which side of each interval is closed. For example
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>arg</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numeric array expression</span></dt>
+<dd></dd>
+<dt><strong>buckets</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd></dd>
+<dt><strong>closed</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘left’, ‘right’}, default ‘left’</span></dt>
+<dd><p class="first last">Which side of each interval is closed. For example
 buckets = [0, 100, 200]
 closed = ‘left’: 100 falls in 2nd bucket
 closed = ‘right’: 100 falls in 1st bucket</p>
-</div></blockquote>
-<p><strong>close_extreme</strong> : boolean, default True</p>
+</dd>
+<dt><strong>close_extreme</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default True</span></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>bucketed</strong> : coded value expression</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>bucketed</strong> <span class="classifier-delimiter">:</span> <span class="classifier">coded value expression</span></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -315,7 +322,7 @@ closed = ‘right’: 100 falls in 1st bucket</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+3.g847974f',
+            VERSION:'v0.13.0+4.gbd8bbe5',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
