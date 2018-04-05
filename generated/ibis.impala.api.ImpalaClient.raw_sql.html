@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.raw_sql &mdash; Ibis v0.13.0+4.gbd8bbe5 documentation</title>
+  <title>ibis.impala.api.ImpalaClient.raw_sql &mdash; Ibis v0.13.0+6.g96c58c2 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+4.gbd8bbe5 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+6.g96c58c2 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.list_tables" href="ibis.impala.api.ImpalaClient.list_tables.html"/>
         <link rel="prev" title="ibis.impala.api.ImpalaClient.sql" href="ibis.impala.api.ImpalaClient.sql.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+4.gbd8bbe5
+                v0.13.0+6.g96c58c2
               </div>
             
           
@@ -284,21 +284,20 @@ careful.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>query</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd><p class="first last">SQL or DDL statement</p>
-</dd>
-<dt><strong>results</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">Pass True if the query as a result set</p>
-</dd>
-</dl>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>query</strong> : string</p>
+<blockquote>
+<div><p>SQL or DDL statement</p>
+</div></blockquote>
+<p><strong>results</strong> : boolean, default False</p>
+<blockquote>
+<div><p>Pass True if the query as a result set</p>
+</div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>cur</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ImpalaCursor if results=True, None otherwise</span></dt>
-<dd><p class="first last">You must call cur.release() after you are finished using the cursor.</p>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>cur</strong> : ImpalaCursor if results=True, None otherwise</p>
+<blockquote class="last">
+<div><p>You must call cur.release() after you are finished using the cursor.</p>
+</div></blockquote>
 </td>
 </tr>
 </tbody>
@@ -351,7 +350,7 @@ careful.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+4.gbd8bbe5',
+            VERSION:'v0.13.0+6.g96c58c2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

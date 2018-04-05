@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.13.0+4.gbd8bbe5 documentation</title>
+  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.13.0+6.g96c58c2 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+4.gbd8bbe5 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+6.g96c58c2 documentation" href="../../index.html"/>
         <link rel="up" title="Extending Ibis" href="../../extending.html"/>
         <link rel="next" title="Backends" href="../../backends.html"/>
         <link rel="prev" title="Extending Ibis" href="../../extending.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+4.gbd8bbe5
+                v0.13.0+6.g96c58c2
               </div>
             
           
@@ -414,15 +414,16 @@ input argument and returns a hexidecimal string.</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">ibis.expr.rules</span> <span class="kn">as</span> <span class="nn">rlz</span>
 
-<span class="kn">from</span> <span class="nn">ibis.expr</span> <span class="kn">import</span> <span class="n">rules</span>
-<span class="kn">from</span> <span class="nn">ibis.expr.operations</span> <span class="kn">import</span> <span class="n">ValueOp</span>
+<span class="kn">from</span> <span class="nn">ibis.expr.operations</span> <span class="kn">import</span> <span class="n">ValueOp</span><span class="p">,</span> <span class="n">Arg</span>
 
 
 <span class="k">class</span> <span class="nc">SHA1</span><span class="p">(</span><span class="n">ValueOp</span><span class="p">):</span>
 
-    <span class="n">input_type</span> <span class="o">=</span> <span class="p">[</span><span class="n">rules</span><span class="o">.</span><span class="n">string</span><span class="p">]</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">shape_like_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="n">Arg</span><span class="p">(</span><span class="n">rlz</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rlz</span><span class="o">.</span><span class="n">shape_like</span><span class="p">(</span><span class="s1">&#39;arg&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
@@ -762,7 +763,7 @@ columns for free</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+4.gbd8bbe5',
+            VERSION:'v0.13.0+6.g96c58c2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

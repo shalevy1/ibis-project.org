@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projection, Joining, and Sorting &mdash; Ibis v0.13.0+4.gbd8bbe5 documentation</title>
+  <title>Projection, Joining, and Sorting &mdash; Ibis v0.13.0+6.g96c58c2 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+4.gbd8bbe5 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+6.g96c58c2 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="More Value Expressions" href="4-More-Value-Expressions.html"/>
         <link rel="prev" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+4.gbd8bbe5
+                v0.13.0+6.g96c58c2
               </div>
             
           
@@ -872,8 +872,72 @@ is simply a matter of writing:</p>
 <span></span>Out[19]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_40_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_40_0.png" />
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>ref_0
+DatabaseTable[table]
+  name: ibis_testing.`functional_alltypes`
+  schema:
+    id : int32
+    bool_col : boolean
+    tinyint_col : int8
+    smallint_col : int16
+    int_col : int32
+    bigint_col : int64
+    float_col : float
+    double_col : double
+    date_string_col : string
+    string_col : string
+    timestamp_col : timestamp
+    year : int32
+    month : int32
+
+ref_1
+Aggregation[table]
+  table:
+    Table: ref_0
+  metrics:
+    avg_double = Mean[double]
+      double_col = Column[double*] &#39;double_col&#39; from table
+        ref_0
+      where:
+        None
+  by:
+    hour = ExtractHour[int32*]
+      timestamp_col = Column[timestamp*] &#39;timestamp_col&#39; from table
+        ref_0
+
+Aggregation[table]
+  table:
+    InnerJoin[table]
+      left:
+        Table: ref_0
+      right:
+        Table: ref_1
+      predicates:
+        Equals[boolean*]
+          left:
+            hour = ExtractHour[int32*]
+              timestamp_col = Column[timestamp*] &#39;timestamp_col&#39; from table
+                ref_0
+          right:
+            hour = Column[int32*] &#39;hour&#39; from table
+              ref_1
+  metrics:
+    MAD = Mean[double]
+      Abs[double*]
+        Subtract[double*]
+          left:
+            double_col = Column[double*] &#39;double_col&#39; from table
+              ref_0
+          right:
+            avg_double = Column[double*] &#39;avg_double&#39; from table
+              ref_1
+      where:
+        None
+  by:
+    string_col = Column[string*] &#39;string_col&#39; from table
+      ref_0
+</pre></div>
 </div>
 </div>
 </div>
@@ -1002,7 +1066,7 @@ function:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+4.gbd8bbe5',
+            VERSION:'v0.13.0+6.g96c58c2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

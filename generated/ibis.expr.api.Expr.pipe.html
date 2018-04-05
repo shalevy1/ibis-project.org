@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.Expr.pipe &mdash; Ibis v0.13.0+4.gbd8bbe5 documentation</title>
+  <title>ibis.expr.api.Expr.pipe &mdash; Ibis v0.13.0+6.g96c58c2 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+4.gbd8bbe5 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+6.g96c58c2 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.Expr.verify" href="ibis.expr.api.Expr.verify.html"/>
         <link rel="prev" title="ibis.expr.api.Expr.execute" href="ibis.expr.api.Expr.execute.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+4.gbd8bbe5
+                v0.13.0+6.g96c58c2
               </div>
             
           
@@ -241,23 +241,17 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>f</strong> <span class="classifier-delimiter">:</span> <span class="classifier">function or (function, arg_name) tuple</span></dt>
-<dd><p class="first last">If the expression needs to be passed as anything other than the first
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>f</strong> : function or (function, arg_name) tuple</p>
+<blockquote>
+<div><p>If the expression needs to be passed as anything other than the first
 argument to the function, pass a tuple with the argument name. For
 example, (f, ‘data’) if the function f expects a ‘data’ keyword</p>
-</dd>
-<dt><strong>args</strong> <span class="classifier-delimiter">:</span> <span class="classifier">positional arguments</span></dt>
-<dd></dd>
-<dt><strong>kwargs</strong> <span class="classifier-delimiter">:</span> <span class="classifier">keyword arguments</span></dt>
-<dd></dd>
-</dl>
+</div></blockquote>
+<p><strong>args</strong> : positional arguments</p>
+<p><strong>kwargs</strong> : keyword arguments</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>result</strong> <span class="classifier-delimiter">:</span> <span class="classifier">result type of passed function</span></dt>
-<dd></dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>result</strong> : result type of passed function</p>
 </td>
 </tr>
 </tbody>
@@ -340,7 +334,7 @@ example, (f, ‘data’) if the function f expects a ‘data’ keyword</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+4.gbd8bbe5',
+            VERSION:'v0.13.0+6.g96c58c2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
