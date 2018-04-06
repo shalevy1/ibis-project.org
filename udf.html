@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Defined Functions &mdash; Ibis v0.13.0+6.g96c58c2 documentation</title>
+  <title>User Defined Functions &mdash; Ibis v0.13.0+7.g8556dea documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+6.g96c58c2 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+7.g8556dea documentation" href="index.html"/>
         <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
         <link rel="prev" title="Ibis for SQL Programmers" href="sql.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+6.g96c58c2
+                v0.13.0+7.g8556dea
               </div>
             
           
@@ -219,12 +219,11 @@ topic.</p>
 details of user defined functions.</p>
 <div class="section" id="api">
 <h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
+<div class="admonition warning" id="udf-api">
 <p class="first admonition-title">Warning</p>
-<p class="last">The UDF/UDAF API is quite experimental at this point and is therefore
-provisional and subject to change.</p>
+<p class="last">The UDF/UDAF API is experimental. It is provisional and subject to change.</p>
 </div>
-<p>Going forward, the API for user defined <em>scalar</em> functions will look like this:</p>
+<p>The API for user defined <em>scalar</em> functions will look like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">double</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
@@ -235,13 +234,13 @@ of using the <code class="docutils literal notranslate"><span class="pre">&#64;u
 </div>
 <div class="section" id="impala">
 <h2>Impala<a class="headerlink" href="#impala" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<p id="udf-impala">TODO</p>
 </div>
 <div class="section" id="pandas">
 <h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
-<p>Pandas supports defining both UDFs and UDAFs.</p>
+<p id="udf-pandas">Pandas supports defining both UDFs and UDAFs.</p>
 <p>When you define a UDF you automatically get support for applying that UDF in a
-scalar context, <em>as well as</em> in any group by operation.</p>
+scalar context, as well as in any group by operation.</p>
 <p>When you define a UDAF you automatically get support for standard scalar
 aggregations, group bys, <em>as well as</em> any supported windowing operation.</p>
 <p>The API for these functions is the same as described above.</p>
@@ -286,11 +285,59 @@ set the default value to <code class="docutils literal notranslate"><span class=
 </div>
 <div class="section" id="bigquery">
 <h2>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<div class="admonition note" id="udf-bigquery">
+<p class="first admonition-title">Note</p>
+<p class="last">BigQuery only supports scalar UDFs at this time.</p>
+</div>
+<p>BigQuery supports UDFs through JavaScript. Ibis provides support for this by
+turning Python code into JavaScript.</p>
+<p>The interface is very similar to the pandas UDF API:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_bigquery_add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Ibis will parse the source of the function and turn the resulting Python AST
+into JavaScript source code (technically, ECMAScript 2015). Most of the Python
+language is supported including classes, functions and generators.</p>
+<p>If you want to inspect the generated code you can look at the <code class="docutils literal notranslate"><span class="pre">js</span></code> property
+of the function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">my_bigquery_add_one</span><span class="o">.</span><span class="n">js</span><span class="p">)</span>
+<span class="go">CREATE TEMPORARY FUNCTION my_bigquery_add_one(x FLOAT64)</span>
+<span class="go">RETURNS FLOAT64</span>
+<span class="go">LANGUAGE js AS &quot;&quot;&quot;</span>
+<span class="go">&#39;use strict&#39;;</span>
+<span class="go">function my_bigquery_add_one(x) {</span>
+<span class="go">    return (x + 1.0);</span>
+<span class="go">}</span>
+<span class="go">return my_bigquery_add_one(x);</span>
+<span class="go">&quot;&quot;&quot;;</span>
+</pre></div>
+</div>
+<p>When you want to use this function you call it like any other Python
+function–only on an ibis expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">my_bigquery_add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="go">CREATE TEMPORARY FUNCTION my_bigquery_add_one(x FLOAT64)</span>
+<span class="go">RETURNS FLOAT64</span>
+<span class="go">LANGUAGE js AS &quot;&quot;&quot;</span>
+<span class="go">&#39;use strict&#39;;</span>
+<span class="go">function my_bigquery_add_one(x) {</span>
+<span class="go">    return (x + 1.0);</span>
+<span class="go">}</span>
+<span class="go">return my_bigquery_add_one(x);</span>
+<span class="go">&quot;&quot;&quot;;</span>
+
+<span class="go">SELECT my_bigquery_add_one(`a`) AS `tmp`</span>
+<span class="go">FROM t0</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="sqlite">
 <h2>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
+<p id="udf-sqlite">TODO</p>
 </div>
 </div>
 
@@ -338,7 +385,7 @@ set the default value to <code class="docutils literal notranslate"><span class=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+6.g96c58c2',
+            VERSION:'v0.13.0+7.g8556dea',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
