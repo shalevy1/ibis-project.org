@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.connect &mdash; Ibis v0.13.0+8.g1ac104a documentation</title>
+  <title>ibis.impala.api.connect &mdash; Ibis v0.13.0+9.g8a57032 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+8.g1ac104a documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+9.g8a57032 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.close" href="ibis.impala.api.ImpalaClient.close.html"/>
         <link rel="prev" title="ibis.hdfs_connect" href="ibis.hdfs_connect.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+8.g1ac104a
+                v0.13.0+9.g8a57032
               </div>
             
           
@@ -243,54 +243,49 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : str, optional</p>
-<blockquote>
-<div><p>Host name of the impalad or HiveServer2 in Hive</p>
-</div></blockquote>
-<p><strong>port</strong> : int, optional</p>
-<blockquote>
-<div><p>Impala’s HiveServer2 port</p>
-</div></blockquote>
-<p><strong>database</strong> : str, optional</p>
-<blockquote>
-<div><p>Default database when obtaining new cursors</p>
-</div></blockquote>
-<p><strong>timeout</strong> : int, optional</p>
-<blockquote>
-<div><p>Connection timeout in seconds when communicating with HiveServer2</p>
-</div></blockquote>
-<p><strong>use_ssl</strong> : bool, optional</p>
-<blockquote>
-<div><p>Use SSL when connecting to HiveServer2</p>
-</div></blockquote>
-<p><strong>ca_cert</strong> : str, optional</p>
-<blockquote>
-<div><p>Local path to 3rd party CA certificate or copy of server certificate
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>host</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Host name of the impalad or HiveServer2 in Hive</p>
+</dd>
+<dt><strong>port</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Impala’s HiveServer2 port</p>
+</dd>
+<dt><strong>database</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Default database when obtaining new cursors</p>
+</dd>
+<dt><strong>timeout</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd><p class="first last">Connection timeout in seconds when communicating with HiveServer2</p>
+</dd>
+<dt><strong>use_ssl</strong> <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd><p class="first last">Use SSL when connecting to HiveServer2</p>
+</dd>
+<dt><strong>ca_cert</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Local path to 3rd party CA certificate or copy of server certificate
 for self-signed certificates. If SSL is enabled, but this argument is
 <code class="docutils literal notranslate"><span class="pre">None</span></code>, then certificate validation is skipped.</p>
-</div></blockquote>
-<p><strong>user</strong> : str, optional</p>
-<blockquote>
-<div><p>LDAP user to authenticate</p>
-</div></blockquote>
-<p><strong>password</strong> : str, optional</p>
-<blockquote>
-<div><p>LDAP password to authenticate</p>
-</div></blockquote>
-<p><strong>auth_mechanism</strong> : str, optional</p>
-<blockquote>
-<div><p>{‘NOSASL’ &lt;- default, ‘PLAIN’, ‘GSSAPI’, ‘LDAP’}.
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">LDAP user to authenticate</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">LDAP password to authenticate</p>
+</dd>
+<dt><strong>auth_mechanism</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">{‘NOSASL’ &lt;- default, ‘PLAIN’, ‘GSSAPI’, ‘LDAP’}.
 Use NOSASL for non-secured Impala connections.  Use PLAIN for
 non-secured Hive clusters.  Use LDAP for LDAP authenticated
 connections.  Use GSSAPI for Kerberos-secured clusters.</p>
-</div></blockquote>
-<p><strong>kerberos_service_name</strong> : str, optional</p>
-<blockquote>
-<div><p>Specify particular impalad service principal.</p>
-</div></blockquote>
+</dd>
+<dt><strong>kerberos_service_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd><p class="first last">Specify particular impalad service principal.</p>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ImpalaClient</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ImpalaClient</strong></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -362,7 +357,7 @@ connections.  Use GSSAPI for Kerberos-secured clusters.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+8.g1ac104a',
+            VERSION:'v0.13.0+9.g8a57032',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

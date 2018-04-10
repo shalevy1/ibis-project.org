@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.hdfs_connect &mdash; Ibis v0.13.0+8.g1ac104a documentation</title>
+  <title>ibis.hdfs_connect &mdash; Ibis v0.13.0+9.g8a57032 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+8.g1ac104a documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+9.g8a57032 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.impala.api.connect" href="ibis.impala.api.connect.html"/>
         <link rel="prev" title="API Reference" href="../api.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+8.g1ac104a
+                v0.13.0+9.g8a57032
               </div>
             
           
@@ -237,26 +237,32 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host</strong> : string, Host name of the HDFS NameNode</p>
-<p><strong>port</strong> : int, NameNode’s WebHDFS port (default 50070)</p>
-<p><strong>protocol</strong> : {‘webhdfs’}</p>
-<p><strong>use_https</strong> : boolean, default ‘default’</p>
-<blockquote>
-<div><p>Connect to WebHDFS with HTTPS, otherwise plain HTTP. For secure
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>host</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, Host name of the HDFS NameNode</span></dt>
+<dd></dd>
+<dt><strong>port</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, NameNode’s WebHDFS port (default 50070)</span></dt>
+<dd></dd>
+<dt><strong>protocol</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘webhdfs’}</span></dt>
+<dd></dd>
+<dt><strong>use_https</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default ‘default’</span></dt>
+<dd><p class="first last">Connect to WebHDFS with HTTPS, otherwise plain HTTP. For secure
 authentication, the default for this is True, otherwise False</p>
-</div></blockquote>
-<p><strong>auth_mechanism</strong> : string, Set to NOSASL or PLAIN for non-secure clusters.</p>
-<blockquote>
-<div><p>Set to GSSAPI or LDAP for Kerberos-secured clusters.</p>
-</div></blockquote>
-<p><strong>verify</strong> : boolean, Set to False to turn off verifying SSL certificates.</p>
-<blockquote>
-<div><p>(default True)</p>
-</div></blockquote>
-<p><strong>Other keywords are forwarded to hdfs library classes</strong></p>
+</dd>
+<dt><strong>auth_mechanism</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, Set to NOSASL or PLAIN for non-secure clusters.</span></dt>
+<dd><p class="first last">Set to GSSAPI or LDAP for Kerberos-secured clusters.</p>
+</dd>
+<dt><strong>verify</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, Set to False to turn off verifying SSL certificates.</span></dt>
+<dd><p class="first last">(default True)</p>
+</dd>
+<dt><strong>Other keywords are forwarded to hdfs library classes</strong></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>client</strong> : WebHDFS</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>client</strong> <span class="classifier-delimiter">:</span> <span class="classifier">WebHDFS</span></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -309,7 +315,7 @@ authentication, the default for this is True, otherwise False</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+8.g1ac104a',
+            VERSION:'v0.13.0+9.g8a57032',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

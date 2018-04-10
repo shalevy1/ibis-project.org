@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.window &mdash; Ibis v0.13.0+8.g1ac104a documentation</title>
+  <title>ibis.window &mdash; Ibis v0.13.0+9.g8a57032 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+8.g1ac104a documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+9.g8a57032 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.trailing_window" href="ibis.trailing_window.html"/>
         <link rel="prev" title="ibis.row_number" href="ibis.row_number.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+8.g1ac104a
+                v0.13.0+9.g8a57032
               </div>
             
           
@@ -258,28 +258,29 @@ functions.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>preceding</strong> : int, tuple, or None, default None</p>
-<blockquote>
-<div><p>Specify None for unbounded, 0 to include current row
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>preceding</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, tuple, or None, default None</span></dt>
+<dd><p class="first last">Specify None for unbounded, 0 to include current row
 tuple for off-center window</p>
-</div></blockquote>
-<p><strong>following</strong> : int, tuple, or None, default None</p>
-<blockquote>
-<div><p>Specify None for unbounded, 0 to include current row
+</dd>
+<dt><strong>following</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, tuple, or None, default None</span></dt>
+<dd><p class="first last">Specify None for unbounded, 0 to include current row
 tuple for off-center window</p>
-</div></blockquote>
-<p><strong>group_by</strong> : expressions, default None</p>
-<blockquote>
-<div><p>Either specify here or with TableExpr.group_by</p>
-</div></blockquote>
-<p><strong>order_by</strong> : expressions, default None</p>
-<blockquote>
-<div><p>For analytic functions requiring an ordering, specify here, or let Ibis
+</dd>
+<dt><strong>group_by</strong> <span class="classifier-delimiter">:</span> <span class="classifier">expressions, default None</span></dt>
+<dd><p class="first last">Either specify here or with TableExpr.group_by</p>
+</dd>
+<dt><strong>order_by</strong> <span class="classifier-delimiter">:</span> <span class="classifier">expressions, default None</span></dt>
+<dd><p class="first last">For analytic functions requiring an ordering, specify here, or let Ibis
 determine the default ordering (for functions like rank)</p>
-</div></blockquote>
+</dd>
+</dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>win</strong> : ibis Window</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>win</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ibis Window</span></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -332,7 +333,7 @@ determine the default ordering (for functions like rank)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+8.g1ac104a',
+            VERSION:'v0.13.0+9.g8a57032',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
