@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis v0.13.0+7.g8556dea documentation</title>
+  <title>Release Notes &mdash; Ibis v0.13.0+8.g1ac104a documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+7.g8556dea documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+8.g1ac104a documentation" href="index.html"/>
         <link rel="next" title="Legal" href="legal.html"/>
         <link rel="prev" title="Backends" href="backends.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+7.g8556dea
+                v0.13.0+8.g1ac104a
               </div>
             
           
@@ -284,7 +284,7 @@ minor bug fixes tend to be esoteric and not generally interesting. Point
 releases (e.g., <code class="docutils literal notranslate"><span class="pre">0.5.1</span></code>) will generally not be found here and contain
 only bug fixes.</p>
 </div>
-<p>Current <code class="docutils literal notranslate"><span class="pre">ibis.__version__</span></code>: v0.13.0+7.g8556dea</p>
+<p>Current <code class="docutils literal notranslate"><span class="pre">ibis.__version__</span></code>: v0.13.0+8.g1ac104a</p>
 <div class="section" id="v0-14-0">
 <h2>v0.14.0 (???)<a class="headerlink" href="#v0-14-0" title="Permalink to this headline">¶</a></h2>
 <p>This release brings refactored, more composable core components and rule system
@@ -294,6 +294,9 @@ to ibis.</p>
 <ul class="simple">
 <li>Allow keyword arguments in Node subclasses (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/968">#968</a>)</li>
 <li>Splat args into Node subclasses instead of requiring a list (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/969">#969</a>)</li>
+<li>Add support for <code class="docutils literal notranslate"><span class="pre">UNION</span></code> in the BigQuery backend (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1408">#1408</a>, <a class="reference external" href="https://github.com/ibis-project/ibis/issues/1409">#1409</a>)</li>
+<li>Support for writing UDFs in BigQuery (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1377">#1377</a>). See <a class="reference internal" href="udf.html#udf-bigquery"><span class="std std-ref">the BigQuery
+UDF docs</span></a> for more details.</li>
 </ul>
 </div>
 <div class="section" id="bug-fixes">
@@ -310,8 +313,6 @@ to ibis.</p>
 <li>The previous, publicly not exposed rule system has been rewritten</li>
 <li>Defining input arguments for operations happens in a more readable fashion
 instead of the previous <cite>input_type</cite> list.</li>
-<li>Support for writing UDFs in BigQuery (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1377">#1377</a>). See <a class="reference internal" href="udf.html#udf-bigquery"><span class="std std-ref">the BigQuery
-UDF docs</span></a> for more details.</li>
 </ul>
 </div>
 <div class="section" id="v0-13-0-march-30-2018">
@@ -974,7 +975,7 @@ Impala connection and an optional HDFS connection</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+7.g8556dea',
+            VERSION:'v0.13.0+8.g1ac104a',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
