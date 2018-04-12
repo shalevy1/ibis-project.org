@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+11.gdedcdf0 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+12.gedf10f4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v0.13.0+11.gdedcdf0
+                v0.13.0+12.gedf10f4
               </div>
             
           
@@ -788,140 +788,13 @@ these semantics:</p>
 
 <span class="gp">In [63]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">year_group</span><span class="o">=</span><span class="n">case</span><span class="p">)</span>
 
-<span class="go">IbisTypeErrorTraceback (most recent call last)</span>
-<span class="go">&lt;ipython-input-63-076ecb30933e&gt; in &lt;module&gt;()</span>
-<span class="go">----&gt; 1 expr = t.mutate(year_group=case)</span>
-
-<span class="go">/ibis/ibis/expr/api.py in mutate(table, exprs, **mutations)</span>
-<span class="go">   2927         return table.projection(proj_exprs)</span>
-<span class="go">   2928     else:</span>
-<span class="go">-&gt; 2929         return table.projection([table] + exprs)</span>
-<span class="go">   2930 </span>
-<span class="go">   2931 </span>
-
-<span class="go">/ibis/ibis/expr/api.py in projection(table, exprs)</span>
-<span class="go">   3029     projector = L.Projector(table, exprs)</span>
-<span class="go">   3030 </span>
-<span class="go">-&gt; 3031     op = projector.get_result()</span>
-<span class="go">   3032     return ir.TableExpr(op)</span>
-<span class="go">   3033 </span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in get_result(self)</span>
-<span class="go">    763                 return fused_op</span>
-<span class="go">    764 </span>
-<span class="go">--&gt; 765         return ops.Selection(self.parent, self.clean_exprs)</span>
-<span class="go">    766 </span>
-<span class="go">    767     def _check_fusion(self, root):</span>
-
-<span class="go">/ibis/ibis/expr/operations.py in __init__(self, table, selections, predicates, sort_keys)</span>
-<span class="go">   1716         super(Selection, self).__init__(table=table, selections=projections,</span>
-<span class="go">   1717                                         predicates=predicates,</span>
-<span class="go">-&gt; 1718                                         sort_keys=sort_keys)</span>
-<span class="go">   1719 </span>
-<span class="go">   1720     def _validate(self):</span>
-
-<span class="go">/ibis/ibis/expr/signature.py in __init__(self, *args, **kwargs)</span>
-<span class="go">    207         for name, value in self.signature.validate(*args, **kwargs):</span>
-<span class="go">    208             setattr(self, name, value)</span>
-<span class="go">--&gt; 209         self._validate()</span>
-<span class="go">    210 </span>
-<span class="go">    211     def _validate(self):</span>
-
-<span class="go">/ibis/ibis/expr/operations.py in _validate(self)</span>
-<span class="go">   1725         # array expressions originating from the same root table expression</span>
-<span class="go">   1726         dependent_exprs = self.selections + self.sort_keys</span>
-<span class="go">-&gt; 1727         self.table._assert_valid(dependent_exprs)</span>
-<span class="go">   1728 </span>
-<span class="go">   1729         # Validate predicates</span>
-
-<span class="go">/ibis/ibis/expr/types.py in _assert_valid(self, exprs)</span>
-<span class="go">    384     def _assert_valid(self, exprs):</span>
-<span class="go">    385         from ibis.expr.analysis import ExprValidator</span>
-<span class="go">--&gt; 386         ExprValidator([self]).validate_all(exprs)</span>
-<span class="go">    387 </span>
-<span class="go">    388     def __contains__(self, name):</span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in validate_all(self, exprs)</span>
-<span class="go">    875     def validate_all(self, exprs):</span>
-<span class="go">    876         for expr in exprs:</span>
-<span class="go">--&gt; 877             self.assert_valid(expr)</span>
-<span class="go">    878 </span>
-<span class="go">    879     def assert_valid(self, expr):</span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in assert_valid(self, expr)</span>
-<span class="go">    878 </span>
-<span class="go">    879     def assert_valid(self, expr):</span>
-<span class="go">--&gt; 880         if not self.validate(expr):</span>
-<span class="go">    881             msg = self._error_message(expr)</span>
-<span class="go">    882             raise RelationError(msg)</span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in validate(self, expr)</span>
-<span class="go">    844                 return True</span>
-<span class="go">    845 </span>
-<span class="go">--&gt; 846         expr_roots = expr._root_tables()</span>
-<span class="go">    847         for root in expr_roots:</span>
-<span class="go">    848             if not self._among_roots(root):</span>
-
-<span class="go">/ibis/ibis/expr/types.py in _root_tables(self)</span>
-<span class="go">    214 </span>
-<span class="go">    215     def _root_tables(self):</span>
-<span class="go">--&gt; 216         return self.op().root_tables()</span>
-<span class="go">    217 </span>
-<span class="go">    218 </span>
-
-<span class="go">/ibis/ibis/expr/operations.py in root_tables(self)</span>
-<span class="go">   1313 </span>
-<span class="go">   1314     def root_tables(self):</span>
-<span class="go">-&gt; 1315         all_exprs = [self.base] + self.cases + self.results + (</span>
-<span class="go">   1316             [] if self.default is None else [self.default]</span>
-<span class="go">   1317         )</span>
-
-<span class="go">/ibis/ibis/expr/types.py in __add__(self, other)</span>
-<span class="go">    677     def __add__(self, other):</span>
-<span class="go">    678         other_values = getattr(other, &#39;values&#39;, other)</span>
-<span class="go">--&gt; 679         return type(self.op())(self.values + other_values).to_expr()</span>
-<span class="go">    680 </span>
-<span class="go">    681     def __radd__(self, other):</span>
-
-<span class="go">/ibis/ibis/expr/operations.py in to_expr(self)</span>
-<span class="go">    121     def to_expr(self):</span>
-<span class="go">    122         if not hasattr(self, &#39;_expr_cached&#39;):</span>
-<span class="go">--&gt; 123             self._expr_cached = self._make_expr()</span>
-<span class="go">    124         return self._expr_cached</span>
-<span class="go">    125 </span>
-
-<span class="go">/ibis/ibis/expr/operations.py in _make_expr(self)</span>
-<span class="go">   2668 </span>
-<span class="go">   2669     def _make_expr(self):</span>
-<span class="go">-&gt; 2670         dtype = rlz.highest_precedence_dtype(self.values)</span>
-<span class="go">   2671         return ir.ListExpr(self, dtype=dtype)</span>
-
-<span class="go">/ibis/ibis/expr/rules.py in highest_precedence_dtype(exprs)</span>
-<span class="go">     35         raise ValueError(&#39;Must pass at least one expression&#39;)</span>
-<span class="go">     36 </span>
-<span class="go">---&gt; 37     return dt.highest_precedence(expr.type() for expr in exprs)</span>
-<span class="go">     38 </span>
-<span class="go">     39 </span>
-
-<span class="go">/ibis/ibis/expr/datatypes.py in highest_precedence(dtypes)</span>
-<span class="go">   1054 </span>
-<span class="go">   1055 def highest_precedence(dtypes):</span>
-<span class="go">-&gt; 1056     return functools.reduce(higher_precedence, dtypes)</span>
-<span class="go">   1057 </span>
-<span class="go">   1058 </span>
-
-<span class="go">/ibis/ibis/expr/datatypes.py in higher_precedence(left, right)</span>
-<span class="go">   1049 </span>
-<span class="go">   1050     raise com.IbisTypeError(</span>
-<span class="go">-&gt; 1051         &#39;Cannot compute precedence for {} and {} types&#39;.format(left, right)</span>
-<span class="go">   1052     )</span>
-<span class="go">   1053 </span>
-
-<span class="go">IbisTypeError: Cannot compute precedence for int32 and string types</span>
-
 <span class="gp">In [64]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        SELECT *, CAST(`one` AS timestamp) AS `date`,</span>
-<span class="go">       CAST(`three` AS double) AS `four`</span>
+<span class="go">SELECT *,</span>
+<span class="go">  CASE extract(CAST(`one` AS timestamp), &#39;year&#39;)</span>
+<span class="go">    WHEN 2015 THEN &#39;This year&#39;</span>
+<span class="go">    WHEN 2014 THEN &#39;Last year&#39;</span>
+<span class="go">    ELSE &#39;Earlier&#39;</span>
+<span class="go">  END AS `year_group`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
 </div>
@@ -1855,7 +1728,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+11.gdedcdf0',
+            VERSION:'v0.13.0+12.gedf10f4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
