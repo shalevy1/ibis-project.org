@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.13.0+13.g7d39d69 documentation</title>
+  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.13.0+14.g2f6d47e documentation</title>
   
 
   
@@ -27,19 +27,27 @@
   
 
   
+  
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html" />
-    <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html" /> 
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Ibis v0.13.0+14.g2f6d47e documentation" href="../../index.html"/>
+        <link rel="up" title="Tutorial" href="../../tutorial.html"/>
+        <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/>
+        <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -61,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+13.g7d39d69
+                v0.13.0+14.g2f6d47e
               </div>
             
           
@@ -130,7 +138,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Ibis</a>
@@ -138,10 +146,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -1174,7 +1181,7 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-26.7 ms ± 1.65 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+26.4 ms ± 2.18 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1203,7 +1210,7 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-85.1 ms ± 8.21 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+82.8 ms ± 6.69 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <p>It’s important to remember that codegen is a fixed overhead and will
@@ -1213,7 +1220,9 @@ significantly speed up queries on big data</p>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -1235,7 +1244,7 @@ significantly speed up queries on big data</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1253,8 +1262,7 @@ significantly speed up queries on big data</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+13.g7d39d69',
-            LANGUAGE:'None',
+            VERSION:'v0.13.0+14.g2f6d47e',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1273,13 +1281,14 @@ significantly speed up queries on big data</p>
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
   
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.StickyNav.enable();
       });
   </script>
+  
  
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
