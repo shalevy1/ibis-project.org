@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis v0.13.0+21.g63c9274 documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis v0.13.0+22.gefe3587 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                v0.13.0+21.g63c9274
+                v0.13.0+22.gefe3587
               </div>
             
           
@@ -317,6 +317,23 @@ with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="s1">&#39;ibis-gbq&#39;</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="s1">&#39;testing&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>By default ibis assumes that the BigQuery project that’s billed for queries is
+also the project where the data lives.</p>
+<p>However, it’s very easy to query data that does <strong>not</strong> live in the billing
+project.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When you run queries against data from other projects <strong>the billing project
+will still be billed for any and all queries</strong>.</p>
+</div>
+<p>If you want to query data that lives in a different project than the billing
+project you can use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">database()</span></code>
+method of <code class="xref py py-class docutils literal notranslate"><span class="pre">BigQueryClient</span></code> objects:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">database</span><span class="p">(</span><span class="s1">&#39;other-data-project.other-dataset&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">my_awesome_table</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">sweet_column</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>  <span class="c1"># runs against the billing project</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="learning-resources">
 <h2>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
@@ -398,7 +415,7 @@ ping -c <span class="m">1</span> <span class="s2">&quot;</span><span class="si">
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+21.g63c9274',
+            VERSION:'v0.13.0+22.gefe3587',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
