@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+30.g6f90d2f documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+36.g1c47447 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+30.g6f90d2f documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+36.g1c47447 documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+30.g6f90d2f
+                v0.13.0+36.g1c47447
               </div>
             
           
@@ -471,8 +471,8 @@ row to be included in the result:</p>
 <span class="gp">In [27]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
-<span class="go">WHERE `two` &gt; 0 AND</span>
-<span class="go">      `one` IN (&#39;A&#39;, &#39;B&#39;)</span>
+<span class="go">WHERE (`two` &gt; 0) AND</span>
+<span class="go">      (`one` IN (&#39;A&#39;, &#39;B&#39;))</span>
 </pre></div>
 </div>
 <p>To compose boolean expressions with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, use the respective <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
@@ -484,7 +484,7 @@ and <code class="docutils literal notranslate"><span class="pre">|</span></code>
 <span class="gp">In [30]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
-<span class="go">WHERE ((`two` &lt; 0) OR ((`two` &gt; 0) OR `one` IN (&#39;A&#39;, &#39;B&#39;)))</span>
+<span class="go">WHERE (`two` &lt; 0) OR ((`two` &gt; 0) OR `one` IN (&#39;A&#39;, &#39;B&#39;))</span>
 </pre></div>
 </div>
 </div>
@@ -959,8 +959,8 @@ boolean expression:</p>
 <span class="gp">In [90]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
-<span class="go">WHERE `two` BETWEEN 10 AND 50 AND</span>
-<span class="go">      `one` IS NOT NULL</span>
+<span class="go">WHERE (`two` BETWEEN 10 AND 50) AND</span>
+<span class="go">      (`one` IS NOT NULL)</span>
 </pre></div>
 </div>
 </div>
@@ -1106,8 +1106,8 @@ any of the above concerns.</p>
 <span class="go">       sum((t0.`value1` + t1.`value2`) + t2.`value3`) AS `total`</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  INNER JOIN table2 t1</span>
-<span class="go">    ON t0.`key1` = t1.`key3` AND</span>
-<span class="go">       t0.`key2` = t1.`key4`</span>
+<span class="go">    ON (t0.`key1` = t1.`key3`) AND</span>
+<span class="go">       (t0.`key2` = t1.`key4`)</span>
 <span class="go">  INNER JOIN table3 t2</span>
 <span class="go">    ON t0.`key1` = t2.`key5`</span>
 <span class="go">GROUP BY 1, 2</span>
@@ -1170,9 +1170,9 @@ have the same name. Consider this example:</p>
 <span class="go">SELECT t0.*, t1.`value2`</span>
 <span class="go">FROM table4 t0</span>
 <span class="go">  INNER JOIN table5 t1</span>
-<span class="go">    ON t0.`key1` = t1.`key1` AND</span>
-<span class="go">       t0.`key2` = t1.`key2` AND</span>
-<span class="go">       t0.`key3` = t1.`key3`</span>
+<span class="go">    ON (t0.`key1` = t1.`key1`) AND</span>
+<span class="go">       (t0.`key2` = t1.`key2`) AND</span>
+<span class="go">       (t0.`key3` = t1.`key3`)</span>
 </pre></div>
 </div>
 <p>You can mix the overlapping key names with other expressions:</p>
@@ -1186,9 +1186,9 @@ have the same name. Consider this example:</p>
 <span class="go">SELECT t0.*, t1.`value2`</span>
 <span class="go">FROM table4 t0</span>
 <span class="go">  INNER JOIN table5 t1</span>
-<span class="go">    ON t0.`key1` = t1.`key1` AND</span>
-<span class="go">       t0.`key2` = t1.`key2` AND</span>
-<span class="go">       substr(t0.`key3`, 0 + 1, 4) = substr(t0.`key3`, 0 + 1, 4)</span>
+<span class="go">    ON (t0.`key1` = t1.`key1`) AND</span>
+<span class="go">       (t0.`key2` = t1.`key2`) AND</span>
+<span class="go">       (substr(t0.`key3`, 0 + 1, 4) = substr(t0.`key3`, 0 + 1, 4))</span>
 </pre></div>
 </div>
 </div>
@@ -1721,7 +1721,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+30.g6f90d2f',
+            VERSION:'v0.13.0+36.g1c47447',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
