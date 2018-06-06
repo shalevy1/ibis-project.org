@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis v0.13.0+40.gbfc9a0e documentation</title>
+  <title>API Reference &mdash; Ibis v0.13.0+41.g0f8b502 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+40.gbfc9a0e documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+41.g0f8b502 documentation" href="index.html"/>
         <link rel="next" title="ibis.hdfs_connect" href="generated/ibis.hdfs_connect.html"/>
         <link rel="prev" title="Additional Analytics Tools" href="notebooks/tutorial/8-More-Analytics-Helpers.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+40.gbfc9a0e
+                v0.13.0+41.g0f8b502
               </div>
             
           
@@ -374,6 +374,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.capitalize.html">ibis.expr.api.StringValue.capitalize</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.contains.html">ibis.expr.api.StringValue.contains</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.like.html">ibis.expr.api.StringValue.like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.to_timestamp.html">ibis.expr.api.StringValue.to_timestamp</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html">ibis.expr.api.StringValue.parse_url</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html">ibis.expr.api.StringValue.substr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html">ibis.expr.api.StringValue.left</a></li>
@@ -1416,52 +1417,55 @@ HDFS.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.like.html#ibis.expr.api.StringValue.like" title="ibis.expr.api.StringValue.like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.like</span></code></a>(patterns)</td>
 <td>Wildcard fuzzy matching function equivalent to the SQL LIKE directive.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html#ibis.expr.api.StringValue.parse_url" title="ibis.expr.api.StringValue.parse_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.parse_url</span></code></a>(extract[,&nbsp;key])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.to_timestamp.html#ibis.expr.api.StringValue.to_timestamp" title="ibis.expr.api.StringValue.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.to_timestamp</span></code></a>(format_str[,&nbsp;timezone])</td>
+<td>Parses a string and returns a timestamp.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.parse_url.html#ibis.expr.api.StringValue.parse_url" title="ibis.expr.api.StringValue.parse_url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.parse_url</span></code></a>(extract[,&nbsp;key])</td>
 <td>Returns the portion of a URL corresponding to a part specified by ‘extract’ Can optionally specify a key to retrieve an associated value if extract parameter is ‘QUERY’</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html#ibis.expr.api.StringValue.substr" title="ibis.expr.api.StringValue.substr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.substr</span></code></a>(start[,&nbsp;length])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.substr.html#ibis.expr.api.StringValue.substr" title="ibis.expr.api.StringValue.substr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.substr</span></code></a>(start[,&nbsp;length])</td>
 <td>Pull substrings out of each string value by position and maximum length.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html#ibis.expr.api.StringValue.left" title="ibis.expr.api.StringValue.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.left</span></code></a>(nchars)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.left.html#ibis.expr.api.StringValue.left" title="ibis.expr.api.StringValue.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.left</span></code></a>(nchars)</td>
 <td>Return left-most up to N characters from each string.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.right.html#ibis.expr.api.StringValue.right" title="ibis.expr.api.StringValue.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.right</span></code></a>(nchars)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.right.html#ibis.expr.api.StringValue.right" title="ibis.expr.api.StringValue.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.right</span></code></a>(nchars)</td>
 <td>Return up to nchars starting from end of each string.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.repeat.html#ibis.expr.api.StringValue.repeat" title="ibis.expr.api.StringValue.repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.repeat</span></code></a>(n)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.repeat.html#ibis.expr.api.StringValue.repeat" title="ibis.expr.api.StringValue.repeat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.repeat</span></code></a>(n)</td>
 <td>Returns the argument string repeated n times</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find.html#ibis.expr.api.StringValue.find" title="ibis.expr.api.StringValue.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.find</span></code></a>(substr[,&nbsp;start,&nbsp;end])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find.html#ibis.expr.api.StringValue.find" title="ibis.expr.api.StringValue.find"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.find</span></code></a>(substr[,&nbsp;start,&nbsp;end])</td>
 <td>Returns position (0 indexed) of first occurence of substring, optionally after a particular position (0 indexed)</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.translate.html#ibis.expr.api.StringValue.translate" title="ibis.expr.api.StringValue.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.translate</span></code></a>(from_str,&nbsp;to_str)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.translate.html#ibis.expr.api.StringValue.translate" title="ibis.expr.api.StringValue.translate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.translate</span></code></a>(from_str,&nbsp;to_str)</td>
 <td>Returns string with set of ‘from’ characters replaced by set of ‘to’ characters.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find_in_set.html#ibis.expr.api.StringValue.find_in_set" title="ibis.expr.api.StringValue.find_in_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.find_in_set</span></code></a>(str_list)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.find_in_set.html#ibis.expr.api.StringValue.find_in_set" title="ibis.expr.api.StringValue.find_in_set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.find_in_set</span></code></a>(str_list)</td>
 <td>Returns postion (0 indexed) of first occurence of argument within a list of strings.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.join.html#ibis.expr.api.StringValue.join" title="ibis.expr.api.StringValue.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.join</span></code></a>(strings)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.join.html#ibis.expr.api.StringValue.join" title="ibis.expr.api.StringValue.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.join</span></code></a>(strings)</td>
 <td>Joins a list of strings together using the calling string as a separator</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.replace.html#ibis.expr.api.StringValue.replace" title="ibis.expr.api.StringValue.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.replace</span></code></a>(pattern,&nbsp;replacement)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.replace.html#ibis.expr.api.StringValue.replace" title="ibis.expr.api.StringValue.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.replace</span></code></a>(pattern,&nbsp;replacement)</td>
 <td>Replaces each exactly occurrence of pattern with given replacement string.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lpad.html#ibis.expr.api.StringValue.lpad" title="ibis.expr.api.StringValue.lpad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.lpad</span></code></a>(length[,&nbsp;pad])</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.lpad.html#ibis.expr.api.StringValue.lpad" title="ibis.expr.api.StringValue.lpad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.lpad</span></code></a>(length[,&nbsp;pad])</td>
 <td>Returns string of given length by truncating (on right) or padding (on left) original string</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rpad.html#ibis.expr.api.StringValue.rpad" title="ibis.expr.api.StringValue.rpad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.rpad</span></code></a>(length[,&nbsp;pad])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rpad.html#ibis.expr.api.StringValue.rpad" title="ibis.expr.api.StringValue.rpad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.rpad</span></code></a>(length[,&nbsp;pad])</td>
 <td>Returns string of given length by truncating (on right) or padding (on right) original string</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rlike.html#ibis.expr.api.StringValue.rlike" title="ibis.expr.api.StringValue.rlike"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.rlike</span></code></a>(pattern)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.rlike.html#ibis.expr.api.StringValue.rlike" title="ibis.expr.api.StringValue.rlike"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.rlike</span></code></a>(pattern)</td>
 <td>Search string values using a regular expression.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_search.html#ibis.expr.api.StringValue.re_search" title="ibis.expr.api.StringValue.re_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_search</span></code></a>(pattern)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_search.html#ibis.expr.api.StringValue.re_search" title="ibis.expr.api.StringValue.re_search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_search</span></code></a>(pattern)</td>
 <td>Search string values using a regular expression.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_extract.html#ibis.expr.api.StringValue.re_extract" title="ibis.expr.api.StringValue.re_extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_extract</span></code></a>(pattern,&nbsp;index)</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_extract.html#ibis.expr.api.StringValue.re_extract" title="ibis.expr.api.StringValue.re_extract"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_extract</span></code></a>(pattern,&nbsp;index)</td>
 <td>Returns specified index, 0 indexed, from string based on regex pattern given</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_replace.html#ibis.expr.api.StringValue.re_replace" title="ibis.expr.api.StringValue.re_replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_replace</span></code></a>(pattern,&nbsp;replacement)</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.StringValue.re_replace.html#ibis.expr.api.StringValue.re_replace" title="ibis.expr.api.StringValue.re_replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringValue.re_replace</span></code></a>(pattern,&nbsp;replacement)</td>
 <td>Replaces match found by regex with replacement string.</td>
 </tr>
 </tbody>
@@ -1616,7 +1620,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+40.gbfc9a0e',
+            VERSION:'v0.13.0+41.g0f8b502',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
