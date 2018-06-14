@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+51.gefaffbf documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+52.g538ae45 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+51.gefaffbf documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+52.g538ae45 documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+51.gefaffbf
+                v0.13.0+52.g538ae45
               </div>
             
           
@@ -472,7 +472,7 @@ row to be included in the result:</p>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">WHERE (`two` &gt; 0) AND</span>
-<span class="go">      (`one` IN (&#39;A&#39;, &#39;B&#39;))</span>
+<span class="go">      (`one` IN (&#39;B&#39;, &#39;A&#39;))</span>
 </pre></div>
 </div>
 <p>To compose boolean expressions with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, use the respective <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
@@ -484,7 +484,7 @@ and <code class="docutils literal notranslate"><span class="pre">|</span></code>
 <span class="gp">In [30]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
-<span class="go">WHERE (`two` &lt; 0) OR ((`two` &gt; 0) OR `one` IN (&#39;A&#39;, &#39;B&#39;))</span>
+<span class="go">WHERE (`two` &lt; 0) OR ((`two` &gt; 0) OR `one` IN (&#39;B&#39;, &#39;A&#39;))</span>
 </pre></div>
 </div>
 </div>
@@ -1721,7 +1721,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+51.gefaffbf',
+            VERSION:'v0.13.0+52.g538ae45',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
