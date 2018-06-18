@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+52.g538ae45 documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+53.g037db67 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+52.g538ae45 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+53.g037db67 documentation" href="index.html"/>
         <link rel="next" title="Design" href="design.html"/>
         <link rel="prev" title="User Defined Functions" href="udf.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+52.g538ae45
+                v0.13.0+53.g037db67
               </div>
             
           
@@ -110,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#clickhouse">Clickhouse</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sqlite">SQLite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mapd">MapD</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
@@ -336,6 +337,24 @@ instructions above, then SQLite will be available in the conda environment.</p>
 </div>
 </div></blockquote>
 </div>
+<div class="section" id="mapd">
+<h4>MapD<a class="headerlink" href="#mapd" title="Permalink to this headline">¶</a></h4>
+<p>MapD can be used from either a docker image or from your machine directly.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Start the MapD Server docker image in another terminal</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
+docker run -d -v <span class="nv">$HOME</span>/mapd-docker-storage:/mapd-storage -p <span class="m">9090</span>-9092:9090-9092 mapd/mapd-ce-cpu
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Here’s how to load test data into MapD:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py mapd
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="running-tests">
 <h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
@@ -405,7 +424,7 @@ development roadmap:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+52.g538ae45',
+            VERSION:'v0.13.0+53.g037db67',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
