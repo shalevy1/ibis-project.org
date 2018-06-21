@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.window &mdash; Ibis v0.13.0+53.g037db67 documentation</title>
+  <title>ibis.window &mdash; Ibis v0.13.0+54.g8cf4727 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+53.g037db67 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+54.g8cf4727 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.trailing_window" href="ibis.trailing_window.html"/>
         <link rel="prev" title="ibis.row_number" href="ibis.row_number.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+53.g037db67
+                v0.13.0+54.g8cf4727
               </div>
             
           
@@ -237,7 +237,8 @@
 <dt id="ibis.window">
 <code class="descclassname">ibis.</code><code class="descname">window</code><span class="sig-paren">(</span><em>preceding=None</em>, <em>following=None</em>, <em>group_by=None</em>, <em>order_by=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a window clause for use with window (analytic and aggregate)
-functions.</p>
+functions. This ROW window clause aggregates adjacent rows based
+on differences in row number.</p>
 <p>All window frames / ranges are inclusive.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -318,7 +319,7 @@ determine the default ordering (for functions like rank)</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+53.g037db67',
+            VERSION:'v0.13.0+54.g8cf4727',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
