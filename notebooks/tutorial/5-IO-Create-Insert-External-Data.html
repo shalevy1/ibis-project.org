@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.13.0+54.g8cf4727 documentation</title>
+  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.13.0+56.g3276d37 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+54.g8cf4727 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+56.g3276d37 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/>
         <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+54.g8cf4727
+                v0.13.0+56.g3276d37
               </div>
             
           
@@ -121,6 +121,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../udf.html">User Defined Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending Ibis</a></li>
@@ -989,7 +990,7 @@ pleasant, please let us know.</p>
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[&#39;ibis_testing&#39;]
+<span></span>[&#39;ibis_testing&#39;, &#39;ibis_testing_tmp_db&#39;]
 </pre></div>
 </div>
 </div>
@@ -1166,7 +1167,7 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-27.2 ms ± 2.03 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+31.2 ms ± 4.46 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1195,7 +1196,7 @@ may significantly speed up queries on smaller datasets:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-83.3 ms ± 7.39 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+87 ms ± 6.79 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <p>It’s important to remember that codegen is a fixed overhead and will
@@ -1247,7 +1248,7 @@ significantly speed up queries on big data</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+54.g8cf4727',
+            VERSION:'v0.13.0+56.g3276d37',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

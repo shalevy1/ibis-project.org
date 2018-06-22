@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.13.0+54.g8cf4727 documentation</title>
+  <title>Ibis: Python Data Analysis Productivity Framework &mdash; Ibis v0.13.0+56.g3276d37 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+54.g8cf4727 documentation" href="#"/>
+    <link rel="top" title="Ibis v0.13.0+56.g3276d37 documentation" href="#"/>
         <link rel="next" title="Installation and Getting Started" href="getting-started.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.13.0+54.g8cf4727
+                v0.13.0+56.g3276d37
               </div>
             
           
@@ -99,6 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
@@ -221,12 +222,12 @@ natively within other systems like Apache Spark and Apache Impala (incubating).<
 <p>At this time, Ibis offers some level of support for the following systems:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://impala.io/">Apache Impala (incubating)</a></li>
-<li><a class="reference external" href="http://getkudu.io">Apache Kudu (incubating)</a></li>
-<li>PostgreSQL</li>
-<li>SQLite</li>
-<li>Google BigQuery (experimental)</li>
-<li>Yandex Clickhouse</li>
-<li>Direct execution of ibis expressions against pandas objects (Experimental)</li>
+<li><a class="reference external" href="http://getkudu.io/">Apache Kudu (incubating)</a></li>
+<li><a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a></li>
+<li><a class="reference external" href="https://www.sqlite.org/">SQLite</a></li>
+<li><cite>Google BigQuery &lt;https://cloud.google.com/bigquery/&gt;</cite></li>
+<li><a class="reference external" href="https://clickhouse.yandex/">Yandex Clickhouse</a></li>
+<li>Direct execution of ibis expressions against <a class="reference external" href="http://pandas.pydata.org/">Pandas</a> objects</li>
 </ul>
 <p>Coming from SQL? Check out <a class="reference internal" href="sql.html#sql"><span class="std std-ref">Ibis for SQL Programmers</span></a>.</p>
 <p>Architecturally, Ibis features:</p>
@@ -240,14 +241,12 @@ query, you can write it with Ibis.</li>
 </ul>
 <p>SQL engine support needing code contributors:</p>
 <ul class="simple">
-<li>Redshift</li>
-<li>Vertica</li>
-<li>Spark SQL</li>
-<li>Presto</li>
-<li>Hive</li>
+<li><a class="reference external" href="https://aws.amazon.com/redshift/">Redshift</a></li>
+<li><a class="reference external" href="https://www.vertica.com/">Vertica</a></li>
+<li><a class="reference external" href="https://spark.apache.org/sql/">Spark SQL</a></li>
+<li><a class="reference external" href="https://prestodb.io/">Presto</a></li>
+<li><a class="reference external" href="https://hive.apache.org/">Hive</a></li>
 </ul>
-<p>Since this is a young project, the documentation is definitely patchy in
-places, but this will improve as things progress.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
@@ -257,6 +256,7 @@ places, but this will improve as things progress.</p>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
@@ -317,7 +317,7 @@ places, but this will improve as things progress.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+54.g8cf4727',
+            VERSION:'v0.13.0+56.g3276d37',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

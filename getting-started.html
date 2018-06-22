@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis v0.13.0+54.g8cf4727 documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis v0.13.0+56.g3276d37 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+54.g8cf4727 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+56.g3276d37 documentation" href="index.html"/>
         <link rel="next" title="Configuring Ibis" href="configuration.html"/>
         <link rel="prev" title="Ibis: Python Data Analysis Productivity Framework" href="index.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+54.g8cf4727
+                v0.13.0+56.g3276d37
               </div>
             
           
@@ -95,8 +95,8 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#system-dependencies">System dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installing-the-python-package">Installing the Python package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-dependencies">System Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-python-package">Installing the Python Package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#impala-quickstart">Impala Quickstart</a></li>
@@ -104,8 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#postgresql-quickstart">PostgreSQL Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#clickhouse-quickstart">Clickhouse Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bigquery-quickstart">BigQuery Quickstart</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#learning-resources">Learning resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-ibis-queries-using-docker">Running Ibis Queries using Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-resources">Learning Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
@@ -114,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
@@ -204,19 +204,16 @@
 </style>
 <div class="section" id="installation-and-getting-started">
 <span id="install"></span><h1>Installation and Getting Started<a class="headerlink" href="#installation-and-getting-started" title="Permalink to this headline">¶</a></h1>
-<p>Getting up and running with Ibis involves installing the Python package and
-connecting to HDFS and Impala. If you don’t have a Hadoop cluster available
-with Impala, see <a class="reference internal" href="#install-quickstart"><span class="std std-ref">Running Ibis Queries using Docker</span></a> below for instructions to use a VM
-to get up and running quickly.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="system-dependencies">
-<h3>System dependencies<a class="headerlink" href="#system-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>Ibis requires a working Python 2.7 or &gt;= 3.4 installation. We recommend
-<a class="reference external" href="http://continuum.io/downloads">Anaconda</a>.</p>
+<h3>System Dependencies<a class="headerlink" href="#system-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>Ibis requires a working Python 2.7 or 3.5+ installation. We recommend using
+<a class="reference external" href="http://continuum.io/downloads">Anaconda</a> to manage Python versions and
+environments.</p>
 </div>
 <div class="section" id="installing-the-python-package">
-<h3>Installing the Python package<a class="headerlink" href="#installing-the-python-package" title="Permalink to this headline">¶</a></h3>
+<h3>Installing the Python Package<a class="headerlink" href="#installing-the-python-package" title="Permalink to this headline">¶</a></h3>
 <p>Install ibis using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span>
 </pre></div>
@@ -286,7 +283,7 @@ using SQLite.</p>
 </div>
 </div>
 <div class="section" id="clickhouse-quickstart">
-<span id="install-bigquery"></span><h2><a class="reference external" href="https://clickhouse.yandex/">Clickhouse</a> Quickstart<a class="headerlink" href="#clickhouse-quickstart" title="Permalink to this headline">¶</a></h2>
+<span id="install-clickhouse"></span><h2><a class="reference external" href="https://clickhouse.yandex/">Clickhouse</a> Quickstart<a class="headerlink" href="#clickhouse-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s Clickhouse dialect:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">clickhouse</span><span class="p">]</span>
 </pre></div>
@@ -298,7 +295,7 @@ using SQLite.</p>
 </div>
 </div>
 <div class="section" id="bigquery-quickstart">
-<h2><a class="reference external" href="https://cloud.google.com/bigquery/">BigQuery</a> Quickstart<a class="headerlink" href="#bigquery-quickstart" title="Permalink to this headline">¶</a></h2>
+<span id="install-bigquery"></span><h2><a class="reference external" href="https://cloud.google.com/bigquery/">BigQuery</a> Quickstart<a class="headerlink" href="#bigquery-quickstart" title="Permalink to this headline">¶</a></h2>
 <p>Install dependencies for Ibis’s BigQuery dialect:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">bigquery</span><span class="p">]</span>
 </pre></div>
@@ -327,40 +324,11 @@ method of <code class="xref py py-class docutils literal notranslate"><span clas
 </div>
 </div>
 <div class="section" id="learning-resources">
-<h2>Learning resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
-<p>We are collecting Jupyter notebooks for learning here:
-<a class="reference external" href="https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks">https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks</a>. Some of
-these notebooks will be reproduced as part of the documentation.</p>
-</div>
-<div class="section" id="running-ibis-queries-using-docker">
-<span id="install-quickstart"></span><h2>Running Ibis Queries using Docker<a class="headerlink" href="#running-ibis-queries-using-docker" title="Permalink to this headline">¶</a></h2>
-<p>Contributor <a class="reference external" href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
-crafting a very easy-to-use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> setup that enables users and
-developers of ibis to get up and running quickly.</p>
-<p>Here are the steps:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
-git clone https://github.com/ibis-project/ibis
-
-<span class="c1"># go to where the docker-compose file is</span>
-<span class="nb">pushd</span> ibis/ci
-
-<span class="c1"># build the latest version of ibis</span>
-docker-compose build --pull ibis
-
-<span class="c1"># spin up containers</span>
-docker-compose up -d --no-build postgres impala clickhouse
-
-<span class="c1"># wait for things to finish starting</span>
-docker-compose run waiter
-
-<span class="c1"># load data into databases</span>
-docker-compose run ibis ci/load-data.sh
-
-<span class="c1"># confirm that you can reach impala</span>
-<span class="nv">impala_ip_address</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>docker inspect -f <span class="s1">&#39;{{.NetworkSettings.Networks.ci_default.IPAddress}}&#39;</span> ci_impala_1<span class="k">)</span><span class="s2">&quot;</span>
-ping -c <span class="m">1</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">impala_ip_address</span><span class="si">}</span><span class="s2">&quot;</span>
-</pre></div>
-</div>
+<h2>Learning Resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
+<p>We collect Jupyter notebooks for learning how to use ibis here:
+<a class="reference external" href="https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks/tutorial">https://github.com/ibis-project/ibis/tree/master/docs/source/notebooks/tutorial</a>.
+Some of these notebooks will be reproduced as part of the documentation
+<a class="reference internal" href="tutorial.html#tutorial"><span class="std std-ref">in the tutorial section</span></a>.</p>
 </div>
 </div>
 
@@ -408,7 +376,7 @@ ping -c <span class="m">1</span> <span class="s2">&quot;</span><span class="si">
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+54.g8cf4727',
+            VERSION:'v0.13.0+56.g3276d37',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

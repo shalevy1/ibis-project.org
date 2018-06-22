@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial &mdash; Ibis v0.13.0+56.g3276d37 documentation</title>
+  <title>Contributing to Ibis &mdash; Ibis v0.13.0+56.g3276d37 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Ibis v0.13.0+56.g3276d37 documentation" href="index.html"/>
-        <link rel="next" title="Impala/HDFS intro and Setup" href="notebooks/tutorial/1-Intro-and-Setup.html"/>
-        <link rel="prev" title="ibis.impala.api.ImpalaClient.set_compression_codec" href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html"/> 
+        <link rel="next" title="Developing and Contributing to Ibis" href="developer.html"/>
+        <link rel="prev" title="User Defined Functions" href="udf.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -96,21 +96,14 @@
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/tutorial/8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Ibis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-test-suite">Running the Test Suite</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
@@ -161,13 +154,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Tutorial</li>
+      <li>Contributing to Ibis</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -199,20 +192,32 @@
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="section" id="tutorial">
-<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<p>Here we show Jupyter notebooks that take you through various tasks using ibis.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/tutorial/8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
-</ul>
+<div class="section" id="contributing-to-ibis">
+<span id="contrib"></span><h1>Contributing to Ibis<a class="headerlink" href="#contributing-to-ibis" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure you’ve read the <a class="reference internal" href="getting-started.html#install"><span class="std std-ref">installation section</span></a> of the docs
+before continuing.</p>
+</div>
+<div class="section" id="running-the-test-suite">
+<span id="contrib-running-tests"></span><h2>Running the Test Suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h2>
+<p>Contributor <a class="reference external" href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
+crafting an easy-to-use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>
+setup that enables ibis developers to get up and running quickly.</p>
+<p>Here are the steps to run clone the repo and run the test suite:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
+git clone https://github.com/ibis-project/ibis
+
+<span class="c1"># go to where the docker-compose file is</span>
+<span class="nb">pushd</span> ibis/ci
+
+<span class="c1"># start services, build ibis, and load data into databases</span>
+<span class="nv">ENVKIND</span><span class="o">=</span>docs ./build.sh
+
+<span class="c1"># optionally run all tests</span>
+<span class="nv">ENVKIND</span><span class="o">=</span>docs ./test.sh -m <span class="s1">&#39;not udf&#39;</span> -n auto -o <span class="nv">cache_dir</span><span class="o">=</span>/tmp/.pytest_cache
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -226,10 +231,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="notebooks/tutorial/1-Intro-and-Setup.html" class="btn btn-neutral float-right" title="Impala/HDFS intro and Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="developer.html" class="btn btn-neutral float-right" title="Developing and Contributing to Ibis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="generated/ibis.impala.api.ImpalaClient.set_compression_codec.html" class="btn btn-neutral" title="ibis.impala.api.ImpalaClient.set_compression_codec" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="udf.html" class="btn btn-neutral" title="User Defined Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
