@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+66.g115ba99 documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+67.g15518da documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+66.g115ba99 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+67.g15518da documentation" href="index.html"/>
         <link rel="next" title="Design" href="design.html"/>
         <link rel="prev" title="Contributing to Ibis" href="contributing.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+66.g115ba99
+                v0.13.0+67.g15518da
               </div>
             
           
@@ -108,6 +108,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#download-test-dataset">Download Test Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-up-test-databases">Setting Up Test Databases</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#impala-with-udfs">Impala (with UDFs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bigquery">BigQuery</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#clickhouse">Clickhouse</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sqlite">SQLite</a></li>
@@ -301,6 +302,27 @@ docker run --tty --rm --hostname impala cpcloud86/impala:java8
 </li>
 </ol>
 </div>
+<div class="section" id="bigquery">
+<h4>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h4>
+<p>Before you begin, you must have a <a class="reference external" href="https://cloud.google.com/docs/overview/#projects">Google Cloud Platform project</a> with billing set up and
+the <a class="reference external" href="https://console.cloud.google.com/flows/enableapi?apiid=bigquery">BigQuery API enabled</a>.</p>
+<ol class="arabic">
+<li><p class="first"><strong>Set up application default credentials by following the `getting started with
+GCP authentication guide
+&lt;https://cloud.google.com/docs/authentication/getting-started&gt;`_.</strong></p>
+</li>
+<li><p class="first"><strong>Set the ``GOOGLE_BIGQUERY_PROJECT_ID`` environment variable</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GOOGLE_BIGQUERY_PROJECT_ID</span><span class="o">=</span>your-project-id
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Load data into BigQuery</strong>:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py bigquery
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
 <div class="section" id="clickhouse">
 <h4>Clickhouse<a class="headerlink" href="#clickhouse" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic">
@@ -425,7 +447,7 @@ development roadmap:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+66.g115ba99',
+            VERSION:'v0.13.0+67.g15518da',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
