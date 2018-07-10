@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TimestampValue.second &mdash; Ibis v0.13.0+68.g24b4b72 documentation</title>
+  <title>ibis.expr.api.TimestampValue.second &mdash; Ibis v0.13.0+69.gc073711 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+68.g24b4b72 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+69.gc073711 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TimestampValue.millisecond" href="ibis.expr.api.TimestampValue.millisecond.html"/>
         <link rel="prev" title="ibis.expr.api.TimestampValue.minute" href="ibis.expr.api.TimestampValue.minute.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+68.g24b4b72
+                v0.13.0+69.gc073711
               </div>
             
           
@@ -112,16 +112,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#integer-methods">Integer methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#string-methods">String methods</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#timestamp-methods">Timestamp methods</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.truncate.html">ibis.expr.api.TimestampValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.strftime.html">ibis.expr.api.TimestampValue.strftime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.year.html">ibis.expr.api.TimestampValue.year</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.month.html">ibis.expr.api.TimestampValue.month</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.day.html">ibis.expr.api.TimestampValue.day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.day_of_week.html">ibis.expr.api.TimestampValue.day_of_week</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.hour.html">ibis.expr.api.TimestampValue.hour</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.minute.html">ibis.expr.api.TimestampValue.minute</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ibis.expr.api.TimestampValue.second</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.millisecond.html">ibis.expr.api.TimestampValue.millisecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.truncate.html">ibis.expr.api.TimestampValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.time.html">ibis.expr.api.TimestampValue.time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.date.html">ibis.expr.api.TimestampValue.date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.add.html">ibis.expr.api.TimestampValue.add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.radd.html">ibis.expr.api.TimestampValue.radd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.sub.html">ibis.expr.api.TimestampValue.sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ibis.expr.api.TimestampValue.rsub.html">ibis.expr.api.TimestampValue.rsub</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#date-methods">Date methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#day-of-week-methods">Day of week methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#time-methods">Time methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#interval-methods">Interval methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#boolean-methods">Boolean methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#category-methods">Category methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#decimal-methods">Decimal methods</a></li>
@@ -273,7 +285,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.13.0+68.g24b4b72',
+            VERSION:'v0.13.0+69.gc073711',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

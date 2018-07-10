@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis v0.13.0+68.g24b4b72 documentation</title>
+  <title>API Reference &mdash; Ibis v0.13.0+69.gc073711 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+68.g24b4b72 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+69.gc073711 documentation" href="index.html"/>
         <link rel="next" title="ibis.hdfs_connect" href="generated/ibis.hdfs_connect.html"/>
         <link rel="prev" title="Additional Analytics Tools" href="notebooks/tutorial/8-More-Analytics-Helpers.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+68.g24b4b72
+                v0.13.0+69.gc073711
               </div>
             
           
@@ -394,14 +394,75 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#timestamp-methods">Timestamp methods</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.truncate.html">ibis.expr.api.TimestampValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.strftime.html">ibis.expr.api.TimestampValue.strftime</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.year.html">ibis.expr.api.TimestampValue.year</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.month.html">ibis.expr.api.TimestampValue.month</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.day.html">ibis.expr.api.TimestampValue.day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.day_of_week.html">ibis.expr.api.TimestampValue.day_of_week</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.hour.html">ibis.expr.api.TimestampValue.hour</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.minute.html">ibis.expr.api.TimestampValue.minute</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.second.html">ibis.expr.api.TimestampValue.second</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.millisecond.html">ibis.expr.api.TimestampValue.millisecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.truncate.html">ibis.expr.api.TimestampValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.time.html">ibis.expr.api.TimestampValue.time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.date.html">ibis.expr.api.TimestampValue.date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.add.html">ibis.expr.api.TimestampValue.add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.radd.html">ibis.expr.api.TimestampValue.radd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.sub.html">ibis.expr.api.TimestampValue.sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.rsub.html">ibis.expr.api.TimestampValue.rsub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#date-methods">Date methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.strftime.html">ibis.expr.api.DateValue.strftime</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.year.html">ibis.expr.api.DateValue.year</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.month.html">ibis.expr.api.DateValue.month</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.day.html">ibis.expr.api.DateValue.day</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.day_of_week.html">ibis.expr.api.DateValue.day_of_week</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.truncate.html">ibis.expr.api.DateValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.add.html">ibis.expr.api.DateValue.add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.radd.html">ibis.expr.api.DateValue.radd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.sub.html">ibis.expr.api.DateValue.sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.DateValue.rsub.html">ibis.expr.api.DateValue.rsub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#day-of-week-methods">Day of week methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.types.DayOfWeek.index.html">ibis.expr.types.DayOfWeek.index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.types.DayOfWeek.full_name.html">ibis.expr.types.DayOfWeek.full_name</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#time-methods">Time methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.between.html">ibis.expr.api.TimeValue.between</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.truncate.html">ibis.expr.api.TimeValue.truncate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.hour.html">ibis.expr.api.TimeValue.hour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.minute.html">ibis.expr.api.TimeValue.minute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.second.html">ibis.expr.api.TimeValue.second</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.millisecond.html">ibis.expr.api.TimeValue.millisecond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.add.html">ibis.expr.api.TimeValue.add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.radd.html">ibis.expr.api.TimeValue.radd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.sub.html">ibis.expr.api.TimeValue.sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.TimeValue.rsub.html">ibis.expr.api.TimeValue.rsub</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interval-methods">Interval methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.to_unit.html">ibis.expr.api.IntervalValue.to_unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.years.html">ibis.expr.api.IntervalValue.years</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.quarters.html">ibis.expr.api.IntervalValue.quarters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.months.html">ibis.expr.api.IntervalValue.months</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.weeks.html">ibis.expr.api.IntervalValue.weeks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.days.html">ibis.expr.api.IntervalValue.days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.hours.html">ibis.expr.api.IntervalValue.hours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.minutes.html">ibis.expr.api.IntervalValue.minutes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.seconds.html">ibis.expr.api.IntervalValue.seconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.milliseconds.html">ibis.expr.api.IntervalValue.milliseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.microseconds.html">ibis.expr.api.IntervalValue.microseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.nanoseconds.html">ibis.expr.api.IntervalValue.nanoseconds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.add.html">ibis.expr.api.IntervalValue.add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.radd.html">ibis.expr.api.IntervalValue.radd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.sub.html">ibis.expr.api.IntervalValue.sub</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.mul.html">ibis.expr.api.IntervalValue.mul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.rmul.html">ibis.expr.api.IntervalValue.rmul</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.floordiv.html">ibis.expr.api.IntervalValue.floordiv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.negate.html">ibis.expr.api.IntervalValue.negate</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#boolean-methods">Boolean methods</a><ul>
@@ -1481,8 +1542,8 @@ HDFS.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.truncate.html#ibis.expr.api.TimestampValue.truncate" title="ibis.expr.api.TimestampValue.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.truncate</span></code></a>(unit)</td>
-<td>Zero out smaller-size units beyond indicated unit.</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.strftime.html#ibis.expr.api.TimestampValue.strftime" title="ibis.expr.api.TimestampValue.strftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.strftime</span></code></a>(format_str)</td>
+<td>Format timestamp according to the passed format string.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.year.html#ibis.expr.api.TimestampValue.year" title="ibis.expr.api.TimestampValue.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.year</span></code></a>()</td>
 <td></td>
@@ -1493,17 +1554,208 @@ HDFS.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.day.html#ibis.expr.api.TimestampValue.day" title="ibis.expr.api.TimestampValue.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.day</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.hour.html#ibis.expr.api.TimestampValue.hour" title="ibis.expr.api.TimestampValue.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.hour</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.day_of_week.html#ibis.expr.api.TimestampValue.day_of_week" title="ibis.expr.api.TimestampValue.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.day_of_week</span></code></a></td>
+<td>Namespace expression containing methods for extracting information about the day of the week of a TimestampValue or DateValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.hour.html#ibis.expr.api.TimestampValue.hour" title="ibis.expr.api.TimestampValue.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.hour</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.minute.html#ibis.expr.api.TimestampValue.minute" title="ibis.expr.api.TimestampValue.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.minute</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.minute.html#ibis.expr.api.TimestampValue.minute" title="ibis.expr.api.TimestampValue.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.minute</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.second.html#ibis.expr.api.TimestampValue.second" title="ibis.expr.api.TimestampValue.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.second</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.second.html#ibis.expr.api.TimestampValue.second" title="ibis.expr.api.TimestampValue.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.second</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.millisecond.html#ibis.expr.api.TimestampValue.millisecond" title="ibis.expr.api.TimestampValue.millisecond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.millisecond</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.millisecond.html#ibis.expr.api.TimestampValue.millisecond" title="ibis.expr.api.TimestampValue.millisecond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.millisecond</span></code></a>()</td>
 <td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.truncate.html#ibis.expr.api.TimestampValue.truncate" title="ibis.expr.api.TimestampValue.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.truncate</span></code></a>(unit)</td>
+<td>Zero out smaller-size units beyond indicated unit.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.time.html#ibis.expr.api.TimestampValue.time" title="ibis.expr.api.TimestampValue.time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.time</span></code></a>()</td>
+<td>Return a Time node for a Timestamp We can then perform certain operations on this node w/o actually instantiating the underlying structure (which is inefficient in pandas/numpy)</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.date.html#ibis.expr.api.TimestampValue.date" title="ibis.expr.api.TimestampValue.date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.date</span></code></a>()</td>
+<td>Return a Date node for a Timestamp We can then perform certain operations on this node w/o actually instantiating the underlying structure (which is inefficient in pandas/numpy)</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.add.html#ibis.expr.api.TimestampValue.add" title="ibis.expr.api.TimestampValue.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.add</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.radd.html#ibis.expr.api.TimestampValue.radd" title="ibis.expr.api.TimestampValue.radd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.radd</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.sub.html#ibis.expr.api.TimestampValue.sub" title="ibis.expr.api.TimestampValue.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.sub</span></code></a>(right)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimestampValue.rsub.html#ibis.expr.api.TimestampValue.rsub" title="ibis.expr.api.TimestampValue.rsub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampValue.rsub</span></code></a>(right)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="date-methods">
+<span id="api-date"></span><h2>Date methods<a class="headerlink" href="#date-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.strftime.html#ibis.expr.api.DateValue.strftime" title="ibis.expr.api.DateValue.strftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.strftime</span></code></a>(format_str)</td>
+<td>Format timestamp according to the passed format string.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.year.html#ibis.expr.api.DateValue.year" title="ibis.expr.api.DateValue.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.year</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.month.html#ibis.expr.api.DateValue.month" title="ibis.expr.api.DateValue.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.month</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.day.html#ibis.expr.api.DateValue.day" title="ibis.expr.api.DateValue.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.day</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.day_of_week.html#ibis.expr.api.DateValue.day_of_week" title="ibis.expr.api.DateValue.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.day_of_week</span></code></a></td>
+<td>Namespace expression containing methods for extracting information about the day of the week of a TimestampValue or DateValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.truncate.html#ibis.expr.api.DateValue.truncate" title="ibis.expr.api.DateValue.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.truncate</span></code></a>(unit)</td>
+<td>Zero out smaller-size units beyond indicated unit.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.add.html#ibis.expr.api.DateValue.add" title="ibis.expr.api.DateValue.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.add</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.radd.html#ibis.expr.api.DateValue.radd" title="ibis.expr.api.DateValue.radd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.radd</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.sub.html#ibis.expr.api.DateValue.sub" title="ibis.expr.api.DateValue.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.sub</span></code></a>(right)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.DateValue.rsub.html#ibis.expr.api.DateValue.rsub" title="ibis.expr.api.DateValue.rsub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateValue.rsub</span></code></a>(right)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="day-of-week-methods">
+<span id="api-dow"></span><h2>Day of week methods<a class="headerlink" href="#day-of-week-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.types.DayOfWeek.index.html#ibis.expr.types.DayOfWeek.index" title="ibis.expr.types.DayOfWeek.index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayOfWeek.index</span></code></a>()</td>
+<td>Get the index of the day of the week.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.types.DayOfWeek.full_name.html#ibis.expr.types.DayOfWeek.full_name" title="ibis.expr.types.DayOfWeek.full_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DayOfWeek.full_name</span></code></a>()</td>
+<td>Get the name of the day of the week.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="time-methods">
+<span id="api-time"></span><h2>Time methods<a class="headerlink" href="#time-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.between.html#ibis.expr.api.TimeValue.between" title="ibis.expr.api.TimeValue.between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.between</span></code></a>(lower,&nbsp;upper[,&nbsp;timezone])</td>
+<td>Check if the input expr falls between the lower/upper bounds passed.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.truncate.html#ibis.expr.api.TimeValue.truncate" title="ibis.expr.api.TimeValue.truncate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.truncate</span></code></a>(unit)</td>
+<td>Zero out smaller-size units beyond indicated unit.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.hour.html#ibis.expr.api.TimeValue.hour" title="ibis.expr.api.TimeValue.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.hour</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.minute.html#ibis.expr.api.TimeValue.minute" title="ibis.expr.api.TimeValue.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.minute</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.second.html#ibis.expr.api.TimeValue.second" title="ibis.expr.api.TimeValue.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.second</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.millisecond.html#ibis.expr.api.TimeValue.millisecond" title="ibis.expr.api.TimeValue.millisecond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.millisecond</span></code></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.add.html#ibis.expr.api.TimeValue.add" title="ibis.expr.api.TimeValue.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.add</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.radd.html#ibis.expr.api.TimeValue.radd" title="ibis.expr.api.TimeValue.radd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.radd</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.sub.html#ibis.expr.api.TimeValue.sub" title="ibis.expr.api.TimeValue.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.sub</span></code></a>(right)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.TimeValue.rsub.html#ibis.expr.api.TimeValue.rsub" title="ibis.expr.api.TimeValue.rsub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeValue.rsub</span></code></a>(right)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="interval-methods">
+<span id="api-interval"></span><h2>Interval methods<a class="headerlink" href="#interval-methods" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.to_unit.html#ibis.expr.api.IntervalValue.to_unit" title="ibis.expr.api.IntervalValue.to_unit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.to_unit</span></code></a>(target_unit)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.years.html#ibis.expr.api.IntervalValue.years" title="ibis.expr.api.IntervalValue.years"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.years</span></code></a></td>
+<td>Extract the number of years from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.quarters.html#ibis.expr.api.IntervalValue.quarters" title="ibis.expr.api.IntervalValue.quarters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.quarters</span></code></a></td>
+<td>Extract the number of quarters from an IntervalValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.months.html#ibis.expr.api.IntervalValue.months" title="ibis.expr.api.IntervalValue.months"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.months</span></code></a></td>
+<td>Extract the number of months from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.weeks.html#ibis.expr.api.IntervalValue.weeks" title="ibis.expr.api.IntervalValue.weeks"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.weeks</span></code></a></td>
+<td>Extract the number of weeks from an IntervalValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.days.html#ibis.expr.api.IntervalValue.days" title="ibis.expr.api.IntervalValue.days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.days</span></code></a></td>
+<td>Extract the number of days from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.hours.html#ibis.expr.api.IntervalValue.hours" title="ibis.expr.api.IntervalValue.hours"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.hours</span></code></a></td>
+<td>Extract the number of hours from an IntervalValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.minutes.html#ibis.expr.api.IntervalValue.minutes" title="ibis.expr.api.IntervalValue.minutes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.minutes</span></code></a></td>
+<td>Extract the number of minutes from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.seconds.html#ibis.expr.api.IntervalValue.seconds" title="ibis.expr.api.IntervalValue.seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.seconds</span></code></a></td>
+<td>Extract the number of seconds from an IntervalValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.milliseconds.html#ibis.expr.api.IntervalValue.milliseconds" title="ibis.expr.api.IntervalValue.milliseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.milliseconds</span></code></a></td>
+<td>Extract the number of milliseconds from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.microseconds.html#ibis.expr.api.IntervalValue.microseconds" title="ibis.expr.api.IntervalValue.microseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.microseconds</span></code></a></td>
+<td>Extract the number of microseconds from an IntervalValue expression.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.nanoseconds.html#ibis.expr.api.IntervalValue.nanoseconds" title="ibis.expr.api.IntervalValue.nanoseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.nanoseconds</span></code></a></td>
+<td>Extract the number of nanoseconds from an IntervalValue expression.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.add.html#ibis.expr.api.IntervalValue.add" title="ibis.expr.api.IntervalValue.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.add</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.radd.html#ibis.expr.api.IntervalValue.radd" title="ibis.expr.api.IntervalValue.radd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.radd</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.sub.html#ibis.expr.api.IntervalValue.sub" title="ibis.expr.api.IntervalValue.sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.sub</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.mul.html#ibis.expr.api.IntervalValue.mul" title="ibis.expr.api.IntervalValue.mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.mul</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.rmul.html#ibis.expr.api.IntervalValue.rmul" title="ibis.expr.api.IntervalValue.rmul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.rmul</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.floordiv.html#ibis.expr.api.IntervalValue.floordiv" title="ibis.expr.api.IntervalValue.floordiv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.floordiv</span></code></a>(other)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.IntervalValue.negate.html#ibis.expr.api.IntervalValue.negate" title="ibis.expr.api.IntervalValue.negate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalValue.negate</span></code></a>()</td>
+<td>Negate a numeric expression</td>
 </tr>
 </tbody>
 </table>
@@ -1621,7 +1873,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+68.g24b4b72',
+            VERSION:'v0.13.0+69.gc073711',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
