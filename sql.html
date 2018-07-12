@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+70.g9c54221 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.13.0+71.gadb3ce3 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+70.g9c54221 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+71.gadb3ce3 documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+70.g9c54221
+                v0.13.0+71.gadb3ce3
               </div>
             
           
@@ -869,7 +869,7 @@ some SQL to do it:</p>
 
 <span class="gp">In [76]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
-<span class="go">       CASE WHEN upper(`country`) IN (&#39;CANADA&#39;, &#39;UNITED STATES&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
+<span class="go">       CASE WHEN upper(`country`) IN (&#39;UNITED STATES&#39;, &#39;CANADA&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
 <span class="go">FROM population</span>
 </pre></div>
 </div>
@@ -1722,7 +1722,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+70.g9c54221',
+            VERSION:'v0.13.0+71.gadb3ce3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
