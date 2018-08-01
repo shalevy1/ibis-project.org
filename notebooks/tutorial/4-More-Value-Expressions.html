@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More Value Expressions &mdash; Ibis v0.13.0+78.g9624af8 documentation</title>
+  <title>More Value Expressions &mdash; Ibis v0.13.0+79.ge501837 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+78.g9624af8 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+79.ge501837 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="IO, CREATE/INSERT, and External Data" href="5-IO-Create-Insert-External-Data.html"/>
         <link rel="prev" title="Projection, Joining, and Sorting" href="3-Projection-Join-Sort.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+78.g9624af8
+                v0.13.0+79.ge501837
               </div>
             
           
@@ -380,7 +380,7 @@ div.nboutput div.output_area.stderr {
 <h1>More Value Expressions<a class="headerlink" href="#More-Value-Expressions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
@@ -395,6 +395,17 @@ div.nboutput div.output_area.stderr {
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Type-casting">
@@ -598,7 +609,7 @@ expressions</li>
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Error: Unknown HTML element &lt;string&gt; on line 1
-in label of node -9223363248365193639
+in label of node -9223363272708766220
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1029,7 +1040,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Error: Unknown HTML element &lt;int8&gt; on line 1
-in label of node -9223363248365211373
+in label of node -9223363272708781549
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1059,9 +1070,9 @@ in label of node -9223363248365211373
 <div class="stderr output_area docutils container">
 <div class="highlight"><pre>
 Error: Unknown HTML element &lt;int8&gt; on line 1
-in label of node -9223363248365205656
+in label of node -9223363272708782468
 Error: Unknown HTML element &lt;int8&gt; on line 1
-in label of node -9223363248365205676
+in label of node -9223363272708782538
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1071,16 +1082,16 @@ in label of node -9223363248365205676
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
 <span></span>timestamp_col                  offset               current_time
-0 2009-08-01 00:00:00.000 2009-08-02 04:00:00.000 2018-07-29 22:03:57.609976
-1 2009-08-01 00:01:00.000 2009-08-02 04:01:00.000 2018-07-29 22:03:57.609976
-2 2009-08-01 00:02:00.100 2009-08-02 04:02:00.100 2018-07-29 22:03:57.609976
-3 2009-08-01 00:03:00.300 2009-08-02 04:03:00.300 2018-07-29 22:03:57.609976
-4 2009-08-01 00:04:00.600 2009-08-02 04:04:00.600 2018-07-29 22:03:57.609976
-5 2009-08-01 00:05:00.100 2009-08-02 04:05:00.100 2018-07-29 22:03:57.609976
-6 2009-08-01 00:06:00.150 2009-08-02 04:06:00.150 2018-07-29 22:03:57.609976
-7 2009-08-01 00:07:00.210 2009-08-02 04:07:00.210 2018-07-29 22:03:57.609976
-8 2009-08-01 00:08:00.280 2009-08-02 04:08:00.280 2018-07-29 22:03:57.609976
-9 2009-08-01 00:09:00.360 2009-08-02 04:09:00.360 2018-07-29 22:03:57.609976
+0 2009-08-01 00:00:00.000 2009-08-02 04:00:00.000 2018-08-01 14:55:06.154215
+1 2009-08-01 00:01:00.000 2009-08-02 04:01:00.000 2018-08-01 14:55:06.154215
+2 2009-08-01 00:02:00.100 2009-08-02 04:02:00.100 2018-08-01 14:55:06.154215
+3 2009-08-01 00:03:00.300 2009-08-02 04:03:00.300 2018-08-01 14:55:06.154215
+4 2009-08-01 00:04:00.600 2009-08-02 04:04:00.600 2018-08-01 14:55:06.154215
+5 2009-08-01 00:05:00.100 2009-08-02 04:05:00.100 2018-08-01 14:55:06.154215
+6 2009-08-01 00:06:00.150 2009-08-02 04:06:00.150 2018-08-01 14:55:06.154215
+7 2009-08-01 00:07:00.210 2009-08-02 04:07:00.210 2018-08-01 14:55:06.154215
+8 2009-08-01 00:08:00.280 2009-08-02 04:08:00.280 2018-08-01 14:55:06.154215
+9 2009-08-01 00:09:00.360 2009-08-02 04:09:00.360 2018-08-01 14:55:06.154215
 </pre></div>
 </div>
 </div>
@@ -1131,7 +1142,7 @@ in label of node -9223363248365205676
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+78.g9624af8',
+            VERSION:'v0.13.0+79.ge501837',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

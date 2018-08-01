@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.13.0+78.g9624af8 documentation</title>
+  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.13.0+79.ge501837 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+78.g9624af8 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+79.ge501837 documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/>
         <link rel="prev" title="Tutorial" href="../../tutorial.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+78.g9624af8
+                v0.13.0+79.ge501837
               </div>
             
           
@@ -374,7 +374,7 @@ div.nboutput div.output_area.stderr {
 <div class="section" id="Getting-started">
 <h2>Getting started<a class="headerlink" href="#Getting-started" title="Permalink to this headline">¶</a></h2>
 <p>You’re going to want to make sure you can import <code class="docutils literal notranslate"><span class="pre">ibis</span></code></p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
@@ -384,6 +384,17 @@ div.nboutput div.output_area.stderr {
 <span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+</pre></div></div>
 </div>
 <p>If you have WebHDFS available, connect to HDFS with according to your
 WebHDFS config. For kerberized or more complex HDFS clusters please look
@@ -418,7 +429,7 @@ can use a connection from that library instead of using <code class="docutils li
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7f49c4e951d0&gt;
+<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7f82f17ad320&gt;
 </pre></div>
 </div>
 </div>
@@ -473,7 +484,7 @@ environment (see docstring for <code class="docutils literal notranslate"><span 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+78.g9624af8',
+            VERSION:'v0.13.0+79.ge501837',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

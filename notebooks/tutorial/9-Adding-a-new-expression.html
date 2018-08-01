@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.13.0+78.g9624af8 documentation</title>
+  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.13.0+79.ge501837 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+78.g9624af8 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.13.0+79.ge501837 documentation" href="../../index.html"/>
         <link rel="up" title="Extending Ibis" href="../../extending.html"/>
         <link rel="next" title="Backends" href="../../backends.html"/>
         <link rel="prev" title="Extending Ibis" href="../../extending.html"/> 
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+78.g9624af8
+                v0.13.0+79.ge501837
               </div>
             
           
@@ -393,7 +393,7 @@ input argument and returns a hexidecimal string.</p>
 <div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="n">string</span> <span class="ow">-&gt;</span> <span class="n">string</span>
 </pre></div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
@@ -412,6 +412,17 @@ input argument and returns a hexidecimal string.</p>
 
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/opt/conda/envs/ibis-docs-3.6/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+</pre></div></div>
 </div>
 <p>We just defined a <code class="docutils literal notranslate"><span class="pre">SHA1</span></code> class that takes one argument of type string
 or binary, and returns a binary. This matches the description of the
@@ -749,7 +760,7 @@ columns for free</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+78.g9624af8',
+            VERSION:'v0.13.0+79.ge501837',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
