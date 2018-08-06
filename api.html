@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; Ibis v0.13.0+84.g5da573b documentation</title>
+  <title>API Reference &mdash; Ibis v0.13.0+85.g8a5085e documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+84.g5da573b documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+85.g8a5085e documentation" href="index.html"/>
         <link rel="next" title="ibis.hdfs_connect" href="generated/ibis.hdfs_connect.html"/>
         <link rel="prev" title="Additional Analytics Tools" href="notebooks/tutorial/8-More-Analytics-Helpers.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+84.g5da573b
+                v0.13.0+85.g8a5085e
               </div>
             
           
@@ -741,7 +741,7 @@ object you get back from <code class="docutils literal notranslate"><span class=
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.column_stats.html#ibis.impala.api.ImpalaTable.column_stats" title="ibis.impala.api.ImpalaTable.column_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.column_stats</span></code></a>()</td>
 <td>Return results of SHOW COLUMN STATS as a pandas DataFrame</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html#ibis.impala.api.ImpalaTable.compute_stats" title="ibis.impala.api.ImpalaTable.compute_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.compute_stats</span></code></a>([incremental,&nbsp;async])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html#ibis.impala.api.ImpalaTable.compute_stats" title="ibis.impala.api.ImpalaTable.compute_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.compute_stats</span></code></a>([incremental])</td>
 <td>Invoke Impala COMPUTE STATS command to compute column, table, and partition statistics.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.describe_formatted.html#ibis.impala.api.ImpalaTable.describe_formatted" title="ibis.impala.api.ImpalaTable.describe_formatted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.describe_formatted</span></code></a>()</td>
@@ -832,7 +832,7 @@ object you get back from <code class="docutils literal notranslate"><span class=
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.execute.html#ibis.impala.api.ImpalaClient.execute" title="ibis.impala.api.ImpalaClient.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.execute</span></code></a>(expr[,&nbsp;params,&nbsp;limit,&nbsp;…])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.execute.html#ibis.impala.api.ImpalaClient.execute" title="ibis.impala.api.ImpalaClient.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.execute</span></code></a>(expr[,&nbsp;params,&nbsp;limit])</td>
 <td>Compile and execute Ibis expression using this backend client interface, returning results in-memory in the appropriate object type</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.disable_codegen.html#ibis.impala.api.ImpalaClient.disable_codegen" title="ibis.impala.api.ImpalaClient.disable_codegen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaClient.disable_codegen</span></code></a>([disabled])</td>
@@ -1031,7 +1031,7 @@ HDFS.</p>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.Expr.equals.html#ibis.expr.api.Expr.equals" title="ibis.expr.api.Expr.equals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr.equals</span></code></a>(other[,&nbsp;cache])</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.Expr.execute.html#ibis.expr.api.Expr.execute" title="ibis.expr.api.Expr.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr.execute</span></code></a>([limit,&nbsp;async,&nbsp;params])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.expr.api.Expr.execute.html#ibis.expr.api.Expr.execute" title="ibis.expr.api.Expr.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr.execute</span></code></a>([limit,&nbsp;params])</td>
 <td>If this expression is based on physical tables in a database backend, execute it against that backend.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/ibis.expr.api.Expr.pipe.html#ibis.expr.api.Expr.pipe" title="ibis.expr.api.Expr.pipe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Expr.pipe</span></code></a>(f,&nbsp;*args,&nbsp;**kwargs)</td>
@@ -1873,7 +1873,7 @@ are represented semantically as integers starting at 0.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+84.g5da573b',
+            VERSION:'v0.13.0+85.g8a5085e',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

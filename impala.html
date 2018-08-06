@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Ibis with Impala &mdash; Ibis v0.13.0+84.g5da573b documentation</title>
+  <title>Using Ibis with Impala &mdash; Ibis v0.13.0+85.g8a5085e documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+84.g5da573b documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+85.g8a5085e documentation" href="index.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.database" href="generated/ibis.impala.api.ImpalaClient.database.html"/>
         <link rel="prev" title="Configuring Ibis" href="configuration.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+84.g5da573b
+                v0.13.0+85.g8a5085e
               </div>
             
           
@@ -103,7 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.schema.html">ibis.impala.api.ImpalaTable.schema</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#expression-execution-and-asynchronous-queries">Expression execution and asynchronous queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expression-execution">Expression execution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-tables">Creating tables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.ImpalaClient.create_table.html">ibis.impala.api.ImpalaClient.create_table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ibis.impala.api.ImpalaDatabase.create_table.html">ibis.impala.api.ImpalaDatabase.create_table</a></li>
@@ -373,8 +373,8 @@ table itself has a method <code class="docutils literal notranslate"><span class
 </pre></div>
 </div>
 </div>
-<div class="section" id="expression-execution-and-asynchronous-queries">
-<h2>Expression execution and asynchronous queries<a class="headerlink" href="#expression-execution-and-asynchronous-queries" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="expression-execution">
+<h2>Expression execution<a class="headerlink" href="#expression-execution" title="Permalink to this headline">¶</a></h2>
 <p>Ibis expressions have an <code class="docutils literal notranslate"><span class="pre">execute</span></code> method with compiles and runs the
 expressions on Impala or whichever backend is being referenced.</p>
 <p>For example:</p>
@@ -389,29 +389,6 @@ expressions on Impala or whichever backend is being referenced.</p>
 <p>For longer-running queries, if you press Control-C (or whatever triggers the
 Python <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> on your system), Ibis will attempt to cancel the
 query in progress.</p>
-<p>As of Ibis 0.5.0, there is an explicit asynchronous API:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">query</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">async</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>With the returned <code class="docutils literal notranslate"><span class="pre">AsyncQuery</span></code> object, you have various methods available to
-check on the status of the executing expression:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="kn">import</span> <span class="nn">time</span>
-
-<span class="gp">In [11]: </span><span class="k">while</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">is_finished</span><span class="p">():</span>
-<span class="gp">   ....: </span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">   ....: </span>
-
-<span class="gp">In [12]: </span><span class="n">query</span><span class="o">.</span><span class="n">is_finished</span><span class="p">()</span>
-<span class="gh">Out[12]: </span><span class="go">True</span>
-
-<span class="gp">In [13]: </span><span class="n">query</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
-<span class="go">              Out[13]: 331785.00000000006</span>
-</pre></div>
-</div>
-<p>If the query is still running, you can attempt to cancel it:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">query</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="creating-tables">
 <h2>Creating tables<a class="headerlink" href="#creating-tables" title="Permalink to this headline">¶</a></h2>
@@ -441,16 +418,16 @@ top-level client connection or a database object.</p>
 <h3>Creating tables from a table expression<a class="headerlink" href="#creating-tables-from-a-table-expression" title="Permalink to this headline">¶</a></h3>
 <p>If you pass an Ibis expression to <code class="docutils literal notranslate"><span class="pre">create_table</span></code>, Ibis issues a <code class="docutils literal notranslate"><span class="pre">CREATE</span>
 <span class="pre">TABLE</span> <span class="pre">..</span> <span class="pre">AS</span> <span class="pre">SELECT</span></code> (CTAS) statement:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
-<span class="gp">In [15]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="gp">In [10]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;string_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 
-<span class="gp">In [16]: </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;string_freqs&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">)</span>
+<span class="gp">In [11]: </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;string_freqs&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">)</span>
 
-<span class="gp">In [17]: </span><span class="n">freqs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;string_freqs&#39;</span><span class="p">)</span>
+<span class="gp">In [12]: </span><span class="n">freqs</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;string_freqs&#39;</span><span class="p">)</span>
 
-<span class="gp">In [18]: </span><span class="n">freqs</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-<span class="gh">Out[18]: </span><span class="go"></span>
+<span class="gp">In [13]: </span><span class="n">freqs</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="gh">Out[13]: </span><span class="go"></span>
 <span class="go">  string_col  count</span>
 <span class="go">0          9    730</span>
 <span class="go">1          3    730</span>
@@ -463,16 +440,16 @@ top-level client connection or a database object.</p>
 <span class="go">8          5    730</span>
 <span class="go">9          0    730</span>
 
-<span class="gp">In [19]: </span><span class="n">files</span> <span class="o">=</span> <span class="n">freqs</span><span class="o">.</span><span class="n">files</span><span class="p">()</span>
+<span class="gp">In [14]: </span><span class="n">files</span> <span class="o">=</span> <span class="n">freqs</span><span class="o">.</span><span class="n">files</span><span class="p">()</span>
 
-<span class="gp">In [20]: </span><span class="n">files</span>
-<span class="gh">Out[20]: </span><span class="go"></span>
+<span class="gp">In [15]: </span><span class="n">files</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
 <span class="go">                                                Path    ...    Partition</span>
 <span class="go">0  hdfs://impala:8020/user/hive/warehouse/ibis_te...    ...             </span>
 
 <span class="go">[1 rows x 3 columns]</span>
 
-<span class="gp">In [21]: </span><span class="n">freqs</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+<span class="gp">In [16]: </span><span class="n">freqs</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>You can also choose to create an empty table and use <code class="docutils literal notranslate"><span class="pre">insert</span></code> (see below).</p>
@@ -504,10 +481,10 @@ can force a particular path with the <code class="docutils literal notranslate">
 </div>
 <p>If the schema matches a known table schema, you can always use the <code class="docutils literal notranslate"><span class="pre">schema</span></code>
 method to get a schema object:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;functional_alltypes&#39;</span><span class="p">)</span>
 
-<span class="gp">In [23]: </span><span class="n">t</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
-<span class="gh">Out[23]: </span><span class="go"></span>
+<span class="gp">In [18]: </span><span class="n">t</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
+<span class="gh">Out[18]: </span><span class="go"></span>
 <span class="go">ibis.Schema {  </span>
 <span class="go">  id               int32</span>
 <span class="go">  bool_col         boolean</span>
@@ -594,20 +571,20 @@ of the partition values:</p>
 <h2>Inserting data into tables<a class="headerlink" href="#inserting-data-into-tables" title="Permalink to this headline">¶</a></h2>
 <p>If the schemas are compatible, you can insert into a table directly from an
 Ibis table expression:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">functional_alltypes</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">functional_alltypes</span>
 
-<span class="gp">In [25]: </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;insert_test&#39;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">schema</span><span class="p">())</span>
+<span class="gp">In [20]: </span><span class="n">db</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;insert_test&#39;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">schema</span><span class="p">())</span>
 
-<span class="gp">In [26]: </span><span class="n">target</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;insert_test&#39;</span><span class="p">)</span>
+<span class="gp">In [21]: </span><span class="n">target</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;insert_test&#39;</span><span class="p">)</span>
 
-<span class="gp">In [27]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">In [22]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [28]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">In [23]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [29]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">In [24]: </span><span class="n">target</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [30]: </span><span class="n">target</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-<span class="gh">Out[30]: </span><span class="go"></span>
+<span class="gp">In [25]: </span><span class="n">target</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="gh">Out[25]: </span><span class="go"></span>
 <span class="go">     id  ...    month</span>
 <span class="go">0  5770  ...        8</span>
 <span class="go">1  5771  ...        8</span>
@@ -621,7 +598,7 @@ Ibis table expression:</p>
 
 <span class="go">[9 rows x 13 columns]</span>
 
-<span class="gp">In [31]: </span><span class="n">target</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+<span class="gp">In [26]: </span><span class="n">target</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>If the table is partitioned, you must indicate the partition you are inserting
@@ -651,14 +628,14 @@ method.</p>
 </table>
 <p>The <code class="docutils literal notranslate"><span class="pre">TableMetadata</span></code> object that is returned has a nicer console output and
 many attributes set that you can explore in IPython:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;ibis_testing.functional_alltypes&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;ibis_testing.functional_alltypes&#39;</span><span class="p">)</span>
 
-<span class="gp">In [33]: </span><span class="n">meta</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">metadata</span><span class="p">()</span>
+<span class="gp">In [28]: </span><span class="n">meta</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">metadata</span><span class="p">()</span>
 
-<span class="gp">In [34]: </span><span class="n">meta</span>
-<span class="gh">Out[34]: </span><span class="go"></span>
+<span class="gp">In [29]: </span><span class="n">meta</span>
+<span class="gh">Out[29]: </span><span class="go"></span>
 <span class="go">&lt;class &#39;ibis.impala.metadata.TableMetadata&#39;&gt;</span>
-<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 8, 6, 2, 8, 20),</span>
+<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 8, 6, 2, 40, 32),</span>
 <span class="go">          &#39;Database&#39;: &#39;ibis_testing&#39;,</span>
 <span class="go">          &#39;LastAccessTime&#39;: &#39;UNKNOWN&#39;,</span>
 <span class="go">          &#39;Location&#39;: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;,</span>
@@ -672,7 +649,7 @@ many attributes set that you can explore in IPython:</p>
 <span class="go">                               &#39;numRows&#39;: 7300,</span>
 <span class="go">                               &#39;rawDataSize&#39;: &#39;-1&#39;,</span>
 <span class="go">                               &#39;totalSize&#39;: 106278,</span>
-<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 8, 6, 2, 8, 44)},</span>
+<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 8, 6, 2, 40, 51)},</span>
 <span class="go">          &#39;Table Type&#39;: &#39;EXTERNAL_TABLE&#39;},</span>
 <span class="go"> &#39;schema&#39;: [(&#39;id&#39;, &#39;int&#39;),</span>
 <span class="go">            (&#39;bool_col&#39;, &#39;boolean&#39;),</span>
@@ -695,11 +672,11 @@ many attributes set that you can explore in IPython:</p>
 <span class="go">                  &#39;SerDe Library&#39;: &#39;org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe&#39;,</span>
 <span class="go">                  &#39;Sort Columns&#39;: &#39;[]&#39;}}</span>
 
-<span class="gp">In [35]: </span><span class="n">meta</span><span class="o">.</span><span class="n">location</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Out[35]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
+<span class="gp">In [30]: </span><span class="n">meta</span><span class="o">.</span><span class="n">location</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Out[30]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
 
-<span class="gp">In [36]: </span><span class="n">meta</span><span class="o">.</span><span class="n">create_time</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           Out[36]: datetime.datetime(2018, 8, 6, 2, 8, 20)</span>
+<span class="gp">In [31]: </span><span class="n">meta</span><span class="o">.</span><span class="n">create_time</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Out[31]: datetime.datetime(2018, 8, 6, 2, 40, 32)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">files</span></code> function is also available to see all of the physical HDFS data
@@ -785,7 +762,7 @@ partition:</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html#ibis.impala.api.ImpalaTable.compute_stats" title="ibis.impala.api.ImpalaTable.compute_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.compute_stats</span></code></a>([incremental,&nbsp;async])</td>
+<tr class="row-odd"><td><a class="reference internal" href="generated/ibis.impala.api.ImpalaTable.compute_stats.html#ibis.impala.api.ImpalaTable.compute_stats" title="ibis.impala.api.ImpalaTable.compute_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImpalaTable.compute_stats</span></code></a>([incremental])</td>
 <td>Invoke Impala COMPUTE STATS command to compute column, table, and partition statistics.</td>
 </tr>
 </tbody>
@@ -978,8 +955,8 @@ execution:</p>
 </tbody>
 </table>
 <p>For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">client</span><span class="o">.</span><span class="n">get_options</span><span class="p">()</span>
-<span class="gh">Out[37]: </span><span class="go"></span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">client</span><span class="o">.</span><span class="n">get_options</span><span class="p">()</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
 <span class="go">{&#39;ABORT_ON_ERROR&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;APPX_COUNT_DISTINCT&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;BUFFER_POOL_LIMIT&#39;: &#39;&#39;,</span>
@@ -1030,12 +1007,12 @@ execution:</p>
 </pre></div>
 </div>
 <p>To enable Snappy compression for Parquet files, you could do either of:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">client</span><span class="o">.</span><span class="n">set_options</span><span class="p">({</span><span class="s1">&#39;COMPRESSION_CODEC&#39;</span><span class="p">:</span> <span class="s1">&#39;snappy&#39;</span><span class="p">})</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">client</span><span class="o">.</span><span class="n">set_options</span><span class="p">({</span><span class="s1">&#39;COMPRESSION_CODEC&#39;</span><span class="p">:</span> <span class="s1">&#39;snappy&#39;</span><span class="p">})</span>
 
-<span class="gp">In [39]: </span><span class="n">client</span><span class="o">.</span><span class="n">set_compression_codec</span><span class="p">(</span><span class="s1">&#39;snappy&#39;</span><span class="p">)</span>
+<span class="gp">In [34]: </span><span class="n">client</span><span class="o">.</span><span class="n">set_compression_codec</span><span class="p">(</span><span class="s1">&#39;snappy&#39;</span><span class="p">)</span>
 
-<span class="gp">In [40]: </span><span class="n">client</span><span class="o">.</span><span class="n">get_options</span><span class="p">()[</span><span class="s1">&#39;COMPRESSION_CODEC&#39;</span><span class="p">]</span>
-<span class="gh">Out[40]: </span><span class="go">&#39;SNAPPY&#39;</span>
+<span class="gp">In [35]: </span><span class="n">client</span><span class="o">.</span><span class="n">get_options</span><span class="p">()[</span><span class="s1">&#39;COMPRESSION_CODEC&#39;</span><span class="p">]</span>
+<span class="gh">Out[35]: </span><span class="go">&#39;SNAPPY&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1245,7 +1222,7 @@ plug in all your own functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+84.g5da573b',
+            VERSION:'v0.13.0+85.g8a5085e',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
