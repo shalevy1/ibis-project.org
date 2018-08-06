@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using Ibis with Impala &mdash; Ibis v0.13.0+81.g90f212a documentation</title>
+  <title>Using Ibis with Impala &mdash; Ibis v0.13.0+83.g5bd26ae documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+81.g90f212a documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+83.g5bd26ae documentation" href="index.html"/>
         <link rel="next" title="ibis.impala.api.ImpalaClient.database" href="generated/ibis.impala.api.ImpalaClient.database.html"/>
         <link rel="prev" title="Configuring Ibis" href="configuration.html"/> 
 
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                v0.13.0+81.g90f212a
+                v0.13.0+83.g5bd26ae
               </div>
             
           
@@ -609,15 +609,15 @@ Ibis table expression:</p>
 <span class="gp">In [30]: </span><span class="n">target</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 <span class="gh">Out[30]: </span><span class="go"></span>
 <span class="go">     id  ...    month</span>
-<span class="go">0  2120  ...        8</span>
-<span class="go">1  2121  ...        8</span>
-<span class="go">2  2122  ...        8</span>
-<span class="go">3  2120  ...        8</span>
-<span class="go">4  2121  ...        8</span>
-<span class="go">5  2122  ...        8</span>
-<span class="go">6  2120  ...        8</span>
-<span class="go">7  2121  ...        8</span>
-<span class="go">8  2122  ...        8</span>
+<span class="go">0  5770  ...        8</span>
+<span class="go">1  5771  ...        8</span>
+<span class="go">2  5772  ...        8</span>
+<span class="go">3  5770  ...        8</span>
+<span class="go">4  5771  ...        8</span>
+<span class="go">5  5772  ...        8</span>
+<span class="go">6  5770  ...        8</span>
+<span class="go">7  5771  ...        8</span>
+<span class="go">8  5772  ...        8</span>
 
 <span class="go">[9 rows x 13 columns]</span>
 
@@ -658,20 +658,21 @@ many attributes set that you can explore in IPython:</p>
 <span class="gp">In [34]: </span><span class="n">meta</span>
 <span class="gh">Out[34]: </span><span class="go"></span>
 <span class="go">&lt;class &#39;ibis.impala.metadata.TableMetadata&#39;&gt;</span>
-<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 8, 3, 19, 23, 48),</span>
+<span class="go">{&#39;info&#39;: {&#39;CreateTime&#39;: datetime.datetime(2018, 8, 6, 1, 48, 36),</span>
 <span class="go">          &#39;Database&#39;: &#39;ibis_testing&#39;,</span>
 <span class="go">          &#39;LastAccessTime&#39;: &#39;UNKNOWN&#39;,</span>
 <span class="go">          &#39;Location&#39;: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;,</span>
 <span class="go">          &#39;Owner&#39;: &#39;root&#39;,</span>
 <span class="go">          &#39;Protect Mode&#39;: &#39;None&#39;,</span>
 <span class="go">          &#39;Retention&#39;: 0,</span>
-<span class="go">          &#39;Table Parameters&#39;: {&#39;COLUMN_STATS_ACCURATE&#39;: True,</span>
+<span class="go">          &#39;Table Parameters&#39;: {&#39;COLUMN_STATS_ACCURATE&#39;: False,</span>
 <span class="go">                               &#39;EXTERNAL&#39;: True,</span>
-<span class="go">                               &#39;numFiles&#39;: 0,</span>
+<span class="go">                               &#39;STATS_GENERATED_VIA_STATS_TASK&#39;: True,</span>
+<span class="go">                               &#39;numFiles&#39;: 3,</span>
 <span class="go">                               &#39;numRows&#39;: 7300,</span>
 <span class="go">                               &#39;rawDataSize&#39;: &#39;-1&#39;,</span>
-<span class="go">                               &#39;totalSize&#39;: 0,</span>
-<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 8, 3, 19, 24, 10)},</span>
+<span class="go">                               &#39;totalSize&#39;: 106278,</span>
+<span class="go">                               &#39;transient_lastDdlTime&#39;: datetime.datetime(2018, 8, 6, 1, 48, 56)},</span>
 <span class="go">          &#39;Table Type&#39;: &#39;EXTERNAL_TABLE&#39;},</span>
 <span class="go"> &#39;schema&#39;: [(&#39;id&#39;, &#39;int&#39;),</span>
 <span class="go">            (&#39;bool_col&#39;, &#39;boolean&#39;),</span>
@@ -695,10 +696,10 @@ many attributes set that you can explore in IPython:</p>
 <span class="go">                  &#39;Sort Columns&#39;: &#39;[]&#39;}}</span>
 
 <span class="gp">In [35]: </span><span class="n">meta</span><span class="o">.</span><span class="n">location</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Out[35]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          Out[35]: &#39;hdfs://impala:8020/__ibis/ibis-testing-data/parquet/functional_alltypes&#39;</span>
 
 <span class="gp">In [36]: </span><span class="n">meta</span><span class="o">.</span><span class="n">create_time</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  Out[36]: datetime.datetime(2018, 8, 3, 19, 23, 48)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Out[36]: datetime.datetime(2018, 8, 6, 1, 48, 36)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">files</span></code> function is also available to see all of the physical HDFS data
@@ -979,59 +980,53 @@ execution:</p>
 <p>For example:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">client</span><span class="o">.</span><span class="n">get_options</span><span class="p">()</span>
 <span class="gh">Out[37]: </span><span class="go"></span>
-<span class="go">{&#39;ABORT_ON_DEFAULT_LIMIT_EXCEEDED&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;ABORT_ON_ERROR&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;ALLOW_UNSUPPORTED_FORMATS&#39;: &#39;0&#39;,</span>
+<span class="go">{&#39;ABORT_ON_ERROR&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;APPX_COUNT_DISTINCT&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;BATCH_SIZE&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;COMPRESSION_CODEC&#39;: &#39;NONE&#39;,</span>
-<span class="go"> &#39;DEBUG_ACTION&#39;: &#39;&#39;,</span>
-<span class="go"> &#39;DECIMAL_V2&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;DEFAULT_ORDER_BY_LIMIT&#39;: &#39;-1&#39;,</span>
-<span class="go"> &#39;DISABLE_CACHED_READS&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;BUFFER_POOL_LIMIT&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;COMPRESSION_CODEC&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;COMPUTE_STATS_MIN_SAMPLE_SIZE&#39;: &#39;1073741824&#39;,</span>
+<span class="go"> &#39;DEFAULT_JOIN_DISTRIBUTION_MODE&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;DEFAULT_SPILLABLE_BUFFER_SIZE&#39;: &#39;2097152&#39;,</span>
 <span class="go"> &#39;DISABLE_CODEGEN&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;DISABLE_OUTERMOST_TOPN&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;DISABLE_CODEGEN_ROWS_THRESHOLD&#39;: &#39;50000&#39;,</span>
 <span class="go"> &#39;DISABLE_ROW_RUNTIME_FILTERING&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;DISABLE_STREAMING_PREAGGREGATIONS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;DISABLE_UNSAFE_SPILLS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;ENABLE_EXPR_REWRITES&#39;: &#39;1&#39;,</span>
 <span class="go"> &#39;EXEC_SINGLE_NODE_ROWS_THRESHOLD&#39;: &#39;100&#39;,</span>
+<span class="go"> &#39;EXEC_TIME_LIMIT_S&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;EXPLAIN_LEVEL&#39;: &#39;1&#39;,</span>
 <span class="go"> &#39;HBASE_CACHE_BLOCKS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;HBASE_CACHING&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;MAX_BLOCK_MGR_MEMORY&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;MAX_ERRORS&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;MAX_IO_BUFFERS&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;IDLE_SESSION_TIMEOUT&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;MAX_ERRORS&#39;: &#39;100&#39;,</span>
 <span class="go"> &#39;MAX_NUM_RUNTIME_FILTERS&#39;: &#39;10&#39;,</span>
-<span class="go"> &#39;MAX_SCAN_RANGE_LENGTH&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;MAX_ROW_SIZE&#39;: &#39;524288&#39;,</span>
 <span class="go"> &#39;MEM_LIMIT&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;MT_DOP&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;NUM_NODES&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;MIN_SPILLABLE_BUFFER_SIZE&#39;: &#39;65536&#39;,</span>
+<span class="go"> &#39;MT_DOP&#39;: &#39;&#39;,</span>
 <span class="go"> &#39;NUM_SCANNER_THREADS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;OPTIMIZE_PARTITION_KEY_SCANS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;PARQUET_ANNOTATE_STRINGS_UTF8&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;PARQUET_ARRAY_RESOLUTION&#39;: &#39;2&#39;,</span>
+<span class="go"> &#39;PARQUET_DICTIONARY_FILTERING&#39;: &#39;1&#39;,</span>
 <span class="go"> &#39;PARQUET_FALLBACK_SCHEMA_RESOLUTION&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;PARQUET_FILE_SIZE&#39;: &#39;0&#39;,</span>
+<span class="go"> &#39;PARQUET_READ_STATISTICS&#39;: &#39;1&#39;,</span>
 <span class="go"> &#39;PREFETCH_MODE&#39;: &#39;1&#39;,</span>
 <span class="go"> &#39;QUERY_TIMEOUT_S&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;REPLICA_PREFERENCE&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;REQUEST_POOL&#39;: &#39;&#39;,</span>
-<span class="go"> &#39;RESERVATION_REQUEST_TIMEOUT&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;RM_INITIAL_MEM&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;RUNTIME_BLOOM_FILTER_SIZE&#39;: &#39;1048576&#39;,</span>
 <span class="go"> &#39;RUNTIME_FILTER_MAX_SIZE&#39;: &#39;16777216&#39;,</span>
 <span class="go"> &#39;RUNTIME_FILTER_MIN_SIZE&#39;: &#39;1048576&#39;,</span>
 <span class="go"> &#39;RUNTIME_FILTER_MODE&#39;: &#39;2&#39;,</span>
 <span class="go"> &#39;RUNTIME_FILTER_WAIT_TIME_MS&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;S3_SKIP_INSERT_STAGING&#39;: &#39;1&#39;,</span>
-<span class="go"> &#39;SCAN_NODE_CODEGEN_THRESHOLD&#39;: &#39;1800000&#39;,</span>
 <span class="go"> &#39;SCHEDULE_RANDOM_REPLICA&#39;: &#39;0&#39;,</span>
 <span class="go"> &#39;SCRATCH_LIMIT&#39;: &#39;-1&#39;,</span>
-<span class="go"> &#39;SEQ_COMPRESSION_MODE&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;STRICT_MODE&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;SYNC_DDL&#39;: &#39;0&#39;,</span>
-<span class="go"> &#39;V_CPU_CORES&#39;: &#39;0&#39;}</span>
+<span class="go"> &#39;SEQ_COMPRESSION_MODE&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;SYNC_DDL&#39;: &#39;0&#39;}</span>
 </pre></div>
 </div>
 <p>To enable Snappy compression for Parquet files, you could do either of:</p>
@@ -1250,7 +1245,7 @@ plug in all your own functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+81.g90f212a',
+            VERSION:'v0.13.0+83.g5bd26ae',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
