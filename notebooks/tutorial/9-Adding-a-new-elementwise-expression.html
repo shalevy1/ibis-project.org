@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis Part 1: Adding a New Expression &mdash; Ibis v0.13.0+91.gacdfc3d documentation</title>
+  <title>Extending Ibis Part 1: Adding a New Elementwise Expression &mdash; Ibis v0.13.0+92.gef6cd3c documentation</title>
   
 
   
@@ -37,10 +37,10 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.13.0+91.gacdfc3d documentation" href="../../index.html"/>
-        <link rel="up" title="Extending Ibis" href="../../extending.html"/>
-        <link rel="next" title="Backends" href="../../backends.html"/>
-        <link rel="prev" title="Extending Ibis" href="../../extending.html"/> 
+    <link rel="top" title="Ibis v0.13.0+92.gef6cd3c documentation" href="../../index.html"/>
+        <link rel="up" title="Tutorial" href="../../tutorial.html"/>
+        <link rel="next" title="Extending Ibis Part 2: Adding a New Reduction Expression" href="10-Adding-a-new-reduction-expression.html"/>
+        <link rel="prev" title="Additional Analytics Tools" href="8-More-Analytics-Helpers.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -69,7 +69,7 @@
             
             
               <div class="version">
-                v0.13.0+91.gacdfc3d
+                v0.13.0+92.gef6cd3c
               </div>
             
           
@@ -97,29 +97,39 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../configuration.html">Configuring Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../impala.html">Using Ibis with Impala</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Extending Ibis Part 1: Adding a New Elementwise Expression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Interlude:-Create-some-expressions-with-sha1">Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Connect-to-the-ibis_testing-database">Connect to the <code class="docutils literal notranslate"><span class="pre">ibis_testing</span></code> database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Register-the-pgcrypto-extension">Register the pgcrypto extension</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Create-and-execute-a-sha1-expression">Create and execute a <code class="docutils literal notranslate"><span class="pre">sha1</span></code> expression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="10-Adding-a-new-reduction-expression.html">Extending Ibis Part 2: Adding a New Reduction Expression</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../extending.html">Extending Ibis</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../extending.html#adding-a-new-expression">Adding a New Expression</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Extending Ibis Part 1: Adding a New Expression</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Description">Description</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Interlude:-Create-some-expressions-with-sha1">Interlude: Create some expressions with <code class="docutils literal notranslate"><span class="pre">sha1</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../extending.html#adding-a-new-backend">Adding a New Backend</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../backends.html">Backends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../legal.html">Legal</a></li>
@@ -167,15 +177,15 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../extending.html">Extending Ibis</a> &raquo;</li>
+          <li><a href="../../tutorial.html">Tutorial</a> &raquo;</li>
         
-      <li>Extending Ibis Part 1: Adding a New Expression</li>
+      <li>Extending Ibis Part 1: Adding a New Elementwise Expression</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/notebooks/tutorial/9-Adding-a-new-expression.ipynb.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/notebooks/tutorial/9-Adding-a-new-elementwise-expression.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -371,15 +381,15 @@ div.nboutput div.output_area.stderr {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="section" id="Extending-Ibis-Part-1:-Adding-a-New-Expression">
-<h1>Extending Ibis Part 1: Adding a New Expression<a class="headerlink" href="#Extending-Ibis-Part-1:-Adding-a-New-Expression" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Extending-Ibis-Part-1:-Adding-a-New-Elementwise-Expression">
+<h1>Extending Ibis Part 1: Adding a New Elementwise Expression<a class="headerlink" href="#Extending-Ibis-Part-1:-Adding-a-New-Elementwise-Expression" title="Permalink to this headline">¶</a></h1>
 <p>There are two parts of ibis that users typically want to extend:</p>
 <ol class="arabic simple">
 <li>Expressions (for example, by adding a new operation)</li>
 <li>Backends</li>
 </ol>
-<p>This notebook will show you how to add a new operation (<code class="docutils literal notranslate"><span class="pre">sha1</span></code>) to an
-existing backend (BigQuery).</p>
+<p>This notebook will show you how to add a new elementwise
+operation–<code class="docutils literal notranslate"><span class="pre">sha1</span></code>–to an existing backend (PostgreSQL).</p>
 <div class="section" id="Description">
 <h2>Description<a class="headerlink" href="#Description" title="Permalink to this headline">¶</a></h2>
 <p>We’re going to add a <strong>``sha1``</strong> method to ibis.
@@ -390,7 +400,7 @@ employed in systems such as git.</p>
 <h2>Step 1: Define the Operation<a class="headerlink" href="#Step-1:-Define-the-Operation" title="Permalink to this headline">¶</a></h2>
 <p>Let’s define the <code class="docutils literal notranslate"><span class="pre">sha</span></code> operation as a function that takes one string
 input argument and returns a hexidecimal string.</p>
-<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="n">string</span> <span class="ow">-&gt;</span> <span class="n">string</span>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">sha1</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">String</span>
 </pre></div>
 </div>
 <div class="nbinput docutils container">
@@ -406,10 +416,8 @@ input argument and returns a hexidecimal string.</p>
 
 
 <span class="k">class</span> <span class="nc">SHA1</span><span class="p">(</span><span class="n">ValueOp</span><span class="p">):</span>
-
     <span class="n">arg</span> <span class="o">=</span> <span class="n">Arg</span><span class="p">(</span><span class="n">rlz</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
     <span class="n">output_type</span> <span class="o">=</span> <span class="n">rlz</span><span class="o">.</span><span class="n">shape_like</span><span class="p">(</span><span class="s1">&#39;arg&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </div>
@@ -477,7 +485,7 @@ appropriate class of expressions.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)])</span>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;string_col&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -497,7 +505,7 @@ appropriate class of expressions.</p>
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_13_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_13_0.png" />
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_13_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_13_0.png" />
 </div>
 </div>
 </div>
@@ -531,10 +539,9 @@ appropriate class of expressions.</p>
 <div class="section" id="Connect-to-the-ibis_testing-database">
 <h3>Connect to the <code class="docutils literal notranslate"><span class="pre">ibis_testing</span></code> database<a class="headerlink" href="#Connect-to-the-ibis_testing-database" title="Permalink to this headline">¶</a></h3>
 <p><strong>NOTE:</strong></p>
-<p>To be able to execute the rest of this notebook you need to run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres impala clickhouse mysql dns
-docker-compose run waiter
-docker-compose run ibis ci/load-data.sh
+<p>To be able to execute the rest of this notebook you need to run the
+following command from your ibis clone:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/build.sh
 </pre></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -543,21 +550,26 @@ docker-compose run ibis ci/load-data.sh
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
     <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="Register-the-`pgcrypto-&lt;https://www.postgresql.org/docs/10/static/pgcrypto.html&gt;`__-extension">
-<h3>Register the <code class="docutils literal notranslate"><span class="pre">`pgcrypto</span></code> &lt;<a class="reference external" href="https://www.postgresql.org/docs/10/static/pgcrypto.html">https://www.postgresql.org/docs/10/static/pgcrypto.html</a>&gt;`__ extension<a class="headerlink" href="#Register-the-`pgcrypto-<https://www.postgresql.org/docs/10/static/pgcrypto.html>`__-extension" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Register-the-pgcrypto-extension">
+<h3>Register the pgcrypto extension<a class="headerlink" href="#Register-the-pgcrypto-extension" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference external" href="https://www.postgresql.org/docs/10/static/pgcrypto.html">https://www.postgresql.org/docs/10/static/pgcrypto.html</a> for details
+about this extension</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">con</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s1">&#39;CREATE EXTENSION IF NOT EXISTS pgcrypto&#39;</span><span class="p">);</span>  <span class="c1"># we don&#39;t care about the output</span>
+<span></span><span class="c1"># the output here is an AlchemyProxy instance that cannot iterate</span>
+<span class="c1"># (because there&#39;s no output from the database) so we hide it with a semicolon</span>
+<span class="n">con</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s1">&#39;CREATE EXTENSION IF NOT EXISTS pgcrypto&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -581,7 +593,7 @@ docker-compose run ibis ci/load-data.sh
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_23_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_23_0.png" />
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_23_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_23_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -601,7 +613,7 @@ docker-compose run ibis ci/load-data.sh
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_24_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_24_0.png" />
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_24_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_24_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -679,7 +691,7 @@ columns for free</p>
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-expression_29_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-expression_29_0.png" />
+<img alt="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_29_0.png" src="../../_images/notebooks_tutorial_9-Adding-a-new-elementwise-expression_29_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -726,10 +738,10 @@ columns for free</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../backends.html" class="btn btn-neutral float-right" title="Backends" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="10-Adding-a-new-reduction-expression.html" class="btn btn-neutral float-right" title="Extending Ibis Part 2: Adding a New Reduction Expression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../../extending.html" class="btn btn-neutral" title="Extending Ibis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="8-More-Analytics-Helpers.html" class="btn btn-neutral" title="Additional Analytics Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -760,7 +772,7 @@ columns for free</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.13.0+91.gacdfc3d',
+            VERSION:'v0.13.0+92.gef6cd3c',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
