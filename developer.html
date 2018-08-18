@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+96.gb8dd276 documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.13.0+97.gfadd0f6 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.13.0+96.gb8dd276 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.13.0+97.gfadd0f6 documentation" href="index.html"/>
         <link rel="next" title="Design" href="design.html"/>
         <link rel="prev" title="Contributing to Ibis" href="contributing.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.13.0+96.gb8dd276
+                v0.13.0+97.gfadd0f6
               </div>
             
           
@@ -108,14 +108,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#linux-test-environment-setup">Linux Test Environment Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#conda-environment-setup">Conda Environment Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#all-in-one-command">All-in-One Command</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#download-test-dataset">Download Test Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-test-datasets">Download Test Datasets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-up-test-databases">Setting Up Test Databases</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#impala-with-udfs">Impala (with UDFs)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bigquery">BigQuery</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#clickhouse">Clickhouse</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sqlite">SQLite</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mapd">MapD</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
@@ -237,13 +232,14 @@ bash <span class="nv">$HOME</span>/miniconda.sh -b -p <span class="nv">$HOME</sp
 <li><p class="first"><strong>Install the development environment of your choice (Python 3.6 in this
 example), activate and install ibis in development mode</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
-conda env create --name ibis36 --file<span class="o">=</span>ci/requirements-dev-3.6.yml
+<span class="c1"># including building the documentation</span>
+conda env create --name ibis36 --file<span class="o">=</span>ci/requirements-docs-3.6.yml
 
 <span class="c1"># Activate the conda environment</span>
 <span class="nb">source</span> activate ibis36
 
 <span class="c1"># Install ibis</span>
-python setup.py develop
+make develop
 </pre></div>
 </div>
 </li>
@@ -251,26 +247,30 @@ python setup.py develop
 </div>
 <div class="section" id="all-in-one-command">
 <h3>All-in-One Command<a class="headerlink" href="#all-in-one-command" title="Permalink to this headline">¶</a></h3>
+<p>We use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a> for
+ibis development to make it easy for developers to test ibis
+against databases that have traditionally requied a lot of setup,
+such as Impala.</p>
 <p>The following command does three steps:</p>
 <ol class="arabic">
 <li><p class="first">Downloads the test data</p>
 </li>
-<li><p class="first">Starts each backend via docker-compose</p>
+<li><p class="first">Starts each backend as a service via docker-compose</p>
 </li>
 <li><p class="first">Initializes the backends with the test tables</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ci
-bash build.sh
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make init
 </pre></div>
 </div>
 </li>
 </ol>
-<p>To use specific backends follow the instructions below.</p>
+<p>Take a peek at the Makefile to see what else is available.</p>
 </div>
-<div class="section" id="download-test-dataset">
-<h3>Download Test Dataset<a class="headerlink" href="#download-test-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="download-test-datasets">
+<h3>Download Test Datasets<a class="headerlink" href="#download-test-datasets" title="Permalink to this headline">¶</a></h3>
+<p>This step isn’t necessary, but can sometimes be helpful if you
+want to investigate something outside of the docker-compose setup
+that ships with ibis.</p>
 <ol class="arabic">
-<li><p class="first"><a class="reference external" href="https://docs.docker.com/engine/installation/">Install docker</a></p>
-</li>
 <li><p class="first"><strong>Download the test data</strong>:</p>
 <p>By default this will download and extract the dataset under
 testing/ibis-testing-data.</p>
@@ -282,29 +282,17 @@ testing/ibis-testing-data.</p>
 </div>
 <div class="section" id="setting-up-test-databases">
 <h3>Setting Up Test Databases<a class="headerlink" href="#setting-up-test-databases" title="Permalink to this headline">¶</a></h3>
-<p>To start each backends</p>
+<p>To start every backend as a service using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and
+load test datasets into each backend use this command:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ci
-docker-compose up
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make init
 </pre></div>
 </div>
 </div></blockquote>
-<div class="section" id="impala-with-udfs">
-<h4>Impala (with UDFs)<a class="headerlink" href="#impala-with-udfs" title="Permalink to this headline">¶</a></h4>
-<ol class="arabic">
-<li><p class="first"><strong>Start the Impala docker image in another terminal</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
-docker run --tty --rm --hostname impala cpcloud86/impala:java8
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Load data and UDFs into impala</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/impalamgr.py load --data --data-dir ibis-testing-data
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
+<p>The one backend that ibis supports that can’t be started as a
+service running in a docker container is BigQuery.</p>
+<p>Read the next section for details on how to get setup with
+BigQuery and ibis.</p>
 <div class="section" id="bigquery">
 <h4>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h4>
 <p>Before you begin, you must have a <a class="reference external" href="https://cloud.google.com/docs/overview/#projects">Google Cloud Platform project</a> with billing set up and
@@ -326,67 +314,12 @@ GCP authentication guide
 </li>
 </ol>
 </div>
-<div class="section" id="clickhouse">
-<h4>Clickhouse<a class="headerlink" href="#clickhouse" title="Permalink to this headline">¶</a></h4>
-<ol class="arabic">
-<li><p class="first"><strong>Start the Clickhouse Server docker image in another terminal</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
-docker run --rm -p <span class="m">9000</span>:9000 --tty yandex/clickhouse-server
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Load data</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py clickhouse
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
-<div class="section" id="postgresql">
-<h4>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h4>
-<p>PostgreSQL can be used from either the installation that resides on the Impala
-docker image or from your machine directly.</p>
-<p>Here’s how to load test data into PostgreSQL:</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py postgres
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-<div class="section" id="sqlite">
-<h4>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h4>
-<p>SQLite comes already installed on many systems. If you used the conda setup
-instructions above, then SQLite will be available in the conda environment.</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py sqlite
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-<div class="section" id="mapd">
-<h4>MapD<a class="headerlink" href="#mapd" title="Permalink to this headline">¶</a></h4>
-<p>MapD can be used from either a docker image or from your machine directly.</p>
-<ol class="arabic">
-<li><p class="first"><strong>Start the MapD Server docker image in another terminal</strong>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keeping this running as long as you want to test ibis</span>
-docker run -d -v <span class="nv">$HOME</span>/mapd-docker-storage:/mapd-storage -p <span class="m">9090</span>-9092:9090-9092 mapd/mapd-ce-cpu
-</pre></div>
-</div>
-</li>
-</ol>
-<p>Here’s how to load test data into MapD:</p>
-<blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py mapd
-</pre></div>
-</div>
-</div></blockquote>
-</div>
 </div>
 <div class="section" id="running-tests">
 <h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
 <p>You are now ready to run the full ibis test suite:</p>
 <blockquote>
-<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pytest ibis
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -450,7 +383,7 @@ development roadmap:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.13.0+96.gb8dd276',
+            VERSION:'v0.13.0+97.gfadd0f6',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
