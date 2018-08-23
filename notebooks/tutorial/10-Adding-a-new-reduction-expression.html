@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis Part 2: Adding a New Reduction Expression &mdash; Ibis v0.14.0+1.g426b4d4 documentation</title>
+  <title>Extending Ibis Part 2: Adding a New Reduction Expression &mdash; Ibis v0.14.0+2.geece41b documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+1.g426b4d4 documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+2.geece41b documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="API Reference" href="../../api.html"/>
         <link rel="prev" title="Extending Ibis Part 1: Adding a New Elementwise Expression" href="9-Adding-a-new-elementwise-expression.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+1.g426b4d4
+                v0.14.0+2.geece41b
               </div>
             
           
@@ -100,40 +100,30 @@
 <li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../configuration.html">Configuring Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../impala.html">Using Ibis with Impala</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1-Intro-and-Setup.html">Impala/HDFS intro and Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2-Basics-Aggregate-Filter-Limit.html">Basics: Aggregation, filtering, limits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3-Projection-Join-Sort.html">Projection, Joining, and Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4-More-Value-Expressions.html">More Value Expressions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5-IO-Create-Insert-External-Data.html">IO, <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>/<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, and External Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6-Advanced-Topics-TopK-SelfJoins.html">Advanced Topics: Top-K and Self Joins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7-Advanced-Topics-ComplexFiltering.html">Advanced Topics: Additional Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8-More-Analytics-Helpers.html">Additional Analytics Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9-Adding-a-new-elementwise-expression.html">Extending Ibis Part 1: Adding a New Elementwise Expression</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Extending Ibis Part 2: Adding a New Reduction Expression</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Interlude:-Create-some-expressions-using-bitwise_and">Interlude: Create some expressions using <code class="docutils literal notranslate"><span class="pre">bitwise_and</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Connect-to-the-ibis_testing-database">Connect to the <code class="docutils literal notranslate"><span class="pre">ibis_testing</span></code> database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Create-and-execute-a-bitwise_and-expression">Create and execute a <code class="docutils literal notranslate"><span class="pre">bitwise_and</span></code> expression</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Let’s-see-what-a-bitwise_and-call-looks-like-with-a-where-argument">Let’s see what a <code class="docutils literal notranslate"><span class="pre">bitwise_and</span></code> call looks like with a <code class="docutils literal notranslate"><span class="pre">where</span></code> argument</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Let’s-confirm-that-taking-bitwise-AND-of-10-and-40-is-in-fact-8">Let’s confirm that taking bitwise <code class="docutils literal notranslate"><span class="pre">AND</span></code> of 10 and 40 is in fact 8</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending Ibis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../extending.html">Extending Ibis</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../extending.html#adding-a-new-expression">Adding a New Expression</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="9-Adding-a-new-elementwise-expression.html">Extending Ibis Part 1: Adding a New Elementwise Expression</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Extending Ibis Part 2: Adding a New Reduction Expression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-1:-Define-the-Operation">Step 1: Define the Operation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-2:-Define-the-API">Step 2: Define the API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Interlude:-Create-some-expressions-using-bitwise_and">Interlude: Create some expressions using <code class="docutils literal notranslate"><span class="pre">bitwise_and</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-3:-Turn-the-Expression-into-SQL">Step 3: Turn the Expression into SQL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Step-4:-Putting-it-all-Together">Step 4: Putting it all Together</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../extending.html#adding-a-new-backend">Adding a New Backend</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../backends.html">Backends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../legal.html">Legal</a></li>
@@ -801,7 +791,7 @@ FROM functional_alltypes AS t0
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.14.0+1.g426b4d4',
+            VERSION:'v0.14.0+2.geece41b',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
