@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+3.g591c058 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+4.g2cfd385 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+3.g591c058 documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+4.g2cfd385 documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+3.g591c058
+                v0.14.0+4.g2cfd385
               </div>
             
           
@@ -872,7 +872,7 @@ some SQL to do it:</p>
 
 <span class="gp">In [76]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
-<span class="go">       CASE WHEN upper(`country`) IN (&#39;UNITED STATES&#39;, &#39;CANADA&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
+<span class="go">       CASE WHEN upper(`country`) IN (&#39;CANADA&#39;, &#39;UNITED STATES&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
 <span class="go">FROM population</span>
 </pre></div>
 </div>
@@ -937,115 +937,18 @@ which yield boolean arrays:</p>
 <span class="gp">In [87]: </span><span class="n">agged</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span>
 <span class="gp">   ....: </span>         <span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
 <span class="gp">   ....: </span>         <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;is_valid&#39;</span><span class="p">)</span>
-<span class="gp">   ....: </span>         <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span>
-<span class="gp">   ....: </span>                    <span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;three_count&#39;</span><span class="p">)))</span>
+<span class="gp">   ....: </span>         <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">three_count</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 <span class="gp">   ....: </span>
-<span class="go">                                                                                                    </span>
-<span class="go">RelationErrorTraceback (most recent call last)</span>
-<span class="go">&lt;ipython-input-87-7c0a06760f0f&gt; in &lt;module&gt;()</span>
-<span class="go">      3          .group_by(&#39;is_valid&#39;)</span>
-<span class="go">      4          .aggregate(expr.three.notnull()</span>
-<span class="go">----&gt; 5                     .sum().name(&#39;three_count&#39;)))</span>
-
-<span class="go">/ibis/ibis/expr/groupby.py in aggregate(self, metrics, **kwds)</span>
-<span class="go">     94     def aggregate(self, metrics=None, **kwds):</span>
-<span class="go">     95         return self.table.aggregate(metrics, by=self.by,</span>
-<span class="go">---&gt; 96                                     having=self._having, **kwds)</span>
-<span class="go">     97 </span>
-<span class="go">     98     def having(self, expr):</span>
-
-<span class="go">/ibis/ibis/expr/api.py in aggregate(table, metrics, by, having, **kwds)</span>
-<span class="go">   2848         metrics.append(v.name(k))</span>
-<span class="go">   2849 </span>
-<span class="go">-&gt; 2850     op = table.op().aggregate(table, metrics, by=by, having=having)</span>
-<span class="go">   2851     return op.to_expr()</span>
-<span class="go">   2852 </span>
-
-<span class="go">/ibis/ibis/expr/operations.py in aggregate(self, this, metrics, by, having)</span>
-<span class="go">   1923     def aggregate(self, this, metrics, by=None, having=None):</span>
-<span class="go">   1924         if len(self.selections) &gt; 0:</span>
-<span class="go">-&gt; 1925             return Aggregation(this, metrics, by=by, having=having)</span>
-<span class="go">   1926         else:</span>
-<span class="go">   1927             helper = AggregateSelection(this, metrics, by, having)</span>
-
-<span class="go">/ibis/ibis/expr/operations.py in __init__(self, table, metrics, by, having, predicates, sort_keys)</span>
-<span class="go">   2044         super(Aggregation, self).__init__(table=table, metrics=metrics, by=by,</span>
-<span class="go">   2045                                           having=having, predicates=predicates,</span>
-<span class="go">-&gt; 2046                                           sort_keys=sort_keys)</span>
-<span class="go">   2047 </span>
-<span class="go">   2048     def _validate(self):</span>
-
-<span class="go">/ibis/ibis/expr/signature.py in __init__(self, *args, **kwargs)</span>
-<span class="go">    192         for name, value in self.signature.validate(*args, **kwargs):</span>
-<span class="go">    193             setattr(self, name, value)</span>
-<span class="go">--&gt; 194         self._validate()</span>
-<span class="go">    195 </span>
-<span class="go">    196     def _validate(self):</span>
-
-<span class="go">/ibis/ibis/expr/operations.py in _validate(self)</span>
-<span class="go">   2064         # All non-scalar refs originate from the input table</span>
-<span class="go">   2065         all_exprs = self.metrics + self.by + self.having + self.sort_keys</span>
-<span class="go">-&gt; 2066         self.table._assert_valid(all_exprs)</span>
-<span class="go">   2067 </span>
-<span class="go">   2068         # Validate predicates</span>
-
-<span class="go">/ibis/ibis/expr/types.py in _assert_valid(self, exprs)</span>
-<span class="go">    370     def _assert_valid(self, exprs):</span>
-<span class="go">    371         from ibis.expr.analysis import ExprValidator</span>
-<span class="go">--&gt; 372         ExprValidator([self]).validate_all(exprs)</span>
-<span class="go">    373 </span>
-<span class="go">    374     def __contains__(self, name):</span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in validate_all(self, exprs)</span>
-<span class="go">    866     def validate_all(self, exprs):</span>
-<span class="go">    867         for expr in exprs:</span>
-<span class="go">--&gt; 868             self.assert_valid(expr)</span>
-<span class="go">    869 </span>
-<span class="go">    870     def assert_valid(self, expr):</span>
-
-<span class="go">/ibis/ibis/expr/analysis.py in assert_valid(self, expr)</span>
-<span class="go">    871         if not self.validate(expr):</span>
-<span class="go">    872             msg = self._error_message(expr)</span>
-<span class="go">--&gt; 873             raise RelationError(msg)</span>
-<span class="go">    874 </span>
-<span class="go">    875     def _error_message(self, expr):</span>
-
-<span class="go">RelationError: The expression ref_0</span>
-<span class="go">UnboundTable[table]</span>
-<span class="go">  name: my_data</span>
-<span class="go">  schema:</span>
-<span class="go">    one : string</span>
-<span class="go">    two : double</span>
-<span class="go">    three : int32</span>
-
-<span class="go">ref_1</span>
-<span class="go">Selection[table]</span>
-<span class="go">  table:</span>
-<span class="go">    Table: ref_0</span>
-<span class="go">  selections:</span>
-<span class="go">    Table: ref_0</span>
-<span class="go">    is_valid = SearchedCase[string*]</span>
-<span class="go">      cases:</span>
-<span class="go">        IsNull[boolean*]</span>
-<span class="go">          two = Column[double*] &#39;two&#39; from table</span>
-<span class="go">            ref_0</span>
-<span class="go">      results:</span>
-<span class="go">        Literal[string]</span>
-<span class="go">          valid</span>
-<span class="go">      default:</span>
-<span class="go">        Literal[string]</span>
-<span class="go">          invalid</span>
-
-<span class="go">three_count = Sum[int64]</span>
-<span class="go">  NotNull[boolean*]</span>
-<span class="go">    three = Column[int32*] &#39;three&#39; from table</span>
-<span class="go">      ref_1</span>
-<span class="go">  where:</span>
-<span class="go">    None does not fully originate from dependencies of the table expression.</span>
 
 <span class="gp">In [88]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           SELECT sum(`two`) AS `total_two`, avg(`three`) AS `avg_three`</span>
-<span class="go">FROM my_data</span>
+<span class="go">SELECT `is_valid`, sum(`three` IS NOT NULL) AS `three_count`</span>
+<span class="go">FROM (</span>
+<span class="go">  SELECT *,</span>
+<span class="go">         CASE WHEN `two` IS NULL THEN &#39;valid&#39; ELSE &#39;invalid&#39; END AS `is_valid`</span>
+<span class="go">  FROM my_data</span>
+<span class="go">  WHERE `one` IS NOT NULL</span>
+<span class="go">) t0</span>
+<span class="go">GROUP BY 1</span>
 </pre></div>
 </div>
 </div>
@@ -1821,7 +1724,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+3.g591c058',
+            VERSION:'v0.14.0+4.g2cfd385',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
