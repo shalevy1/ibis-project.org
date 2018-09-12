@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Roadmap &mdash; Ibis v0.14.0+6.g0ea4764 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Ibis v0.14.0+6.g0ea4764 documentation" href="index.html"/>
+        <link rel="next" title="Release Notes" href="release.html"/>
+        <link rel="prev" title="Backends" href="backends.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Ibis
+          
+
+          
+            
+            <img src="_static/logo-wide.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.14.0+6.g0ea4764
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#long-term-goals">Long Term Goals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compiler-structure">Compiler Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#separation-of-concerns">Separation of Concerns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unifying-table-and-column-compilation">Unifying Table and Column Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#depth">Depth</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backend-specific-operations">Backend-Specific Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#standardize-udfs-user-defined-functions">Standardize UDFs (User Defined Functions)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#breadth">Breadth</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backend-specific-goals">Backend-Specific Goals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pandas">Pandas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#speed-up-grouped-rolling-and-simple-aggregations-using-numba">Speed up grouped, rolling, and simple aggregations using numba</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dask">Dask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implement-a-dask-backend">Implement a Dask backend</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#spark">Spark</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implement-a-sparksql-backend">Implement a SparkSQL backend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legal.html">Legal</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ibis</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Roadmap</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/roadmap.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="roadmap">
+<span id="id1"></span><h1>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline">¶</a></h1>
+<p>This document is an outline of the next set of major efforts within ibis.</p>
+<div class="section" id="long-term-goals">
+<span id="id2"></span><h2>Long Term Goals<a class="headerlink" href="#long-term-goals" title="Permalink to this headline">¶</a></h2>
+<p>This section outlines broader, longer-term goals for the project alongside a
+few short-term goals and provides information and direction for a few key areas
+of focus over the next 1-2 years, possibly longer depending on the amount of
+time the developers of Ibis can devote to the project.</p>
+<div class="section" id="compiler-structure">
+<span id="id3"></span><h3>Compiler Structure<a class="headerlink" href="#compiler-structure" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="separation-of-concerns">
+<span id="id4"></span><h4>Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permalink to this headline">¶</a></h4>
+<p>The current architecture of the ibis compiler has a few key problems that need
+to be addressed to ensure longevity and maintainability of the project going
+forward.</p>
+<p>The main structural problem is that there isn’t one place where expression
+optimizations and transformations happen. Sometimes optimizations occur as an
+expression is being built, and other times they occur on a whole expression.</p>
+<p>The solution is to separate the expression construction and optimization into
+two phases, and guarantee that a constructed expression, if compiled without
+optimization, maps clearly to SQL constructs.</p>
+<p>The optimization pass would happen just before compilation and would be free to
+optimize whole expression trees.</p>
+<p>This approach lets us optimize queries piece by piece, as opposed to having to
+provide all optimization implementations in a single pull request.</p>
+</div>
+<div class="section" id="unifying-table-and-column-compilation">
+<span id="id5"></span><h4>Unifying Table and Column Compilation<a class="headerlink" href="#unifying-table-and-column-compilation" title="Permalink to this headline">¶</a></h4>
+<p>Right now, it is very difficult to customize the way the operations underlying
+table expressions are compiled. The logic to compile them is hard-coded in each
+backend (or the compiler’s parent class). This needs to be addressed, if only
+to ease the burden of implementing the UNNEST operation and make the codebase
+easier to understand and maintain.</p>
+</div>
+</div>
+<div class="section" id="depth">
+<span id="id6"></span><h3>Depth<a class="headerlink" href="#depth" title="Permalink to this headline">¶</a></h3>
+<p>“Depth” goals relate to enhancing Ibis to provide better support for
+backend-specific functionality.</p>
+<div class="section" id="backend-specific-operations">
+<span id="id7"></span><h4>Backend-Specific Operations<a class="headerlink" href="#backend-specific-operations" title="Permalink to this headline">¶</a></h4>
+<p>As the number of ibis users and use cases grows there will be an increasing
+need for individual backends to support more exotic operations. Many SQL
+databases have features that are unique only to themselves and often this is
+why people will choose that technology over another. Ibis should support an API
+that reflects the backend that underlies an expression and expose the
+functionality of that specific backend.</p>
+<p>A concrete example of this is the <a class="reference external" href="https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#farm_fingerprint">FARM_FINGERPRINT</a>
+function in BigQuery.</p>
+<p>It is unlikely that the main ValueExpr API will ever grow such a method, but a
+BigQuery user shouldn’t be restricted to using only the methods this API
+provides. Moreover, users should be able to bring their own methods to this API
+without having to consult the ibis developers and without the addition of such
+operations polluting the namespace of the main API.</p>
+<p>One drawback to enabling this is that it provides an incentive for people to
+define operations with a backend-specific spelling (presumably in the name of
+expediency) that may actually be easily generalizable to or useful for other
+backends. This behavior should be discouraged to the extent possible.</p>
+</div>
+<div class="section" id="standardize-udfs-user-defined-functions">
+<span id="standardize-udfs"></span><h4>Standardize UDFs (User Defined Functions)<a class="headerlink" href="#standardize-udfs-user-defined-functions" title="Permalink to this headline">¶</a></h4>
+<p>A few backends have support for UDFs. Impala, Pandas and BigQuery all have at
+least some level of support for user-defined functions. This mechanism should
+be extended to other backends where possible. We outline different approaches
+to adding UDFs to the backends that are well-supported but currently do not
+have a UDF implementation. Development of a standard interface for UDFs is
+ideal, so that it’s easy for new backends to implement the interface.</p>
+</div>
+</div>
+<div class="section" id="breadth">
+<span id="id8"></span><h3>Breadth<a class="headerlink" href="#breadth" title="Permalink to this headline">¶</a></h3>
+<p>The major breadth-related question ibis is facing is how to grow the number of
+backends in ibis in a scalable, minimum-maintenance way is an open question.</p>
+<p>Currently there is a test suite that runs across all backends that xfails tests
+when a backend doesn’t implement a particular operation.</p>
+<p>At minimum we need a way to display which backends implement which operations.
+With the ability to provide custom operations we also need a way to display the
+custom operations that each backend provides.</p>
+</div>
+</div>
+<div class="section" id="backend-specific-goals">
+<span id="id9"></span><h2>Backend-Specific Goals<a class="headerlink" href="#backend-specific-goals" title="Permalink to this headline">¶</a></h2>
+<p>These goals relate to specific backends</p>
+<div class="section" id="pandas">
+<span id="id10"></span><h3>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="speed-up-grouped-rolling-and-simple-aggregations-using-numba">
+<span id="id11"></span><h4>Speed up grouped, rolling, and simple aggregations using numba<a class="headerlink" href="#speed-up-grouped-rolling-and-simple-aggregations-using-numba" title="Permalink to this headline">¶</a></h4>
+<p>Pandas aggregations are quite slow relative to an equivalent numba
+implementation, for various reasons. Since ibis hides the implementation
+details of a particular expression we can experiment with using different
+aggregation implementations.</p>
+</div>
+</div>
+<div class="section" id="dask">
+<span id="id12"></span><h3>Dask<a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="implement-a-dask-backend">
+<span id="implement-a-dask-backed"></span><h4>Implement a Dask backend<a class="headerlink" href="#implement-a-dask-backend" title="Permalink to this headline">¶</a></h4>
+<p>There is currently no way in ibis to easily parallelize a computation on a
+single machine, let alone distribute a computation across machines.</p>
+<p>Dask provides APIs for doing such things.</p>
+</div>
+</div>
+<div class="section" id="spark">
+<span id="id13"></span><h3>Spark<a class="headerlink" href="#spark" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="implement-a-sparksql-backend">
+<span id="implement-a-spark-backend"></span><h4>Implement a SparkSQL backend<a class="headerlink" href="#implement-a-sparksql-backend" title="Permalink to this headline">¶</a></h4>
+<p>SparkSQL provides a way to execute distributed SQL queries similar to other
+backends supported by ibis such as Impala and BigQuery.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="release.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="backends.html" class="btn btn-neutral" title="Backends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ibis Developers.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v0.14.0+6.g0ea4764',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>

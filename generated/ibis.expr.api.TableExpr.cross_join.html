@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.cross_join &mdash; Ibis v0.14.0+5.g2e5c6e3 documentation</title>
+  <title>ibis.expr.api.TableExpr.cross_join &mdash; Ibis v0.14.0+6.g0ea4764 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+5.g2e5c6e3 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+6.g0ea4764 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.TableExpr.inner_join" href="ibis.expr.api.TableExpr.inner_join.html"/>
         <link rel="prev" title="ibis.expr.api.TableExpr.join" href="ibis.expr.api.TableExpr.join.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+5.g2e5c6e3
+                v0.14.0+6.g0ea4764
               </div>
             
           
@@ -160,6 +160,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
@@ -278,7 +279,7 @@ optional set of prefixes to apply to overlapping column names</p>
 <span class="gp">... </span>    <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span> <span class="ow">in</span> <span class="n">schemas</span>
 <span class="gp">... </span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">joined1</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">cross_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">joined1</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">joined1</span>  <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
 <span class="go">ref_0</span>
 <span class="go">UnboundTable[table]</span>
 <span class="go">  name: a</span>
@@ -371,7 +372,7 @@ optional set of prefixes to apply to overlapping column names</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.14.0+5.g2e5c6e3',
+            VERSION:'v0.14.0+6.g0ea4764',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

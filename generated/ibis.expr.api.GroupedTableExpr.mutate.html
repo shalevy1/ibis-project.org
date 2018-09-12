@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.GroupedTableExpr.mutate &mdash; Ibis v0.14.0+5.g2e5c6e3 documentation</title>
+  <title>ibis.expr.api.GroupedTableExpr.mutate &mdash; Ibis v0.14.0+6.g0ea4764 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+5.g2e5c6e3 documentation" href="../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+6.g0ea4764 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="ibis.expr.api.GroupedTableExpr.order_by" href="ibis.expr.api.GroupedTableExpr.order_by.html"/>
         <link rel="prev" title="ibis.expr.api.GroupedTableExpr.having" href="ibis.expr.api.GroupedTableExpr.having.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+5.g2e5c6e3
+                v0.14.0+6.g0ea4764
               </div>
             
           
@@ -170,6 +170,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legal.html">Legal</a></li>
 </ul>
@@ -301,7 +302,7 @@ applied. Any arguments can be functions.</p>
 <span class="gp">... </span>         <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">))</span>
 <span class="gp">... </span>         <span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">qux</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">baz</span><span class="o">.</span><span class="n">lag</span><span class="p">(),</span>
 <span class="gp">... </span>                 <span class="n">qux2</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">baz</span><span class="o">.</span><span class="n">lead</span><span class="p">()))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE</span>
 <span class="go">ref_0</span>
 <span class="go">UnboundTable[table]</span>
 <span class="go">  name: t</span>
@@ -382,7 +383,7 @@ applied. Any arguments can be functions.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v0.14.0+5.g2e5c6e3',
+            VERSION:'v0.14.0+6.g0ea4764',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
