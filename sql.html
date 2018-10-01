@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+7.gfbe516c documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+8.g230a173 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+7.gfbe516c documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+8.g230a173 documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+7.gfbe516c
+                v0.14.0+8.g230a173
               </div>
             
           
@@ -437,31 +437,15 @@ help significantly when <a class="reference external" href="http://blog.ibis-pro
 <span class="go">GROUP BY 1</span>
 </pre></div>
 </div>
-<p>A useful pattern you can try is that of the <em>function factory</em> which allows you
-to create function that reference a field of interest:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mad</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">closure</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">table</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">closure</span>
-</pre></div>
-</div>
-<p>Now you can do:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">])</span>
-<span class="gp">   ....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">the_sum</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="gp">   ....: </span>        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
-<span class="gp">   ....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">mad</span><span class="o">=</span><span class="n">mad</span><span class="p">(</span><span class="s1">&#39;the_sum&#39;</span><span class="p">)))</span>
-<span class="gp">   ....: </span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="filtering-where">
 <h2>Filtering / <code class="docutils literal notranslate"><span class="pre">WHERE</span></code><a class="headerlink" href="#filtering-where" title="Permalink to this headline">¶</a></h2>
 <p>You can add filter clauses to a table expression either by indexing with <code class="docutils literal notranslate"><span class="pre">[]</span></code>
 (like pandas) or use the <code class="docutils literal notranslate"><span class="pre">filter</span></code> method:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 
-<span class="gp">In [25]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
+<span class="gp">In [24]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">WHERE `two` &gt; 0</span>
@@ -469,11 +453,11 @@ to create function that reference a field of interest:</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">filter</span></code> can take a list of expressions, which must all be satisfied for a
 row to be included in the result:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span>
 <span class="gp">   ....: </span>                     <span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])])</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [27]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
+<span class="gp">In [26]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">WHERE (`two` &gt; 0) AND</span>
@@ -482,11 +466,11 @@ row to be included in the result:</p>
 </div>
 <p>To compose boolean expressions with <code class="docutils literal notranslate"><span class="pre">AND</span></code> or <code class="docutils literal notranslate"><span class="pre">OR</span></code>, use the respective <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
 and <code class="docutils literal notranslate"><span class="pre">|</span></code> operators:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">]))</span>
 
-<span class="gp">In [29]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
+<span class="gp">In [28]: </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
 
-<span class="gp">In [30]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
+<span class="gp">In [29]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">filtered</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">WHERE (`two` &lt; 0) OR ((`two` &gt; 0) OR `one` IN (&#39;A&#39;, &#39;B&#39;))</span>
@@ -501,34 +485,34 @@ and <code class="docutils literal notranslate"><span class="pre">|</span></code>
 <li>One or more aggregation expressions</li>
 </ul>
 <p>Let’s look at the <code class="docutils literal notranslate"><span class="pre">aggregate</span></code> method on tables:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total_two&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total_two&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>         <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;avg_three&#39;</span><span class="p">)]</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [32]: </span><span class="n">agged</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="gp">In [31]: </span><span class="n">agged</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you don’t use any group expressions, the result will have a single row with
 your statistics of interest:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">agged</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
-<span class="gh">Out[33]: </span><span class="go"></span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">agged</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
 <span class="go">ibis.Schema {  </span>
 <span class="go">  total_two  double</span>
 <span class="go">  avg_three  double</span>
 <span class="go">}</span>
 
-<span class="gp">In [34]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
+<span class="gp">In [33]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
 <span class="go">                                                                    SELECT sum(`two`) AS `total_two`, avg(`three`) AS `avg_three`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
 </div>
 <p>To add groupings, use either the <code class="docutils literal notranslate"><span class="pre">by</span></code> argument of <code class="docutils literal notranslate"><span class="pre">aggregate</span></code> or use the
 <code class="docutils literal notranslate"><span class="pre">group_by</span></code> construct:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">agged2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">agged2</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
 
-<span class="gp">In [36]: </span><span class="n">agged3</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+<span class="gp">In [35]: </span><span class="n">agged3</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
 
-<span class="gp">In [37]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged3</span><span class="p">))</span>
+<span class="gp">In [36]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged3</span><span class="p">))</span>
 <span class="go">SELECT `one`, sum(`two`) AS `total_two`, avg(`three`) AS `avg_three`</span>
 <span class="go">FROM my_data</span>
 <span class="go">GROUP BY 1</span>
@@ -539,7 +523,7 @@ your statistics of interest:</p>
 <p>You can use any expression (or function, like in projections) deriving from the
 table you are aggregating. The only constraint is that the expressions must be
 named. Let’s look at an example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">events</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">events</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                     <span class="p">(</span><span class="s1">&#39;event_type&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                     <span class="p">(</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">)],</span>
 <span class="gp">   ....: </span>                     <span class="s1">&#39;web_events&#39;</span><span class="p">)</span>
@@ -547,20 +531,20 @@ named. Let’s look at an example:</p>
 </pre></div>
 </div>
 <p>Suppose we wanted to total up event types by year and month:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>        <span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">)]</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [40]: </span><span class="n">sessions</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">session_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="gp">In [39]: </span><span class="n">sessions</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">session_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 
-<span class="gp">In [41]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+<span class="gp">In [40]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
 <span class="gp">   ....: </span>         <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">events</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
 <span class="gp">   ....: </span>                    <span class="n">sessions</span><span class="o">=</span><span class="n">sessions</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 </pre></div>
 </div>
 <p>Now we have:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">stats</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">stats</span><span class="p">))</span>
 <span class="go">SELECT extract(`ts`, &#39;year&#39;) AS `year`, extract(`ts`, &#39;month&#39;) AS `month`,</span>
 <span class="go">       count(DISTINCT `session_id`) AS `sessions`, count(*) AS `total`</span>
 <span class="go">FROM web_events</span>
@@ -573,7 +557,7 @@ named. Let’s look at an example:</p>
 <p>In analytics is it common to compare statistics from different subsets of a
 table. Let’s consider a dataset containing people’s name, age, gender, and
 nationality:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">pop</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="n">pop</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                  <span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                  <span class="p">(</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                  <span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;int16&#39;</span><span class="p">)],</span> <span class="s1">&#39;population&#39;</span><span class="p">)</span>
@@ -605,7 +589,7 @@ nationality:</p>
 </div>
 <p>Ibis makes this much simpler by giving you <code class="docutils literal notranslate"><span class="pre">where</span></code> option in aggregation
 functions:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
 <span class="gp">   ....: </span>   <span class="n">num_persons</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
 <span class="gp">   ....: </span>   <span class="n">avg_age</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
 <span class="gp">   ....: </span>   <span class="n">avg_male</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">),</span>
@@ -617,7 +601,7 @@ functions:</p>
 <p>This indeed generates the correct SQL. Note that SQL engines handle <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
 values differently in aggregation functions, but Ibis will write the SQL
 expression that is correct for your query engine.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT `country`, avg(`age`) AS `avg_age`,</span>
 <span class="go">       avg(CASE WHEN `gender` = &#39;F&#39; THEN `age` ELSE NULL END) AS `avg_female`,</span>
 <span class="go">       avg(CASE WHEN `gender` = &#39;M&#39; THEN `age` ELSE NULL END) AS `avg_male`,</span>
@@ -631,9 +615,9 @@ expression that is correct for your query engine.</p>
 <h3><code class="docutils literal notranslate"><span class="pre">count(*)</span></code> convenience: <code class="docutils literal notranslate"><span class="pre">size()</span></code><a class="headerlink" href="#count-convenience-size" title="Permalink to this headline">¶</a></h3>
 <p>Computing group frequencies is so common that, like pandas, we have a method
 <code class="docutils literal notranslate"><span class="pre">size</span></code> that is a shortcut for the <code class="docutils literal notranslate"><span class="pre">count(*)</span></code> idiom:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [46]: </span><span class="n">freqs</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">freqs</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
 
-<span class="gp">In [47]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">freqs</span><span class="p">))</span>
+<span class="gp">In [46]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">freqs</span><span class="p">))</span>
 <span class="go">SELECT extract(`ts`, &#39;year&#39;) AS `year`, extract(`ts`, &#39;month&#39;) AS `month`,</span>
 <span class="go">       count(*) AS `count`</span>
 <span class="go">FROM web_events</span>
@@ -651,9 +635,9 @@ expression that is correct for your query engine.</p>
 </div>
 <p>This is so common that, like pandas, there is a generic array method
 <code class="docutils literal notranslate"><span class="pre">value_counts</span></code> which does this for us:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 
-<span class="gp">In [49]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [48]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT extract(`ts`, &#39;year&#39;) AS `year`, count(*) AS `count`</span>
 <span class="go">FROM web_events</span>
 <span class="go">GROUP BY 1</span>
@@ -672,12 +656,12 @@ to limit our analysis to groups containing at least 1000 observations:</p>
 </pre></div>
 </div>
 <p>With Ibis, you can do:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">having</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [51]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [50]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT `one`, sum(`two`) AS `total`</span>
 <span class="go">FROM my_data</span>
 <span class="go">GROUP BY 1</span>
@@ -690,11 +674,11 @@ to limit our analysis to groups containing at least 1000 observations:</p>
 <h2>Sorting / <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code><a class="headerlink" href="#sorting-order-by" title="Permalink to this headline">¶</a></h2>
 <p>To sort a table, use the <code class="docutils literal notranslate"><span class="pre">sort_by</span></code> method along with either column names or
 expressions that indicate the sorting keys:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="nb">sorted</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">(),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="nb">sorted</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">(),</span>
 <span class="gp">   ....: </span>                         <span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">month</span><span class="p">()])</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [53]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">sorted</span><span class="p">))</span>
+<span class="gp">In [52]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">sorted</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM web_events</span>
 <span class="go">ORDER BY extract(`ts`, &#39;year&#39;), extract(`ts`, &#39;month&#39;)</span>
@@ -703,12 +687,12 @@ expressions that indicate the sorting keys:</p>
 <p>The default for sorting is in ascending order. To reverse the sort direction of
 any key, either wrap it in <code class="docutils literal notranslate"><span class="pre">ibis.desc</span></code> or pass a tuple with <code class="docutils literal notranslate"><span class="pre">False</span></code> as the
 second value:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="nb">sorted</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="n">ibis</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s1">&#39;event_type&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [53]: </span><span class="nb">sorted</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="n">ibis</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="s1">&#39;event_type&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                          <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">month</span><span class="p">(),</span> <span class="bp">False</span><span class="p">)])</span>
 <span class="gp">   ....: </span>          <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [55]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">sorted</span><span class="p">))</span>
+<span class="gp">In [54]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">sorted</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM web_events</span>
 <span class="go">ORDER BY `event_type` DESC, extract(`ts`, &#39;month&#39;) DESC</span>
@@ -721,9 +705,9 @@ second value:</p>
 <p>This one is easy. The table <code class="docutils literal notranslate"><span class="pre">limit</span></code> function truncates a table to the
 indicates number of rows. So if you only want the first 1000 rows (which may
 not be deterministic depending on the SQL engine), you can do:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">limited</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [55]: </span><span class="n">limited</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
-<span class="gp">In [57]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">limited</span><span class="p">))</span>
+<span class="gp">In [56]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">limited</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">LIMIT 1000</span>
@@ -731,9 +715,9 @@ not be deterministic depending on the SQL engine), you can do:</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">offset</span></code> option in <code class="docutils literal notranslate"><span class="pre">limit</span></code> skips rows. So if you wanted rows 11 through
 20, you could do:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">limited</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">limited</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="gp">In [59]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">limited</span><span class="p">))</span>
+<span class="gp">In [58]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">limited</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">LIMIT 10 OFFSET 10</span>
@@ -749,11 +733,11 @@ here as they relate to common SQL queries.</p>
 <h3>Type casts<a class="headerlink" href="#type-casts" title="Permalink to this headline">¶</a></h3>
 <p>Ibis’s type system is independent of any SQL system. You cast Ibis expressions
 from one Ibis type to another. For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [59]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                <span class="n">four</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;double&#39;</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [61]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [60]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, CAST(`one` AS timestamp) AS `date`,</span>
 <span class="go">       CAST(`three` AS double) AS `four`</span>
 <span class="go">FROM my_data</span>
@@ -773,7 +757,7 @@ first is the <em>simple case</em> that compares against exact values of an expre
 </div>
 <p>Value expressions in Ibis have a <code class="docutils literal notranslate"><span class="pre">case</span></code> method that allows us to emulate
 these semantics:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [62]: </span><span class="n">case</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [61]: </span><span class="n">case</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;timestamp&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">year</span><span class="p">()</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">case</span><span class="p">()</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="mi">2015</span><span class="p">,</span> <span class="s1">&#39;This year&#39;</span><span class="p">)</span>
@@ -782,9 +766,9 @@ these semantics:</p>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">end</span><span class="p">())</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [63]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">year_group</span><span class="o">=</span><span class="n">case</span><span class="p">)</span>
+<span class="gp">In [62]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">year_group</span><span class="o">=</span><span class="n">case</span><span class="p">)</span>
 
-<span class="gp">In [64]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [63]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">  CASE extract(CAST(`one` AS timestamp), &#39;year&#39;)</span>
 <span class="go">    WHEN 2015 THEN &#39;This year&#39;</span>
@@ -805,16 +789,16 @@ result values:</p>
 </pre></div>
 </div>
 <p>To do this, use <code class="docutils literal notranslate"><span class="pre">ibis.case</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [65]: </span><span class="n">case</span> <span class="o">=</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">case</span> <span class="o">=</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">case</span><span class="p">()</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">else_</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">end</span><span class="p">())</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [66]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">cond_value</span><span class="o">=</span><span class="n">case</span><span class="p">)</span>
+<span class="gp">In [65]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">cond_value</span><span class="o">=</span><span class="n">case</span><span class="p">)</span>
 
-<span class="gp">In [67]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [66]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">  CASE</span>
 <span class="go">    WHEN `two` &lt; 0 THEN `three` * 2</span>
@@ -826,11 +810,11 @@ result values:</p>
 </div>
 <p>There are several places where Ibis builds cases for you in a simplified
 way. One example is the <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> function:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">switch</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s1">&#39;Negative&#39;</span><span class="p">,</span> <span class="s1">&#39;Non-Negative&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="n">switch</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s1">&#39;Negative&#39;</span><span class="p">,</span> <span class="s1">&#39;Non-Negative&#39;</span><span class="p">)</span>
 
-<span class="gp">In [69]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">switch</span><span class="p">)</span>
+<span class="gp">In [68]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">switch</span><span class="p">)</span>
 
-<span class="gp">In [70]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [69]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">       CASE WHEN `two` &lt; 0 THEN &#39;Negative&#39; ELSE &#39;Non-Negative&#39; END AS `group`</span>
 <span class="go">FROM my_data</span>
@@ -841,11 +825,11 @@ way. One example is the <code class="docutils literal notranslate"><span class="
 <h3>Using <code class="docutils literal notranslate"><span class="pre">NULL</span></code> in expressions<a class="headerlink" href="#using-null-in-expressions" title="Permalink to this headline">¶</a></h3>
 <p>To use <code class="docutils literal notranslate"><span class="pre">NULL</span></code> in an expression, either use the special <code class="docutils literal notranslate"><span class="pre">ibis.NA</span></code> value or
 <code class="docutils literal notranslate"><span class="pre">ibis.null()</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">pos_two</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="p">,</span> <span class="n">ibis</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [70]: </span><span class="n">pos_two</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="p">,</span> <span class="n">ibis</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
 
-<span class="gp">In [72]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_positive</span><span class="o">=</span><span class="n">pos_two</span><span class="p">)</span>
+<span class="gp">In [71]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_positive</span><span class="o">=</span><span class="n">pos_two</span><span class="p">)</span>
 
-<span class="gp">In [73]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [72]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, CASE WHEN `two` &gt; 0 THEN `two` ELSE NULL END AS `two_positive`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
@@ -864,16 +848,16 @@ some SQL to do it:</p>
 </pre></div>
 </div>
 <p>The Ibis equivalent of <code class="docutils literal notranslate"><span class="pre">IN</span></code> is the <code class="docutils literal notranslate"><span class="pre">isin</span></code> method. So we can write:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="n">refined</span> <span class="o">=</span> <span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [73]: </span><span class="n">refined</span> <span class="o">=</span> <span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 <span class="gp">   ....: </span>           <span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;UNITED STATES&#39;</span><span class="p">,</span> <span class="s1">&#39;CANADA&#39;</span><span class="p">])</span>
 <span class="gp">   ....: </span>           <span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">country</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [75]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">refined_group</span><span class="o">=</span><span class="n">refined</span><span class="p">)</span>
+<span class="gp">In [74]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">refined_group</span><span class="o">=</span><span class="n">refined</span><span class="p">)</span>
 
-<span class="gp">In [76]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [75]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
-<span class="go">       CASE WHEN upper(`country`) IN (&#39;UNITED STATES&#39;, &#39;CANADA&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
+<span class="go">       CASE WHEN upper(`country`) IN (&#39;CANADA&#39;, &#39;UNITED STATES&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
 <span class="go">FROM population</span>
 </pre></div>
 </div>
@@ -892,21 +876,21 @@ some SQL to do it:</p>
 <p>To build expressions off constant values, you must first convert the value
 (whether a Python string or number) to an Ibis expression using
 <code class="docutils literal notranslate"><span class="pre">ibis.literal</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">t3</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;column1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">t3</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;column1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;column2&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;column3&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)],</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [78]: </span><span class="n">value</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="gp">In [77]: </span><span class="n">value</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Once you’ve done this, you can use the literal expression like any other array
 or scalar expression:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [79]: </span><span class="n">has_foo</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">t3</span><span class="o">.</span><span class="n">column1</span><span class="p">,</span> <span class="n">t3</span><span class="o">.</span><span class="n">column2</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [78]: </span><span class="n">has_foo</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">t3</span><span class="o">.</span><span class="n">column1</span><span class="p">,</span> <span class="n">t3</span><span class="o">.</span><span class="n">column2</span><span class="p">])</span>
 
-<span class="gp">In [80]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t3</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">has_foo</span><span class="o">=</span><span class="n">has_foo</span><span class="p">)</span>
+<span class="gp">In [79]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t3</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">has_foo</span><span class="o">=</span><span class="n">has_foo</span><span class="p">)</span>
 
-<span class="gp">In [81]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [80]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, &#39;foo&#39; IN (`column1`, `column2`) AS `has_foo`</span>
 <span class="go">FROM `data`</span>
 </pre></div>
@@ -914,9 +898,9 @@ or scalar expression:</p>
 <p>In many other situations, you can use constants without having to use
 <code class="docutils literal notranslate"><span class="pre">ibis.literal</span></code>. For example, we could add a column containing nothing but the
 number 5 like so:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [82]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t3</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">number5</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t3</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">number5</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="gp">In [83]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [82]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, 5 AS `number5`</span>
 <span class="go">FROM `data`</span>
 </pre></div>
@@ -926,22 +910,22 @@ number 5 like so:</p>
 <h3><code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code> and <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code><a class="headerlink" href="#is-null-and-is-not-null" title="Permalink to this headline">¶</a></h3>
 <p>These are simple: use the <code class="docutils literal notranslate"><span class="pre">isnull</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull</span></code> functions respectively,
 which yield boolean arrays:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [84]: </span><span class="n">indic</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [83]: </span><span class="n">indic</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">ifelse</span><span class="p">(</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">)</span>
 
-<span class="gp">In [85]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">is_valid</span><span class="o">=</span><span class="n">indic</span><span class="p">)</span>
+<span class="gp">In [84]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">is_valid</span><span class="o">=</span><span class="n">indic</span><span class="p">)</span>
 
-<span class="gp">In [86]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [85]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">       CASE WHEN `two` IS NULL THEN &#39;valid&#39; ELSE &#39;invalid&#39; END AS `is_valid`</span>
 <span class="go">FROM my_data</span>
 
-<span class="gp">In [87]: </span><span class="n">agged</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span>
+<span class="gp">In [86]: </span><span class="n">agged</span> <span class="o">=</span> <span class="p">(</span><span class="n">expr</span>
 <span class="gp">   ....: </span>         <span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
 <span class="gp">   ....: </span>         <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;is_valid&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>         <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">three_count</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [88]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
+<span class="gp">In [87]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
 <span class="go">SELECT `is_valid`, sum(`three` IS NOT NULL) AS `three_count`</span>
 <span class="go">FROM (</span>
 <span class="go">  SELECT *,</span>
@@ -958,9 +942,9 @@ which yield boolean arrays:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">between</span></code> method on arrays and scalars compiles to the SQL <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code>
 keyword. The result of <code class="docutils literal notranslate"><span class="pre">between</span></code> is boolean and can be used with any other
 boolean expression:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [88]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
 
-<span class="gp">In [90]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [89]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM my_data</span>
 <span class="go">WHERE (`two` BETWEEN 10 AND 50) AND</span>
@@ -985,19 +969,19 @@ join type in your query engine.</li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">join</span></code> table method is by default the same as <code class="docutils literal notranslate"><span class="pre">inner_join</span></code>.</p>
 <p>Let’s look at a couple example tables to see how joins work in Ibis:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [91]: </span><span class="n">t1</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [90]: </span><span class="n">t1</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="s1">&#39;table1&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [92]: </span><span class="n">t2</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
+<span class="gp">In [91]: </span><span class="n">t2</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;key3&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   ....: </span>                 <span class="p">(</span><span class="s1">&#39;key4&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="s1">&#39;table2&#39;</span><span class="p">)</span>
 <span class="gp">   ....: </span>
 </pre></div>
 </div>
 <p>Let’s join on one key:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [92]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The immediate result of a join does not yet have a set schema. That is
@@ -1014,9 +998,9 @@ here that address the spectrum of SQL use cases.</p>
 </div>
 <p>After one or more joins, you can reference any of the joined tables in a
 projection immediately after:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [94]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
 
-<span class="gp">In [95]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [94]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*, t1.`value2`</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT OUTER JOIN table2 t1</span>
@@ -1025,9 +1009,9 @@ projection immediately after:</p>
 </div>
 <p>If you need to compute an expression that involves both tables, you can do that
 also:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [96]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="p">,</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">-</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;diff&#39;</span><span class="p">)]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="p">,</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">-</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;diff&#39;</span><span class="p">)]</span>
 
-<span class="gp">In [97]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [96]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.`key1`, t0.`value1` - t1.`value2` AS `diff`</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT OUTER JOIN table2 t1</span>
@@ -1048,14 +1032,14 @@ allows you to form statistics that reference any of the joined tables.</p>
 </pre></div>
 </div>
 <p>As you would hope, the code is as follows:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [98]: </span><span class="n">avg_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">-</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">avg_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">-</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="gp">In [99]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
+<span class="gp">In [98]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="p">)</span>
 <span class="gp">   ....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">avg_diff</span><span class="o">=</span><span class="n">avg_diff</span><span class="p">))</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [100]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [99]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.`key1`, avg(t0.`value1` - t1.`value2`) AS `avg_diff`</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT OUTER JOIN table2 t1</span>
@@ -1068,9 +1052,9 @@ allows you to form statistics that reference any of the joined tables.</p>
 <h3>Join with <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code><a class="headerlink" href="#join-with-select" title="Permalink to this headline">¶</a></h3>
 <p>If you try to execute a join that has not been projected or aggregated, it will
 be <em>fully materialized</em>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [101]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
 
-<span class="gp">In [102]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">joined</span><span class="p">))</span>
+<span class="gp">In [101]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">joined</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT OUTER JOIN table2 t1</span>
@@ -1078,9 +1062,9 @@ be <em>fully materialized</em>:</p>
 </pre></div>
 </div>
 <p>You can do this explicitly using the <code class="docutils literal notranslate"><span class="pre">materialize</span></code> method:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">materialize</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [102]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="o">.</span><span class="n">materialize</span><span class="p">()</span>
 
-<span class="gp">In [104]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [103]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT OUTER JOIN table2 t1</span>
@@ -1092,20 +1076,20 @@ be <em>fully materialized</em>:</p>
 <h3>Multiple joins<a class="headerlink" href="#multiple-joins" title="Permalink to this headline">¶</a></h3>
 <p>You can join multiple tables together in succession without needing to address
 any of the above concerns.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [105]: </span><span class="n">t3</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value3&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [104]: </span><span class="n">t3</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;value3&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;key5&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)],</span> <span class="s1">&#39;table3&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [106]: </span><span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span> <span class="o">+</span> <span class="n">t3</span><span class="o">.</span><span class="n">value3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">In [105]: </span><span class="n">total</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span> <span class="o">+</span> <span class="n">t3</span><span class="o">.</span><span class="n">value3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="gp">In [107]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">,</span>
+<span class="gp">In [106]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">,</span>
 <span class="gp">   .....: </span>                     <span class="n">t1</span><span class="o">.</span><span class="n">key2</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key4</span><span class="p">])</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t3</span><span class="o">.</span><span class="n">key5</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="n">t2</span><span class="o">.</span><span class="n">key4</span><span class="p">,</span> <span class="n">t3</span><span class="o">.</span><span class="n">key5</span><span class="p">])</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [108]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [107]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t1.`key4`, t2.`key5`,</span>
 <span class="go">       sum((t0.`value1` + t1.`value2`) + t2.`value3`) AS `total`</span>
 <span class="go">FROM table1 t0</span>
@@ -1130,16 +1114,16 @@ any of the above concerns.</p>
 </div>
 <p>The table <code class="docutils literal notranslate"><span class="pre">view</span></code> method enables you to form a <em>self-reference</em> that is
 referentially distinct in expressions. Now you can proceed normally:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [109]: </span><span class="n">t_view</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [108]: </span><span class="n">t_view</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
 
-<span class="gp">In [110]: </span><span class="n">stat</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t_view</span><span class="o">.</span><span class="n">three</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">In [109]: </span><span class="n">stat</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t_view</span><span class="o">.</span><span class="n">three</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="gp">In [111]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t_view</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">t_view</span><span class="o">.</span><span class="n">one</span><span class="p">)</span>
+<span class="gp">In [110]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t_view</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">three</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">t_view</span><span class="o">.</span><span class="n">one</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">one</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">stat</span><span class="p">))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [112]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [111]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.`one`, avg(t0.`two` - t1.`three`) AS `metric`</span>
 <span class="go">FROM my_data t0</span>
 <span class="go">  INNER JOIN my_data t1</span>
@@ -1152,13 +1136,13 @@ referentially distinct in expressions. Now you can proceed normally:</p>
 <h3>Overlapping join keys<a class="headerlink" href="#overlapping-join-keys" title="Permalink to this headline">¶</a></h3>
 <p>In many cases the columns being joined between two tables or table expressions
 have the same name. Consider this example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [113]: </span><span class="n">t4</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [112]: </span><span class="n">t4</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;key3&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;value1&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)],</span> <span class="s1">&#39;table4&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [114]: </span><span class="n">t5</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+<span class="gp">In [113]: </span><span class="n">t5</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;key3&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                 <span class="p">(</span><span class="s1">&#39;value2&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)],</span> <span class="s1">&#39;table5&#39;</span><span class="p">)</span>
@@ -1166,11 +1150,11 @@ have the same name. Consider this example:</p>
 </pre></div>
 </div>
 <p>In these case, we can specify a list of common join keys:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [115]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t4</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;key3&#39;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [114]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t4</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;key3&#39;</span><span class="p">])</span>
 
-<span class="gp">In [116]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t4</span><span class="p">,</span> <span class="n">t5</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
+<span class="gp">In [115]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t4</span><span class="p">,</span> <span class="n">t5</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
 
-<span class="gp">In [117]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [116]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*, t1.`value2`</span>
 <span class="go">FROM table4 t0</span>
 <span class="go">  INNER JOIN table5 t1</span>
@@ -1180,13 +1164,13 @@ have the same name. Consider this example:</p>
 </pre></div>
 </div>
 <p>You can mix the overlapping key names with other expressions:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [118]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t4</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">,</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [117]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t4</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key2&#39;</span><span class="p">,</span>
 <span class="gp">   .....: </span>                      <span class="n">t4</span><span class="o">.</span><span class="n">key3</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="n">t4</span><span class="o">.</span><span class="n">key3</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [119]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t4</span><span class="p">,</span> <span class="n">t5</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
+<span class="gp">In [118]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">joined</span><span class="p">[</span><span class="n">t4</span><span class="p">,</span> <span class="n">t5</span><span class="o">.</span><span class="n">value2</span><span class="p">]</span>
 
-<span class="gp">In [120]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [119]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*, t1.`value2`</span>
 <span class="go">FROM table4 t0</span>
 <span class="go">  INNER JOIN table5 t1</span>
@@ -1202,12 +1186,12 @@ have the same name. Consider this example:</p>
 engines support these efficiently, some inefficiently, or some not at all. In
 the latter case, these conditions get moved by Ibis into the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> part of
 the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [121]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&lt;</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [120]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&lt;</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">size</span><span class="p">())</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [122]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [121]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.`key1`, count(*) AS `count`</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  INNER JOIN table2 t1</span>
@@ -1219,7 +1203,7 @@ the <code class="docutils literal notranslate"><span class="pre">SELECT</span></
 <div class="section" id="other-ways-to-specify-join-keys">
 <h3>Other ways to specify join keys<a class="headerlink" href="#other-ways-to-specify-join-keys" title="Permalink to this headline">¶</a></h3>
 <p>You can also pass a list of column names instead of forming boolean expressions:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [123]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key3&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [122]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;key1&#39;</span><span class="p">,</span> <span class="s1">&#39;key3&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                      <span class="p">(</span><span class="s1">&#39;key2&#39;</span><span class="p">,</span> <span class="s1">&#39;key4&#39;</span><span class="p">)])</span>
 <span class="gp">   .....: </span>
 </pre></div>
@@ -1237,13 +1221,13 @@ advanced relational algebra.</p>
 efficient filtering in large many-to-many relationships.</p>
 <p>Let’s consider a web dataset involving website session / usage data and
 purchases:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [124]: </span><span class="n">events</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [123]: </span><span class="n">events</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;session_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                     <span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                     <span class="p">(</span><span class="s1">&#39;event_type&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                     <span class="p">(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">)],</span> <span class="s1">&#39;events&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [125]: </span><span class="n">purchases</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;item_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
+<span class="gp">In [124]: </span><span class="n">purchases</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;item_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;ts&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">)],</span> <span class="s1">&#39;purchases&#39;</span><span class="p">)</span>
@@ -1265,13 +1249,13 @@ users who have made a purchase.</p>
 </div>
 <p>To describe this operation in Ibis, you compare the <code class="docutils literal notranslate"><span class="pre">user_id</span></code> columns and use
 the <code class="docutils literal notranslate"><span class="pre">any</span></code> reduction:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [126]: </span><span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">purchases</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [125]: </span><span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">purchases</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This can now be used to filter <code class="docutils literal notranslate"><span class="pre">events</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [127]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [126]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
 
-<span class="gp">In [128]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [127]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*</span>
 <span class="go">FROM events t0</span>
 <span class="go">WHERE EXISTS (</span>
@@ -1283,9 +1267,9 @@ the <code class="docutils literal notranslate"><span class="pre">any</span></cod
 </div>
 <p>If you negate the condition, it will instead give you only event data from user
 <em>that have not made a purchase</em>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [129]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="o">-</span><span class="n">cond</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [128]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="o">-</span><span class="n">cond</span><span class="p">]</span>
 
-<span class="gp">In [130]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [129]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*</span>
 <span class="go">FROM events t0</span>
 <span class="go">WHERE NOT EXISTS (</span>
@@ -1310,11 +1294,11 @@ the <code class="docutils literal notranslate"><span class="pre">any</span></cod
 </div>
 <p>This is almost semantically the same as the <code class="docutils literal notranslate"><span class="pre">EXISTS</span></code> example. Indeed, you can
 write with Ibis:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [131]: </span><span class="n">cond</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">purchases</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">cond</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">user_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">purchases</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
 
-<span class="gp">In [132]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
+<span class="gp">In [131]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
 
-<span class="gp">In [133]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [132]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM events</span>
 <span class="go">WHERE `user_id` IN (</span>
@@ -1340,9 +1324,9 @@ a different table. Take the SQL:</p>
 </pre></div>
 </div>
 <p>With Ibis, the code is simpler and more pandas-like:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [134]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&gt;</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [133]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&gt;</span> <span class="n">t2</span><span class="o">.</span><span class="n">value2</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
 
-<span class="gp">In [135]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [134]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM table1</span>
 <span class="go">WHERE `value1` &gt; (</span>
@@ -1370,11 +1354,11 @@ the corresponding average for the comparison, rather than the whole-table
 average as above.</p>
 <p>With Ibis, the code is similar, but you add the correlated filter to the
 average statistic:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">stat</span> <span class="o">=</span> <span class="n">t2</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">]</span><span class="o">.</span><span class="n">value2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [135]: </span><span class="n">stat</span> <span class="o">=</span> <span class="n">t2</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">]</span><span class="o">.</span><span class="n">value2</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-<span class="gp">In [137]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&gt;</span> <span class="n">stat</span><span class="p">]</span>
+<span class="gp">In [136]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span><span class="o">.</span><span class="n">value1</span> <span class="o">&gt;</span> <span class="n">stat</span><span class="p">]</span>
 
-<span class="gp">In [138]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [137]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT t0.*</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">WHERE t0.`value1` &gt; (</span>
@@ -1400,9 +1384,9 @@ simplest: call <code class="docutils literal notranslate"><span class="pre">dist
 </pre></div>
 </div>
 <p>And the Ibis Python code:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [139]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [138]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
 
-<span class="gp">In [140]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [139]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT DISTINCT *</span>
 <span class="go">FROM table1</span>
 </pre></div>
@@ -1417,13 +1401,13 @@ values for each <code class="docutils literal notranslate"><span class="pre">use
 </pre></div>
 </div>
 <p>In Ibis this is:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [141]: </span><span class="n">metric</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">event_type</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [140]: </span><span class="n">metric</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">event_type</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 
-<span class="gp">In [142]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+<span class="gp">In [141]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">unique_events</span><span class="o">=</span><span class="n">metric</span><span class="p">))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [143]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [142]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT `user_id`, count(DISTINCT `event_type`) AS `unique_events`</span>
 <span class="go">FROM events</span>
 <span class="go">GROUP BY 1</span>
@@ -1458,32 +1442,32 @@ others.</li>
 <p>Ibis will automatically write window clauses when you use aggregate functions
 in a non-aggregate context. Suppose you wanted to subtract the mean of a column
 from itself:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [144]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_demean</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [143]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_demean</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
-<span class="gp">In [145]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [144]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, `two` - avg(`two`) OVER () AS `two_demean`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
 </div>
 <p>If you use <code class="docutils literal notranslate"><span class="pre">mutate</span></code> in conjunction with <code class="docutils literal notranslate"><span class="pre">group_by</span></code>, it will add a
 <code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code> to the <code class="docutils literal notranslate"><span class="pre">OVER</span></code> specification:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [146]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_demean</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [147]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [146]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, `two` - avg(`two`) OVER (PARTITION BY `one`) AS `two_demean`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
 </div>
 <p>For functions like <code class="docutils literal notranslate"><span class="pre">LAG</span></code> that require an ordering, we can add an <code class="docutils literal notranslate"><span class="pre">order_by</span></code>
 call:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [148]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [147]: </span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="p">)</span>
 <span class="gp">   .....: </span>        <span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">two_first_diff</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">lag</span><span class="p">()))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [149]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [148]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">       `two` - lag(`two`) OVER (PARTITION BY `one` ORDER BY `two`) AS `two_first_diff`</span>
 <span class="go">FROM my_data</span>
@@ -1491,11 +1475,11 @@ call:</p>
 </div>
 <p>For more precision, you can create a <code class="docutils literal notranslate"><span class="pre">Window</span></code> object that also includes a
 window frame clause:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [150]: </span><span class="n">w</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="n">preceding</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">following</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [149]: </span><span class="n">w</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="n">preceding</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">following</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="gp">In [151]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">group_demeaned</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="gp">In [150]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">group_demeaned</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">two</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
 
-<span class="gp">In [152]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [151]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
 <span class="go">       `two` - avg(`two`) OVER (PARTITION BY `one` ROWS BETWEEN 5 PRECEDING AND 5 FOLLOWING) AS `group_demeaned`</span>
 <span class="go">FROM my_data</span>
@@ -1514,11 +1498,11 @@ by aggregate statistics:</p>
 </pre></div>
 </div>
 <p>Ibis has a special analytic expression <code class="docutils literal notranslate"><span class="pre">topk</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [153]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [152]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This can be evaluated directly, yielding the above query:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [154]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [153]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM (</span>
 <span class="go">  SELECT `key1`, count(`key1`) AS `count`</span>
@@ -1530,9 +1514,9 @@ by aggregate statistics:</p>
 </pre></div>
 </div>
 <p>You can also use <code class="docutils literal notranslate"><span class="pre">expr</span></code> as a filter:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [155]: </span><span class="n">expr2</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [154]: </span><span class="n">expr2</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span>
 
-<span class="gp">In [156]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr2</span><span class="p">))</span>
+<span class="gp">In [155]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr2</span><span class="p">))</span>
 <span class="go">SELECT t0.*</span>
 <span class="go">FROM table1 t0</span>
 <span class="go">  LEFT SEMI JOIN (</span>
@@ -1554,11 +1538,11 @@ by aggregate statistics:</p>
 <p>See <a class="reference internal" href="api.html#api-timestamp"><span class="std std-ref">Timestamp methods</span></a> for a table of available date/time
 methods.</p>
 <p>For example, we can do:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [157]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">(),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [156]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">year</span><span class="p">(),</span>
 <span class="gp">   .....: </span>                     <span class="n">month</span><span class="o">=</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span><span class="o">.</span><span class="n">month</span><span class="p">())</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [158]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [157]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *, extract(`ts`, &#39;month&#39;) AS `month`, extract(`ts`, &#39;year&#39;) AS `year`</span>
 <span class="go">FROM events</span>
 </pre></div>
@@ -1573,9 +1557,9 @@ into the data if this does not work.</p>
 <h3>Timedeltas<a class="headerlink" href="#timedeltas" title="Permalink to this headline">¶</a></h3>
 <p>Ibis has a set of <em>timedelta</em> object that allow you to do date/time
 arithmetic. For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [159]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">ibis</span><span class="o">.</span><span class="n">year</span><span class="p">())]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [158]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">ibis</span><span class="o">.</span><span class="n">year</span><span class="p">())]</span>
 
-<span class="gp">In [160]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [159]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM events</span>
 <span class="go">WHERE `ts` &gt; date_sub(cast(now() as timestamp), INTERVAL 1 YEAR)</span>
@@ -1598,13 +1582,13 @@ they are distinct.</li>
 </ul>
 <p>The Ibis <code class="docutils literal notranslate"><span class="pre">union</span></code> function by distinct is a <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>, and you can set
 <code class="docutils literal notranslate"><span class="pre">distinct=True</span></code> to get the normal <code class="docutils literal notranslate"><span class="pre">UNION</span></code> behavior:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [161]: </span><span class="n">expr1</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [160]: </span><span class="n">expr1</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="gp">In [162]: </span><span class="n">expr2</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">In [161]: </span><span class="n">expr2</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="gp">In [163]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">expr1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">expr2</span><span class="p">)</span>
+<span class="gp">In [162]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">expr1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">expr2</span><span class="p">)</span>
 
-<span class="gp">In [164]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
+<span class="gp">In [163]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
 <span class="go">FROM table1</span>
 <span class="go">LIMIT 10</span>
@@ -1637,30 +1621,30 @@ featuring them can be ported to Ibis.</p>
 </div>
 <p>Explicit CTEs are not necessary with Ibis. Let’s look at an example involving
 joining an aggregated table on itself after filtering:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [165]: </span><span class="n">purchases</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [164]: </span><span class="n">purchases</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">),</span>
 <span class="gp">   .....: </span>                        <span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)],</span> <span class="s1">&#39;purchases&#39;</span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [166]: </span><span class="n">metric</span> <span class="o">=</span> <span class="n">purchases</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
+<span class="gp">In [165]: </span><span class="n">metric</span> <span class="o">=</span> <span class="n">purchases</span><span class="o">.</span><span class="n">amount</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
 
-<span class="gp">In [167]: </span><span class="n">agged</span> <span class="o">=</span> <span class="p">(</span><span class="n">purchases</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;kind&#39;</span><span class="p">])</span>
+<span class="gp">In [166]: </span><span class="n">agged</span> <span class="o">=</span> <span class="p">(</span><span class="n">purchases</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;kind&#39;</span><span class="p">])</span>
 <span class="gp">   .....: </span>         <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">metric</span><span class="p">))</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [168]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">agged</span><span class="p">[</span><span class="n">agged</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
+<span class="gp">In [167]: </span><span class="n">left</span> <span class="o">=</span> <span class="n">agged</span><span class="p">[</span><span class="n">agged</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;foo&#39;</span><span class="p">]</span>
 
-<span class="gp">In [169]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">agged</span><span class="p">[</span><span class="n">agged</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span><span class="p">]</span>
+<span class="gp">In [168]: </span><span class="n">right</span> <span class="o">=</span> <span class="n">agged</span><span class="p">[</span><span class="n">agged</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span><span class="p">]</span>
 
-<span class="gp">In [170]: </span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">right</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
+<span class="gp">In [169]: </span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">region</span> <span class="o">==</span> <span class="n">right</span><span class="o">.</span><span class="n">region</span><span class="p">)</span>
 <span class="gp">   .....: </span>          <span class="p">[</span><span class="n">left</span><span class="o">.</span><span class="n">region</span><span class="p">,</span>
 <span class="gp">   .....: </span>           <span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">total</span> <span class="o">-</span> <span class="n">right</span><span class="o">.</span><span class="n">total</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;diff&#39;</span><span class="p">)])</span>
 <span class="gp">   .....: </span>
 </pre></div>
 </div>
 <p>Ibis automatically creates a CTE for <code class="docutils literal notranslate"><span class="pre">agged</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [171]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [170]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 <span class="go">SELECT t0.`region`, t0.`total` - t1.`total` AS `diff`</span>
 <span class="go">FROM (</span>
 <span class="go">  SELECT `region`, `kind`, sum(`amount`) AS `total`</span>
@@ -1725,7 +1709,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+7.gfbe516c',
+            VERSION:'v0.14.0+8.g230a173',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
