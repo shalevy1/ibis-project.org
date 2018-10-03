@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Defined Functions &mdash; Ibis v0.14.0+13.gf21938c documentation</title>
+  <title>User Defined Functions &mdash; Ibis v0.14.0+14.g6699c60 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+13.gf21938c documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+14.g6699c60 documentation" href="index.html"/>
         <link rel="next" title="Contributing to Ibis" href="contributing.html"/>
         <link rel="prev" title="Ibis for SQL Programmers" href="sql.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+13.gf21938c
+                v0.14.0+14.g6699c60
               </div>
             
           
@@ -103,9 +103,13 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Defined Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#api">API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#impala">Impala</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pandas">Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pandas">Pandas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#element-wise-functions">Element-wise Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reduction-functions">Reduction Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analytic-functions">Analytic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details-of-pandas-udfs">Details of Pandas UDFs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#bigquery">BigQuery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sqlite">SQLite</a></li>
 </ul>
@@ -207,35 +211,82 @@ with varying levels of support for different backends. UDFs/UDAFs are a complex
 topic.</p>
 <p>This section of the documentation will discuss some of the backend specific
 details of user defined functions.</p>
-<div class="section" id="api">
-<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning" id="udf-api">
+<div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The UDF/UDAF API is experimental. It is provisional and subject to change.</p>
+<p class="last">The UDF API is provisional and subject to change.</p>
 </div>
-<p>The API for user defined <em>scalar</em> functions will look like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">double</span><span class="p">)</span>
+<div class="section" id="pandas">
+<span id="udf-pandas"></span><h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p>Ibis supports defining three kinds of user-defined functions for operations on
+expressions targeting the pandas backend: <strong>element-wise</strong>, <strong>reduction</strong>, and
+<strong>analytic</strong>.</p>
+<div class="section" id="element-wise-functions">
+<span id="udf-elementwise"></span><h3>Element-wise Functions<a class="headerlink" href="#element-wise-functions" title="Permalink to this headline">¶</a></h3>
+<p>An <strong>element-wise</strong> function is a function that takes N rows as input and
+produces N rows of output. <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">exp</span></code>, and <code class="docutils literal notranslate"><span class="pre">floor</span></code> are examples of
+element-wise functions.</p>
+<p>Here’s how to define an element-wise function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf.elementwise</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
 </pre></div>
 </div>
-<p>User defined <em>aggregate</em> functions are nearly identical, with the exception
-of using the <code class="docutils literal notranslate"><span class="pre">&#64;udaf</span></code> decorator instead of the <code class="docutils literal notranslate"><span class="pre">&#64;udf</span></code> decorator.</p>
 </div>
-<div class="section" id="impala">
-<h2>Impala<a class="headerlink" href="#impala" title="Permalink to this headline">¶</a></h2>
-<p id="udf-impala">TODO</p>
+<div class="section" id="reduction-functions">
+<span id="udf-reduction"></span><h3>Reduction Functions<a class="headerlink" href="#reduction-functions" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>reduction</strong> is a function that takes N rows as input and produces 1 row
+as output. <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">count</span></code> are examples of reductions. In
+the context of a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, reductions produce 1 row of output <em>per
+group</em>.</p>
+<p>Here’s how to define a reduction function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf.reduction</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">double_mean</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
 </div>
-<div class="section" id="pandas">
-<h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
-<p id="udf-pandas">Pandas supports defining both UDFs and UDAFs.</p>
-<p>When you define a UDF you automatically get support for applying that UDF in a
-scalar context, as well as in any group by operation.</p>
-<p>When you define a UDAF you automatically get support for standard scalar
-aggregations, group bys, <em>as well as</em> any supported windowing operation.</p>
-<p>The API for these functions is the same as described above.</p>
-<p>The objects you receive as input arguments are either <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> or
-python or numpy scalars depending on the operation.</p>
+</div>
+<div class="section" id="analytic-functions">
+<span id="udf-analytic"></span><h3>Analytic Functions<a class="headerlink" href="#analytic-functions" title="Permalink to this headline">¶</a></h3>
+<p>An <strong>analytic</strong> function is like an <strong>element-wise</strong> function in that it
+takes N rows as input and produces N rows of output. The key difference is
+that analytic functions can be applied <em>per group</em> using window functions.
+Z-score is an example of an analytic function.</p>
+<p>Here’s how to define an analytic function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf.analytic</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">zscore</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">series</span> <span class="o">-</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">series</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="details-of-pandas-udfs">
+<h3>Details of Pandas UDFs<a class="headerlink" href="#details-of-pandas-udfs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="#udf-elementwise"><span class="std std-ref">Element-wise functions</span></a> automatically provide support
+for applying your UDF to any combination of scalar values and columns.</li>
+<li><a class="reference internal" href="#udf-reduction"><span class="std std-ref">Reduction functions</span></a> automatically provide support for
+whole column aggregations, grouped aggregations, and application of your
+function over a window.</li>
+<li><a class="reference internal" href="#udf-analytic"><span class="std std-ref">Analytic functions</span></a> work in both grouped and non-grouped
+settings</li>
+<li>The objects you receive as input arguments are either <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> or
+Python/NumPy scalars.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Any keyword arguments must be given a default value or the function <strong>will
+not work</strong>.</p>
+<p class="last">A common Python convention is to set the default value to <code class="docutils literal notranslate"><span class="pre">None</span></code> and
+handle setting it to something not <code class="docutils literal notranslate"><span class="pre">None</span></code> in the body of the function.</p>
+</div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">add_one</span></code> from above as an example, the following call will receive a
 <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> for the <code class="docutils literal notranslate"><span class="pre">x</span></code> argument:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
@@ -250,39 +301,45 @@ python or numpy scalars depending on the operation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Finally, since the pandas backend passes around <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> you can accept
-<code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> in your function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+<p>Since the pandas backend passes around <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> you can accept <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>
+in your function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf.elementwise</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_two</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># do stuff with kwargs</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">2.0</span>
 </pre></div>
 </div>
 <p>Or you can leave them out as we did in the example above. You can also
-optionally accept <em>specific</em> keyword arguments. This requires knowledge of how
-the pandas backend works for it to be useful:</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Any keyword arguments (other than <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>) must be given a default
-value or the UDF/UDAF <strong>will not work</strong>. A standard Python convention is to
-set the default value to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</div>
+optionally accept specific keyword arguments.</p>
 <p>For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf.elementwise</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_two_with_none</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="bigquery">
 <h2>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note" id="udf-bigquery">
 <p class="first admonition-title">Note</p>
-<p class="last">BigQuery only supports scalar UDFs at this time.</p>
+<p class="last">BigQuery only supports element-wise UDFs at this time.</p>
 </div>
 <p>BigQuery supports UDFs through JavaScript. Ibis provides support for this by
 turning Python code into JavaScript.</p>
 <p>The interface is very similar to the pandas UDF API:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@udf</span><span class="p">([</span><span class="n">double</span><span class="p">],</span> <span class="n">double</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
+<span class="kn">from</span> <span class="nn">ibis.bigquery</span> <span class="kn">import</span> <span class="n">udf</span>
+
+<span class="nd">@udf</span><span class="p">([</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">my_bigquery_add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
 </pre></div>
@@ -375,7 +432,7 @@ function–only on an ibis expression:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+13.gf21938c',
+            VERSION:'v0.14.0+14.g6699c60',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
