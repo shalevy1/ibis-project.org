@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+28.g19d2f2a documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+29.gc382cba documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+28.g19d2f2a documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+29.gc382cba documentation" href="index.html"/>
         <link rel="next" title="User Defined Functions" href="udf.html"/>
         <link rel="prev" title="ibis.expr.api.DecimalValue.scale" href="generated/ibis.expr.api.DecimalValue.scale.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+28.g19d2f2a
+                v0.14.0+29.gc382cba
               </div>
             
           
@@ -290,7 +290,7 @@ to add new columns, you must produce a new table by means of a <em>projection</e
 <span class="go">  name: my_data</span>
 <span class="go">  schema:</span>
 <span class="go">    one : string</span>
-<span class="go">    two : double</span>
+<span class="go">    two : float64</span>
 <span class="go">    three : int32</span>
 </pre></div>
 </div>
@@ -497,12 +497,12 @@ your statistics of interest:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">agged</span><span class="o">.</span><span class="n">schema</span><span class="p">()</span>
 <span class="gh">Out[32]: </span><span class="go"></span>
 <span class="go">ibis.Schema {  </span>
-<span class="go">  total_two  double</span>
-<span class="go">  avg_three  double</span>
+<span class="go">  total_two  float64</span>
+<span class="go">  avg_three  float64</span>
 <span class="go">}</span>
 
 <span class="gp">In [33]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">agged</span><span class="p">))</span>
-<span class="go">                                                                    SELECT sum(`two`) AS `total_two`, avg(`three`) AS `avg_three`</span>
+<span class="go">                                                                      SELECT sum(`two`) AS `total_two`, avg(`three`) AS `avg_three`</span>
 <span class="go">FROM my_data</span>
 </pre></div>
 </div>
@@ -1709,7 +1709,7 @@ joining an aggregated table on itself after filtering:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+28.g19d2f2a',
+            VERSION:'v0.14.0+29.gc382cba',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+28.g19d2f2a documentation</title>
+  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+29.gc382cba documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+28.g19d2f2a documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+29.gc382cba documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="More Value Expressions" href="4-More-Value-Expressions.html"/>
         <link rel="prev" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+28.g19d2f2a
+                v0.14.0+29.gc382cba
               </div>
             
           
@@ -875,8 +875,8 @@ ImpalaDatabaseTable[table]
     smallint_col : int16
     int_col : int32
     bigint_col : int64
-    float_col : float
-    double_col : double
+    float_col : float32
+    double_col : float64
     date_string_col : string
     string_col : string
     timestamp_col : timestamp
@@ -888,8 +888,8 @@ Aggregation[table]
   table:
     Table: ref_0
   metrics:
-    avg_double = Mean[double]
-      double_col = Column[double*] &#39;double_col&#39; from table
+    avg_double = Mean[float64]
+      double_col = Column[float64*] &#39;double_col&#39; from table
         ref_0
       where:
         None
@@ -915,14 +915,14 @@ Aggregation[table]
             hour = Column[int32*] &#39;hour&#39; from table
               ref_1
   metrics:
-    MAD = Mean[double]
-      Abs[double*]
-        Subtract[double*]
+    MAD = Mean[float64]
+      Abs[float64*]
+        Subtract[float64*]
           left:
-            double_col = Column[double*] &#39;double_col&#39; from table
+            double_col = Column[float64*] &#39;double_col&#39; from table
               ref_0
           right:
-            avg_double = Column[double*] &#39;avg_double&#39; from table
+            avg_double = Column[float64*] &#39;avg_double&#39; from table
               ref_1
       where:
         None
@@ -1058,7 +1058,7 @@ function:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.14.0+28.g19d2f2a',
+            VERSION:'v0.14.0+29.gc382cba',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
