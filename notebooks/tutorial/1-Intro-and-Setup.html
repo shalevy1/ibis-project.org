@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.14.0+30.g5672feb documentation</title>
+  <title>Impala/HDFS intro and Setup &mdash; Ibis v0.14.0+31.g1468b8c documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+30.g5672feb documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+31.g1468b8c documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/>
         <link rel="prev" title="Tutorial" href="../../tutorial.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+30.g5672feb
+                v0.14.0+31.g1468b8c
               </div>
             
           
@@ -247,18 +247,18 @@ div.nblast {
 
 /* input prompt */
 div.nbinput div.prompt pre {
-    color: #303F9F;
+    color: #307FC1;
 }
 
 /* output prompt */
 div.nboutput div.prompt pre {
-    color: #D84315;
+    color: #BF5B3D;
 }
 
 /* all prompts */
 div.nbinput div.prompt,
 div.nboutput div.prompt {
-    min-width: 8ex;
+    min-width: 5ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
@@ -298,9 +298,9 @@ div.nboutput div.output_area {
 
 /* input area */
 div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
@@ -308,7 +308,7 @@ div.nboutput div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
+/* override sphinx.ext.imgmath center alignment in output cells */
 div.nboutput div.math p {
     text-align: left;
 }
@@ -358,6 +358,40 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
 /* CSS overrides for sphinx_rtd_theme */
 
 /* 24px margin */
@@ -374,6 +408,11 @@ div.nboutput div.output_area.stderr {
 .admonition > p:before {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
 </style>
 <div class="section" id="Impala/HDFS-intro-and-Setup">
 <h1>Impala/HDFS intro and Setup<a class="headerlink" href="#Impala/HDFS-intro-and-Setup" title="Permalink to this headline">¶</a></h1>
@@ -381,8 +420,7 @@ div.nboutput div.output_area.stderr {
 <h2>Getting started<a class="headerlink" href="#Getting-started" title="Permalink to this headline">¶</a></h2>
 <p>You’re going to want to make sure you can import <code class="docutils literal notranslate"><span class="pre">ibis</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -391,13 +429,9 @@ div.nboutput div.output_area.stderr {
 </pre></div>
 </div>
 </div>
-<p>If you have WebHDFS available, connect to HDFS with according to your
-WebHDFS config. For kerberized or more complex HDFS clusters please look
-at <a class="reference external" href="http://hdfscli.readthedocs.org/en/latest/">http://hdfscli.readthedocs.org/en/latest/</a> for info on connecting. You
-can use a connection from that library instead of using <code class="docutils literal notranslate"><span class="pre">hdfs_connect</span></code></p>
+<p>If you have WebHDFS available, connect to HDFS with according to your WebHDFS config. For kerberized or more complex HDFS clusters please look at <a class="reference external" href="http://hdfscli.readthedocs.org/en/latest/">http://hdfscli.readthedocs.org/en/latest/</a> for info on connecting. You can use a connection from that library instead of using <code class="docutils literal notranslate"><span class="pre">hdfs_connect</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -408,8 +442,7 @@ can use a connection from that library instead of using <code class="docutils li
 </div>
 <p>Finally, create the Ibis client</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -419,19 +452,15 @@ can use a connection from that library instead of using <code class="docutils li
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7fd5e2974da0&gt;
+<span></span>&lt;ibis.impala.client.ImpalaClient at 0x7ff08497d940&gt;
 </pre></div>
 </div>
 </div>
-<p>Obviously, substitute the parameters that are appropriate for your
-environment (see docstring for <code class="docutils literal notranslate"><span class="pre">ibis.impala.connect</span></code>).
-<code class="docutils literal notranslate"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla’s
-(<a class="reference external" href="https://pypi.python.org/pypi/impyla">https://pypi.python.org/pypi/impyla</a>) DBAPI interface</p>
+<p>Obviously, substitute the parameters that are appropriate for your environment (see docstring for <code class="docutils literal notranslate"><span class="pre">ibis.impala.connect</span></code>). <code class="docutils literal notranslate"><span class="pre">impala.connect</span></code> uses the same parameters as Impyla’s (<a class="reference external" href="https://pypi.python.org/pypi/impyla">https://pypi.python.org/pypi/impyla</a>) DBAPI interface</p>
 </div>
 </div>
 
@@ -457,7 +486,7 @@ environment (see docstring for <code class="docutils literal notranslate"><span 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Ibis Developers.
+        &copy; Copyright 2019, Ibis Developers.
 
     </p>
   </div>
@@ -479,7 +508,7 @@ environment (see docstring for <code class="docutils literal notranslate"><span 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.14.0+30.g5672feb',
+            VERSION:'v0.14.0+31.g1468b8c',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -489,7 +518,9 @@ environment (see docstring for <code class="docutils literal notranslate"><span 
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../None"></script>
 
   
 

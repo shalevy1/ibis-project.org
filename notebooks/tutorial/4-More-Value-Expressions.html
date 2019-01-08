@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More Value Expressions &mdash; Ibis v0.14.0+30.g5672feb documentation</title>
+  <title>More Value Expressions &mdash; Ibis v0.14.0+31.g1468b8c documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+30.g5672feb documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+31.g1468b8c documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="IO, CREATE/INSERT, and External Data" href="5-IO-Create-Insert-External-Data.html"/>
         <link rel="prev" title="Projection, Joining, and Sorting" href="3-Projection-Join-Sort.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+30.g5672feb
+                v0.14.0+31.g1468b8c
               </div>
             
           
@@ -254,18 +254,18 @@ div.nblast {
 
 /* input prompt */
 div.nbinput div.prompt pre {
-    color: #303F9F;
+    color: #307FC1;
 }
 
 /* output prompt */
 div.nboutput div.prompt pre {
-    color: #D84315;
+    color: #BF5B3D;
 }
 
 /* all prompts */
 div.nbinput div.prompt,
 div.nboutput div.prompt {
-    min-width: 8ex;
+    min-width: 5ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
@@ -305,9 +305,9 @@ div.nboutput div.output_area {
 
 /* input area */
 div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
@@ -315,7 +315,7 @@ div.nboutput div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
+/* override sphinx.ext.imgmath center alignment in output cells */
 div.nboutput div.math p {
     text-align: left;
 }
@@ -365,6 +365,40 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
 /* CSS overrides for sphinx_rtd_theme */
 
 /* 24px margin */
@@ -381,14 +415,18 @@ div.nboutput div.output_area.stderr {
 .admonition > p:before {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
 </style>
 <div class="section" id="More-Value-Expressions">
 <h1>More Value Expressions<a class="headerlink" href="#More-Value-Expressions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -405,9 +443,7 @@ div.nboutput div.output_area.stderr {
 </div>
 <div class="section" id="Type-casting">
 <h2>Type casting<a class="headerlink" href="#Type-casting" title="Permalink to this headline">¶</a></h2>
-<p>The Ibis type system is pretty basic and will get better (and more
-documented over time). It maps directly onto the current Impala type
-system</p>
+<p>The Ibis type system is pretty basic and will get better (and more documented over time). It maps directly onto the current Impala type system</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">int8</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">int16</span></code></li>
@@ -422,8 +458,7 @@ system</p>
 </ul>
 <p>These type names can be used to cast from one type to another</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -433,8 +468,7 @@ system</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -442,8 +476,7 @@ system</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -452,8 +485,7 @@ system</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -463,13 +495,9 @@ system</p>
 </div>
 <div class="section" id="Case-/-if-then-else-expressions">
 <h2>Case / if-then-else expressions<a class="headerlink" href="#Case-/-if-then-else-expressions" title="Permalink to this headline">¶</a></h2>
-<p>We support a number of variants of the SQL-equivalent <code class="docutils literal notranslate"><span class="pre">CASE</span></code>
-expression, and will add more API functions over time to meet different
-use cases and enhance the expressiveness of any branching-based value
-logic.</p>
+<p>We support a number of variants of the SQL-equivalent <code class="docutils literal notranslate"><span class="pre">CASE</span></code> expression, and will add more API functions over time to meet different use cases and enhance the expressiveness of any branching-based value logic.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -488,19 +516,16 @@ logic.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_7_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_7_0.png" />
 </div>
 </div>
-<p>If the <code class="docutils literal notranslate"><span class="pre">else_</span></code> default condition is not provided, any values not
-matching one of the conditions will be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">else_</span></code> default condition is not provided, any values not matching one of the conditions will be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -516,20 +541,16 @@ matching one of the conditions will be <code class="docutils literal notranslate
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_9_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_9_0.png" />
 </div>
 </div>
-<p>To test for an arbitrary series of boolean conditions, use the <code class="docutils literal notranslate"><span class="pre">case</span></code>
-API method and pass any boolean expressions potentially involving
-columns of the table:</p>
+<p>To test for an arbitrary series of boolean conditions, use the <code class="docutils literal notranslate"><span class="pre">case</span></code> API method and pass any boolean expressions potentially involving columns of the table:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -544,19 +565,16 @@ columns of the table:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_11_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_11_0.png" />
 </div>
 </div>
-<p>Simple ternary-cases (like the Python <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">if</span> <span class="pre">COND</span> <span class="pre">else</span> <span class="pre">Y</span></code>) can be
-written using the <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> function:</p>
+<p>Simple ternary-cases (like the Python <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">if</span> <span class="pre">COND</span> <span class="pre">else</span> <span class="pre">Y</span></code>) can be written using the <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -569,8 +587,7 @@ written using the <code class="docutils literal notranslate"><span class="pre">i
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -580,16 +597,13 @@ written using the <code class="docutils literal notranslate"><span class="pre">i
 </div>
 <div class="section" id="Set-membership">
 <h2>Set membership<a class="headerlink" href="#Set-membership" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">isin</span></code> and <code class="docutils literal notranslate"><span class="pre">notin</span></code> functions are like their pandas counterparts.
-These can take:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">isin</span></code> and <code class="docutils literal notranslate"><span class="pre">notin</span></code> functions are like their pandas counterparts. These can take:</p>
 <ul class="simple">
-<li>A list of value expressions, either literal values or other column
-expressions</li>
+<li>A list of value expressions, either literal values or other column expressions</li>
 <li>An array/column expression of some kind</li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -599,20 +613,16 @@ expressions</li>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_15_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_15_0.png" />
 </div>
 </div>
-<p>You can also check for membership in an array. Here is an example of
-filtering based on the top 3 (ignoring ties) most frequently-occurring
-values in the <code class="docutils literal notranslate"><span class="pre">string_col</span></code> column of alltypes:</p>
+<p>You can also check for membership in an array. Here is an example of filtering based on the top 3 (ignoring ties) most frequently-occurring values in the <code class="docutils literal notranslate"><span class="pre">string_col</span></code> column of alltypes:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,19 +635,16 @@ values in the <code class="docutils literal notranslate"><span class="pre">strin
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_17_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_17_0.png" />
 </div>
 </div>
-<p>This is a common enough operation that we provide a special analytical
-filter function <code class="docutils literal notranslate"><span class="pre">topk</span></code>:</p>
+<p>This is a common enough operation that we provide a special analytical filter function <code class="docutils literal notranslate"><span class="pre">topk</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -646,8 +653,7 @@ filter function <code class="docutils literal notranslate"><span class="pre">top
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -658,12 +664,9 @@ filter function <code class="docutils literal notranslate"><span class="pre">top
 </div>
 <div class="section" id="Null-ness">
 <h2>Null-ness<a class="headerlink" href="#Null-ness" title="Permalink to this headline">¶</a></h2>
-<p>Like their pandas equivalents, the <code class="docutils literal notranslate"><span class="pre">isnull</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull</span></code> functions
-return True values if the values are null, or non-null, respectively.
-For example:</p>
+<p>Like their pandas equivalents, the <code class="docutils literal notranslate"><span class="pre">isnull</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull</span></code> functions return True values if the values are null, or non-null, respectively. For example:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -680,22 +683,16 @@ For example:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_22_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_22_0.png" />
 </div>
 </div>
-<p>Functions like <code class="docutils literal notranslate"><span class="pre">isnull</span></code> can be combined with <code class="docutils literal notranslate"><span class="pre">case</span></code> expressions or
-functions like <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> to replace null values with some other value.
-<code class="docutils literal notranslate"><span class="pre">ifelse</span></code> here will use the first value supplied for any <code class="docutils literal notranslate"><span class="pre">True</span></code> value
-and the second value for any <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Either value can be a
-scalar or array.</p>
+<p>Functions like <code class="docutils literal notranslate"><span class="pre">isnull</span></code> can be combined with <code class="docutils literal notranslate"><span class="pre">case</span></code> expressions or functions like <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> to replace null values with some other value. <code class="docutils literal notranslate"><span class="pre">ifelse</span></code> here will use the first value supplied for any <code class="docutils literal notranslate"><span class="pre">True</span></code> value and the second value for any <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Either value can be a scalar or array.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -705,8 +702,7 @@ scalar or array.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -716,11 +712,9 @@ scalar or array.</p>
 </div>
 <div class="section" id="Distinct-based-operations">
 <h2>Distinct-based operations<a class="headerlink" href="#Distinct-based-operations" title="Permalink to this headline">¶</a></h2>
-<p>Ibis supports using <code class="docutils literal notranslate"><span class="pre">distinct</span></code> to remove duplicate rows or values on
-tables or arrays. For example:</p>
+<p>Ibis supports using <code class="docutils literal notranslate"><span class="pre">distinct</span></code> to remove duplicate rows or values on tables or arrays. For example:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -729,8 +723,7 @@ tables or arrays. For example:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -738,8 +731,7 @@ tables or arrays. For example:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -748,8 +740,7 @@ tables or arrays. For example:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -758,8 +749,7 @@ tables or arrays. For example:</p>
 </div>
 <p>This can be combined with <code class="docutils literal notranslate"><span class="pre">count</span></code> to form a reduction metric:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -771,8 +761,7 @@ tables or arrays. For example:</p>
 </div>
 <p>This is common enough to have a shortcut <code class="docutils literal notranslate"><span class="pre">nunique</span></code>:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -781,8 +770,7 @@ tables or arrays. For example:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -792,13 +780,9 @@ tables or arrays. For example:</p>
 </div>
 <div class="section" id="String-operations">
 <h2>String operations<a class="headerlink" href="#String-operations" title="Permalink to this headline">¶</a></h2>
-<p>What’s supported is pretty basic right now. We intend to support the
-full gamut of regular expression munging with a nice API, though in some
-cases some work will be required on Impala’s backend to support
-everything.</p>
+<p>What’s supported is pretty basic right now. We intend to support the full gamut of regular expression munging with a nice API, though in some cases some work will be required on Impala’s backend to support everything.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -808,21 +792,16 @@ everything.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_33_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_33_0.png" />
 </div>
 </div>
-<p>At the moment, basic substring operations (<code class="docutils literal notranslate"><span class="pre">substr</span></code>, with conveniences
-<code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>) and Python-like APIs such as <code class="docutils literal notranslate"><span class="pre">lower</span></code> and
-<code class="docutils literal notranslate"><span class="pre">upper</span></code> (for case normalization) are supported. So you could count
-first letter occurrences in a string column like so:</p>
+<p>At the moment, basic substring operations (<code class="docutils literal notranslate"><span class="pre">substr</span></code>, with conveniences <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code>) and Python-like APIs such as <code class="docutils literal notranslate"><span class="pre">lower</span></code> and <code class="docutils literal notranslate"><span class="pre">upper</span></code> (for case normalization) are supported. So you could count first letter occurrences in a string column like so:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -832,24 +811,21 @@ first letter occurrences in a string column like so:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_35_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_35_0.png" />
 </div>
 </div>
-<p>For fuzzy and regex filtering/searching, you can use one of the
-following</p>
+<p>For fuzzy and regex filtering/searching, you can use one of the following</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">like</span></code>, works as the SQL <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> keyword</li>
 <li><code class="docutils literal notranslate"><span class="pre">rlike</span></code>, like <code class="docutils literal notranslate"><span class="pre">re.search</span></code> or SQL <code class="docutils literal notranslate"><span class="pre">RLIKE</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">contains</span></code>, like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">str_value</span></code> in Python</li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -858,8 +834,7 @@ following</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -867,8 +842,7 @@ following</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -877,8 +851,7 @@ following</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -886,8 +859,7 @@ following</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -896,8 +868,7 @@ following</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -907,16 +878,14 @@ following</p>
 </div>
 <div class="section" id="Timestamp-operations">
 <h2>Timestamp operations<a class="headerlink" href="#Timestamp-operations" title="Permalink to this headline">¶</a></h2>
-<p>Date and time functionality is relatively limited at present compared
-with pandas, but we’ll get there. The main things we have right now are</p>
+<p>Date and time functionality is relatively limited at present compared with pandas, but we’ll get there. The main things we have right now are</p>
 <ul class="simple">
 <li>Field access (year, month, day, …)</li>
 <li>Timedeltas</li>
 <li>Comparisons with fixed timestamps</li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -927,8 +896,7 @@ with pandas, but we’ll get there. The main things we have right now are</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -937,8 +905,7 @@ with pandas, but we’ll get there. The main things we have right now are</p>
 </div>
 <p>Somewhat more comprehensively</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -952,20 +919,16 @@ with pandas, but we’ll get there. The main things we have right now are</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_4-More-Value-Expressions_43_0.png" src="../../_images/notebooks_tutorial_4-More-Value-Expressions_43_0.png" />
 </div>
 </div>
-<p>For timestamp arithmetic and comparisons, check out functions in the top
-level <code class="docutils literal notranslate"><span class="pre">ibis</span></code> namespace. This include things like <code class="docutils literal notranslate"><span class="pre">day</span></code> and
-<code class="docutils literal notranslate"><span class="pre">second</span></code>, but also the <code class="docutils literal notranslate"><span class="pre">ibis.timestamp</span></code> function:</p>
+<p>For timestamp arithmetic and comparisons, check out functions in the top level <code class="docutils literal notranslate"><span class="pre">ibis</span></code> namespace. This include things like <code class="docutils literal notranslate"><span class="pre">day</span></code> and <code class="docutils literal notranslate"><span class="pre">second</span></code>, but also the <code class="docutils literal notranslate"><span class="pre">ibis.timestamp</span></code> function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -974,8 +937,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -983,8 +945,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -993,8 +954,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1002,8 +962,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1013,8 +972,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1022,8 +980,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1033,8 +990,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1066,7 +1022,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Ibis Developers.
+        &copy; Copyright 2019, Ibis Developers.
 
     </p>
   </div>
@@ -1088,7 +1044,7 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.14.0+30.g5672feb',
+            VERSION:'v0.14.0+31.g1468b8c',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1098,7 +1054,9 @@ level <code class="docutils literal notranslate"><span class="pre">ibis</span></
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../None"></script>
 
   
 

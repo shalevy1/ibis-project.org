@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+30.g5672feb documentation</title>
+  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+31.g1468b8c documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+30.g5672feb documentation" href="../../index.html"/>
+    <link rel="top" title="Ibis v0.14.0+31.g1468b8c documentation" href="../../index.html"/>
         <link rel="up" title="Tutorial" href="../../tutorial.html"/>
         <link rel="next" title="More Value Expressions" href="4-More-Value-Expressions.html"/>
         <link rel="prev" title="Basics: Aggregation, filtering, limits" href="2-Basics-Aggregate-Filter-Limit.html"/> 
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                v0.14.0+30.g5672feb
+                v0.14.0+31.g1468b8c
               </div>
             
           
@@ -257,18 +257,18 @@ div.nblast {
 
 /* input prompt */
 div.nbinput div.prompt pre {
-    color: #303F9F;
+    color: #307FC1;
 }
 
 /* output prompt */
 div.nboutput div.prompt pre {
-    color: #D84315;
+    color: #BF5B3D;
 }
 
 /* all prompts */
 div.nbinput div.prompt,
 div.nboutput div.prompt {
-    min-width: 8ex;
+    min-width: 5ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
@@ -308,9 +308,9 @@ div.nboutput div.output_area {
 
 /* input area */
 div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
@@ -318,7 +318,7 @@ div.nboutput div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
+/* override sphinx.ext.imgmath center alignment in output cells */
 div.nboutput div.math p {
     text-align: left;
 }
@@ -368,6 +368,40 @@ div.nboutput div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
 /* CSS overrides for sphinx_rtd_theme */
 
 /* 24px margin */
@@ -384,14 +418,18 @@ div.nboutput div.output_area.stderr {
 .admonition > p:before {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
 </style>
 <div class="section" id="Projection,-Joining,-and-Sorting">
 <h1>Projection, Joining, and Sorting<a class="headerlink" href="#Projection,-Joining,-and-Sorting" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -416,11 +454,9 @@ Hello!
 </div>
 <div class="section" id="Projections:-adding/selecting-columns">
 <h2>Projections: adding/selecting columns<a class="headerlink" href="#Projections:-adding/selecting-columns" title="Permalink to this headline">¶</a></h2>
-<p>Projections are the general way for adding new columns to tables, or
-selecting or removing existing ones.</p>
+<p>Projections are the general way for adding new columns to tables, or selecting or removing existing ones.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -430,8 +466,7 @@ selecting or removing existing ones.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -440,8 +475,7 @@ selecting or removing existing ones.</p>
 </div>
 <p>First, the basics: selecting columns:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -452,8 +486,7 @@ selecting or removing existing ones.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -462,8 +495,7 @@ selecting or removing existing ones.</p>
 </div>
 <p>You can make a list of columns you want, too, and pass that:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -473,8 +505,7 @@ selecting or removing existing ones.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -483,8 +514,7 @@ selecting or removing existing ones.</p>
 </div>
 <p>You can also use the explicit <code class="docutils literal notranslate"><span class="pre">projection</span></code> or <code class="docutils literal notranslate"><span class="pre">select</span></code> functions</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -493,8 +523,7 @@ selecting or removing existing ones.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -503,8 +532,7 @@ selecting or removing existing ones.</p>
 </div>
 <p>We can add new columns by using named column expressions</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -515,19 +543,16 @@ selecting or removing existing ones.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_12_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_12_0.png" />
 </div>
 </div>
-<p>Adding columns is a shortcut for projection. In Ibis, adding columns
-always produces a new table reference</p>
+<p>Adding columns is a shortcut for projection. In Ibis, adding columns always produces a new table reference</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -537,20 +562,16 @@ always produces a new table reference</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_14_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_14_0.png" />
 </div>
 </div>
-<p>In more complicated projections involving joins, we may need to refer to
-all of the columns in a table at once. This is how <code class="docutils literal notranslate"><span class="pre">add_column</span></code> works.
-We just pass the whole table in the projection:</p>
+<p>In more complicated projections involving joins, we may need to refer to all of the columns in a table at once. This is how <code class="docutils literal notranslate"><span class="pre">add_column</span></code> works. We just pass the whole table in the projection:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -559,19 +580,16 @@ We just pass the whole table in the projection:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" />
 </div>
 </div>
-<p>To use constants in projections, we have to use a special
-<code class="docutils literal notranslate"><span class="pre">ibis.literal</span></code> function</p>
+<p>To use constants in projections, we have to use a special <code class="docutils literal notranslate"><span class="pre">ibis.literal</span></code> function</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -581,8 +599,7 @@ We just pass the whole table in the projection:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -592,16 +609,14 @@ We just pass the whole table in the projection:</p>
 </div>
 <div class="section" id="Joins">
 <h2>Joins<a class="headerlink" href="#Joins" title="Permalink to this headline">¶</a></h2>
-<p>Ibis attempts to provide good support for all the standard relational
-joins supported by Impala, Hive, and other relational databases.</p>
+<p>Ibis attempts to provide good support for all the standard relational joins supported by Impala, Hive, and other relational databases.</p>
 <ul class="simple">
 <li>inner, outer, left, right joins</li>
 <li>semi and anti-joins</li>
 </ul>
 <p>To illustrate the joins we’ll use the TPC-H tables for now</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -612,11 +627,9 @@ joins supported by Impala, Hive, and other relational databases.</p>
 </pre></div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">region</span></code> and <code class="docutils literal notranslate"><span class="pre">nation</span></code> are connected by their respective
-<code class="docutils literal notranslate"><span class="pre">regionkey</span></code> columns</p>
+<p><code class="docutils literal notranslate"><span class="pre">region</span></code> and <code class="docutils literal notranslate"><span class="pre">nation</span></code> are connected by their respective <code class="docutils literal notranslate"><span class="pre">regionkey</span></code> columns</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,34 +638,24 @@ joins supported by Impala, Hive, and other relational databases.</p>
 </pre></div>
 </div>
 </div>
-<p>If you have multiple join conditions, either compose them yourself (like
-filters) or pass a list to the join function</p>
+<p>If you have multiple join conditions, either compose them yourself (like filters) or pass a list to the join function</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">join_exprs</span> <span class="o">=</span> <span class="p">[</span><span class="n">cond1</span><span class="p">,</span> <span class="n">cond2</span><span class="p">,</span> <span class="n">cond3</span><span class="p">]</span>
 <span class="n">joined</span> <span class="o">=</span> <span class="n">table1</span><span class="o">.</span><span class="n">inner_join</span><span class="p">(</span><span class="n">table2</span><span class="p">,</span> <span class="n">join_exprs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Once you’ve joined tables, you don’t necessarily have anything yet. I’ll
-put it in big letters</p>
+<p>Once you’ve joined tables, you don’t necessarily have anything yet. I’ll put it in big letters</p>
 <div class="section" id="Joins-are-declarations-of-intent">
 <h3>Joins are declarations of intent<a class="headerlink" href="#Joins-are-declarations-of-intent" title="Permalink to this headline">¶</a></h3>
-<p>After calling the join function (which validates the join condition, of
-course), you may perform any number of other operations:</p>
+<p>After calling the join function (which validates the join condition, of course), you may perform any number of other operations:</p>
 <ul class="simple">
 <li>Aggregation</li>
 <li>Projection</li>
 <li>Filtering</li>
 </ul>
-<p>and so forth. Most importantly, depending on your schemas, the joined
-tables may include overlapping column names that could create a conflict
-if not addressed directly. Some other systems, like pandas, handle this
-by applying suffixes to the overlapping column names and computing the
-fully joined tables immediately. We don’t do this.</p>
-<p>So, with the above data, suppose we just want the region name and all
-the nation table data. We can then make a projection on the joined
-reference:</p>
+<p>and so forth. Most importantly, depending on your schemas, the joined tables may include overlapping column names that could create a conflict if not addressed directly. Some other systems, like pandas, handle this by applying suffixes to the overlapping column names and computing the fully joined tables immediately. We don’t do this.</p>
+<p>So, with the above data, suppose we just want the region name and all the nation table data. We can then make a projection on the joined reference:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -662,8 +665,7 @@ reference:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -672,8 +674,7 @@ reference:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -682,8 +683,7 @@ reference:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -691,8 +691,7 @@ reference:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -702,19 +701,16 @@ reference:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" />
 </div>
 </div>
-<p>Things like <code class="docutils literal notranslate"><span class="pre">group_by</span></code> work with unmaterialized joins, too, as you
-would hope.</p>
+<p>Things like <code class="docutils literal notranslate"><span class="pre">group_by</span></code> work with unmaterialized joins, too, as you would hope.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -723,8 +719,7 @@ would hope.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -734,9 +729,7 @@ would hope.</p>
 </div>
 <div class="section" id="Explicit-join-materialization">
 <h3>Explicit join materialization<a class="headerlink" href="#Explicit-join-materialization" title="Permalink to this headline">¶</a></h3>
-<p>If you’re lucky enough to have two table schemas with no overlapping
-column names (lucky you!), the join can be <em>materialized</em> without having
-to perform some other relational algebra operation:</p>
+<p>If you’re lucky enough to have two table schemas with no overlapping column names (lucky you!), the join can be <em>materialized</em> without having to perform some other relational algebra operation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">inner_join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">join_expr</span><span class="p">)</span><span class="o">.</span><span class="n">materialize</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -744,15 +737,11 @@ to perform some other relational algebra operation:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">join_expr</span><span class="p">)[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>i.e., joining and then selecting all columns from both joined tables. If
-there is a name overlap, just like with the equivalent projection, there
-will be an immediate error.</p>
+<p>i.e., joining and then selecting all columns from both joined tables. If there is a name overlap, just like with the equivalent projection, there will be an immediate error.</p>
 </div>
 <div class="section" id="Writing-down-join-keys">
 <h3>Writing down join keys<a class="headerlink" href="#Writing-down-join-keys" title="Permalink to this headline">¶</a></h3>
-<p>In addition to having explicit comparison expressions as join keys, you
-can also write down column names, or use expressions referencing the
-joined tables, e.g.:</p>
+<p>In addition to having explicit comparison expressions as join keys, you can also write down column names, or use expressions referencing the joined tables, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">joined</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">[(</span><span class="s1">&#39;a_key1&#39;</span><span class="p">,</span> <span class="s1">&#39;b_key2&#39;</span><span class="p">)])</span>
 
 <span class="n">joined2</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">[(</span><span class="n">left_expr</span><span class="p">,</span> <span class="n">right_expr</span><span class="p">)])</span>
@@ -760,23 +749,16 @@ joined tables, e.g.:</p>
 <span class="n">joined3</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;common_key&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>These will be compared for equality when performing the join; if you
-want non-equality conditions in the join, you will have to form those
-yourself.</p>
+<p>These will be compared for equality when performing the join; if you want non-equality conditions in the join, you will have to form those yourself.</p>
 </div>
 <div class="section" id="Join-referential-nuances">
 <h3>Join referential nuances<a class="headerlink" href="#Join-referential-nuances" title="Permalink to this headline">¶</a></h3>
-<p>There’s nothing to stop you from doing many joins in succession, and, in
-fact, with complex schemas it will be to your advantage to build the
-joined table references for your analysis first, then reuse the objects
-as you go:</p>
+<p>There’s nothing to stop you from doing many joins in succession, and, in fact, with complex schemas it will be to your advantage to build the joined table references for your analysis first, then reuse the objects as you go:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">joined_ref</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">key2</span><span class="p">)</span>
                <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">key3</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">key4</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">key5</span> <span class="o">==</span> <span class="n">c</span><span class="o">.</span><span class="n">key6</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>Note that, at least right now, you need to provide explicit comparison
-expressions (or tuples of column references) referencing the joined
-tables.</p>
+<p>Note that, at least right now, you need to provide explicit comparison expressions (or tuples of column references) referencing the joined tables.</p>
 </div>
 <div class="section" id="Aggregating-joined-table-with-metrics-involving-more-than-one-base-reference">
 <h3>Aggregating joined table with metrics involving more than one base reference<a class="headerlink" href="#Aggregating-joined-table-with-metrics-involving-more-than-one-base-reference" title="Permalink to this headline">¶</a></h3>
@@ -788,14 +770,10 @@ tables.</p>
 <span class="n">GROUP</span> <span class="n">BY</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>I’ll use a somewhat contrived example using the data we already have to
-show you what this looks like. Take the <code class="docutils literal notranslate"><span class="pre">functional.alltypes</span></code> table,
-and suppose we want to compute the <strong>mean absolute deviation (MAD) from
-the hourly mean of the double_col</strong>. Silly, I know, but bear with me.</p>
+<p>I’ll use a somewhat contrived example using the data we already have to show you what this looks like. Take the <code class="docutils literal notranslate"><span class="pre">functional.alltypes</span></code> table, and suppose we want to compute the <strong>mean absolute deviation (MAD) from the hourly mean of the double_col</strong>. Silly, I know, but bear with me.</p>
 <p>First, the hourly mean:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -810,21 +788,16 @@ the hourly mean of the double_col</strong>. Silly, I know, but bear with me.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_34_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_34_0.png" />
 </div>
 </div>
-<p>Okay, great, now how about the MAD? The only trick here is that we can
-form an aggregate metric from the two tables, and we then have to join
-it later. Ibis <strong>will not</strong> figure out how to join the tables
-automatically for us.</p>
+<p>Okay, great, now how about the MAD? The only trick here is that we can form an aggregate metric from the two tables, and we then have to join it later. Ibis <strong>will not</strong> figure out how to join the tables automatically for us.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -832,12 +805,9 @@ automatically for us.</p>
 </pre></div>
 </div>
 </div>
-<p>This metric is only valid if used in the context of <code class="docutils literal notranslate"><span class="pre">table</span></code> joined
-with <code class="docutils literal notranslate"><span class="pre">hourly_mean</span></code>, so let’s do that. Writing down the join condition
-is simply a matter of writing:</p>
+<p>This metric is only valid if used in the context of <code class="docutils literal notranslate"><span class="pre">table</span></code> joined with <code class="docutils literal notranslate"><span class="pre">hourly_mean</span></code>, so let’s do that. Writing down the join condition is simply a matter of writing:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -847,8 +817,7 @@ is simply a matter of writing:</p>
 </div>
 <p>Now let’s compute the MAD grouped by <code class="docutils literal notranslate"><span class="pre">string_col</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -860,8 +829,7 @@ is simply a matter of writing:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -936,13 +904,11 @@ Aggregation[table]
 </div>
 <div class="section" id="Sorting">
 <h2>Sorting<a class="headerlink" href="#Sorting" title="Permalink to this headline">¶</a></h2>
-<p>Sorting tables works similarly to the SQL <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause. We use
-the <code class="docutils literal notranslate"><span class="pre">sort_by</span></code> function and pass one of the following:</p>
+<p>Sorting tables works similarly to the SQL <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause. We use the <code class="docutils literal notranslate"><span class="pre">sort_by</span></code> function and pass one of the following:</p>
 <ul class="simple">
 <li>Column names</li>
 <li>Column expressions</li>
-<li>One of these, with a False (descending order) or True (ascending
-order) qualifier</li>
+<li>One of these, with a False (descending order) or True (ascending order) qualifier</li>
 </ul>
 <p>So, to sort by <code class="docutils literal notranslate"><span class="pre">total</span></code> in ascending order we write:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
@@ -952,17 +918,14 @@ order) qualifier</li>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span>
 </pre></div>
 </div>
-<p>For descending sort order, there is a convenience function <code class="docutils literal notranslate"><span class="pre">desc</span></code>
-which can wrap sort keys</p>
+<p>For descending sort order, there is a convenience function <code class="docutils literal notranslate"><span class="pre">desc</span></code> which can wrap sort keys</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ibis</span> <span class="k">import</span> <span class="n">desc</span>
 <span class="n">table</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">total</span><span class="p">)])</span>
 </pre></div>
 </div>
-<p>Here’s a concrete example involving filters, custom grouping dimension,
-and sorting</p>
+<p>Here’s a concrete example involving filters, custom grouping dimension, and sorting</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -982,19 +945,16 @@ and sorting</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" />
 </div>
 </div>
-<p>For sorting in descending order, you can use the special <code class="docutils literal notranslate"><span class="pre">ibis.desc</span></code>
-function:</p>
+<p>For sorting in descending order, you can use the special <code class="docutils literal notranslate"><span class="pre">ibis.desc</span></code> function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1003,8 +963,7 @@ function:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1036,7 +995,7 @@ function:</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Ibis Developers.
+        &copy; Copyright 2019, Ibis Developers.
 
     </p>
   </div>
@@ -1058,7 +1017,7 @@ function:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'v0.14.0+30.g5672feb',
+            VERSION:'v0.14.0+31.g1468b8c',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1068,7 +1027,9 @@ function:</p>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="../../None"></script>
 
   
 
