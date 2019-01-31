@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.14.0+31.g1468b8c documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.14.0+36.g8feae7a documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+31.g1468b8c documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+36.g8feae7a documentation" href="index.html"/>
         <link rel="next" title="Design" href="design.html"/>
         <link rel="prev" title="Contributing to Ibis" href="contributing.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+31.g1468b8c
+                v0.14.0+36.g8feae7a
               </div>
             
           
@@ -239,7 +239,7 @@ bash <span class="nv">$HOME</span>/miniconda.sh -b -p <span class="nv">$HOME</sp
 example), activate and install ibis in development mode</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
 <span class="c1"># including building the documentation</span>
-conda env create --name ibis36 --file<span class="o">=</span>ci/requirements-docs-3.6.yml
+conda create -n ibis36 -c conda-forge --file<span class="o">=</span>ci/requirements-dev.yml <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
 
 <span class="c1"># Activate the conda environment</span>
 <span class="nb">source</span> activate ibis36
@@ -248,6 +248,7 @@ conda env create --name ibis36 --file<span class="o">=</span>ci/requirements-doc
 make develop
 </pre></div>
 </div>
+<p><em>Note: `make develop` command also install a `pre-commit` Git hook.</em></p>
 </li>
 </ol>
 </div>
@@ -389,7 +390,7 @@ development roadmap:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+31.g1468b8c',
+            VERSION:'v0.14.0+36.g8feae7a',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

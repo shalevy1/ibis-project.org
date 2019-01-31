@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis v0.14.0+31.g1468b8c documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis v0.14.0+36.g8feae7a documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Ibis v0.14.0+31.g1468b8c documentation" href="index.html"/>
+    <link rel="top" title="Ibis v0.14.0+36.g8feae7a documentation" href="index.html"/>
         <link rel="next" title="Configuring Ibis" href="configuration.html"/>
         <link rel="prev" title="Ibis: Python Data Analysis Productivity Framework" href="index.html"/> 
 
@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                v0.14.0+31.g1468b8c
+                v0.14.0+36.g8feae7a
               </div>
             
           
@@ -107,6 +107,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#postgresql-quickstart">PostgreSQL Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#clickhouse-quickstart">Clickhouse Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bigquery-quickstart">BigQuery Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pandas-quickstart">Pandas Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapd-quickstart">MapD Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mysql-quickstart">MySQL Quickstart</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#learning-resources">Learning Resources</a></li>
 </ul>
 </li>
@@ -332,6 +335,51 @@ method of <code class="xref py py-class docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </div>
+<div class="section" id="pandas-quickstart">
+<h2><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> Quickstart<a class="headerlink" href="#pandas-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Ibis’s Pandas backend is available on Ibis’s core:</p>
+<p>Create a client by supplying a dictionary of DataFrames using
+<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>. The keys become the table names:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">(),</span>
+<span class="gp">... </span>    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">()</span>
+<span class="gp">... </span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mapd-quickstart">
+<span id="install-mapd"></span><h2><a class="reference external" href="https://www.omnisci.com/">MapD</a> Quickstart<a class="headerlink" href="#mapd-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s MapD dialect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">mapd</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Create a client by passing in database connection parameters such as <code class="docutils literal notranslate"><span class="pre">host</span></code>,
+<code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">database</span></code>,  <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mapd</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;mapd&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9091</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;mapd&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;HyperInteractive&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mysql-quickstart">
+<span id="install-mysql"></span><h2><a class="reference external" href="https://www.mysql.com/">MySQL</a> Quickstart<a class="headerlink" href="#mysql-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Install dependencies for Ibis’s MySQL dialect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">mysql</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Create a client by passing a connection string or individual parameters to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;mysql://user:pass@host:port/my_database&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23569</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="learning-resources">
 <h2>Learning Resources<a class="headerlink" href="#learning-resources" title="Permalink to this headline">¶</a></h2>
 <p>We collect Jupyter notebooks for learning how to use ibis here:
@@ -385,7 +433,7 @@ Some of these notebooks will be reproduced as part of the documentation
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v0.14.0+31.g1468b8c',
+            VERSION:'v0.14.0+36.g8feae7a',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
