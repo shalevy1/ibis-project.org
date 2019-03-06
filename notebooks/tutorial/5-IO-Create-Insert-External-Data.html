@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.14.0+42.g1eb3cb5 documentation</title>
+  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis v0.14.0+43.g8842547 documentation</title>
   
 
   
@@ -19,43 +19,38 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="Ibis v0.14.0+42.g1eb3cb5 documentation" href="../../index.html"/>
-        <link rel="up" title="Tutorial" href="../../tutorial.html"/>
-        <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html"/>
-        <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced Topics: Top-K and Self Joins" href="6-Advanced-Topics-TopK-SelfJoins.html" />
+    <link rel="prev" title="More Value Expressions" href="4-More-Value-Expressions.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -64,7 +59,7 @@
 
           
             
-            <img src="../../_static/logo-wide.svg" class="logo" />
+            <img src="../../_static/logo-wide.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -72,7 +67,7 @@
             
             
               <div class="version">
-                v0.14.0+42.g1eb3cb5
+                v0.14.0+43.g8842547
               </div>
             
           
@@ -145,7 +140,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Ibis</a>
@@ -153,9 +148,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -578,7 +574,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[&#39;avro&#39;,
+<span></span>[&#39;README.md&#39;,
+ &#39;avro&#39;,
  &#39;awards_players.csv&#39;,
  &#39;awards_players.parquet&#39;,
  &#39;batting.csv&#39;,
@@ -588,6 +585,7 @@ div.rendered_html tbody tr:hover {
  &#39;diamonds.parquet&#39;,
  &#39;functional_alltypes.csv&#39;,
  &#39;functional_alltypes.parquet&#39;,
+ &#39;geo.csv&#39;,
  &#39;ibis_testing.db&#39;,
  &#39;parquet&#39;,
  &#39;udf&#39;]
@@ -1125,7 +1123,7 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-29.3 ms ± 1.6 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+30.3 ms ± 2.15 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1152,7 +1150,7 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-30.2 ms ± 3.16 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+32.3 ms ± 3.59 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <p>It’s important to remember that codegen is a fixed overhead and will significantly speed up queries on big data</p>
@@ -1161,9 +1159,7 @@ KsfjPyDf5e,-0.578930506363,70
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -1172,7 +1168,7 @@ KsfjPyDf5e,-0.578930506363,70
         <a href="6-Advanced-Topics-TopK-SelfJoins.html" class="btn btn-neutral float-right" title="Advanced Topics: Top-K and Self Joins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="4-More-Value-Expressions.html" class="btn btn-neutral" title="More Value Expressions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="4-More-Value-Expressions.html" class="btn btn-neutral float-left" title="More Value Expressions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1181,11 +1177,11 @@ KsfjPyDf5e,-0.578930506363,70
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Ibis Developers.
+        &copy; Copyright 2019, Ibis Developers
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1198,39 +1194,15 @@ KsfjPyDf5e,-0.578930506363,70
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'v0.14.0+42.g1eb3cb5',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="../../_static/language_data.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script type="text/javascript" src="../../None"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
   
  
 <script>
