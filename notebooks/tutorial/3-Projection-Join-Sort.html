@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+44.g86253b0 documentation</title>
+  <title>Projection, Joining, and Sorting &mdash; Ibis v0.14.0+45.g8d488a4 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.14.0+44.g86253b0
+                v0.14.0+45.g8d488a4
               </div>
             
           
@@ -546,14 +546,13 @@ Hello!
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_12_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_12_0.png" />
 </div>
 </div>
-<p>Adding columns is a shortcut for projection. In Ibis, adding columns always produces a new table reference</p>
+<p>In more complicated projections involving joins, we may need to refer to all of the columns in a table at once. This is how <code class="docutils literal notranslate"><span class="pre">add_column</span></code> works. We just pass the whole table in the projection:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">table2</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="n">bigger_expr</span><span class="p">)</span>
-<span class="n">table2</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span></span><span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">table</span><span class="p">,</span> <span class="n">bigger_expr</span><span class="p">])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -565,27 +564,9 @@ Hello!
 <img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_14_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_14_0.png" />
 </div>
 </div>
-<p>In more complicated projections involving joins, we may need to refer to all of the columns in a table at once. This is how <code class="docutils literal notranslate"><span class="pre">add_column</span></code> works. We just pass the whole table in the projection:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">table</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">table</span><span class="p">,</span> <span class="n">bigger_expr</span><span class="p">])</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" />
-</div>
-</div>
 <p>To use constants in projections, we have to use a special <code class="docutils literal notranslate"><span class="pre">ibis.literal</span></code> function</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -595,11 +576,11 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_18_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_18_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_16_0.png" />
 </div>
 </div>
 </div>
@@ -612,7 +593,7 @@ Hello!
 </ul>
 <p>To illustrate the joins we’ll use the TPC-H tables for now</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,7 +606,7 @@ Hello!
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">region</span></code> and <code class="docutils literal notranslate"><span class="pre">nation</span></code> are connected by their respective <code class="docutils literal notranslate"><span class="pre">regionkey</span></code> columns</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -651,7 +632,7 @@ Hello!
 <p>and so forth. Most importantly, depending on your schemas, the joined tables may include overlapping column names that could create a conflict if not addressed directly. Some other systems, like pandas, handle this by applying suffixes to the overlapping column names and computing the fully joined tables immediately. We don’t do this.</p>
 <p>So, with the above data, suppose we just want the region name and all the nation table data. We can then make a projection on the joined reference:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -661,7 +642,7 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
@@ -670,7 +651,7 @@ Hello!
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -679,15 +660,15 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_26_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_26_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_24_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_24_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -697,16 +678,16 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_25_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_25_0.png" />
 </div>
 </div>
 <p>Things like <code class="docutils literal notranslate"><span class="pre">group_by</span></code> work with unmaterialized joins, too, as you would hope.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -715,11 +696,11 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_29_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_29_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_27_0.png" />
 </div>
 </div>
 </div>
@@ -769,7 +750,7 @@ Hello!
 <p>I’ll use a somewhat contrived example using the data we already have to show you what this looks like. Take the <code class="docutils literal notranslate"><span class="pre">functional.alltypes</span></code> table, and suppose we want to compute the <strong>mean absolute deviation (MAD) from the hourly mean of the double_col</strong>. Silly, I know, but bear with me.</p>
 <p>First, the hourly mean:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -784,16 +765,16 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_34_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_34_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_32_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_32_0.png" />
 </div>
 </div>
 <p>Okay, great, now how about the MAD? The only trick here is that we can form an aggregate metric from the two tables, and we then have to join it later. Ibis <strong>will not</strong> figure out how to join the tables automatically for us.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -803,7 +784,7 @@ Hello!
 </div>
 <p>This metric is only valid if used in the context of <code class="docutils literal notranslate"><span class="pre">table</span></code> joined with <code class="docutils literal notranslate"><span class="pre">hourly_mean</span></code>, so let’s do that. Writing down the join condition is simply a matter of writing:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -813,7 +794,7 @@ Hello!
 </div>
 <p>Now let’s compute the MAD grouped by <code class="docutils literal notranslate"><span class="pre">string_col</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -825,11 +806,11 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_40_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_40_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_38_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_38_0.png" />
 </div>
 </div>
 </div>
@@ -857,7 +838,7 @@ Hello!
 </div>
 <p>Here’s a concrete example involving filters, custom grouping dimension, and sorting</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -877,16 +858,16 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_41_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_41_0.png" />
 </div>
 </div>
 <p>For sorting in descending order, you can use the special <code class="docutils literal notranslate"><span class="pre">ibis.desc</span></code> function:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -895,11 +876,11 @@ Hello!
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_45_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_45_0.png" />
+<img alt="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" src="../../_images/notebooks_tutorial_3-Projection-Join-Sort_43_0.png" />
 </div>
 </div>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More Value Expressions &mdash; Ibis v0.14.0+44.g86253b0 documentation</title>
+  <title>More Value Expressions &mdash; Ibis v0.14.0+45.g8d488a4 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.14.0+44.g86253b0
+                v0.14.0+45.g8d488a4
               </div>
             
           
@@ -963,7 +963,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">&lt;</span>
-      <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s1">&#39;2010-01-01&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">month</span><span class="p">(</span><span class="mi">3</span><span class="p">))]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+      <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="s1">&#39;2010-01-01&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="mi">3</span><span class="p">))]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -980,7 +980,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">day</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;offset&#39;</span><span class="p">)</span>
+<span></span><span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;offset&#39;</span><span class="p">)</span>
 <span class="n">table</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">timestamp_col</span><span class="p">,</span> <span class="n">expr</span><span class="p">,</span> <span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;current_time&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>

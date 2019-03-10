@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+44.g86253b0 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis v0.14.0+45.g8d488a4 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.14.0+44.g86253b0
+                v0.14.0+45.g8d488a4
               </div>
             
           
@@ -1559,7 +1559,7 @@ into the data if this does not work.</p>
 <h3>Timedeltas<a class="headerlink" href="#timedeltas" title="Permalink to this headline">¶</a></h3>
 <p>Ibis has a set of <em>timedelta</em> object that allow you to do date/time
 arithmetic. For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [158]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">ibis</span><span class="o">.</span><span class="n">year</span><span class="p">())]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [158]: </span><span class="n">expr</span> <span class="o">=</span> <span class="n">events</span><span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">ts</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">ibis</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
 
 <span class="gp">In [159]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *</span>
