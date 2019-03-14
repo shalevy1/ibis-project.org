@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis v0.14.0+48.g218a3aa documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis v0.14.0+49.g59be001 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                v0.14.0+48.g218a3aa
+                v0.14.0+49.g59be001
               </div>
             
           
@@ -302,16 +302,15 @@ BigQuery and ibis.</p>
 <p>Before you begin, you must have a <a class="reference external" href="https://cloud.google.com/docs/overview/#projects">Google Cloud Platform project</a> with billing set up and
 the <a class="reference external" href="https://console.cloud.google.com/flows/enableapi?apiid=bigquery">BigQuery API enabled</a>.</p>
 <ol class="arabic">
-<li><p class="first"><strong>Set up application default credentials by following the `getting started with
-GCP authentication guide
-&lt;https://cloud.google.com/docs/authentication/getting-started&gt;`_.</strong></p>
+<li><p class="first">Set up application default credentials by following the <a class="reference external" href="https://cloud.google.com/docs/authentication/getting-started">getting started
+with GCP authentication guide</a>.</p>
 </li>
-<li><p class="first"><strong>Set the ``GOOGLE_BIGQUERY_PROJECT_ID`` environment variable</strong>:</p>
+<li><p class="first">Set the <code class="docutils literal notranslate"><span class="pre">GOOGLE_BIGQUERY_PROJECT_ID</span></code> environment variable:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GOOGLE_BIGQUERY_PROJECT_ID</span><span class="o">=</span>your-project-id
 </pre></div>
 </div>
 </li>
-<li><p class="first"><strong>Load data into BigQuery</strong>:</p>
+<li><p class="first">Load data into BigQuery:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py bigquery
 </pre></div>
 </div>
