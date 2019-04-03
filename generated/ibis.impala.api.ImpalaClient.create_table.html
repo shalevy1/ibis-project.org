@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.create_table &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.impala.api.ImpalaClient.create_table &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -227,47 +227,33 @@
 <dd><p>Create a new table in Impala using an Ibis table expression. This is
 currently designed for tables whose data is stored in HDFS (or
 eventually other filesystems).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>table_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd></dd>
-<dt><strong>obj</strong> <span class="classifier-delimiter">:</span> <span class="classifier">TableExpr or pandas.DataFrame, optional</span></dt>
-<dd><p class="first last">If passed, creates table from select statement results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>table_name</strong><span class="classifier">string</span></dt><dd></dd>
+<dt><strong>obj</strong><span class="classifier">TableExpr or pandas.DataFrame, optional</span></dt><dd><p>If passed, creates table from select statement results</p>
 </dd>
-<dt><strong>schema</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ibis.Schema, optional</span></dt>
-<dd><p class="first last">Mutually exclusive with expr, creates an empty table with a
+<dt><strong>schema</strong><span class="classifier">ibis.Schema, optional</span></dt><dd><p>Mutually exclusive with expr, creates an empty table with a
 particular schema</p>
 </dd>
-<dt><strong>database</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None (optional)</span></dt>
-<dd></dd>
-<dt><strong>force</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">Do not create table if table with indicated name already exists</p>
+<dt><strong>database</strong><span class="classifier">string, default None (optional)</span></dt><dd></dd>
+<dt><strong>force</strong><span class="classifier">boolean, default False</span></dt><dd><p>Do not create table if table with indicated name already exists</p>
 </dd>
-<dt><strong>external</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">Create an external table; Impala will not delete the underlying data
+<dt><strong>external</strong><span class="classifier">boolean, default False</span></dt><dd><p>Create an external table; Impala will not delete the underlying data
 when the table is dropped</p>
 </dd>
-<dt><strong>format</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘parquet’}</span></dt>
-<dd></dd>
-<dt><strong>location</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None</span></dt>
-<dd><p class="first last">Specify the directory location where Impala reads and writes files
+<dt><strong>format</strong><span class="classifier">{‘parquet’}</span></dt><dd></dd>
+<dt><strong>location</strong><span class="classifier">string, default None</span></dt><dd><p>Specify the directory location where Impala reads and writes files
 for the table</p>
 </dd>
-<dt><strong>partition</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list of strings</span></dt>
-<dd><p class="first last">Must pass a schema to use this. Cannot partition from an expression
+<dt><strong>partition</strong><span class="classifier">list of strings</span></dt><dd><p>Must pass a schema to use this. Cannot partition from an expression
 (create-table-as-select)</p>
 </dd>
-<dt><strong>like_parquet</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string (HDFS path), optional</span></dt>
-<dd><p class="first last">Can specify in lieu of a schema</p>
+<dt><strong>like_parquet</strong><span class="classifier">string (HDFS path), optional</span></dt><dd><p>Can specify in lieu of a schema</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;new_table_name&#39;</span><span class="p">,</span> <span class="n">table_expr</span><span class="p">)</span>  <span class="c1"># doctest: +SKIP</span>
 </pre></div>

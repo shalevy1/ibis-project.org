@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.range_window &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.range_window &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -253,37 +253,28 @@
 functions. This RANGE window clause aggregates rows based upon differences
 in the value of the order-by expression.</p>
 <p>All window frames / ranges are inclusive.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>preceding</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, tuple, or None, default None</span></dt>
-<dd><p class="first last">Specify None for unbounded, 0 to include current row
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>preceding</strong><span class="classifier">int, tuple, or None, default None</span></dt><dd><p>Specify None for unbounded, 0 to include current row
 tuple for off-center window</p>
 </dd>
-<dt><strong>following</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, tuple, or None, default None</span></dt>
-<dd><p class="first last">Specify None for unbounded, 0 to include current row
+<dt><strong>following</strong><span class="classifier">int, tuple, or None, default None</span></dt><dd><p>Specify None for unbounded, 0 to include current row
 tuple for off-center window</p>
 </dd>
-<dt><strong>group_by</strong> <span class="classifier-delimiter">:</span> <span class="classifier">expressions, default None</span></dt>
-<dd><p class="first last">Either specify here or with TableExpr.group_by</p>
+<dt><strong>group_by</strong><span class="classifier">expressions, default None</span></dt><dd><p>Either specify here or with TableExpr.group_by</p>
 </dd>
-<dt><strong>order_by</strong> <span class="classifier-delimiter">:</span> <span class="classifier">expressions, default None</span></dt>
-<dd><p class="first last">For analytic functions requiring an ordering, specify here, or let Ibis
+<dt><strong>order_by</strong><span class="classifier">expressions, default None</span></dt><dd><p>For analytic functions requiring an ordering, specify here, or let Ibis
 determine the default ordering (for functions like rank)</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>win</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ibis Window</span></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>win</strong><span class="classifier">ibis Window</span></dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

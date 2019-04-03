@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.NumericColumn.histogram &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.expr.api.NumericColumn.histogram &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -242,35 +242,25 @@
 <dt id="ibis.expr.api.NumericColumn.histogram">
 <code class="descclassname">NumericColumn.</code><code class="descname">histogram</code><span class="sig-paren">(</span><em>nbins=None</em>, <em>binwidth=None</em>, <em>base=None</em>, <em>closed='left'</em>, <em>aux_hash=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.NumericColumn.histogram" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a histogram with fixed width bins</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>arg</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numeric array expression</span></dt>
-<dd></dd>
-<dt><strong>nbins</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default None</span></dt>
-<dd><p class="first last">If supplied, will be used to compute the binwidth</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arg</strong><span class="classifier">numeric array expression</span></dt><dd></dd>
+<dt><strong>nbins</strong><span class="classifier">int, default None</span></dt><dd><p>If supplied, will be used to compute the binwidth</p>
 </dd>
-<dt><strong>binwidth</strong> <span class="classifier-delimiter">:</span> <span class="classifier">number, default None</span></dt>
-<dd><p class="first last">If not supplied, computed from the data (actual max and min values)</p>
+<dt><strong>binwidth</strong><span class="classifier">number, default None</span></dt><dd><p>If not supplied, computed from the data (actual max and min values)</p>
 </dd>
-<dt><strong>base</strong> <span class="classifier-delimiter">:</span> <span class="classifier">number, default None</span></dt>
-<dd></dd>
-<dt><strong>closed</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘left’, ‘right’}, default ‘left’</span></dt>
-<dd><p class="first last">Which side of each interval is closed</p>
+<dt><strong>base</strong><span class="classifier">number, default None</span></dt><dd></dd>
+<dt><strong>closed</strong><span class="classifier">{‘left’, ‘right’}, default ‘left’</span></dt><dd><p>Which side of each interval is closed</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>histogrammed</strong> <span class="classifier-delimiter">:</span> <span class="classifier">coded value expression</span></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>histogrammed</strong><span class="classifier">coded value expression</span></dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

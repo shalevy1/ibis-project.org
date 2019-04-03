@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>IO, CREATE/INSERT, and External Data &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -725,9 +725,9 @@ div.rendered_html tbody tr:hover {
 <h2>Queries on Parquet, Avro, and Delimited files in HDFS<a class="headerlink" href="#Queries-on-Parquet,-Avro,-and-Delimited-files-in-HDFS" title="Permalink to this headline">¶</a></h2>
 <p>Ibis can easily create temporary or persistent Impala tables that reference data in the following formats:</p>
 <ul class="simple">
-<li>Parquet (<code class="docutils literal notranslate"><span class="pre">parquet_file</span></code>)</li>
-<li>Avro (<code class="docutils literal notranslate"><span class="pre">avro_file</span></code>)</li>
-<li>Delimited text formats (CSV, TSV, etc.) (<code class="docutils literal notranslate"><span class="pre">delimited_file</span></code>)</li>
+<li><p>Parquet (<code class="docutils literal notranslate"><span class="pre">parquet_file</span></code>)</p></li>
+<li><p>Avro (<code class="docutils literal notranslate"><span class="pre">avro_file</span></code>)</p></li>
+<li><p>Delimited text formats (CSV, TSV, etc.) (<code class="docutils literal notranslate"><span class="pre">delimited_file</span></code>)</p></li>
 </ul>
 <p>Parquet is the easiest because the schema can be read from the data files:</p>
 <div class="nbinput docutils container">
@@ -948,9 +948,9 @@ KsfjPyDf5e,-0.578930506363,70
 <p>We’re adding a growing list of useful utility functions for interacting with an Impala cluster on the client object. The idea is that you should be able to do any database-admin-type work with Ibis and not have to switch over to the Impala SQL shell. Any ways we can make this more pleasant, please let us know.</p>
 <p>Here’s some of the features, which we’ll give examples for:</p>
 <ul class="simple">
-<li>Listing and searching for available databases and tables</li>
-<li>Creating and dropping databases</li>
-<li>Getting table schemas</li>
+<li><p>Listing and searching for available databases and tables</p></li>
+<li><p>Creating and dropping databases</p></li>
+<li><p>Getting table schemas</p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
@@ -1124,7 +1124,7 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-29.7 ms ± 2.56 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+28.4 ms ± 2.87 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1151,7 +1151,7 @@ KsfjPyDf5e,-0.578930506363,70
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-31.9 ms ± 3.43 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+28.9 ms ± 2.56 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div></div>
 </div>
 <p>It’s important to remember that codegen is a fixed overhead and will significantly speed up queries on big data</p>

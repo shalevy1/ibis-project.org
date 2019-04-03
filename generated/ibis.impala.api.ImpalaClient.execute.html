@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.execute &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.impala.api.ImpalaClient.execute &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -240,33 +240,25 @@
 <code class="descclassname">ImpalaClient.</code><code class="descname">execute</code><span class="sig-paren">(</span><em>expr</em>, <em>params=None</em>, <em>limit='default'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.execute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compile and execute Ibis expression using this backend client
 interface, returning results in-memory in the appropriate object type</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>expr</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Expr</span></dt>
-<dd></dd>
-<dt><strong>limit</strong> <span class="classifier-delimiter">:</span> <span class="classifier">int, default None</span></dt>
-<dd><p class="first last">For expressions yielding result yets; retrieve at most this number of
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>expr</strong><span class="classifier">Expr</span></dt><dd></dd>
+<dt><strong>limit</strong><span class="classifier">int, default None</span></dt><dd><p>For expressions yielding result yets; retrieve at most this number of
 values/rows. Overrides any limit already set on the expression.</p>
 </dd>
-<dt><strong>params</strong> <span class="classifier-delimiter">:</span> <span class="classifier">not yet implemented</span></dt>
-<dd></dd>
+<dt><strong>params</strong><span class="classifier">not yet implemented</span></dt><dd></dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>output</strong> <span class="classifier-delimiter">:</span> <span class="classifier">input type dependent</span></dt>
-<dd><p class="first last">Table expressions: pandas.DataFrame
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>output</strong><span class="classifier">input type dependent</span></dt><dd><p>Table expressions: pandas.DataFrame
 Array expressions: pandas.Series
 Scalar expressions: Python scalar value</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

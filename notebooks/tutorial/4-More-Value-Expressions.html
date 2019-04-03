@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>More Value Expressions &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>More Value Expressions &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -442,16 +442,16 @@ div.rendered_html tbody tr:hover {
 <h2>Type casting<a class="headerlink" href="#Type-casting" title="Permalink to this headline">¶</a></h2>
 <p>The Ibis type system is pretty basic and will get better (and more documented over time). It maps directly onto the current Impala type system</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">int8</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">int16</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">int32</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">int64</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">boolean</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">float</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">string</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">decimal($precision,</span> <span class="pre">$scale)</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int8</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int16</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int64</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decimal($precision,</span> <span class="pre">$scale)</span></code></p></li>
 </ul>
 <p>These type names can be used to cast from one type to another</p>
 <div class="nbinput docutils container">
@@ -596,8 +596,8 @@ div.rendered_html tbody tr:hover {
 <h2>Set membership<a class="headerlink" href="#Set-membership" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">isin</span></code> and <code class="docutils literal notranslate"><span class="pre">notin</span></code> functions are like their pandas counterparts. These can take:</p>
 <ul class="simple">
-<li>A list of value expressions, either literal values or other column expressions</li>
-<li>An array/column expression of some kind</li>
+<li><p>A list of value expressions, either literal values or other column expressions</p></li>
+<li><p>An array/column expression of some kind</p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -817,9 +817,9 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>For fuzzy and regex filtering/searching, you can use one of the following</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">like</span></code>, works as the SQL <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> keyword</li>
-<li><code class="docutils literal notranslate"><span class="pre">rlike</span></code>, like <code class="docutils literal notranslate"><span class="pre">re.search</span></code> or SQL <code class="docutils literal notranslate"><span class="pre">RLIKE</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">contains</span></code>, like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">str_value</span></code> in Python</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">like</span></code>, works as the SQL <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> keyword</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rlike</span></code>, like <code class="docutils literal notranslate"><span class="pre">re.search</span></code> or SQL <code class="docutils literal notranslate"><span class="pre">RLIKE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contains</span></code>, like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">in</span> <span class="pre">str_value</span></code> in Python</p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
@@ -877,9 +877,9 @@ div.rendered_html tbody tr:hover {
 <h2>Timestamp operations<a class="headerlink" href="#Timestamp-operations" title="Permalink to this headline">¶</a></h2>
 <p>Date and time functionality is relatively limited at present compared with pandas, but we’ll get there. The main things we have right now are</p>
 <ul class="simple">
-<li>Field access (year, month, day, …)</li>
-<li>Timedeltas</li>
-<li>Comparisons with fixed timestamps</li>
+<li><p>Field access (year, month, day, …)</p></li>
+<li><p>Timedeltas</p></li>
+<li><p>Comparisons with fixed timestamps</p></li>
 </ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:

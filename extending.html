@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Extending Ibis &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Extending Ibis &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -208,16 +208,16 @@
 <span id="extending"></span><h1>Extending Ibis<a class="headerlink" href="#extending-ibis" title="Permalink to this headline">¶</a></h1>
 <p>Users typically want to extend ibis in one of two ways:</p>
 <ol class="arabic simple">
-<li>Add a new expression</li>
-<li>Add a new backend</li>
+<li><p>Add a new expression</p></li>
+<li><p>Add a new backend</p></li>
 </ol>
 <p>Below we provide notebooks showing how to extend ibis in each of these ways.</p>
 <div class="section" id="adding-a-new-expression">
 <h2>Adding a New Expression<a class="headerlink" href="#adding-a-new-expression" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Make sure you’ve run the following commands before executing the notebook</p>
-<div class="last highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres dns
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker-compose up -d --no-build postgres dns
 docker-compose run waiter
 docker-compose run ibis ci/load-data.sh postgres
 </pre></div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -438,10 +438,10 @@ div.rendered_html tbody tr:hover {
 <p>A common analytical pattern involves subsetting based on some method of ranking. For example, “the 5 most frequently occurring widgets in a dataset”. By choosing the right metric, you can obtain the most important or least important items from some dimension, for some definition of important.</p>
 <p>To carry out the pattern by hand involves the following</p>
 <ul class="simple">
-<li>Choose a ranking metric</li>
-<li>Aggregate, computing the ranking metric, by the target dimension</li>
-<li>Order by the ranking metric and take the highest K values</li>
-<li>Use those values as a set filter (either with <code class="docutils literal notranslate"><span class="pre">semi_join</span></code> or <code class="docutils literal notranslate"><span class="pre">isin</span></code>) in your next query</li>
+<li><p>Choose a ranking metric</p></li>
+<li><p>Aggregate, computing the ranking metric, by the target dimension</p></li>
+<li><p>Order by the ranking metric and take the highest K values</p></li>
+<li><p>Use those values as a set filter (either with <code class="docutils literal notranslate"><span class="pre">semi_join</span></code> or <code class="docutils literal notranslate"><span class="pre">isin</span></code>) in your next query</p></li>
 </ul>
 <p>For example, let’s look at the TPC-H tables and find the 5 or 10 customers who placed the most orders over their lifetime:</p>
 <div class="nbinput docutils container">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.sql.postgres.api.PostgreSQLClient.database &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.sql.postgres.api.PostgreSQLClient.database &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -233,27 +233,21 @@
 <dt id="ibis.sql.postgres.api.PostgreSQLClient.database">
 <code class="descclassname">PostgreSQLClient.</code><code class="descname">database</code><span class="sig-paren">(</span><em>name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.postgres.api.PostgreSQLClient.database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connect to a database called <cite>name</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd><p class="first last">The name of the database to connect to. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, return
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the database to connect to. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, return
 the database named <code class="docutils literal notranslate"><span class="pre">self.current_database</span></code>.</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>db</strong> <span class="classifier-delimiter">:</span> <span class="classifier">PostgreSQLDatabase</span></dt>
-<dd><p class="first last">An <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.sql.postgres.client.PostgreSQLDatabase</span></code> instance.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>db</strong><span class="classifier">PostgreSQLDatabase</span></dt><dd><p>An <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.sql.postgres.client.PostgreSQLDatabase</span></code> instance.</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Notes</p>
 <p>This creates a new connection if <cite>name</cite> is both not <code class="docutils literal notranslate"><span class="pre">None</span></code> and not
 equal to the current database.</p>

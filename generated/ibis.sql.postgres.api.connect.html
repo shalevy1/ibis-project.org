@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.sql.postgres.api.connect &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.sql.postgres.api.connect &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -234,38 +234,26 @@
 <code class="descclassname">ibis.sql.postgres.api.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>user=None</em>, <em>password=None</em>, <em>port=5432</em>, <em>database=None</em>, <em>url=None</em>, <em>driver='psycopg2'</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.postgres.api.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an Ibis client located at <cite>user</cite>:<cite>password`&#64;`host</cite>:<cite>port</cite>
 connected to a PostgreSQL database named <cite>database</cite>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>host</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default ‘localhost’</span></dt>
-<dd></dd>
-<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None</span></dt>
-<dd></dd>
-<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None</span></dt>
-<dd></dd>
-<dt><strong>port</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string or integer, default 5432</span></dt>
-<dd></dd>
-<dt><strong>database</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None</span></dt>
-<dd></dd>
-<dt><strong>url</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None</span></dt>
-<dd><p class="first last">Complete SQLAlchemy connection string. If passed, the other connection
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>host</strong><span class="classifier">string, default ‘localhost’</span></dt><dd></dd>
+<dt><strong>user</strong><span class="classifier">string, default None</span></dt><dd></dd>
+<dt><strong>password</strong><span class="classifier">string, default None</span></dt><dd></dd>
+<dt><strong>port</strong><span class="classifier">string or integer, default 5432</span></dt><dd></dd>
+<dt><strong>database</strong><span class="classifier">string, default None</span></dt><dd></dd>
+<dt><strong>url</strong><span class="classifier">string, default None</span></dt><dd><p>Complete SQLAlchemy connection string. If passed, the other connection
 arguments are ignored.</p>
 </dd>
-<dt><strong>driver</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default ‘psycopg2’</span></dt>
-<dd></dd>
+<dt><strong>driver</strong><span class="classifier">string, default ‘psycopg2’</span></dt><dd></dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>PostgreSQLClient</strong></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>PostgreSQLClient</strong></dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">getpass</span>

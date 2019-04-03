@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Release Notes &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -199,78 +199,78 @@
 <div class="section" id="release-notes">
 <h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">These release notes are for versions of ibis <strong>1.0 and later</strong>. Release
+<p class="admonition-title">Note</p>
+<p>These release notes are for versions of ibis <strong>1.0 and later</strong>. Release
 notes for pre-1.0 versions of ibis can be found at <a class="reference internal" href="release-pre-1.0.html"><span class="doc">Release Notes (pre 1.0)</span></a></p>
 </div>
 <div class="section" id="1.0.0">
 <h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/1.0.0">1.0.0</a> <span style="font-size: 75%;">2019-03-26</span></h2><ul class="simple">
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1608">#1608</a><span>:</span> Add <code class="docutils literal notranslate"><span class="pre">range_window</span></code> and <code class="docutils literal notranslate"><span class="pre">trailing_range_window</span></code> to docs</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1611">#1611</a><span>:</span> Make ibis node instances hashable</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1604">#1604</a><span>:</span> Implement <code class="docutils literal notranslate"><span class="pre">approx_median</span></code> in BigQuery</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1618">#1618</a><span>:</span> Publish the ibis roadmap</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1627">#1627</a><span>:</span> Support string slicing with other expressions</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1637">#1637</a><span>:</span> Fix UDF bugs and add support for non-aggregate analytic functions</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1655">#1655</a><span>:</span> Add cross join operator to MapD</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1636">#1636</a><span>:</span> Remove implicit ordering requirements in the PostgreSQL backend</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1669">#1669</a><span>:</span> Allow operations to hide arguments from display</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1675">#1675</a><span>:</span> Support column names with special characters in mapd</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1686">#1686</a><span>:</span> Getting started with mapd, mysql and pandas</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1685">#1685</a><span>:</span> Add pre commit hook</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1666">#1666</a><span>:</span> Implement geospatial types for MapD</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1678">#1678</a><span>:</span> Implement geospatial functions for MapD</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1716">#1716</a><span>:</span> Implement table distinct for the pandas backend</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1714">#1714</a><span>:</span> Remove a bunch of deprecated APIs and clean up warnings</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1704">#1704</a><span>:</span> Add <code class="docutils literal notranslate"><span class="pre">find_nodes</span></code> to lineage</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1725">#1725</a><span>:</span> Remove support for passing integers to <code class="docutils literal notranslate"><span class="pre">ibis.timestamp</span></code></li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1712">#1712</a><span>:</span> Timestamp literal accepts a timezone parameter</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1728">#1728</a><span>:</span> Implement BigQuery auth using <code class="docutils literal notranslate"><span class="pre">pydata_google_auth</span></code></li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1727">#1727</a><span>:</span> Implement default handler for multiple client <code class="docutils literal notranslate"><span class="pre">pre_execute</span></code></li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1723">#1723</a><span>:</span> Add cross join to the pandas backend</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1744">#1744</a><span>:</span> Clean up merge PR script and use the actual merge feature of GitHub</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1731">#1731</a><span>:</span> Add SQL method for the MapD backend</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1680">#1680</a><span>:</span> Add support for the arbitrary aggregate in the mapd backend</li>
-<li>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1735">#1735</a><span>:</span> Add black as a pre-commit hook</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1600">#1600</a><span>:</span> Fix equality</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1651">#1651</a><span>:</span> Make sure we cast when NULL is else in CASE expressions</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1648">#1648</a><span>:</span> Remove parameters from mapd</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1653">#1653</a><span>:</span> Fixed where operator for MapD</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1643">#1643</a><span>:</span> Fix map get with compatible types</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1647">#1647</a><span>:</span> Resolves joining with different column names</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1701">#1701</a><span>:</span> Use <code class="docutils literal notranslate"><span class="pre">==</span></code> to compare strings</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1659">#1659</a><span>:</span> Fix MapD exception for <code class="docutils literal notranslate"><span class="pre">toDateTime</span></code></li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1705">#1705</a><span>:</span> Fix visualizing an ibis expression when showing a selection after a table join</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1639">#1639</a><span>:</span> Add Union as an unsuppoted operation for MapD</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1706">#1706</a><span>:</span> Fix BigQuery credentials link</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1729">#1729</a><span>:</span> Filter the <code class="docutils literal notranslate"><span class="pre">raw</span></code> warning from newer pandas to support older pandas</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1732">#1732</a><span>:</span> Fix bug in <code class="docutils literal notranslate"><span class="pre">TableExpr.drop</span></code></li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1738">#1738</a><span>:</span> Fix skipping for new BigQuery auth flow</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1741">#1741</a><span>:</span> Fix testing for BigQuery after auth flow update</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1737">#1737</a><span>:</span> Fix casting to float in the MapD backend</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1742">#1742</a><span>:</span> Fix <code class="docutils literal notranslate"><span class="pre">NULLIF</span></code> implementation for the pandas backend</li>
-<li>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1745">#1745</a><span>:</span> Make <code class="docutils literal notranslate"><span class="pre">dev/merge-pr.py</span></code> script handle PR branches</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1609">#1609</a><span>:</span> Fix conda builds</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1640">#1640</a><span>:</span> Set up CI with Azure Pipelines</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Update README.md</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1642">#1642</a><span>:</span> Fix Azure deployment step</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1645">#1645</a><span>:</span> Add TableExpr.drop to API documentation</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1641">#1641</a><span>:</span> Updated MapD server-CI</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1646">#1646</a><span>:</span> Fix Azure VM image name</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1650">#1650</a><span>:</span> Add test for reduction returning lists</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1657">#1657</a><span>:</span> Unpin clickhouse-driver version</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1658">#1658</a><span>:</span> Fixes a very typo in the pandas/core.py docstring</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1660">#1660</a><span>:</span> Remove defaults as a channel from azure pipelines</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1664">#1664</a><span>:</span> Update README.md for impala and kudu</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1667">#1667</a><span>:</span> Fix flake8 and many other warnings</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1670">#1670</a><span>:</span> Remove support for Python 2</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Update docs to reflect Apache Impala and Kudu as ASF TLPs</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1672">#1672</a><span>:</span> Enabled mysql CI on azure pipelines</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1681">#1681</a><span>:</span> Update mapd ci to v4.4.1</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1696">#1696</a><span>:</span> Fix multiple CI issues</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1694">#1694</a><span>:</span> Use cudf instead of pygdf</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1746">#1746</a><span>:</span> Use releases to manage documentation</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1747">#1747</a><span>:</span> Remove tag prefix from versioneer</li>
-<li>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1748">#1748</a><span>:</span> Do not build universal wheels</li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1608">#1608</a><span>:</span> Add <code class="docutils literal notranslate"><span class="pre">range_window</span></code> and <code class="docutils literal notranslate"><span class="pre">trailing_range_window</span></code> to docs</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1611">#1611</a><span>:</span> Make ibis node instances hashable</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1604">#1604</a><span>:</span> Implement <code class="docutils literal notranslate"><span class="pre">approx_median</span></code> in BigQuery</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1618">#1618</a><span>:</span> Publish the ibis roadmap</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1627">#1627</a><span>:</span> Support string slicing with other expressions</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1637">#1637</a><span>:</span> Fix UDF bugs and add support for non-aggregate analytic functions</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1655">#1655</a><span>:</span> Add cross join operator to MapD</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1636">#1636</a><span>:</span> Remove implicit ordering requirements in the PostgreSQL backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1669">#1669</a><span>:</span> Allow operations to hide arguments from display</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1675">#1675</a><span>:</span> Support column names with special characters in mapd</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1686">#1686</a><span>:</span> Getting started with mapd, mysql and pandas</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1685">#1685</a><span>:</span> Add pre commit hook</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1666">#1666</a><span>:</span> Implement geospatial types for MapD</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1678">#1678</a><span>:</span> Implement geospatial functions for MapD</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1716">#1716</a><span>:</span> Implement table distinct for the pandas backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1714">#1714</a><span>:</span> Remove a bunch of deprecated APIs and clean up warnings</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1704">#1704</a><span>:</span> Add <code class="docutils literal notranslate"><span class="pre">find_nodes</span></code> to lineage</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1725">#1725</a><span>:</span> Remove support for passing integers to <code class="docutils literal notranslate"><span class="pre">ibis.timestamp</span></code></p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1712">#1712</a><span>:</span> Timestamp literal accepts a timezone parameter</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1728">#1728</a><span>:</span> Implement BigQuery auth using <code class="docutils literal notranslate"><span class="pre">pydata_google_auth</span></code></p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1727">#1727</a><span>:</span> Implement default handler for multiple client <code class="docutils literal notranslate"><span class="pre">pre_execute</span></code></p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1723">#1723</a><span>:</span> Add cross join to the pandas backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1744">#1744</a><span>:</span> Clean up merge PR script and use the actual merge feature of GitHub</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1731">#1731</a><span>:</span> Add SQL method for the MapD backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1680">#1680</a><span>:</span> Add support for the arbitrary aggregate in the mapd backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1735">#1735</a><span>:</span> Add black as a pre-commit hook</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1600">#1600</a><span>:</span> Fix equality</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1651">#1651</a><span>:</span> Make sure we cast when NULL is else in CASE expressions</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1648">#1648</a><span>:</span> Remove parameters from mapd</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1653">#1653</a><span>:</span> Fixed where operator for MapD</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1643">#1643</a><span>:</span> Fix map get with compatible types</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1647">#1647</a><span>:</span> Resolves joining with different column names</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1701">#1701</a><span>:</span> Use <code class="docutils literal notranslate"><span class="pre">==</span></code> to compare strings</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1659">#1659</a><span>:</span> Fix MapD exception for <code class="docutils literal notranslate"><span class="pre">toDateTime</span></code></p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1705">#1705</a><span>:</span> Fix visualizing an ibis expression when showing a selection after a table join</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1639">#1639</a><span>:</span> Add Union as an unsuppoted operation for MapD</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1706">#1706</a><span>:</span> Fix BigQuery credentials link</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1729">#1729</a><span>:</span> Filter the <code class="docutils literal notranslate"><span class="pre">raw</span></code> warning from newer pandas to support older pandas</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1732">#1732</a><span>:</span> Fix bug in <code class="docutils literal notranslate"><span class="pre">TableExpr.drop</span></code></p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1738">#1738</a><span>:</span> Fix skipping for new BigQuery auth flow</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1741">#1741</a><span>:</span> Fix testing for BigQuery after auth flow update</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1737">#1737</a><span>:</span> Fix casting to float in the MapD backend</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1742">#1742</a><span>:</span> Fix <code class="docutils literal notranslate"><span class="pre">NULLIF</span></code> implementation for the pandas backend</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1745">#1745</a><span>:</span> Make <code class="docutils literal notranslate"><span class="pre">dev/merge-pr.py</span></code> script handle PR branches</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1609">#1609</a><span>:</span> Fix conda builds</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1640">#1640</a><span>:</span> Set up CI with Azure Pipelines</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Update README.md</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1642">#1642</a><span>:</span> Fix Azure deployment step</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1645">#1645</a><span>:</span> Add TableExpr.drop to API documentation</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1641">#1641</a><span>:</span> Updated MapD server-CI</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1646">#1646</a><span>:</span> Fix Azure VM image name</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1650">#1650</a><span>:</span> Add test for reduction returning lists</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1657">#1657</a><span>:</span> Unpin clickhouse-driver version</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1658">#1658</a><span>:</span> Fixes a very typo in the pandas/core.py docstring</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1660">#1660</a><span>:</span> Remove defaults as a channel from azure pipelines</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1664">#1664</a><span>:</span> Update README.md for impala and kudu</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1667">#1667</a><span>:</span> Fix flake8 and many other warnings</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1670">#1670</a><span>:</span> Remove support for Python 2</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span>:</span><span> </span> Update docs to reflect Apache Impala and Kudu as ASF TLPs</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1672">#1672</a><span>:</span> Enabled mysql CI on azure pipelines</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1681">#1681</a><span>:</span> Update mapd ci to v4.4.1</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1696">#1696</a><span>:</span> Fix multiple CI issues</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1694">#1694</a><span>:</span> Use cudf instead of pygdf</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1746">#1746</a><span>:</span> Use releases to manage documentation</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1747">#1747</a><span>:</span> Remove tag prefix from versioneer</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1748">#1748</a><span>:</span> Do not build universal wheels</p></li>
 </ul>
 </div>
 </div>

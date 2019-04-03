@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaTable.insert &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.impala.api.ImpalaTable.insert &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -274,32 +274,24 @@
 <dt id="ibis.impala.api.ImpalaTable.insert">
 <code class="descclassname">ImpalaTable.</code><code class="descname">insert</code><span class="sig-paren">(</span><em>obj=None</em>, <em>overwrite=False</em>, <em>partition=None</em>, <em>values=None</em>, <em>validate=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaTable.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert into Impala table. Wraps ImpalaClient.insert</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>obj</strong> <span class="classifier-delimiter">:</span> <span class="classifier">TableExpr or pandas DataFrame</span></dt>
-<dd></dd>
-<dt><strong>overwrite</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">If True, will replace existing contents of table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj</strong><span class="classifier">TableExpr or pandas DataFrame</span></dt><dd></dd>
+<dt><strong>overwrite</strong><span class="classifier">boolean, default False</span></dt><dd><p>If True, will replace existing contents of table</p>
 </dd>
-<dt><strong>partition</strong> <span class="classifier-delimiter">:</span> <span class="classifier">list or dict, optional</span></dt>
-<dd><p class="first last">For partitioned tables, indicate the partition that’s being inserted
+<dt><strong>partition</strong><span class="classifier">list or dict, optional</span></dt><dd><p>For partitioned tables, indicate the partition that’s being inserted
 into, either with an ordered list of partition keys or a dict of
 partition field name to value. For example for the partition
 (year=2007, month=7), this can be either (2007, 7) or {‘year’: 2007,
 ‘month’: 7}.</p>
 </dd>
-<dt><strong>validate</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default True</span></dt>
-<dd><p class="first last">If True, do more rigorous validation that schema of table being
+<dt><strong>validate</strong><span class="classifier">boolean, default True</span></dt><dd><p>If True, do more rigorous validation that schema of table being
 inserted is compatible with the existing table</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">table_expr</span><span class="p">)</span>  <span class="c1"># doctest: +SKIP</span>
 </pre></div>

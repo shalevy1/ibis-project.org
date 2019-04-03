@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Defined Functions &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>User Defined Functions &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -215,8 +215,8 @@ topic.</p>
 <p>This section of the documentation will discuss some of the backend specific
 details of user defined functions.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The UDF API is provisional and subject to change.</p>
+<p class="admonition-title">Warning</p>
+<p>The UDF API is provisional and subject to change.</p>
 </div>
 <div class="section" id="pandas">
 <span id="udf-pandas"></span><h2>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
@@ -273,21 +273,21 @@ Z-score is an example of an analytic function.</p>
 <div class="section" id="details-of-pandas-udfs">
 <h3>Details of Pandas UDFs<a class="headerlink" href="#details-of-pandas-udfs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><a class="reference internal" href="#udf-elementwise"><span class="std std-ref">Element-wise functions</span></a> automatically provide support
-for applying your UDF to any combination of scalar values and columns.</li>
-<li><a class="reference internal" href="#udf-reduction"><span class="std std-ref">Reduction functions</span></a> automatically provide support for
+<li><p><a class="reference internal" href="#udf-elementwise"><span class="std std-ref">Element-wise functions</span></a> automatically provide support
+for applying your UDF to any combination of scalar values and columns.</p></li>
+<li><p><a class="reference internal" href="#udf-reduction"><span class="std std-ref">Reduction functions</span></a> automatically provide support for
 whole column aggregations, grouped aggregations, and application of your
-function over a window.</li>
-<li><a class="reference internal" href="#udf-analytic"><span class="std std-ref">Analytic functions</span></a> work in both grouped and non-grouped
-settings</li>
-<li>The objects you receive as input arguments are either <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> or
-Python/NumPy scalars.</li>
+function over a window.</p></li>
+<li><p><a class="reference internal" href="#udf-analytic"><span class="std std-ref">Analytic functions</span></a> work in both grouped and non-grouped
+settings</p></li>
+<li><p>The objects you receive as input arguments are either <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> or
+Python/NumPy scalars.</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Any keyword arguments must be given a default value or the function <strong>will
 not work</strong>.</p>
-<p class="last">A common Python convention is to set the default value to <code class="docutils literal notranslate"><span class="pre">None</span></code> and
+<p>A common Python convention is to set the default value to <code class="docutils literal notranslate"><span class="pre">None</span></code> and
 handle setting it to something not <code class="docutils literal notranslate"><span class="pre">None</span></code> in the body of the function.</p>
 </div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">add_one</span></code> from above as an example, the following call will receive a
@@ -333,8 +333,8 @@ optionally accept specific keyword arguments.</p>
 <div class="section" id="bigquery">
 <h2>BigQuery<a class="headerlink" href="#bigquery" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note" id="udf-bigquery">
-<p class="first admonition-title">Note</p>
-<p class="last">BigQuery only supports element-wise UDFs at this time.</p>
+<p class="admonition-title">Note</p>
+<p>BigQuery only supports element-wise UDFs at this time.</p>
 </div>
 <p>BigQuery supports UDFs through JavaScript. Ibis provides support for this by
 turning Python code into JavaScript.</p>

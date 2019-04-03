@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.union &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.expr.api.TableExpr.union &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -256,28 +256,21 @@
 <code class="descclassname">TableExpr.</code><code class="descname">union</code><span class="sig-paren">(</span><em>right</em>, <em>distinct=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.union" title="Permalink to this definition">¶</a></dt>
 <dd><p>Form the table set union of two table expressions having identical
 schemas.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>right</strong> <span class="classifier-delimiter">:</span> <span class="classifier">TableExpr</span></dt>
-<dd></dd>
-<dt><strong>distinct</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">Only union distinct rows not occurring in the calling table (this
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>right</strong><span class="classifier">TableExpr</span></dt><dd></dd>
+<dt><strong>distinct</strong><span class="classifier">boolean, default False</span></dt><dd><p>Only union distinct rows not occurring in the calling table (this
 can be very expensive, be careful)</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>union</strong> <span class="classifier-delimiter">:</span> <span class="classifier">TableExpr</span></dt>
-<dd></dd>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>union</strong><span class="classifier">TableExpr</span></dt><dd></dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.drop_table &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.impala.api.ImpalaClient.drop_table &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -274,23 +274,16 @@
 <dt id="ibis.impala.api.ImpalaClient.drop_table">
 <code class="descclassname">ImpalaClient.</code><code class="descname">drop_table</code><span class="sig-paren">(</span><em>table_name</em>, <em>database=None</em>, <em>force=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.drop_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Drop an Impala table</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>table_name</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
-<dd></dd>
-<dt><strong>database</strong> <span class="classifier-delimiter">:</span> <span class="classifier">string, default None (optional)</span></dt>
-<dd></dd>
-<dt><strong>force</strong> <span class="classifier-delimiter">:</span> <span class="classifier">boolean, default False</span></dt>
-<dd><p class="first last">Database may throw exception if table does not exist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>table_name</strong><span class="classifier">string</span></dt><dd></dd>
+<dt><strong>database</strong><span class="classifier">string, default None (optional)</span></dt><dd></dd>
+<dt><strong>force</strong><span class="classifier">boolean, default False</span></dt><dd><p>Database may throw exception if table does not exist</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;my_table&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="s1">&#39;operations&#39;</span>

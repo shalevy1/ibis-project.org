@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -262,12 +262,12 @@
 <p>Among other things, Ibis provides a full-featured replacement for SQL
 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> queries, but expressed with Python code that is:</p>
 <ul class="simple">
-<li>Type-checked and validated as you go. No more debugging cryptic database
-errors; Ibis catches your mistakes right away.</li>
-<li>Easier to write. Pythonic function calls with tab completion in IPython.</li>
-<li>More composable. Break complex queries down into easier-to-digest pieces</li>
-<li>Easier to reuse. Mix and match Ibis snippets to create expressions tailored
-for your analysis.</li>
+<li><p>Type-checked and validated as you go. No more debugging cryptic database
+errors; Ibis catches your mistakes right away.</p></li>
+<li><p>Easier to write. Pythonic function calls with tab completion in IPython.</p></li>
+<li><p>More composable. Break complex queries down into easier-to-digest pieces</p></li>
+<li><p>Easier to reuse. Mix and match Ibis snippets to create expressions tailored
+for your analysis.</p></li>
 </ul>
 <p>We intend for all <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> queries to be fully portable to Ibis. Coverage of
 other DDL statements (e.g. <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> or <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>) may vary from
@@ -276,8 +276,9 @@ engine to engine.</p>
 for convenience, but the code here is portable to whichever system you are
 using Ibis with.</p>
 <blockquote>
-<div><strong>Note</strong>: If you find any SQL idioms or use cases in your work that are not
-represented here, please reach out so we can add more to this guide!</div></blockquote>
+<div><p><strong>Note</strong>: If you find any SQL idioms or use cases in your work that are not
+represented here, please reach out so we can add more to this guide!</p>
+</div></blockquote>
 <div class="section" id="projections-select-add-remove-columns">
 <h2>Projections: select/add/remove columns<a class="headerlink" href="#projections-select-add-remove-columns" title="Permalink to this headline">¶</a></h2>
 <p>All tables in Ibis are immutable. To select a subset of a table’s columns, or
@@ -484,8 +485,8 @@ and <code class="docutils literal notranslate"><span class="pre">|</span></code>
 <h2>Aggregation / <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code><a class="headerlink" href="#aggregation-group-by" title="Permalink to this headline">¶</a></h2>
 <p>To aggregate a table, you need:</p>
 <ul class="simple">
-<li>Zero or more grouping expressions (these can be column names)</li>
-<li>One or more aggregation expressions</li>
+<li><p>Zero or more grouping expressions (these can be column names)</p></li>
+<li><p>One or more aggregation expressions</p></li>
 </ul>
 <p>Let’s look at the <code class="docutils literal notranslate"><span class="pre">aggregate</span></code> method on tables:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">stats</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">two</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;total_two&#39;</span><span class="p">),</span>
@@ -569,10 +570,10 @@ nationality:</p>
 </div>
 <p>Now, suppose you wanted to know for each country:</p>
 <ul class="simple">
-<li>Average overall age</li>
-<li>Average male age</li>
-<li>Average female age</li>
-<li>Total number of persons</li>
+<li><p>Average overall age</p></li>
+<li><p>Average male age</p></li>
+<li><p>Average female age</p></li>
+<li><p>Total number of persons</p></li>
 </ul>
 <p>In SQL, you may write:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">country</span><span class="p">,</span>
@@ -960,15 +961,15 @@ boolean expression:</p>
 <h2>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">¶</a></h2>
 <p>Ibis supports several kinds of joins between table expressions:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">inner_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cross_join</span></code>: a cartesian product join with no keys. Equivalent to
-<code class="docutils literal notranslate"><span class="pre">inner_join</span></code> with no join predicates</li>
-<li><code class="docutils literal notranslate"><span class="pre">left_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">outer_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">semi_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">SEMI</span> <span class="pre">JOIN</span></code>. May or may not be an explicit
-join type in your query engine.</li>
-<li><code class="docutils literal notranslate"><span class="pre">anti_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">ANTI</span> <span class="pre">JOIN</span></code>. May or may not be an explicit
-join type in your query engine.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inner_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cross_join</span></code>: a cartesian product join with no keys. Equivalent to
+<code class="docutils literal notranslate"><span class="pre">inner_join</span></code> with no join predicates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outer_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">semi_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">SEMI</span> <span class="pre">JOIN</span></code>. May or may not be an explicit
+join type in your query engine.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anti_join</span></code>: maps to SQL <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">ANTI</span> <span class="pre">JOIN</span></code>. May or may not be an explicit
+join type in your query engine.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">join</span></code> table method is by default the same as <code class="docutils literal notranslate"><span class="pre">inner_join</span></code>.</p>
 <p>Let’s look at a couple example tables to see how joins work in Ibis:</p>
@@ -1377,8 +1378,8 @@ average statistic:</p>
 <h2><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> expressions<a class="headerlink" href="#distinct-expressions" title="Permalink to this headline">¶</a></h2>
 <p>In SQL, the <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> keyword is used in a couple of ways:</p>
 <ul class="simple">
-<li>Deduplicating identical rows in some <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement</li>
-<li>Aggregating on the distinct values of some column expression</li>
+<li><p>Deduplicating identical rows in some <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement</p></li>
+<li><p>Aggregating on the distinct values of some column expression</p></li>
 </ul>
 <p>Ibis supports both use cases. So let’s have a look. The first case is the
 simplest: call <code class="docutils literal notranslate"><span class="pre">distinct</span></code> on a table expression. First, here’s the SQL:</p>
@@ -1427,12 +1428,12 @@ values for each <code class="docutils literal notranslate"><span class="pre">use
 possibly-ordered groups of a table. Each window function involves one of the
 following:</p>
 <ul class="simple">
-<li>An analytic function. Most aggregate functions are valid analytic functions,
+<li><p>An analytic function. Most aggregate functions are valid analytic functions,
 and there are additional ones such as <code class="docutils literal notranslate"><span class="pre">LEAD</span></code>, <code class="docutils literal notranslate"><span class="pre">LAG</span></code>, <code class="docutils literal notranslate"><span class="pre">NTILE</span></code>, and
-others.</li>
-<li>A <code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code> clause. This may be omitted.</li>
-<li>An <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause. This may be omitted for many functions.</li>
-<li>A window frame clause. The default is to use the entire partition.</li>
+others.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code> clause. This may be omitted.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause. This may be omitted for many functions.</p></li>
+<li><p>A window frame clause. The default is to use the entire partition.</p></li>
 </ul>
 <p>So you may see SQL like:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">AVG</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">key1</span><span class="p">)</span>
@@ -1579,9 +1580,9 @@ arithmetic. For example:</p>
 <h2>Unions<a class="headerlink" href="#unions" title="Permalink to this headline">¶</a></h2>
 <p>SQL dialects often support two kinds of <code class="docutils literal notranslate"><span class="pre">UNION</span></code> operations:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">UNION</span></code>: the combination of <em>distinct</em> rows from each table.</li>
-<li><code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>: the combination of all rows from each table, whether or not
-they are distinct.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNION</span></code>: the combination of <em>distinct</em> rows from each table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>: the combination of all rows from each table, whether or not
+they are distinct.</p></li>
 </ul>
 <p>The Ibis <code class="docutils literal notranslate"><span class="pre">union</span></code> function by distinct is a <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>, and you can set
 <code class="docutils literal notranslate"><span class="pre">distinct=True</span></code> to get the normal <code class="docutils literal notranslate"><span class="pre">UNION</span></code> behavior:</p>

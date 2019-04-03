@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.literal &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>ibis.literal &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -250,32 +250,25 @@
 <dt id="ibis.literal">
 <code class="descclassname">ibis.</code><code class="descname">literal</code><span class="sig-paren">(</span><em>value</em>, <em>type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.literal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a scalar expression from a Python value.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
-<dt><strong>value</strong> <span class="classifier-delimiter">:</span> <span class="classifier">some Python basic type</span></dt>
-<dd><p class="first last">A Python value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value</strong><span class="classifier">some Python basic type</span></dt><dd><p>A Python value</p>
 </dd>
-<dt><strong>type</strong> <span class="classifier-delimiter">:</span> <span class="classifier">ibis type or string, optional</span></dt>
-<dd><p class="first last">An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.expr.datatypes.DataType</span></code> or a string
+<dt><strong>type</strong><span class="classifier">ibis type or string, optional</span></dt><dd><p>An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.expr.datatypes.DataType</span></code> or a string
 indicating the ibis type of <cite>value</cite>. This parameter should only be used
 in cases where ibis’s type inference isn’t sufficient for discovering
 the type of <cite>value</cite>.</p>
 </dd>
 </dl>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>literal_value</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Literal</span></dt>
-<dd><p class="first last">An expression representing a literal value</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>literal_value</strong><span class="classifier">Literal</span></dt><dd><p>An expression representing a literal value</p>
 </dd>
 </dl>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>

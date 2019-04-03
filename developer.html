@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -220,7 +220,7 @@ project will be run much like pandas has been.</p>
 <div class="section" id="conda-environment-setup">
 <h3>Conda Environment Setup<a class="headerlink" href="#conda-environment-setup" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
-<li><p class="first"><strong>Install the latest version of miniconda</strong>:</p>
+<li><p><strong>Install the latest version of miniconda</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the miniconda bash installer</span>
 curl -Ls -o <span class="nv">$HOME</span>/miniconda.sh <span class="se">\</span>
     https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -233,7 +233,7 @@ bash <span class="nv">$HOME</span>/miniconda.sh -b -p <span class="nv">$HOME</sp
 </pre></div>
 </div>
 </li>
-<li><p class="first"><strong>Install the development environment of your choice (Python 3.6 in this
+<li><p><strong>Install the development environment of your choice (Python 3.6 in this
 example), activate and install ibis in development mode</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
 <span class="c1"># including building the documentation</span>
@@ -258,11 +258,9 @@ against databases that have traditionally requied a lot of setup,
 such as Impala.</p>
 <p>The following command does three steps:</p>
 <ol class="arabic">
-<li><p class="first">Downloads the test data</p>
-</li>
-<li><p class="first">Starts each backend as a service via docker-compose</p>
-</li>
-<li><p class="first">Initializes the backends with the test tables</p>
+<li><p>Downloads the test data</p></li>
+<li><p>Starts each backend as a service via docker-compose</p></li>
+<li><p>Initializes the backends with the test tables</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make init
 </pre></div>
 </div>
@@ -276,7 +274,7 @@ such as Impala.</p>
 want to investigate something outside of the docker-compose setup
 that ships with ibis.</p>
 <ol class="arabic">
-<li><p class="first"><strong>Download the test data</strong>:</p>
+<li><p><strong>Download the test data</strong>:</p>
 <p>By default this will download and extract the dataset under
 testing/ibis-testing-data.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py download
@@ -303,15 +301,14 @@ BigQuery and ibis.</p>
 <p>Before you begin, you must have a <a class="reference external" href="https://cloud.google.com/docs/overview/#projects">Google Cloud Platform project</a> with billing set up and
 the <a class="reference external" href="https://console.cloud.google.com/flows/enableapi?apiid=bigquery">BigQuery API enabled</a>.</p>
 <ol class="arabic">
-<li><p class="first">Set up application default credentials by following the <a class="reference external" href="https://cloud.google.com/docs/authentication/getting-started">getting started
-with GCP authentication guide</a>.</p>
-</li>
-<li><p class="first">Set the <code class="docutils literal notranslate"><span class="pre">GOOGLE_BIGQUERY_PROJECT_ID</span></code> environment variable:</p>
+<li><p>Set up application default credentials by following the <a class="reference external" href="https://cloud.google.com/docs/authentication/getting-started">getting started
+with GCP authentication guide</a>.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">GOOGLE_BIGQUERY_PROJECT_ID</span></code> environment variable:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">GOOGLE_BIGQUERY_PROJECT_ID</span><span class="o">=</span>your-project-id
 </pre></div>
 </div>
 </li>
-<li><p class="first">Load data into BigQuery:</p>
+<li><p>Load data into BigQuery:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ci/datamgr.py bigquery
 </pre></div>
 </div>
@@ -334,11 +331,11 @@ with GCP authentication guide</a>.</p>
 <p>Here’s a few ideas to think about outside of participating in the primary
 development roadmap:</p>
 <ul class="simple">
-<li>Documentation</li>
-<li>Use cases and IPython notebooks</li>
-<li>Other SQL-based backends (Presto, Hive, Spark SQL)</li>
-<li>S3 filesytem support</li>
-<li>Integration with MLLib via PySpark</li>
+<li><p>Documentation</p></li>
+<li><p>Use cases and IPython notebooks</p></li>
+<li><p>Other SQL-based backends (Presto, Hive, Spark SQL)</p></li>
+<li><p>S3 filesytem support</p></li>
+<li><p>Integration with MLLib via PySpark</p></li>
 </ul>
 </div>
 </div>

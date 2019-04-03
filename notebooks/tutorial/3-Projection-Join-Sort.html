@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Projection, Joining, and Sorting &mdash; Ibis 1.0.0+2.g0965ec4 documentation</title>
+  <title>Projection, Joining, and Sorting &mdash; Ibis 1.0.0+3.gb00caa2 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+2.g0965ec4
+                1.0.0+3.gb00caa2
               </div>
             
           
@@ -589,8 +589,8 @@ Hello!
 <h2>Joins<a class="headerlink" href="#Joins" title="Permalink to this headline">¶</a></h2>
 <p>Ibis attempts to provide good support for all the standard relational joins supported by Impala, Hive, and other relational databases.</p>
 <ul class="simple">
-<li>inner, outer, left, right joins</li>
-<li>semi and anti-joins</li>
+<li><p>inner, outer, left, right joins</p></li>
+<li><p>semi and anti-joins</p></li>
 </ul>
 <p>To illustrate the joins we’ll use the TPC-H tables for now</p>
 <div class="nbinput nblast docutils container">
@@ -626,9 +626,9 @@ Hello!
 <h3>Joins are declarations of intent<a class="headerlink" href="#Joins-are-declarations-of-intent" title="Permalink to this headline">¶</a></h3>
 <p>After calling the join function (which validates the join condition, of course), you may perform any number of other operations:</p>
 <ul class="simple">
-<li>Aggregation</li>
-<li>Projection</li>
-<li>Filtering</li>
+<li><p>Aggregation</p></li>
+<li><p>Projection</p></li>
+<li><p>Filtering</p></li>
 </ul>
 <p>and so forth. Most importantly, depending on your schemas, the joined tables may include overlapping column names that could create a conflict if not addressed directly. Some other systems, like pandas, handle this by applying suffixes to the overlapping column names and computing the fully joined tables immediately. We don’t do this.</p>
 <p>So, with the above data, suppose we just want the region name and all the nation table data. We can then make a projection on the joined reference:</p>
@@ -820,9 +820,9 @@ Hello!
 <h2>Sorting<a class="headerlink" href="#Sorting" title="Permalink to this headline">¶</a></h2>
 <p>Sorting tables works similarly to the SQL <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause. We use the <code class="docutils literal notranslate"><span class="pre">sort_by</span></code> function and pass one of the following:</p>
 <ul class="simple">
-<li>Column names</li>
-<li>Column expressions</li>
-<li>One of these, with a False (descending order) or True (ascending order) qualifier</li>
+<li><p>Column names</p></li>
+<li><p>Column expressions</p></li>
+<li><p>One of these, with a False (descending order) or True (ascending order) qualifier</p></li>
 </ul>
 <p>So, to sort by <code class="docutils literal notranslate"><span class="pre">total</span></code> in ascending order we write:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="o">.</span><span class="n">sort_by</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">)</span>
