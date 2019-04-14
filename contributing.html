@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing to Ibis &mdash; Ibis 1.0.0+5.g80db366 documentation</title>
+  <title>Contributing to Ibis &mdash; Ibis 1.0.0+6.g8dd12de documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+5.g80db366
+                1.0.0+6.g8dd12de
               </div>
             
           
@@ -100,7 +100,9 @@
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Ibis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#running-the-test-suite">Running the Test Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">Clone the Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-a-development-environment">Set Up a Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-test-suite">Run the Test Suite</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
@@ -201,28 +203,37 @@
 </style>
 <div class="section" id="contributing-to-ibis">
 <span id="contrib"></span><h1>Contributing to Ibis<a class="headerlink" href="#contributing-to-ibis" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Make sure you’ve read the <a class="reference internal" href="getting-started.html#install"><span class="std std-ref">installation section</span></a> of the docs
-before continuing.</p>
+<div class="section" id="clone-the-repository">
+<span id="contrib-running-tests"></span><h2>Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>To contribute to ibis you need to clone the repository from GitHub:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/ibis-project/ibis
+</pre></div>
 </div>
-<div class="section" id="running-the-test-suite">
-<span id="contrib-running-tests"></span><h2>Running the Test Suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="set-up-a-development-environment">
+<h2>Set Up a Development Environment<a class="headerlink" href="#set-up-a-development-environment" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Install miniconda</a></p></li>
+<li><p>Create a conda environment suitable for ibis development:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda env create -n ibis-dev --file ci/requirements-3.7-dev.yml
+</pre></div>
+</div>
+</li>
+<li><p>Activate the environment</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda activate ibis-dev
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="run-the-test-suite">
+<h2>Run the Test Suite<a class="headerlink" href="#run-the-test-suite" title="Permalink to this headline">¶</a></h2>
 <p>Contributor <a class="reference external" href="https://github.com/kszucs">Krisztián Szűcs</a> has spent many hours
 crafting an easy-to-use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>
 setup that enables ibis developers to get up and running quickly.</p>
-<p>Here are the steps to run clone the repo and run the test suite:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone ibis</span>
-git clone https://github.com/ibis-project/ibis
-
-<span class="c1"># go to where the docker-compose file is</span>
-<span class="nb">pushd</span> ibis/ci
-
-<span class="c1"># start services, build ibis, and load data into databases</span>
-./build.sh
-
-<span class="c1"># optionally run all tests</span>
-./test.sh -m <span class="s1">&#39;not udf&#39;</span> -n auto -o <span class="nv">cache_dir</span><span class="o">=</span>/tmp/.pytest_cache
+<p>Here are the steps to start database services and run the test suite:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make --directory ibis init
+make --directory ibis testparallel
 </pre></div>
 </div>
 </div>
