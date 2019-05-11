@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developing and Contributing to Ibis &mdash; Ibis 1.0.0+11.gb9c132f documentation</title>
+  <title>Developing and Contributing to Ibis &mdash; Ibis 1.0.0+12.g2695e84 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+11.gb9c132f
+                1.0.0+12.g2695e84
               </div>
             
           
@@ -237,7 +237,7 @@ bash <span class="nv">$HOME</span>/miniconda.sh -b -p <span class="nv">$HOME</sp
 example), activate and install ibis in development mode</strong>:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a conda environment ready for ibis development</span>
 <span class="c1"># including building the documentation</span>
-conda create -n ibis36 -c conda-forge --file<span class="o">=</span>ci/requirements-dev.yml <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
+conda env create -n ibis36 -f ci/requirements-3.6-dev.yml
 
 <span class="c1"># Activate the conda environment</span>
 <span class="nb">source</span> activate ibis36
