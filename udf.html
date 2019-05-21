@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Defined Functions &mdash; Ibis 1.0.0+23.g04b9544 documentation</title>
+  <title>User Defined Functions &mdash; Ibis 1.0.0+24.gf6220bb documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+23.g04b9544
+                1.0.0+24.gf6220bb
               </div>
             
           
@@ -232,7 +232,7 @@ element-wise functions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
 
-<span class="nd">@udf.elementwise</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
+<span class="nd">@udf.elementwise</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">int64</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.0</span>
 </pre></div>
@@ -248,7 +248,7 @@ group</em>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
 
-<span class="nd">@udf.reduction</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
+<span class="nd">@udf.reduction</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">double_mean</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
@@ -264,7 +264,7 @@ Z-score is an example of an analytic function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis.expr.datatypes</span> <span class="kn">as</span> <span class="nn">dt</span>
 <span class="kn">from</span> <span class="nn">ibis.pandas</span> <span class="kn">import</span> <span class="n">udf</span>
 
-<span class="nd">@udf.analytic</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=.</span><span class="n">dtdouble</span><span class="p">)</span>
+<span class="nd">@udf.analytic</span><span class="p">(</span><span class="n">input_type</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">],</span> <span class="n">output_type</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">zscore</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">series</span> <span class="o">-</span> <span class="n">series</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">series</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
