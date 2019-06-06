@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>Advanced Topics: Top-K and Self Joins &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -117,7 +117,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../backends.html">Backends</a></li>
@@ -425,8 +424,8 @@ div.rendered_html tbody tr:hover {
 <span></span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">hdfs_port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IBIS_WEBHDFS_PORT&#39;</span><span class="p">,</span> <span class="mi">50070</span><span class="p">)</span>
-<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;quickstart.cloudera&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;impala&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">hdfs_port</span><span class="p">)</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;impala&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
                           <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
 <span class="n">ibis</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
@@ -622,12 +621,12 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>        region         nation     amount      odate
-0      AMERICA  UNITED STATES  160843.35 1992-06-22
-1  MIDDLE EAST           IRAN   78307.91 1996-04-19
-2       EUROPE         FRANCE  103237.90 1994-10-12
-3       EUROPE         FRANCE  201463.59 1997-09-12
-4         ASIA          JAPAN  166098.86 1995-09-12
+<span></span>        region        nation     amount      odate
+0  MIDDLE EAST        JORDAN  173665.47 1996-01-02
+1  MIDDLE EAST          IRAN   46929.18 1996-12-01
+2       AFRICA       MOROCCO  193846.25 1993-10-14
+3  MIDDLE EAST          IRAN   32151.78 1995-10-11
+4  MIDDLE EAST  SAUDI ARABIA  144659.20 1994-07-30
 </pre></div>
 </div>
 </div>

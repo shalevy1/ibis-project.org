@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.sql.sqlite.api.SQLiteClient.attach &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.sql.sqlite.api.SQLiteClient.attach &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -129,7 +129,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -231,19 +230,16 @@
 <h1>ibis.sql.sqlite.api.SQLiteClient.attach<a class="headerlink" href="#ibis-sql-sqlite-api-sqliteclient-attach" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.sql.sqlite.api.SQLiteClient.attach">
-<code class="descclassname">SQLiteClient.</code><code class="descname">attach</code><span class="sig-paren">(</span><em>self</em>, <em>name</em>, <em>path</em>, <em>create=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.sqlite.api.SQLiteClient.attach" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SQLiteClient.</code><code class="descname">attach</code><span class="sig-paren">(</span><em>name</em>, <em>path</em>, <em>create=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.sql.sqlite.api.SQLiteClient.attach" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connect another SQLite database file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">string</span></dt><dd><p>Database name within SQLite</p>
-</dd>
-<dt><strong>path</strong><span class="classifier">string</span></dt><dd><p>Path to sqlite3 file</p>
-</dd>
-<dt><strong>create</strong><span class="classifier">boolean, optional</span></dt><dd><p>If file does not exist, create file if True otherwise raise an
-Exception</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Database name within SQLite</p></li>
+<li><p><strong>path</strong> (<em>string</em>) – Path to sqlite3 file</p></li>
+<li><p><strong>create</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If file does not exist, create file if True otherwise raise an
+Exception</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

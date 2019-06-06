@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.raw_sql &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.impala.api.ImpalaClient.raw_sql &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -170,7 +170,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -272,24 +271,22 @@
 <h1>ibis.impala.api.ImpalaClient.raw_sql<a class="headerlink" href="#ibis-impala-api-impalaclient-raw-sql" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.impala.api.ImpalaClient.raw_sql">
-<code class="descclassname">ImpalaClient.</code><code class="descname">raw_sql</code><span class="sig-paren">(</span><em>self</em>, <em>query</em>, <em>results=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.raw_sql" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ImpalaClient.</code><code class="descname">raw_sql</code><span class="sig-paren">(</span><em>query</em>, <em>results=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.raw_sql" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a given query string. Could have unexpected results if the
 query modifies the behavior of the session in a way unknown to Ibis; be
 careful.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>query</strong><span class="classifier">string</span></dt><dd><p>DML or DDL statement</p>
-</dd>
-<dt><strong>results</strong><span class="classifier">boolean, default False</span></dt><dd><p>Pass True if the query as a result set</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<em>string</em>) – DML or DDL statement</p></li>
+<li><p><strong>results</strong> (<em>boolean</em><em>, </em><em>default False</em>) – Pass True if the query as a result set</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>cur</strong><span class="classifier">ImpalaCursor if results=True, None otherwise</span></dt><dd><p>You must call cur.release() after you are finished using the cursor.</p>
+<dd class="field-even"><p><strong>cur</strong> – You must call cur.release() after you are finished using the cursor.</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ImpalaCursor if results=True, None otherwise</p>
 </dd>
 </dl>
 </dd></dl>

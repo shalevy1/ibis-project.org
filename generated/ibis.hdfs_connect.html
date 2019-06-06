@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.hdfs_connect &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.hdfs_connect &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -125,7 +125,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -231,34 +230,30 @@
 <dd><p>Connect to HDFS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>host</strong><span class="classifier">str</span></dt><dd><p>Host name of the HDFS NameNode</p>
-</dd>
-<dt><strong>port</strong><span class="classifier">int</span></dt><dd><p>NameNode’s WebHDFS port</p>
-</dd>
-<dt><strong>protocol</strong><span class="classifier">str,</span></dt><dd><p>The protocol used to communicate with HDFS. The only valid value is
-<code class="docutils literal notranslate"><span class="pre">'webhdfs'</span></code>.</p>
-</dd>
-<dt><strong>use_https</strong><span class="classifier">bool</span></dt><dd><p>Connect to WebHDFS with HTTPS, otherwise plain HTTP. For secure
-authentication, the default for this is True, otherwise False.</p>
-</dd>
-<dt><strong>auth_mechanism</strong><span class="classifier">str</span></dt><dd><p>Set to NOSASL or PLAIN for non-secure clusters.
-Set to GSSAPI or LDAP for Kerberos-secured clusters.</p>
-</dd>
-<dt><strong>verify</strong><span class="classifier">bool</span></dt><dd><p>Set to <code class="xref py py-data docutils literal notranslate"><span class="pre">False</span></code> to turn off verifying SSL certificates.</p>
-</dd>
-<dt><strong>session</strong><span class="classifier">Optional[requests.Session]</span></dt><dd><p>A custom <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Session</span></code> object.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>WebHDFS</dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>host</strong> (<em>str</em>) – Host name of the HDFS NameNode</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – NameNode’s WebHDFS port</p></li>
+<li><p><strong>protocol</strong> (<em>str</em><em>,</em>) – The protocol used to communicate with HDFS. The only valid value is
+<code class="docutils literal notranslate"><span class="pre">'webhdfs'</span></code>.</p></li>
+<li><p><strong>use_https</strong> (<em>bool</em>) – Connect to WebHDFS with HTTPS, otherwise plain HTTP. For secure
+authentication, the default for this is True, otherwise False.</p></li>
+<li><p><strong>auth_mechanism</strong> (<em>str</em>) – Set to NOSASL or PLAIN for non-secure clusters.
+Set to GSSAPI or LDAP for Kerberos-secured clusters.</p></li>
+<li><p><strong>verify</strong> (<em>bool</em>) – Set to <code class="xref py py-data docutils literal notranslate"><span class="pre">False</span></code> to turn off verifying SSL certificates.</p></li>
+<li><p><strong>session</strong> (<em>Optional</em><em>[</em><em>requests.Session</em><em>]</em>) – A custom <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Session</span></code> object.</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>Other keywords are forwarded to HDFS library classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>WebHDFS</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

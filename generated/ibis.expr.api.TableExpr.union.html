@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.union &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TableExpr.union &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -151,7 +151,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -253,22 +252,22 @@
 <h1>ibis.expr.api.TableExpr.union<a class="headerlink" href="#ibis-expr-api-tableexpr-union" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.union">
-<code class="descclassname">TableExpr.</code><code class="descname">union</code><span class="sig-paren">(</span><em>left</em>, <em>right</em>, <em>distinct=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.union" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">union</code><span class="sig-paren">(</span><em>right</em>, <em>distinct=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.union" title="Permalink to this definition">¶</a></dt>
 <dd><p>Form the table set union of two table expressions having identical
 schemas.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>right</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-<dt><strong>distinct</strong><span class="classifier">boolean, default False</span></dt><dd><p>Only union distinct rows not occurring in the calling table (this
-can be very expensive, be careful)</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>right</strong> (<em>TableExpr</em>) – </p></li>
+<li><p><strong>distinct</strong> (<em>boolean</em><em>, </em><em>default False</em>) – Only union distinct rows not occurring in the calling table (this
+can be very expensive, be careful)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>union</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>union</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>TableExpr</p>
 </dd>
 </dl>
 </dd></dl>

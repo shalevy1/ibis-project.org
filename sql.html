@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -161,7 +161,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
@@ -1054,8 +1053,8 @@ allows you to form statistics that reference any of the joined tables.</p>
 </div>
 <div class="section" id="join-with-select">
 <h3>Join with <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code><a class="headerlink" href="#join-with-select" title="Permalink to this headline">¶</a></h3>
-<p>If you try to execute a join that has not been projected or aggregated, it will
-be <em>fully materialized</em>:</p>
+<p>If you try to compile or execute a join that has not been projected or
+aggregated, it will be <em>fully materialized</em>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">joined</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">left_join</span><span class="p">(</span><span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">key1</span> <span class="o">==</span> <span class="n">t2</span><span class="o">.</span><span class="n">key3</span><span class="p">)</span>
 
 <span class="gp">In [101]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">joined</span><span class="p">))</span>
@@ -1415,10 +1414,6 @@ values for each <code class="docutils literal notranslate"><span class="pre">use
 <span class="go">SELECT `user_id`, count(DISTINCT `event_type`) AS `unique_events`</span>
 <span class="go">FROM events</span>
 <span class="go">GROUP BY 1</span>
-</pre></div>
-</div>
-<p>You can also write:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">events</span><span class="o">.</span><span class="n">event_type</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

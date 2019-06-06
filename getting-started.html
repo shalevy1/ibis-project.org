@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Getting Started &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>Installation and Getting Started &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -116,7 +116,6 @@
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
@@ -248,12 +247,15 @@ environments.</p>
 </pre></div>
 </div>
 <p>To create an Ibis client, you must first connect your services and assemble the
-client using <code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
+client using <code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.impala.connect()</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">ibis</span>
 
-<span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">webhdfs_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">webhdfs_port</span><span class="p">)</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">impala_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">impala_port</span><span class="p">,</span>
-                          <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span><span class="p">)</span>
+<span class="gp">In [2]: </span><span class="n">hdfs</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">hdfs_connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;impala&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50070</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;impala&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span> <span class="n">hdfs_client</span><span class="o">=</span><span class="n">hdfs</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
 </pre></div>
 </div>
 <p>Both method calls can take <code class="docutils literal notranslate"><span class="pre">auth_mechanism='GSSAPI'</span></code> or
@@ -268,8 +270,9 @@ connection semantics are identical.</p>
 </pre></div>
 </div>
 <p>Create a client by passing a path to a SQLite database to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ibis</span><span class="o">.</span><span class="n">sqlite</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;path/to/my/sqlite.db&#39;</span><span class="p">)</span>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.sqlite.connect()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ibis</span><span class="o">.</span><span class="n">sqlite</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;path/to/my/sqlite.db&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>See <a class="reference external" href="http://blog.ibis-project.org/sqlite-crunchbase-quickstart/">http://blog.ibis-project.org/sqlite-crunchbase-quickstart/</a> for a quickstart
@@ -281,14 +284,21 @@ using SQLite.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ibis</span><span class="o">-</span><span class="n">framework</span><span class="p">[</span><span class="n">postgres</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Create a client by passing a connection string or individual parameters to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="s1">&#39;postgresql://user:pass@host:port/my_database&#39;</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23569</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span>
-<span class="gp">... </span><span class="p">)</span>
+<p>Create a client by passing a connection string to the <code class="docutils literal notranslate"><span class="pre">url</span></code> parameter or
+individual parameters to <code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.postgres.connect()</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;postgresql://postgres:postgres@postgres:5432/ibis_testing&#39;</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [5]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">postgres</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
 </pre></div>
 </div>
 </div>
@@ -299,8 +309,8 @@ using SQLite.</p>
 </pre></div>
 </div>
 <p>Create a client by passing in database connection parameters such as <code class="docutils literal notranslate"><span class="pre">host</span></code>,
-<code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">database</span></code>, and <code class="docutils literal notranslate"><span class="pre">user</span></code> to <code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">clickhouse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
+<code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">database</span></code>, and <code class="docutils literal notranslate"><span class="pre">user</span></code> to <code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.clickhouse.connect()</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">clickhouse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;clickhouse&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -325,8 +335,8 @@ project.</p>
 will still be billed for any and all queries</strong>.</p>
 </div>
 <p>If you want to query data that lives in a different project than the billing
-project you can use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">database()</span></code>
-method of <code class="xref py py-class docutils literal notranslate"><span class="pre">BigQueryClient</span></code> objects:</p>
+project you can use the <code class="xref py py-meth docutils literal notranslate"><span class="pre">ibis.bigquery.client.BigQueryClient.database()</span></code>
+method of <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.bigquery.client.BigQueryClient</span></code> objects:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">db</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">database</span><span class="p">(</span><span class="s1">&#39;other-data-project.other-dataset&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">my_awesome_table</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">sweet_column</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>  <span class="c1"># runs against the billing project</span>
@@ -335,13 +345,18 @@ method of <code class="xref py py-class docutils literal notranslate"><span clas
 </div>
 <div class="section" id="pandas-quickstart">
 <h2><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> Quickstart<a class="headerlink" href="#pandas-quickstart" title="Permalink to this headline">¶</a></h2>
-<p>Ibis’s Pandas backend is available on Ibis’s core:</p>
+<p>Ibis’s Pandas backend is available in core Ibis:</p>
 <p>Create a client by supplying a dictionary of DataFrames using
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>. The keys become the table names:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">({</span>
-<span class="gp">... </span>    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">(),</span>
-<span class="gp">... </span>    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">()</span>
-<span class="gp">... </span><span class="p">})</span>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.pandas.connect()</span></code>. The keys become the table names:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [8]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="p">{</span>
+<span class="gp">   ...: </span>       <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">(),</span>
+<span class="gp">   ...: </span>       <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">makeDataFrame</span><span class="p">(),</span>
+<span class="gp">   ...: </span>    <span class="p">}</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
 </pre></div>
 </div>
 </div>
@@ -353,11 +368,14 @@ method of <code class="xref py py-class docutils literal notranslate"><span clas
 </div>
 <p>Create a client by passing in database connection parameters such as <code class="docutils literal notranslate"><span class="pre">host</span></code>,
 <code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">database</span></code>,  <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mapd</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;mapd&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6274</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;mapd&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;HyperInteractive&#39;</span>
-<span class="gp">... </span><span class="p">)</span>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.mapd.connect()</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mapd</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;omnisci&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;mapd&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;HyperInteractive&#39;</span><span class="p">,</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
 </pre></div>
 </div>
 </div>
@@ -368,13 +386,16 @@ method of <code class="xref py py-class docutils literal notranslate"><span clas
 </pre></div>
 </div>
 <p>Create a client by passing a connection string or individual parameters to
-<code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="s1">&#39;mysql://user:pass@host:port/my_database&#39;</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">23569</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span>
-<span class="gp">... </span><span class="p">)</span>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ibis.mysql.connect()</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;mysql+pymysql://ibis:ibis@mysql/ibis_testing&#39;</span><span class="p">)</span>
+
+<span class="gp">In [11]: </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;ibis&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;ibis&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">database</span><span class="o">=</span><span class="s1">&#39;ibis_testing&#39;</span><span class="p">,</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
 </pre></div>
 </div>
 </div>

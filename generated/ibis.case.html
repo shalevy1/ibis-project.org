@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.case &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.case &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -254,13 +253,6 @@ that accepts self-contained boolean expressions (as opposed to expressions
 which are to be equality-compared with a fixed value expression)</p>
 <p>Use the .when method on the resulting object followed by .end to create a
 complete case.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>case</strong><span class="classifier">CaseBuilder</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cond1</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
@@ -272,6 +264,14 @@ complete case.</p>
 <span class="gp">... </span>        <span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">cond2</span><span class="p">,</span> <span class="n">result2</span><span class="p">)</span><span class="o">.</span><span class="n">end</span><span class="p">())</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>case</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>CaseBuilder</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

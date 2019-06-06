@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.where &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.where &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -252,19 +251,17 @@
 <dd><p>Equivalent to the ternary expression: if X then Y else Z</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>boolean_expr</strong><span class="classifier">BooleanValue (array or scalar)</span></dt><dd></dd>
-<dt><strong>true_expr</strong><span class="classifier">value</span></dt><dd><p>Values for each True value</p>
-</dd>
-<dt><strong>false_null_expr</strong><span class="classifier">value</span></dt><dd><p>Values for False or NULL values</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>boolean_expr</strong> (<em>BooleanValue</em><em> (</em><em>array</em><em> or </em><em>scalar</em><em>)</em>) – </p></li>
+<li><p><strong>true_expr</strong> (<em>value</em>) – Values for each True value</p></li>
+<li><p><strong>false_null_expr</strong> (<em>value</em>) – Values for False or NULL values</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>result</strong><span class="classifier">arity depending on inputs</span></dt><dd><p>Type of true_expr used to determine output type</p>
+<dd class="field-even"><p><strong>result</strong> – Type of true_expr used to determine output type</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>arity depending on inputs</p>
 </dd>
 </dl>
 </dd></dl>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Design &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>Design &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Extending Ibis" href="extending.html" />
-    <link rel="prev" title="Developing and Contributing to Ibis" href="developer.html" /> 
+    <link rel="prev" title="Contributing to Ibis" href="contributing.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -100,7 +100,6 @@
 <li class="toctree-l1"><a class="reference internal" href="sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#primary-goals">Primary Goals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#flow-of-execution">Flow of Execution</a></li>
@@ -257,14 +256,24 @@ columns, or scalars.</p>
 <code class="xref py py-class docutils literal notranslate"><span class="pre">StringScalar</span></code>, and
 <code class="xref py py-class docutils literal notranslate"><span class="pre">TableExpr</span></code>.</p>
 <p>Here’s an example of each type of expression:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">)])</span>
-<span class="n">int64_column</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">int64_column</span><span class="p">)</span>
-<span class="n">string_scalar</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;some_string_value&#39;</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">string_scalar</span><span class="p">)</span>
-<span class="n">table_expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">table_expr</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">ibis</span>
+
+<span class="gp">In [2]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">)])</span>
+
+<span class="gp">In [3]: </span><span class="n">int64_column</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span>
+
+<span class="gp">In [4]: </span><span class="nb">type</span><span class="p">(</span><span class="n">int64_column</span><span class="p">)</span>
+<span class="gh">Out[4]: </span><span class="go">ibis.expr.types.IntegerColumn</span>
+
+<span class="gp">In [5]: </span><span class="n">string_scalar</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="s1">&#39;some_string_value&#39;</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="nb">type</span><span class="p">(</span><span class="n">string_scalar</span><span class="p">)</span>
+<span class="gh">Out[6]: </span><span class="go">ibis.expr.types.StringScalar</span>
+
+<span class="gp">In [7]: </span><span class="n">table_expr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">mutate</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [8]: </span><span class="nb">type</span><span class="p">(</span><span class="n">table_expr</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go">ibis.expr.types.TableExpr</span>
 </pre></div>
 </div>
 </div>
@@ -275,35 +284,38 @@ ibis. Each node corresponds to a particular operation.</p>
 <p>Most nodes are defined in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">operations</span></code> module.</p>
 <p>Examples of nodes include <code class="xref py py-class docutils literal notranslate"><span class="pre">Add</span></code> and
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Sum</span></code>.</p>
-<p>Nodes have two important members (and often these are the only members defined):</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">input_type</span></code>: a list of rules</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output_type</span></code>: a rule or method</p></li>
-</ol>
-<p>The <code class="docutils literal notranslate"><span class="pre">input_type</span></code> member is a list of rules that defines the types of
-the inputs to the operation. This is sometimes called the signature.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">output_type</span></code> member is a rule or a method that defines the output type
-of the operation. This is sometimes called the return type.</p>
-<p>An example of <code class="docutils literal notranslate"><span class="pre">input_type</span></code>/<code class="docutils literal notranslate"><span class="pre">output_type</span></code> usage is the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Log</span></code> class:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Log</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<p>Nodes (transitively) inherit from a class that allows node authors to define
+their node’s input arguments directly in the class body.</p>
+<p>Additionally the <code class="docutils literal notranslate"><span class="pre">output_type</span></code> member of the class is a rule or method that
+defines the shape (scalar or column) and element type of the operation.</p>
+<p>Each input argument’s rule should be passed to the
+<code class="docutils literal notranslate"><span class="pre">ibis.expr.signature.Argument</span></code> class (often aliased to <code class="docutils literal notranslate"><span class="pre">Arg</span></code> for
+convenience in the ibis codebase).</p>
+<p>An example of usage is a node that representats a logarithm operation:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="kn">import</span> <span class="nn">ibis.expr.rules</span> <span class="kn">as</span> <span class="nn">rlz</span>
 
-    <span class="n">input_type</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">rules</span><span class="o">.</span><span class="n">double</span><span class="p">(),</span>
-        <span class="n">rules</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="n">optional</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="p">]</span>
-    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">shape_like_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)</span>
+<span class="gp">In [10]: </span><span class="kn">from</span> <span class="nn">ibis.expr.operations</span> <span class="kn">import</span> <span class="n">ValueOp</span>
+
+<span class="gp">In [11]: </span><span class="kn">from</span> <span class="nn">ibis.expr.signature</span> <span class="kn">import</span> <span class="n">Argument</span> <span class="k">as</span> <span class="n">Arg</span>
+
+<span class="gp">In [12]: </span><span class="k">class</span> <span class="nc">Log</span><span class="p">(</span><span class="n">ValueOp</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="n">arg</span> <span class="o">=</span> <span class="n">Arg</span><span class="p">(</span><span class="n">rlz</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>  <span class="c1"># A double scalar or column</span>
+<span class="gp">   ....: </span>    <span class="n">base</span> <span class="o">=</span> <span class="n">Arg</span><span class="p">(</span><span class="n">rlz</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># Optional argument</span>
+<span class="gp">   ....: </span>    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rlz</span><span class="o">.</span><span class="n">typeof</span><span class="p">(</span><span class="s1">&#39;arg&#39;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
 </pre></div>
 </div>
 <p>This class describes an operation called <code class="docutils literal notranslate"><span class="pre">Log</span></code> that takes one required
 argument: a double scalar or column, and one optional argument: a double scalar
-or column named <code class="docutils literal notranslate"><span class="pre">base</span></code> that defaults to nothing if not provided. The base
+or column named <code class="docutils literal notranslate"><span class="pre">base</span></code> that defaults to nothing if not provided. The <code class="docutils literal notranslate"><span class="pre">base</span></code>
 argument is <code class="docutils literal notranslate"><span class="pre">None</span></code> by default so that the expression will behave as the
 underlying database does.</p>
-<p>These objects are instantiated when you use ibis APIs:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)])</span>
-<span class="n">log_1p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>  <span class="c1"># an Add and a Log are instantiated here</span>
+<p>Similar objects are instantiated when you use ibis APIs:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="kn">import</span> <span class="nn">ibis</span>
+
+<span class="gp">In [14]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+
+<span class="gp">In [15]: </span><span class="n">log_1p</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>  <span class="c1"># an Add and a Log are instantiated here</span>
 </pre></div>
 </div>
 </div>
@@ -383,7 +395,7 @@ client.</p>
         <a href="extending.html" class="btn btn-neutral float-right" title="Extending Ibis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="developer.html" class="btn btn-neutral float-left" title="Developing and Contributing to Ibis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing to Ibis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

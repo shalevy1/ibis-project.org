@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.literal &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.literal &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -252,21 +251,19 @@
 <dd><p>Create a scalar expression from a Python value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">some Python basic type</span></dt><dd><p>A Python value</p>
-</dd>
-<dt><strong>type</strong><span class="classifier">ibis type or string, optional</span></dt><dd><p>An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.expr.datatypes.DataType</span></code> or a string
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>some Python basic type</em>) – A Python value</p></li>
+<li><p><strong>type</strong> (<em>ibis type</em><em> or </em><em>string</em><em>, </em><em>optional</em>) – An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">ibis.expr.datatypes.DataType</span></code> or a string
 indicating the ibis type of <cite>value</cite>. This parameter should only be used
 in cases where ibis’s type inference isn’t sufficient for discovering
-the type of <cite>value</cite>.</p>
-</dd>
-</dl>
+the type of <cite>value</cite>.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>literal_value</strong><span class="classifier">Literal</span></dt><dd><p>An expression representing a literal value</p>
+<dd class="field-even"><p><strong>literal_value</strong> – An expression representing a literal value</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Literal</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

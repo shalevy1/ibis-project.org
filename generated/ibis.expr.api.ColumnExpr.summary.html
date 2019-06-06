@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ColumnExpr.summary &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.ColumnExpr.summary &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -248,22 +247,21 @@
 <h1>ibis.expr.api.ColumnExpr.summary<a class="headerlink" href="#ibis-expr-api-columnexpr-summary" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.ColumnExpr.summary">
-<code class="descclassname">ColumnExpr.</code><code class="descname">summary</code><span class="sig-paren">(</span><em>arg</em>, <em>exact_nunique=False</em>, <em>prefix=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ColumnExpr.summary" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ColumnExpr.</code><code class="descname">summary</code><span class="sig-paren">(</span><em>exact_nunique=False</em>, <em>prefix=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ColumnExpr.summary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a set of summary metrics from the input value expression</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arg</strong><span class="classifier">value expression</span></dt><dd></dd>
-<dt><strong>exact_nunique</strong><span class="classifier">boolean, default False</span></dt><dd><p>Compute the exact number of distinct values (slower)</p>
-</dd>
-<dt><strong>prefix</strong><span class="classifier">string, default None</span></dt><dd><p>String prefix for metric names</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<em>value expression</em>) – </p></li>
+<li><p><strong>exact_nunique</strong> (<em>boolean</em><em>, </em><em>default False</em>) – Compute the exact number of distinct values (slower)</p></li>
+<li><p><strong>prefix</strong> (<em>string</em><em>, </em><em>default None</em>) – String prefix for metric names</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>summary</strong><span class="classifier">(count, # nulls, nunique)</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>summary</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(count, # nulls, nunique)</p>
 </dd>
 </dl>
 </dd></dl>

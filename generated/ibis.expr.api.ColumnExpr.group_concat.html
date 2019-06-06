@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ColumnExpr.group_concat &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.ColumnExpr.group_concat &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -248,21 +247,22 @@
 <h1>ibis.expr.api.ColumnExpr.group_concat<a class="headerlink" href="#ibis-expr-api-columnexpr-group-concat" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.ColumnExpr.group_concat">
-<code class="descclassname">ColumnExpr.</code><code class="descname">group_concat</code><span class="sig-paren">(</span><em>arg</em>, <em>sep='</em>, <em>'</em>, <em>where=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ColumnExpr.group_concat" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ColumnExpr.</code><code class="descname">group_concat</code><span class="sig-paren">(</span><em>sep='</em>, <em>'</em>, <em>where=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ColumnExpr.group_concat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Concatenate values using the indicated separator (comma by default) to
 produce a string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arg</strong><span class="classifier">array expression</span></dt><dd></dd>
-<dt><strong>sep</strong><span class="classifier">string, default ‘,’</span></dt><dd></dd>
-<dt><strong>where</strong><span class="classifier">bool, default None</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<em>array expression</em>) – </p></li>
+<li><p><strong>sep</strong> (<em>string</em><em>, </em><em>default '</em><em>,</em><em>'</em>) – </p></li>
+<li><p><strong>where</strong> (<em>bool</em><em>, </em><em>default None</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>concatenated</strong><span class="classifier">string scalar</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>concatenated</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string scalar</p>
 </dd>
 </dl>
 </dd></dl>

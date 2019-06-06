@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.schema &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.schema &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -267,19 +266,11 @@ decimal(p, s)  DECIMAL(p,s)
 interval(u)    INTERVAL(u)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>pairs</strong><span class="classifier">list of (name, type) tuples</span></dt><dd><p>Mutually exclusive with names/types</p>
-</dd>
-<dt><strong>names</strong><span class="classifier">list of string</span></dt><dd><p>Field names</p>
-</dd>
-<dt><strong>types</strong><span class="classifier">list of string</span></dt><dd><p>Field types</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>schema</strong><span class="classifier">Schema</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pairs</strong> (<em>list of</em><em> (</em><em>name</em><em>, </em><em>type</em><em>) </em><em>tuples</em>) – Mutually exclusive with names/types</p></li>
+<li><p><strong>names</strong> (<em>list of string</em>) – Field names</p></li>
+<li><p><strong>types</strong> (<em>list of string</em>) – Field types</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -291,6 +282,14 @@ interval(u)    INTERVAL(u)</p>
 <span class="gp">... </span>             <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;string&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;boolean&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>schema</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Schema</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

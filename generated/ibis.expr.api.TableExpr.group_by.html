@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.group_by &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TableExpr.group_by &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -151,7 +151,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -253,19 +252,9 @@
 <h1>ibis.expr.api.TableExpr.group_by<a class="headerlink" href="#ibis-expr-api-tableexpr-group-by" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.group_by">
-<code class="descclassname">TableExpr.</code><code class="descname">group_by</code><span class="sig-paren">(</span><em>self</em>, <em>by=None</em>, <em>**additional_grouping_expressions</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.group_by" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">group_by</code><span class="sig-paren">(</span><em>by=None</em>, <em>**additional_grouping_expressions</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.group_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an intermediate grouped table expression, pending some group
 operation to be applied with it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>grouped_expr</strong><span class="classifier">GroupedTableExpr</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>group_by and groupby are equivalent, with <cite>groupby</cite> being provided for
-ease-of-use for pandas users.</p>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)]</span>
@@ -274,6 +263,17 @@ ease-of-use for pandas users.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">sum_of_c</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
+<p class="rubric">Notes</p>
+<p>group_by and groupby are equivalent, with <cite>groupby</cite> being provided for
+ease-of-use for pandas users.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>grouped_expr</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>GroupedTableExpr</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

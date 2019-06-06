@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Defined Functions &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>User Defined Functions &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -107,11 +107,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bigquery">BigQuery</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sqlite">SQLite</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends.html">Backends</a></li>
@@ -292,16 +290,18 @@ handle setting it to something not <code class="docutils literal notranslate"><s
 </div>
 <p>Using <code class="docutils literal notranslate"><span class="pre">add_one</span></code> from above as an example, the following call will receive a
 <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code> for the <code class="docutils literal notranslate"><span class="pre">x</span></code> argument:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">({</span><span class="s1">&#39;df&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ibis</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">pandas</span><span class="o">.</span><span class="n">connect</span><span class="p">({</span><span class="s1">&#39;df&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">})</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;df&#39;</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="n">expr</span>
 </pre></div>
 </div>
 <p>And this will receive the <code class="docutils literal notranslate"><span class="pre">int</span></code> 1:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">expr</span> <span class="o">=</span> <span class="n">add_one</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">expr</span>
 </pre></div>
 </div>
 <p>Since the pandas backend passes around <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> you can accept <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>
@@ -350,44 +350,13 @@ turning Python code into JavaScript.</p>
 <p>Ibis will parse the source of the function and turn the resulting Python AST
 into JavaScript source code (technically, ECMAScript 2015). Most of the Python
 language is supported including classes, functions and generators.</p>
-<p>If you want to inspect the generated code you can look at the <code class="docutils literal notranslate"><span class="pre">js</span></code> property
-of the function.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">my_bigquery_add_one</span><span class="o">.</span><span class="n">js</span><span class="p">)</span>
-<span class="go">CREATE TEMPORARY FUNCTION my_bigquery_add_one(x FLOAT64)</span>
-<span class="go">RETURNS FLOAT64</span>
-<span class="go">LANGUAGE js AS &quot;&quot;&quot;</span>
-<span class="go">&#39;use strict&#39;;</span>
-<span class="go">function my_bigquery_add_one(x) {</span>
-<span class="go">    return (x + 1.0);</span>
-<span class="go">}</span>
-<span class="go">return my_bigquery_add_one(x);</span>
-<span class="go">&quot;&quot;&quot;;</span>
-</pre></div>
-</div>
 <p>When you want to use this function you call it like any other Python
-function–only on an ibis expression:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ibis</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">expr</span> <span class="o">=</span> <span class="n">my_bigquery_add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
-<span class="go">CREATE TEMPORARY FUNCTION my_bigquery_add_one(x FLOAT64)</span>
-<span class="go">RETURNS FLOAT64</span>
-<span class="go">LANGUAGE js AS &quot;&quot;&quot;</span>
-<span class="go">&#39;use strict&#39;;</span>
-<span class="go">function my_bigquery_add_one(x) {</span>
-<span class="go">    return (x + 1.0);</span>
-<span class="go">}</span>
-<span class="go">return my_bigquery_add_one(x);</span>
-<span class="go">&quot;&quot;&quot;;</span>
-
-<span class="go">SELECT my_bigquery_add_one(`a`) AS `tmp`</span>
-<span class="go">FROM t0</span>
+function–only it must be called on an ibis expression:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">table</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;double&#39;</span><span class="p">)])</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">my_bigquery_add_one</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">bigquery</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sqlite">
-<h2>SQLite<a class="headerlink" href="#sqlite" title="Permalink to this headline">¶</a></h2>
-<p id="udf-sqlite">TODO</p>
 </div>
 </div>
 

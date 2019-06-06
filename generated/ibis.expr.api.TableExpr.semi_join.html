@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.semi_join &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TableExpr.semi_join &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -151,7 +151,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -253,31 +252,31 @@
 <h1>ibis.expr.api.TableExpr.semi_join<a class="headerlink" href="#ibis-expr-api-tableexpr-semi-join" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.semi_join">
-<code class="descclassname">TableExpr.</code><code class="descname">semi_join</code><span class="sig-paren">(</span><em>self</em>, <em>other</em>, <em>predicates=()</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.semi_join" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">semi_join</code><span class="sig-paren">(</span><em>other</em>, <em>predicates=()</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.semi_join" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform a relational join between two tables. Does not resolve resulting
 table schema.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>left</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-<dt><strong>right</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-<dt><strong>predicates</strong><span class="classifier">join expression(s)</span></dt><dd></dd>
-<dt><strong>how</strong><span class="classifier">string, default ‘inner’</span></dt><dd><ul class="simple">
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left</strong> (<em>TableExpr</em>) – </p></li>
+<li><p><strong>right</strong> (<em>TableExpr</em>) – </p></li>
+<li><p><strong>predicates</strong> (<em>join expression</em><em>(</em><em>s</em><em>)</em>) – </p></li>
+<li><p><strong>how</strong> (<em>string</em><em>, </em><em>default 'inner'</em>) – <ul>
 <li><p>‘inner’: inner join</p></li>
-<li><p>‘left’: left join</p></li>
-<li><p>‘outer’: full outer join</p></li>
-<li><p>‘right’: right outer join</p></li>
-<li><p>‘semi’ or ‘left_semi’: left semi join</p></li>
-<li><p>‘anti’: anti join</p></li>
+<li><p>’left’: left join</p></li>
+<li><p>’outer’: full outer join</p></li>
+<li><p>’right’: right outer join</p></li>
+<li><p>’semi’ or ‘left_semi’: left semi join</p></li>
+<li><p>’anti’: anti join</p></li>
+</ul>
+</p></li>
 </ul>
 </dd>
-</dl>
-</dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>joined</strong><span class="classifier">TableExpr</span></dt><dd><p>Note that the schema is not materialized yet</p>
+<dd class="field-even"><p><strong>joined</strong> – Note that the schema is not materialized yet</p>
 </dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>TableExpr</p>
 </dd>
 </dl>
 </dd></dl>

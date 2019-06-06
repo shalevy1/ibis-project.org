@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.range_window &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.range_window &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -146,7 +146,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -255,24 +254,21 @@ value of the order-by expression.</p>
 <p>All window frames / ranges are inclusive.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>preceding</strong><span class="classifier">int, tuple, or None, default None</span></dt><dd><p>Specify None for unbounded, 0 to include current row tuple for
-off-center window</p>
-</dd>
-<dt><strong>following</strong><span class="classifier">int, tuple, or None, default None</span></dt><dd><p>Specify None for unbounded, 0 to include current row tuple for
-off-center window</p>
-</dd>
-<dt><strong>group_by</strong><span class="classifier">expressions, default None</span></dt><dd><p>Either specify here or with TableExpr.group_by</p>
-</dd>
-<dt><strong>order_by</strong><span class="classifier">expressions, default None</span></dt><dd><p>For analytic functions requiring an ordering, specify here, or let Ibis
-determine the default ordering (for functions like rank)</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>preceding</strong> (<em>int</em><em>, </em><em>tuple</em><em>, or </em><em>None</em><em>, </em><em>default None</em>) – Specify None for unbounded, 0 to include current row tuple for
+off-center window</p></li>
+<li><p><strong>following</strong> (<em>int</em><em>, </em><em>tuple</em><em>, or </em><em>None</em><em>, </em><em>default None</em>) – Specify None for unbounded, 0 to include current row tuple for
+off-center window</p></li>
+<li><p><strong>group_by</strong> (<em>expressions</em><em>, </em><em>default None</em>) – Either specify here or with TableExpr.group_by</p></li>
+<li><p><strong>order_by</strong> (<em>expressions</em><em>, </em><em>default None</em>) – For analytic functions requiring an ordering, specify here, or let Ibis
+determine the default ordering (for functions like rank)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Window</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Window</p>
 </dd>
 </dl>
 </dd></dl>

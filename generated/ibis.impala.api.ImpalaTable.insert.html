@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaTable.insert &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.impala.api.ImpalaTable.insert &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -170,7 +170,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -272,24 +271,21 @@
 <h1>ibis.impala.api.ImpalaTable.insert<a class="headerlink" href="#ibis-impala-api-impalatable-insert" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.impala.api.ImpalaTable.insert">
-<code class="descclassname">ImpalaTable.</code><code class="descname">insert</code><span class="sig-paren">(</span><em>self</em>, <em>obj=None</em>, <em>overwrite=False</em>, <em>partition=None</em>, <em>values=None</em>, <em>validate=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaTable.insert" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ImpalaTable.</code><code class="descname">insert</code><span class="sig-paren">(</span><em>obj=None</em>, <em>overwrite=False</em>, <em>partition=None</em>, <em>values=None</em>, <em>validate=True</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaTable.insert" title="Permalink to this definition">¶</a></dt>
 <dd><p>Insert into Impala table. Wraps ImpalaClient.insert</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>obj</strong><span class="classifier">TableExpr or pandas DataFrame</span></dt><dd></dd>
-<dt><strong>overwrite</strong><span class="classifier">boolean, default False</span></dt><dd><p>If True, will replace existing contents of table</p>
-</dd>
-<dt><strong>partition</strong><span class="classifier">list or dict, optional</span></dt><dd><p>For partitioned tables, indicate the partition that’s being inserted
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>TableExpr</em><em> or </em><em>pandas DataFrame</em>) – </p></li>
+<li><p><strong>overwrite</strong> (<em>boolean</em><em>, </em><em>default False</em>) – If True, will replace existing contents of table</p></li>
+<li><p><strong>partition</strong> (<em>list</em><em> or </em><em>dict</em><em>, </em><em>optional</em>) – For partitioned tables, indicate the partition that’s being inserted
 into, either with an ordered list of partition keys or a dict of
 partition field name to value. For example for the partition
 (year=2007, month=7), this can be either (2007, 7) or {‘year’: 2007,
-‘month’: 7}.</p>
-</dd>
-<dt><strong>validate</strong><span class="classifier">boolean, default True</span></dt><dd><p>If True, do more rigorous validation that schema of table being
-inserted is compatible with the existing table</p>
-</dd>
-</dl>
+‘month’: 7}.</p></li>
+<li><p><strong>validate</strong> (<em>boolean</em><em>, </em><em>default True</em>) – If True, do more rigorous validation that schema of table being
+inserted is compatible with the existing table</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>

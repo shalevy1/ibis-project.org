@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.ValueExpr.cast &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.ValueExpr.cast &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -143,7 +143,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -245,19 +244,12 @@
 <h1>ibis.expr.api.ValueExpr.cast<a class="headerlink" href="#ibis-expr-api-valueexpr-cast" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.ValueExpr.cast">
-<code class="descclassname">ValueExpr.</code><code class="descname">cast</code><span class="sig-paren">(</span><em>arg</em>, <em>target_type</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.cast" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ValueExpr.</code><code class="descname">cast</code><span class="sig-paren">(</span><em>target_type</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.ValueExpr.cast" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cast value(s) to indicated data type. Values that cannot be
 successfully casted</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>target_type</strong><span class="classifier">data type name</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>cast_expr</strong><span class="classifier">ValueExpr</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>target_type</strong> (<em>data type name</em>) – </p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -276,6 +268,14 @@ string         STRING
 timestamp      TIMESTAMP
 decimal(p, s)  DECIMAL(p,s)
 interval(u)    INTERVAL(u)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>cast_expr</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ValueExpr</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

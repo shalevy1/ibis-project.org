@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.NumericColumn.bucket &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.NumericColumn.bucket &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -138,7 +138,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -240,25 +239,25 @@
 <h1>ibis.expr.api.NumericColumn.bucket<a class="headerlink" href="#ibis-expr-api-numericcolumn-bucket" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.NumericColumn.bucket">
-<code class="descclassname">NumericColumn.</code><code class="descname">bucket</code><span class="sig-paren">(</span><em>arg</em>, <em>buckets</em>, <em>closed='left'</em>, <em>close_extreme=True</em>, <em>include_under=False</em>, <em>include_over=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.NumericColumn.bucket" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">NumericColumn.</code><code class="descname">bucket</code><span class="sig-paren">(</span><em>buckets</em>, <em>closed='left'</em>, <em>close_extreme=True</em>, <em>include_under=False</em>, <em>include_over=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.NumericColumn.bucket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute a discrete binning of a numeric array</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arg</strong><span class="classifier">numeric array expression</span></dt><dd></dd>
-<dt><strong>buckets</strong><span class="classifier">list</span></dt><dd></dd>
-<dt><strong>closed</strong><span class="classifier">{‘left’, ‘right’}, default ‘left’</span></dt><dd><p>Which side of each interval is closed. For example
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg</strong> (<em>numeric array expression</em>) – </p></li>
+<li><p><strong>buckets</strong> (<em>list</em>) – </p></li>
+<li><p><strong>closed</strong> (<em>{'left'</em><em>, </em><em>'right'}</em><em>, </em><em>default 'left'</em>) – Which side of each interval is closed. For example
 buckets = [0, 100, 200]
 closed = ‘left’: 100 falls in 2nd bucket
-closed = ‘right’: 100 falls in 1st bucket</p>
-</dd>
-<dt><strong>close_extreme</strong><span class="classifier">boolean, default True</span></dt><dd></dd>
-</dl>
+closed = ‘right’: 100 falls in 1st bucket</p></li>
+<li><p><strong>close_extreme</strong> (<em>boolean</em><em>, </em><em>default True</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>bucketed</strong><span class="classifier">coded value expression</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>bucketed</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>coded value expression</p>
 </dd>
 </dl>
 </dd></dl>

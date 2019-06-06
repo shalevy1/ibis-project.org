@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.projection &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TableExpr.projection &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -151,7 +151,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -253,20 +252,18 @@
 <h1>ibis.expr.api.TableExpr.projection<a class="headerlink" href="#ibis-expr-api-tableexpr-projection" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.projection">
-<code class="descclassname">TableExpr.</code><code class="descname">projection</code><span class="sig-paren">(</span><em>table</em>, <em>exprs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.projection" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">projection</code><span class="sig-paren">(</span><em>exprs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.projection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute new table expression with the indicated column expressions from
 this table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>exprs</strong><span class="classifier">column expression, or string, or list of column expressions and</span></dt><dd><p>strings. If strings passed, must be columns in the table already</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><strong>exprs</strong> (<em>column expression</em><em>, or </em><em>string</em><em>, or </em><em>list of column expressions and</em>) – strings. If strings passed, must be columns in the table already</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>projection</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>projection</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>TableExpr</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.HDFS.put_tarfile &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.HDFS.put_tarfile &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -135,7 +135,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -237,18 +236,18 @@
 <h1>ibis.HDFS.put_tarfile<a class="headerlink" href="#ibis-hdfs-put-tarfile" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.HDFS.put_tarfile">
-<code class="descclassname">HDFS.</code><code class="descname">put_tarfile</code><span class="sig-paren">(</span><em>self</em>, <em>hdfs_path</em>, <em>local_path</em>, <em>compression='gzip'</em>, <em>verbose=None</em>, <em>overwrite=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.HDFS.put_tarfile" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">HDFS.</code><code class="descname">put_tarfile</code><span class="sig-paren">(</span><em>hdfs_path</em>, <em>local_path</em>, <em>compression='gzip'</em>, <em>verbose=None</em>, <em>overwrite=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.HDFS.put_tarfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write contents of tar archive to HDFS directly without having to
 decompress it locally first</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>hdfs_path</strong><span class="classifier">string</span></dt><dd></dd>
-<dt><strong>local_path</strong><span class="classifier">string</span></dt><dd></dd>
-<dt><strong>compression</strong><span class="classifier">{‘gzip’, ‘bz2’, None}</span></dt><dd></dd>
-<dt><strong>overwrite</strong><span class="classifier">boolean, default False</span></dt><dd></dd>
-<dt><strong>verbose</strong><span class="classifier">boolean, default None (global default)</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdfs_path</strong> (<em>string</em>) – </p></li>
+<li><p><strong>local_path</strong> (<em>string</em>) – </p></li>
+<li><p><strong>compression</strong> (<em>{'gzip'</em><em>, </em><em>'bz2'</em><em>, </em><em>None}</em>) – </p></li>
+<li><p><strong>overwrite</strong> (<em>boolean</em><em>, </em><em>default False</em>) – </p></li>
+<li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default None</em><em> (</em><em>global default</em><em>)</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

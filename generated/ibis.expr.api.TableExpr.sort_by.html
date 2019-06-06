@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TableExpr.sort_by &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TableExpr.sort_by &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -151,7 +151,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -253,13 +252,12 @@
 <h1>ibis.expr.api.TableExpr.sort_by<a class="headerlink" href="#ibis-expr-api-tableexpr-sort-by" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TableExpr.sort_by">
-<code class="descclassname">TableExpr.</code><code class="descname">sort_by</code><span class="sig-paren">(</span><em>table</em>, <em>sort_exprs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.sort_by" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TableExpr.</code><code class="descname">sort_by</code><span class="sig-paren">(</span><em>sort_exprs</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TableExpr.sort_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sort table by the indicated column expressions and sort orders
 (ascending/descending)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sort_exprs</strong><span class="classifier">sorting expressions</span></dt><dd><dl class="simple">
+<dd class="field-odd"><p><strong>sort_exprs</strong> (<em>sorting expressions</em>) – <dl class="simple">
 <dt>Must be one of:</dt><dd><ul class="simple">
 <li><p>Column name or expression</p></li>
 <li><p>Sort key, e.g. desc(col)</p></li>
@@ -267,13 +265,7 @@
 </ul>
 </dd>
 </dl>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>sorted</strong><span class="classifier">TableExpr</span></dt><dd></dd>
-</dl>
+</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -282,6 +274,14 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ab_sorted</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">sort_by</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)])</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>sorted</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>TableExpr</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.sql.sqlite.api.connect &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.sql.sqlite.api.connect &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -129,7 +129,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -236,13 +235,11 @@
 <p>Multiple database files can be created using the attach() method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>path</strong><span class="classifier">string, default None</span></dt><dd><p>File path to the SQLite database file. If None, creates an in-memory
-transient database and you can use attach() to add more files</p>
-</dd>
-<dt><strong>create</strong><span class="classifier">boolean, default False</span></dt><dd><p>If file does not exist, create it</p>
-</dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>string</em><em>, </em><em>default None</em>) – File path to the SQLite database file. If None, creates an in-memory
+transient database and you can use attach() to add more files</p></li>
+<li><p><strong>create</strong> (<em>boolean</em><em>, </em><em>default False</em>) – If file does not exist, create it</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

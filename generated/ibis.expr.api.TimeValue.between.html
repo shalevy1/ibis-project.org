@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.expr.api.TimeValue.between &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.expr.api.TimeValue.between &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -134,7 +134,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -236,21 +235,22 @@
 <h1>ibis.expr.api.TimeValue.between<a class="headerlink" href="#ibis-expr-api-timevalue-between" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.expr.api.TimeValue.between">
-<code class="descclassname">TimeValue.</code><code class="descname">between</code><span class="sig-paren">(</span><em>arg</em>, <em>lower</em>, <em>upper</em>, <em>timezone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TimeValue.between" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">TimeValue.</code><code class="descname">between</code><span class="sig-paren">(</span><em>lower</em>, <em>upper</em>, <em>timezone=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.expr.api.TimeValue.between" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the input expr falls between the lower/upper bounds passed.
 Bounds are inclusive. All arguments must be comparable.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>lower</strong><span class="classifier">str, datetime.time</span></dt><dd></dd>
-<dt><strong>upper</strong><span class="classifier">str, datetime.time</span></dt><dd></dd>
-<dt><strong>timezone</strong><span class="classifier">str, timezone, default None</span></dt><dd></dd>
-</dl>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lower</strong> (<em>str</em><em>, </em><em>datetime.time</em>) – </p></li>
+<li><p><strong>upper</strong> (<em>str</em><em>, </em><em>datetime.time</em>) – </p></li>
+<li><p><strong>timezone</strong> (<em>str</em><em>, </em><em>timezone</em><em>, </em><em>default None</em>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>BooleanValue</dt><dd></dd>
-</dl>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>BooleanValue</p>
 </dd>
 </dl>
 </dd></dl>

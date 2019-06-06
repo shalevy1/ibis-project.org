@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.impala.api.ImpalaClient.parquet_file &mdash; Ibis 1.0.0+31.g74548ff documentation</title>
+  <title>ibis.impala.api.ImpalaClient.parquet_file &mdash; Ibis 1.0.0+32.g09e99f5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+31.g74548ff
+                1.0.0+32.g09e99f5
               </div>
             
           
@@ -136,7 +136,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to Ibis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developing and Contributing to Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../design.html">Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../backends.html">Backends</a></li>
@@ -238,7 +237,7 @@
 <h1>ibis.impala.api.ImpalaClient.parquet_file<a class="headerlink" href="#ibis-impala-api-impalaclient-parquet-file" title="Permalink to this headline">¶</a></h1>
 <dl class="method">
 <dt id="ibis.impala.api.ImpalaClient.parquet_file">
-<code class="descclassname">ImpalaClient.</code><code class="descname">parquet_file</code><span class="sig-paren">(</span><em>self</em>, <em>hdfs_dir</em>, <em>schema=None</em>, <em>name=None</em>, <em>database=None</em>, <em>external=True</em>, <em>like_file=None</em>, <em>like_table=None</em>, <em>persist=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.parquet_file" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ImpalaClient.</code><code class="descname">parquet_file</code><span class="sig-paren">(</span><em>hdfs_dir</em>, <em>schema=None</em>, <em>name=None</em>, <em>database=None</em>, <em>external=True</em>, <em>like_file=None</em>, <em>like_table=None</em>, <em>persist=False</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.impala.api.ImpalaClient.parquet_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make indicated parquet file in HDFS available as an Ibis table.</p>
 <p>The table created can be optionally named and persisted, otherwise a
 unique name will be generated. Temporarily, for any non-persistent
@@ -247,35 +246,28 @@ underlying object is garbage collected (or the Python interpreter shuts
 down normally).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>hdfs_dir</strong><span class="classifier">string</span></dt><dd><p>Path in HDFS</p>
-</dd>
-<dt><strong>schema</strong><span class="classifier">ibis Schema</span></dt><dd><p>If no schema provided, and neither of the like_* argument is passed,
-one will be inferred from one of the parquet files in the directory.</p>
-</dd>
-<dt><strong>like_file</strong><span class="classifier">string</span></dt><dd><p>Absolute path to Parquet file in HDFS to use for schema
-definitions. An alternative to having to supply an explicit schema</p>
-</dd>
-<dt><strong>like_table</strong><span class="classifier">string</span></dt><dd><p>Fully scoped and escaped string to an Impala table whose schema we
-will use for the newly created table.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">string, optional</span></dt><dd><p>random unique name generated otherwise</p>
-</dd>
-<dt><strong>database</strong><span class="classifier">string, optional</span></dt><dd><p>Database to create the (possibly temporary) table in</p>
-</dd>
-<dt><strong>external</strong><span class="classifier">boolean, default True</span></dt><dd><p>If a table is external, the referenced data will not be deleted when
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdfs_dir</strong> (<em>string</em>) – Path in HDFS</p></li>
+<li><p><strong>schema</strong> (<em>ibis Schema</em>) – If no schema provided, and neither of the like_* argument is passed,
+one will be inferred from one of the parquet files in the directory.</p></li>
+<li><p><strong>like_file</strong> (<em>string</em>) – Absolute path to Parquet file in HDFS to use for schema
+definitions. An alternative to having to supply an explicit schema</p></li>
+<li><p><strong>like_table</strong> (<em>string</em>) – Fully scoped and escaped string to an Impala table whose schema we
+will use for the newly created table.</p></li>
+<li><p><strong>name</strong> (<em>string</em><em>, </em><em>optional</em>) – random unique name generated otherwise</p></li>
+<li><p><strong>database</strong> (<em>string</em><em>, </em><em>optional</em>) – Database to create the (possibly temporary) table in</p></li>
+<li><p><strong>external</strong> (<em>boolean</em><em>, </em><em>default True</em>) – If a table is external, the referenced data will not be deleted when
 the table is dropped in Impala. Otherwise (external=False) Impala
-takes ownership of the Parquet file.</p>
-</dd>
-<dt><strong>persist</strong><span class="classifier">boolean, default False</span></dt><dd><p>Do not drop the table upon Ibis garbage collection / interpreter
-shutdown</p>
-</dd>
-</dl>
+takes ownership of the Parquet file.</p></li>
+<li><p><strong>persist</strong> (<em>boolean</em><em>, </em><em>default False</em>) – Do not drop the table upon Ibis garbage collection / interpreter
+shutdown</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>parquet_table</strong><span class="classifier">ImpalaTable</span></dt><dd></dd>
-</dl>
+<dd class="field-even"><p><strong>parquet_table</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ImpalaTable</p>
 </dd>
 </dl>
 </dd></dl>
