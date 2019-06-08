@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ibis.trailing_window &mdash; Ibis 1.0.0+33.g94bfefd documentation</title>
+  <title>ibis.trailing_window &mdash; Ibis 1.0.0+34.ge634fa3 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+33.g94bfefd
+                1.0.0+34.ge634fa3
               </div>
             
           
@@ -247,12 +247,15 @@
 <h1>ibis.trailing_window<a class="headerlink" href="#ibis-trailing-window" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="ibis.trailing_window">
-<code class="descclassname">ibis.</code><code class="descname">trailing_window</code><span class="sig-paren">(</span><em>rows</em>, <em>group_by=None</em>, <em>order_by=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.trailing_window" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">ibis.</code><code class="descname">trailing_window</code><span class="sig-paren">(</span><em>preceding</em>, <em>group_by=None</em>, <em>order_by=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ibis.trailing_window" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a trailing window for use with aggregate window functions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rows</strong> (<em>int</em>) – Number of trailing rows to include. 0 includes only the current row</p></li>
+<li><p><strong>preceding</strong> (<em>int</em><em>, </em><em>float</em><em> or </em><em>expression of intervals</em><em>, </em><em>i.e.</em>) – ibis.interval(days=1) + ibis.interval(hours=5)
+Int indicates number of trailing rows to include;
+0 includes only the current row.
+Interval indicates a trailing range window.</p></li>
 <li><p><strong>group_by</strong> (<em>expressions</em><em>, </em><em>default None</em>) – Either specify here or with TableExpr.group_by</p></li>
 <li><p><strong>order_by</strong> (<em>expressions</em><em>, </em><em>default None</em>) – For analytic functions requiring an ordering, specify here, or let Ibis
 determine the default ordering (for functions like rank)</p></li>
