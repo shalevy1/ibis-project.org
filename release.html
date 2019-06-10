@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis 1.0.0+39.gec138f0 documentation</title>
+  <title>Release Notes &mdash; Ibis 1.0.0+40.g8500e39 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0+39.gec138f0
+                1.0.0+40.g8500e39
               </div>
             
           
@@ -201,6 +201,54 @@
 <p class="admonition-title">Note</p>
 <p>These release notes are for versions of ibis <strong>1.0 and later</strong>. Release
 notes for pre-1.0 versions of ibis can be found at <a class="reference internal" href="release-pre-1.0.html"><span class="doc">Release Notes (pre 1.0)</span></a></p>
+</div>
+<div class="section" id="Next 1.x feature release">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/master">Next 1.x feature release</a></h2><ul class="simple">
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1753">#1753</a><span>:</span> Added float32 and geospatial types for create table from schema</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1743">#1743</a><span>:</span> is_computable_arg dispatcher</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1777">#1777</a><span>:</span> Enable window function tests where possible</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1778">#1778</a><span>:</span> Add marker for xfailing specific backends</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1758">#1758</a><span>:</span> Reimplement the pandas backend using topological sort</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1771">#1771</a><span>:</span> Add window operations to the OmniSci backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1790">#1790</a><span>:</span> Add missing date operations and struct field operation for the pandas backend</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1785">#1785</a><span>:</span> Allow strings for types in pandas UDFs</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1792">#1792</a><span>:</span> Add min periods parameter to Window</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1796">#1796</a><span>:</span> Add session feature to mapd client API</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1766">#1766</a><span>:</span> Call to_interval when casting integers to intervals</p></li>
+<li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1809">#1809</a><span>:</span> Conslidate trailing window functions</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1749">#1749</a><span>:</span> Update README reference to MapD to say OmniSci</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1700">#1700</a><span>:</span> Re-enable CI for building step</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1750">#1750</a><span>:</span> Add Python 3.5 testing back to CI</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1759">#1759</a><span>:</span> Add isort pre-commit hooks</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1638">#1638</a><span>:</span> Add StringToTimestamp as unsupported</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1763">#1763</a><span>:</span> Remove warnings and clean up some docstrings</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1776">#1776</a><span>:</span> Constrain PyMapD version to get passing builds</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1781">#1781</a><span>:</span> Update omnisci container version</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1779">#1779</a><span>:</span> Clean up most xpassing tests</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1821">#1821</a><span>:</span> Fix typo in UDF signature specification</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1793">#1793</a><span>:</span> Add pep8speaks integration</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1810">#1810</a><span>:</span> Pin sphinx version to 2.0.1</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1805">#1805</a><span>:</span> Fix design and developer docs</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1814">#1814</a><span>:</span> Add development deps to setup.py</p></li>
+<li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1820">#1820</a><span>:</span> Remove decorator hacks and add custom markers</p></li>
+</ul>
+</div>
+<div class="section" id="Next 1.x bugfix release">
+<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/master">Next 1.x bugfix release</a></h2><ul class="simple">
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1661">#1661</a><span>:</span> PostgreSQL interval type not recognized</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1765">#1765</a><span>:</span> Fix preceding and following with <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1775">#1775</a><span>:</span> Fix conda create command in documentation</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1782">#1782</a><span>:</span> NullIf should enforce that its arguments are castable to a common type</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1772">#1772</a><span>:</span> Fix outer_join generating LEFT join instead of FULL OUTER</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1789">#1789</a><span>:</span> Fix compatibility and bugs associated with pandas toposort reimplementation</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1798">#1798</a><span>:</span> Fix Python 3.5 dependency versions</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1783">#1783</a><span>:</span> Allow projections from joins to attempt fusion</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1799">#1799</a><span>:</span> Chained mutate operations are buggy</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1757">#1757</a><span>:</span> Remove unnecessary (and erroneous in some cases) frame clauses</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1818">#1818</a><span>:</span> Fix failing strftime tests on Python 3.7</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1819">#1819</a><span>:</span> Fix group_concat test and implementations</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span>:</span><span> </span>:release <cite>1.1.0 &lt;2019-06-09&gt;</cite></p></li>
+</ul>
 </div>
 <div class="section" id="1.0.0">
 <h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/1.0.0">1.0.0</a> <span style="font-size: 75%;">2019-03-26</span></h2><ul class="simple">
