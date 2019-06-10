@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release Notes &mdash; Ibis 1.1.0+1.gc0287d9 documentation</title>
+  <title>Release Notes &mdash; Ibis 1.1.0+2.g1d361ff documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.0+1.gc0287d9
+                1.1.0+2.g1d361ff
               </div>
             
           
@@ -202,22 +202,6 @@
 <p>These release notes are for versions of ibis <strong>1.0 and later</strong>. Release
 notes for pre-1.0 versions of ibis can be found at <a class="reference internal" href="release-pre-1.0.html"><span class="doc">Release Notes (pre 1.0)</span></a></p>
 </div>
-<div class="section" id="Next 1.x bugfix release">
-<h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/master">Next 1.x bugfix release</a></h2><ul class="simple">
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1661">#1661</a><span>:</span> PostgreSQL interval type not recognized</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1765">#1765</a><span>:</span> Fix preceding and following with <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1775">#1775</a><span>:</span> Fix conda create command in documentation</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1782">#1782</a><span>:</span> NullIf should enforce that its arguments are castable to a common type</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1772">#1772</a><span>:</span> Fix outer_join generating LEFT join instead of FULL OUTER</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1789">#1789</a><span>:</span> Fix compatibility and bugs associated with pandas toposort reimplementation</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1798">#1798</a><span>:</span> Fix Python 3.5 dependency versions</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1783">#1783</a><span>:</span> Allow projections from joins to attempt fusion</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1799">#1799</a><span>:</span> Chained mutate operations are buggy</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1757">#1757</a><span>:</span> Remove unnecessary (and erroneous in some cases) frame clauses</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1818">#1818</a><span>:</span> Fix failing strftime tests on Python 3.7</p></li>
-<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1819">#1819</a><span>:</span> Fix group_concat test and implementations</p></li>
-</ul>
-</div>
 <div class="section" id="1.1.0">
 <h2 style="margin-bottom: 0.3em;"><a class="reference external" href="https://github.com/ibis-project/ibis/tree/1.1.0">1.1.0</a> <span style="font-size: 75%;">2019-06-09</span></h2><ul class="simple">
 <li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1753">#1753</a><span>:</span> Added float32 and geospatial types for create table from schema</p></li>
@@ -232,6 +216,18 @@ notes for pre-1.0 versions of ibis can be found at <a class="reference internal"
 <li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1796">#1796</a><span>:</span> Add session feature to mapd client API</p></li>
 <li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1766">#1766</a><span>:</span> Call to_interval when casting integers to intervals</p></li>
 <li><p>[<span style="color: #40A056;">Feature</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1809">#1809</a><span>:</span> Conslidate trailing window functions</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1661">#1661</a><span>:</span> PostgreSQL interval type not recognized</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1765">#1765</a><span>:</span> Fix preceding and following with <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1775">#1775</a><span>:</span> Fix conda create command in documentation</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1782">#1782</a><span>:</span> NullIf should enforce that its arguments are castable to a common type</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1772">#1772</a><span>:</span> Fix outer_join generating LEFT join instead of FULL OUTER</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1789">#1789</a><span>:</span> Fix compatibility and bugs associated with pandas toposort reimplementation</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1798">#1798</a><span>:</span> Fix Python 3.5 dependency versions</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1783">#1783</a><span>:</span> Allow projections from joins to attempt fusion</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1799">#1799</a><span>:</span> Chained mutate operations are buggy</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1757">#1757</a><span>:</span> Remove unnecessary (and erroneous in some cases) frame clauses</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1818">#1818</a><span>:</span> Fix failing strftime tests on Python 3.7</p></li>
+<li><p>[<span style="color: #A04040;">Bug</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1819">#1819</a><span>:</span> Fix group_concat test and implementations</p></li>
 <li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1749">#1749</a><span>:</span> Update README reference to MapD to say OmniSci</p></li>
 <li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1700">#1700</a><span>:</span> Re-enable CI for building step</p></li>
 <li><p>[<span style="color: #4070A0;">Support</span>]<span> </span><a class="reference external" href="https://github.com/ibis-project/ibis/issues/1750">#1750</a><span>:</span> Add Python 3.5 testing back to CI</p></li>
