@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ibis for SQL Programmers &mdash; Ibis 1.1.0+5.ged0f180 documentation</title>
+  <title>Ibis for SQL Programmers &mdash; Ibis 1.1.0+6.g5423109 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.1.0+5.ged0f180
+                1.1.0+6.g5423109
               </div>
             
           
@@ -860,7 +860,7 @@ some SQL to do it:</p>
 
 <span class="gp">In [75]: </span><span class="k">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">impala</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">))</span>
 <span class="go">SELECT *,</span>
-<span class="go">       CASE WHEN upper(`country`) IN (&#39;CANADA&#39;, &#39;UNITED STATES&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
+<span class="go">       CASE WHEN upper(`country`) IN (&#39;UNITED STATES&#39;, &#39;CANADA&#39;) THEN &#39;North America&#39; ELSE `country` END AS `refined_group`</span>
 <span class="go">FROM population</span>
 </pre></div>
 </div>
