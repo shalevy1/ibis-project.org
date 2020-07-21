@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Ibis with OmniSciDB &mdash; Ibis 1.3.0+84.g0693518 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ibis and Geospatial Operations" href="../geospatial_analysis.html" />
+    <link rel="prev" title="Backends" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Ibis
+          
+
+          
+            
+            <img src="../../_static/logo-wide.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0+84.g0693518
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Installation and Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">User guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuring Ibis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impala.html">Using Ibis with Impala</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bigquery.html">Using Ibis with BigQuery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sql.html">Ibis for SQL Programmers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../udf.html">User Defined Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design.html">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending.html">Extending Ibis</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Backends</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using Ibis with OmniSciDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backend-internals">Backend internals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aggregate-operations">Aggregate operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bigquery.html">Using Ibis with BigQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#classes-of-backends">Classes of Backends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../geospatial_analysis.html">Ibis and Geospatial Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending_elementwise_expr.html">Extending Ibis Part 1: Adding a New Elementwise Expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extending_reduce_expr.html">Extending Ibis Part 2: Adding a New Reduction Expression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release/index.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ibis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">User guide</a> &raquo;</li>
+        
+          <li><a href="index.html">Backends</a> &raquo;</li>
+        
+      <li>Using Ibis with OmniSciDB</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/user_guide/backends/omnisci.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="using-ibis-with-omniscidb">
+<span id="omnisci"></span><h1>Using Ibis with OmniSciDB<a class="headerlink" href="#using-ibis-with-omniscidb" title="Permalink to this headline">¶</a></h1>
+<p>To get started with the OmniSci client, check the <a class="reference internal" href="../../getting-started.html#install-omniscidb"><span class="std std-ref">OmniSci quick start</span></a>.</p>
+<p>For the API documentation, visit the <a class="reference internal" href="../../api.html#api-omniscidb"><span class="std std-ref">OmniSci API</span></a>.</p>
+<div class="section" id="backend-internals">
+<h2>Backend internals<a class="headerlink" href="#backend-internals" title="Permalink to this headline">¶</a></h2>
+<p>In this document it would be explained the main aspects of <cite>ibis</cite> and
+<cite>omniscidb</cite> backend implementation.</p>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+<p>omniscidb backend has 7 modules, the main three are:</p>
+<ul class="simple">
+<li><p><cite>api</cite></p></li>
+<li><p><cite>client</cite></p></li>
+<li><p><cite>compiler</cite></p></li>
+</ul>
+<p>The <cite>identifiers</cite> and <cite>operations</cite> modules complement the <cite>compiler</cite> module.</p>
+</div>
+<div class="section" id="api">
+<h3>api<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<p><cite>api</cite> module is the central key to access the backend. Ensure to include
+the follow code into <cite>ibis.__init__</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="ne">ImportError</span><span class="p">):</span>
+    <span class="c1"># pip install ibis-framework[omniscidb]</span>
+    <span class="kn">import</span> <span class="nn">ibis.omniscidb.api</span> <span class="k">as</span> <span class="nn">omniscidb</span>
+</pre></div>
+</div>
+<p>There are three functions in the <cite>api</cite> module:</p>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">verify()</span></code></p></li>
+</ul>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code> method compiles an <cite>ibis</cite> expression into <cite>SQL</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">omniscidb_cli</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;flights_2008_10k&#39;</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;arrtime&#39;</span><span class="p">,</span> <span class="s1">&#39;arrdelay&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ibis</span><span class="o">.</span><span class="n">omniscidb</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">proj</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">connect()</span></code> method instantiates a <code class="xref py py-class docutils literal notranslate"><span class="pre">OmniSciDBClient</span></code> object that connect to the specified
+<cite>omniscidb</cite> database:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">omniscidb_cli</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">omniscidb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;HyperInteractive&#39;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">6274</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;omnisci&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">verify()</span></code> method checks if the <cite>ibis</cite> expression can be compiled:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">omniscidb_cli</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s1">&#39;flights_2008_10k&#39;</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;arrtime&#39;</span><span class="p">,</span> <span class="s1">&#39;arrdelay&#39;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">ibis</span><span class="o">.</span><span class="n">omniscidb</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client">
+<h3>client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
+<p><cite>client</cite> module contains the main classes to handle the connection to an <cite>omniscidb</cite>
+database.</p>
+<p>The main classes are:</p>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">OmniSciDBClient</span></code></p></li>
+<li><p><cite>OmniSciDBQuery</cite></p></li>
+<li><p><cite>OmniSciDBDataType</cite></p></li>
+<li><p><cite>OmniSciDBDefaultCursor</cite></p></li>
+</ul>
+<p><cite>OmniSciDBDataType</cite> class is used to translate data type from <cite>ibis</cite> and to <cite>ibis</cite>.
+Its main methods are:</p>
+<ul class="simple">
+<li><p><cite>parse</cite></p></li>
+<li><p><cite>to_ibis</cite></p></li>
+<li><p><cite>from_ibis</cite></p></li>
+</ul>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">OmniSciDBClient</span></code> class is used to connect to an <cite>omniscidb</cite> database and manipulate data
+expressions. Its main methods are:</p>
+<ul class="simple">
+<li><p><cite>__init__</cite></p></li>
+<li><p><cite>_build_ast</cite></p></li>
+<li><p><cite>_execute</cite></p></li>
+<li><p><cite>_fully_qualified_name</cite></p></li>
+<li><p><cite>_get_table_schema</cite></p></li>
+<li><p><cite>_table_expr_klass</cite></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">log()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">close()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">database()</span></code></p></li>
+<li><p><cite>current_database</cite></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">set_database()</span></code></p></li>
+<li><p><cite>exists_database</cite></p></li>
+<li><p><cite>list_databases</cite></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">exists_table()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">list_tables()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_schema()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">version()</span></code></p></li>
+</ul>
+<p><cite>_build_ast</cite> method is required.</p>
+<p><cite>OmniSciDBQuery</cite> class should define at least the <cite>_fetch</cite> method. If <cite>Query</cite>
+class is used when the <cite>OmniSciDBClient.execute</cite> method is called, an exception
+is raised.</p>
+<blockquote>
+<div><p>(…) once the data arrives from the database we need to convert that data
+to a pandas DataFrame.</p>
+<p>The Query class, with its _fetch() method, provides a way for ibis
+SQLClient objects to do any additional processing necessary after
+the database returns results to the client.
+(<a class="reference external" href="http://docs.ibis-project.org/design.html#execution">http://docs.ibis-project.org/design.html#execution</a>)</p>
+</div></blockquote>
+<p>Under the hood the <cite>execute</cite> method, uses a cursor class that will fetch the
+result from the database and load it to a dataframe format (e.g. pandas, GeoPandas, cuDF).</p>
+</div>
+<div class="section" id="compiler">
+<h3>compiler<a class="headerlink" href="#compiler" title="Permalink to this headline">¶</a></h3>
+<p>The main classes inside <cite>compiler</cite> module are:</p>
+<ul class="simple">
+<li><p><cite>OmniSciDBDialect</cite></p></li>
+<li><p><cite>OmniSciDBExprTranslator</cite></p></li>
+<li><p><cite>OmniSciDBQueryBuilder</cite></p></li>
+<li><p><cite>OmniSciDBSelect</cite></p></li>
+<li><p><cite>OmniSciDBSelectBuilder</cite></p></li>
+<li><p><cite>OmniSciDBTableSetFormatter</cite></p></li>
+</ul>
+</div>
+<div class="section" id="operations">
+<h3>operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><cite>Node</cite> subclasses make up the core set of operations of ibis.
+Each node corresponds to a particular operation.
+Most nodes are defined in the <cite>operations</cite> module.
+(<a class="reference external" href="http://docs.ibis-project.org/design.html#the-node-class">http://docs.ibis-project.org/design.html#the-node-class</a>).</p>
+</div></blockquote>
+<p>Creating new expression: To create new expressions it is necessary to do these
+steps:</p>
+<ol class="arabic simple">
+<li><p>create a new class</p></li>
+<li><p>create a new function and assign it to a DataType</p></li>
+<li><p>create a compiler function to this new function and assign it to the compiler translator</p></li>
+</ol>
+<p>A new Class database function would be like this (<cite>my_backend_operations.py</cite>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyNewFunction</span><span class="p">(</span><span class="n">ops</span><span class="o">.</span><span class="n">UnaryOp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;My new class function&quot;&quot;&quot;</span>
+    <span class="n">output_type</span> <span class="o">=</span> <span class="n">rlz</span><span class="o">.</span><span class="n">shape_like</span><span class="p">(</span><span class="s1">&#39;arg&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After creating the new class database function, the follow step is to create a
+function and assign it to the DataTypes allowed to use it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_new_function</span><span class="p">(</span><span class="n">numeric_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">MyNewFunction</span><span class="p">(</span><span class="n">numeric_value</span><span class="p">)</span><span class="o">.</span><span class="n">to_expr</span><span class="p">()</span>
+
+
+<span class="n">NumericValue</span><span class="o">.</span><span class="n">sin</span> <span class="o">=</span> <span class="n">sin</span>
+</pre></div>
+</div>
+<p>Also, it is necessary to register the new function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># if it necessary define the fixed_arity function</span>
+<span class="k">def</span> <span class="nf">fixed_arity</span><span class="p">(</span><span class="n">func_name</span><span class="p">,</span> <span class="n">arity</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">formatter</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+        <span class="n">op</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span><span class="p">()</span>
+        <span class="n">arg_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">arity</span> <span class="o">!=</span> <span class="n">arg_count</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Incorrect number of args </span><span class="si">{0}</span><span class="s1"> instead of </span><span class="si">{1}</span><span class="s1">&#39;</span>
+            <span class="k">raise</span> <span class="n">com</span><span class="o">.</span><span class="n">UnsupportedOperationError</span><span class="p">(</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arg_count</span><span class="p">,</span> <span class="n">arity</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">_call</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="o">*</span><span class="n">op</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">formatter</span>
+
+<span class="n">_operation_registry</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+    <span class="n">MyNewFunction</span><span class="p">:</span> <span class="n">fixed_arity</span><span class="p">(</span><span class="s1">&#39;my_new_function&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Now, it just needs a compiler function to translate the function to a SQL code
+(my_backend/compiler.py):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compiles</span> <span class="o">=</span> <span class="n">MyBackendExprTranslator</span><span class="o">.</span><span class="n">compiles</span>
+
+<span class="nd">@compiles</span><span class="p">(</span><span class="n">MyNewFunction</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">compile_my_new_function</span><span class="p">(</span><span class="n">translator</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+    <span class="c1"># pull out the arguments to the expression</span>
+    <span class="n">arg</span><span class="p">,</span> <span class="o">=</span> <span class="n">expr</span><span class="o">.</span><span class="n">op</span><span class="p">()</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="c1"># compile the argument</span>
+    <span class="n">compiled_arg</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;my_new_function(</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">compiled_arg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="identifiers">
+<h3>identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h3>
+<p><cite>identifiers</cite> module keep a set of identifiers (<cite>_identifiers</cite>) to be used
+inside <cite>quote_identifier</cite> function (inside the same module). <cite>_identifiers</cite> is
+a set of reserved words from <cite>omniscidb</cite> language.</p>
+<p><cite>quote_identifiers</cite> is used to put quotes around the string sent if the string
+match to specific criteria.</p>
+</div>
+<div class="section" id="timestamp-date-operations">
+<h3>Timestamp/Date operations<a class="headerlink" href="#timestamp-date-operations" title="Permalink to this headline">¶</a></h3>
+<p><strong>Interval:</strong></p>
+<p>omniscidb Interval statement allows just the following date/time attribute: YEAR, DAY,
+MONTH, HOUR, MINUTE, SECOND</p>
+<p>To use the interval statement, it is necessary to use a <cite>integer literal/constant</cite>
+and use the <cite>to_interval</cite> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">ibis</span><span class="o">.</span><span class="n">literal</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_interval</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">TIMESTAMPADD</span><span class="p">(</span><span class="k">YEAR</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+</pre></div>
+</div>
+<p>Another way to use intervals is using <cite>ibis.interval(years=1)</cite></p>
+<p><strong>Extract date/time</strong></p>
+<p>To extract a date part information from a timestamp, <cite>extract</cite> would be used:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;YEAR&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>extract</cite> method is just available on <cite>ibis.omniscidb</cite> backend.</p>
+<p>The operators allowed are: YEAR, QUARTER, MONTH, DAY, HOUR, MINUTE, SECOND,
+DOW, ISODOW, DOY, EPOCH, QUARTERDAY, WEEK</p>
+<p><strong>Direct functions to extract date/time</strong></p>
+<p>There are some direct functions to extract date/time, the following shows how
+to use them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">month</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">day</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hour</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">minute</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">second</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The result will be:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">DAY</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="n">HOUR</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MINUTE</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+
+<span class="k">SELECT</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="k">SECOND</span> <span class="k">FROM</span> <span class="ss">&quot;arr_timestamp&quot;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">tmp</span>
+<span class="k">FROM</span> <span class="n">omniscidb</span><span class="p">.</span><span class="n">flights_2008_10k</span>
+</pre></div>
+</div>
+<p><strong>Timestap/Date Truncate</strong></p>
+<p>A truncate timestamp/data value function is available as <cite>truncate</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;arr_timestamp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="n">date_part</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The date part operators allowed are: YEAR or Y, QUARTER or Q, MONTH or M,
+DAY or D, HOUR or h, MINUTE or m, SECOND or s, WEEK, MILLENNIUM, CENTURY,
+DECADE, QUARTERDAY</p>
+</div>
+<div class="section" id="string-operations">
+<h3>String operations<a class="headerlink" href="#string-operations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><cite>byte_length</cite> is not part of <cite>ibis</cite> <cite>string</cite> operations, it will work just for <cite>omniscidb</cite> backend.</p></li>
+</ul>
+<p><cite>Not</cite> operation can be done using <cite>~</cite> operator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">~</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;dest_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s1">&#39;L%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><cite>regexp</cite> and <cite>regexp_like</cite> operations can be done using <cite>re_search</cite> operation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;dest_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">re_search</span><span class="p">(</span><span class="s1">&#39;L%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aggregate-operations">
+<h2>Aggregate operations<a class="headerlink" href="#aggregate-operations" title="Permalink to this headline">¶</a></h2>
+<p>The aggregation operations available are: max, min, mean, count, distinct and count, nunique, approx_nunique.</p>
+<p>The following examples show how to use count operations:</p>
+<ul class="simple">
+<li><p>get the row count of the table: <cite>t[‘taxiin’].count()</cite></p></li>
+<li><p>get the distinct count of a field: <cite>t[‘taxiin’].distinct().count()</cite> or <cite>t[‘taxiin’].nunique().name(‘v’)</cite></p></li>
+<li><p>get the approximate distinct count of a field: <cite>t[‘taxiin’].approx_nunique(10)</cite></p></li>
+</ul>
+<div class="section" id="best-practices">
+<h3>Best practices<a class="headerlink" href="#best-practices" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use <cite>Numpy</cite> standard for docstrings: <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard</a></p></li>
+<li><p>Use <cite>format</cite> string function to format a string instead of <cite>%</cite> statement.</p></li>
+</ul>
+</div>
+<div class="section" id="history">
+<h3>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
+<p>New implementations on <cite>ibis</cite> core:</p>
+<ul class="simple">
+<li><p>Trigonometric operations (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/893">https://github.com/ibis-project/ibis/issues/893</a> );</p></li>
+<li><p>Radians and Degrees operations (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1431">https://github.com/ibis-project/ibis/issues/1431</a> );</p></li>
+<li><p>PI constant (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1418">https://github.com/ibis-project/ibis/issues/1418</a> );</p></li>
+<li><p>Correlation and Covariation operations added (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1432">https://github.com/ibis-project/ibis/issues/1432</a> );</p></li>
+<li><p>ILIKE operation (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1433">https://github.com/ibis-project/ibis/issues/1433</a> );</p></li>
+<li><p>Distance operation (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1434">https://github.com/ibis-project/ibis/issues/1434</a> );</p></li>
+</ul>
+<p>Issues appointed:</p>
+<ul class="simple">
+<li><p><cite>Ibis</cite> <cite>CASE</cite> statement wasn’t allowing input and output with different types (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/93">https://github.com/ibis-project/ibis/issues/93</a> )</p></li>
+<li><p>At this time, not all omniscidb <cite>date parts</cite> are available on <cite>ibis</cite> (<a class="reference external" href="https://github.com/ibis-project/ibis/issues/1430">https://github.com/ibis-project/ibis/issues/1430</a> )</p></li>
+</ul>
+<p>Pull Requests:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ibis-project/ibis/pull/1419">https://github.com/ibis-project/ibis/pull/1419</a></p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>ibis API: <a class="reference external" href="http://docs.ibis-project.org/api.html">http://docs.ibis-project.org/api.html</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../geospatial_analysis.html" class="btn btn-neutral float-right" title="Ibis and Geospatial Operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Backends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Ibis Developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65303298-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</body>
+</html>
